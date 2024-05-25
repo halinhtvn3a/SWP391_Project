@@ -1,0 +1,17 @@
+E:\C#\CourtManagament\Repositories\bin\Debug\net8.0\Repositories.deps.json
+E:\C#\CourtManagament\Repositories\bin\Debug\net8.0\Repositories.dll
+E:\C#\CourtManagament\Repositories\bin\Debug\net8.0\Repositories.pdb
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\Repositories.GeneratedMSBuildEditorConfig.editorconfig
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfoInputs.cache
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\Repositories.AssemblyInfo.cs
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\Repositories.csproj.CoreCompileInputs.cache
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\Repositories.dll
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\refint\Repositories.dll
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\Repositories.pdb
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\ref\Repositories.dll
+E:\C#\CourtManagament\Repositories\bin\Debug\net8.0\BusinessObjects.dll
+E:\C#\CourtManagament\Repositories\bin\Debug\net8.0\DAOs.dll
+E:\C#\CourtManagament\Repositories\bin\Debug\net8.0\DAOs.pdb
+E:\C#\CourtManagament\Repositories\bin\Debug\net8.0\BusinessObjects.pdb
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\Repositories.csproj.AssemblyReference.cache
+E:\C#\CourtManagament\Repositories\obj\Debug\net8.0\Reposito.787EC4B2.Up2Date

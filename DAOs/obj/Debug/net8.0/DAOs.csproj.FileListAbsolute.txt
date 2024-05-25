@@ -1,0 +1,15 @@
+E:\C#\CourtManagament\DAOs\bin\Debug\net8.0\DAOs.deps.json
+E:\C#\CourtManagament\DAOs\bin\Debug\net8.0\DAOs.dll
+E:\C#\CourtManagament\DAOs\bin\Debug\net8.0\DAOs.pdb
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\DAOs.GeneratedMSBuildEditorConfig.editorconfig
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\DAOs.AssemblyInfoInputs.cache
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\DAOs.AssemblyInfo.cs
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\DAOs.csproj.CoreCompileInputs.cache
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\DAOs.dll
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\refint\DAOs.dll
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\DAOs.pdb
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\ref\DAOs.dll
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\DAOs.csproj.AssemblyReference.cache
+E:\C#\CourtManagament\DAOs\bin\Debug\net8.0\BusinessObjects.dll
+E:\C#\CourtManagament\DAOs\bin\Debug\net8.0\BusinessObjects.pdb
+E:\C#\CourtManagament\DAOs\obj\Debug\net8.0\DAOs.csproj.Up2Date

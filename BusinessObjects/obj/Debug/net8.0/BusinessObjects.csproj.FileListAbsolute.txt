@@ -1,0 +1,14 @@
+E:\C#\CourtManagament\BusinessObjects\bin\Debug\net8.0\BusinessObjects.deps.json
+E:\C#\CourtManagament\BusinessObjects\bin\Debug\net8.0\BusinessObjects.runtimeconfig.json
+E:\C#\CourtManagament\BusinessObjects\bin\Debug\net8.0\BusinessObjects.dll
+E:\C#\CourtManagament\BusinessObjects\bin\Debug\net8.0\BusinessObjects.pdb
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.AssemblyReference.cache
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\BusinessObjects.GeneratedMSBuildEditorConfig.editorconfig
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfoInputs.cache
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\BusinessObjects.AssemblyInfo.cs
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\BusinessObjects.csproj.CoreCompileInputs.cache
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\BusinessObjects.dll
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\refint\BusinessObjects.dll
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
+E:\C#\CourtManagament\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll
