@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
@@ -22,7 +23,35 @@ namespace DAOs
 
         public List<User> GetUsers()
         {
-            return dbContext.Users.ToList();
+            var users = dbContext.Users
+          .Include(u => u.Role)
+          .Include(u => u.Bookings)
+          .Include(u => u.Reviews)
+          .ToList();
+
+            return users.Select(u => new User
+            {
+                UserId = u.UserId,
+                Username = u.Username,
+                Password = u.Password,
+                RoleId = u.RoleId,
+                
+                Balance = u.Balance,
+                Email = u.Email,
+                PhoneNumber = u.PhoneNumber,
+                FullName = u.FullName,
+                Status = u.Status,
+                //only BookingId
+                Bookings = u.Bookings.Select(b => new Booking
+                {
+                    BookingId = b.BookingId
+                }).ToList(),
+                //only ReviewId
+                Reviews = u.Reviews.Select(r => new Review
+                {
+                    ReviewId = r.ReviewId
+                }).ToList()
+            }).ToList();
         }
 
         public User GetUser(string id)
