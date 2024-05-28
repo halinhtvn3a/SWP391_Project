@@ -1,23 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
-namespace BusinessObjects;
-
-public partial class Review
+namespace BusinessObjects
 {
-    public string ReviewId { get; set; } = null!;
+	public class Review
+	{
+		[Key]
+		[StringLength(5)]
+		public string ReviewId { get; set; }
 
-    public string? ReviewText { get; set; }
+		[StringLength(255)]
+		public string ReviewText { get; set; }
 
-    public DateTime? ReviewDate { get; set; }
+		public DateTime? ReviewDate { get; set; }
 
-    public int? Rating { get; set; }
+		public int? Rating { get; set; }
 
-    public string? UserId { get; set; }
+		[ForeignKey("User")]
+		[StringLength(450)]
+		public string Id { get; set; }
 
-    public string? CourtId { get; set; }
+		[ForeignKey("Court")]
+		[StringLength(5)]
+		public string CourtId { get; set; }
 
-    public virtual Court? Court { get; set; }
-
-    public virtual User? User { get; set; }
+		// Navigation properties
+		public IdentityUser User { get; set; }
+		public Court Court { get; set; }
+	}
 }

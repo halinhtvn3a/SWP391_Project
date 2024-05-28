@@ -1,21 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BusinessObjects;
-
-public partial class Court
+namespace BusinessObjects
 {
-    public string CourtId { get; set; } = null!;
+	public class Court
+	{
+		[Key]
+		[StringLength(5)]
+		public string CourtId { get; set; }
 
-    public string? BranchId { get; set; }
+		[ForeignKey("Branch")]
+		[StringLength(5)]
+		public string BranchId { get; set; }
 
-    public string? CourtName { get; set; }
+		[StringLength(100)]
+		public string CourtName { get; set; }
 
-    public bool Status { get; set; }
+		[Required]
+		public bool Status { get; set; }
 
-    public virtual Branch? Branch { get; set; }
-
-    public virtual ICollection<Review> Reviews { get; set; } = new List<Review>();
-
-    public virtual ICollection<TimeSlot> TimeSlots { get; set; } = new List<TimeSlot>();
+		// Navigation properties
+		public Branch Branch { get; set; }
+		public ICollection<TimeSlot> TimeSlots { get; set; }
+		public ICollection<Review> Reviews { get; set; }
+	}
 }

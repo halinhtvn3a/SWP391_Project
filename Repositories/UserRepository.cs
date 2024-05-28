@@ -1,31 +1,32 @@
-﻿using System;
+﻿using BusinessObjects;
+using DAOs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BusinessObjects;
-using DAOs;
+using Microsoft.AspNetCore.Identity;
 
 namespace Repositories
 {
-    public class UserRepository
-    {
-        private readonly UserDAO UserDAO = null;
-        public UserRepository()
-        {
-            if (UserDAO == null)
-            {
-                UserDAO = new UserDAO();
-            }
-        }
-        public User AddUser(User User) => UserDAO.AddUser(User);
+	public class UserRepository
+	{
+		private readonly UserDAO UserDAO = null;
+		public UserRepository()
+		{
+			if (UserDAO == null)
+			{
+				UserDAO = new UserDAO();
+			}
+		}
+		public IdentityUser AddUser(IdentityUser IdentityUser) => UserDAO.AddUser(IdentityUser);
 
-        public void DeleteUser(string id) => UserDAO.DeleteUser(id);
+		//public void DeleteIdentityUser(string id) => UserDAO.DeleteIdentityUser(id);
 
-        public User GetUser(string id) => UserDAO.GetUser(id);
+		public IdentityUser GetUser(string id) => UserDAO.GetUser(id);
 
-        public List<User> GetUsers() => UserDAO.GetUsers();
+		public List<IdentityUser> GetUsers() => UserDAO.GetUsers();
 
-        public User UpdateUser(string id, User User) => UserDAO.UpdateUser(id, User);
-    }
+		//public IdentityUser UpdateIdentityUser(string id, IdentityUser IdentityUser) => UserDAO.UpdateIdentityUser(id, IdentityUser);
+	}
 }

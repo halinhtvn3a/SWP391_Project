@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\C#\\CourtManagament\\Repositories\\Repositories.csproj": {}
+    "E:\\new\\SWP391_Project\\Repositories\\Repositories.csproj": {}
   },
   "projects": {
-    "E:\\C#\\CourtManagament\\BusinessObjects\\BusinessObjects.csproj": {
+    "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\C#\\CourtManagament\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "E:\\C#\\CourtManagament\\BusinessObjects\\BusinessObjects.csproj",
+        "projectPath": "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\C#\\CourtManagament\\BusinessObjects\\obj\\",
+        "outputPath": "E:\\new\\SWP391_Project\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -46,6 +46,18 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
@@ -56,11 +68,23 @@
               "target": "Package",
               "version": "[8.0.5, )"
             },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[8.0.5, )"
+            },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.5, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.Extensions.Configuration.Json": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             }
           },
           "imports": [
@@ -83,14 +107,14 @@
         }
       }
     },
-    "E:\\C#\\CourtManagament\\DAOs\\DAOs.csproj": {
+    "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\C#\\CourtManagament\\DAOs\\DAOs.csproj",
+        "projectUniqueName": "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj",
         "projectName": "DAOs",
-        "projectPath": "E:\\C#\\CourtManagament\\DAOs\\DAOs.csproj",
+        "projectPath": "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\C#\\CourtManagament\\DAOs\\obj\\",
+        "outputPath": "E:\\new\\SWP391_Project\\DAOs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -108,8 +132,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\C#\\CourtManagament\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "E:\\C#\\CourtManagament\\BusinessObjects\\BusinessObjects.csproj"
+              "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
               }
             }
           }
@@ -148,14 +172,14 @@
         }
       }
     },
-    "E:\\C#\\CourtManagament\\Repositories\\Repositories.csproj": {
+    "E:\\new\\SWP391_Project\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\C#\\CourtManagament\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "E:\\new\\SWP391_Project\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "E:\\C#\\CourtManagament\\Repositories\\Repositories.csproj",
+        "projectPath": "E:\\new\\SWP391_Project\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\C#\\CourtManagament\\Repositories\\obj\\",
+        "outputPath": "E:\\new\\SWP391_Project\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -173,8 +197,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\C#\\CourtManagament\\DAOs\\DAOs.csproj": {
-                "projectPath": "E:\\C#\\CourtManagament\\DAOs\\DAOs.csproj"
+              "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj": {
+                "projectPath": "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj"
               }
             }
           }

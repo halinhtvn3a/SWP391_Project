@@ -1,23 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
-namespace BusinessObjects;
-
-public partial class Booking
+namespace BusinessObjects
 {
-    public string BookingId { get; set; } = null!;
+	public class Booking
+	{
+		[Key]
+		[StringLength(5)]
+		public string BookingId { get; set; }
 
-    public string? UserId { get; set; }
+		[ForeignKey("User")]
+		[StringLength(450)]
+		public string Id { get; set; }
 
-    public string? SlotId { get; set; }
+		[ForeignKey("TimeSlot")]
+		[StringLength(5)]
+		public string SlotId { get; set; }
 
-    public DateOnly BookingDate { get; set; }
+		[Required]
+		public DateTime BookingDate { get; set; }
 
-    public bool Check { get; set; }
+		[Required]
+		public bool Check { get; set; }
 
-    public virtual ICollection<Payment> Payments { get; set; } = new List<Payment>();
+		[Required]
+		public decimal PaymentAmount { get; set; }
 
-    public virtual TimeSlot? Slot { get; set; }
-
-    public virtual User? User { get; set; }
+		// Navigation properties
+		public IdentityUser User { get; set; }
+		public TimeSlot TimeSlot { get; set; }
+		public ICollection<Payment> Payments { get; set; }
+	}
 }

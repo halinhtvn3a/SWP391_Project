@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Controllers
 {
@@ -23,14 +24,14 @@ namespace API.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUsers()
         {
             return userService.GetUsers().ToList();
         }
 
         // GET: api/Users/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(string id)
+        public async Task<ActionResult<IdentityUser>> GetUser(string id)
         {
             var user = userService.GetUser(id);
 
@@ -44,43 +45,43 @@ namespace API.Controllers
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(string id, User user)
-        {
-            if (id != user.UserId)
-            {
-                return BadRequest();
-            }
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutUser(string id, IdentityUser user)
+        //{
+        //    if (id != user.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            userService.UpdateUser(id, user);
+        //    userService.UpdateUser(id, user);
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<IdentityUser>> PostUser(IdentityUser user)
         {
             userService.AddUser(user);
 
-            return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
         // DELETE: api/Users/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(string id)
-        {
-            var user = userService.GetUser(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteUser(string id)
+        //{
+        //    var user = userService.GetUser(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            userService.DeleteUser(id);
+        //    userService.DeleteUser(id);
 
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         //private bool UserExists(string id)
         //{

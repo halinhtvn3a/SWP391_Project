@@ -1,23 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BusinessObjects;
-
-public partial class Payment
+namespace BusinessObjects
 {
-    public string PaymentId { get; set; } = null!;
+	public class Payment
+	{
+		[Key]
+		[StringLength(5)]
+		public string PaymentId { get; set; }
 
-    public string? BookingId { get; set; }
+		[ForeignKey("Booking")]
+		[StringLength(5)]
+		public string BookingId { get; set; }
 
-    public decimal PaymentAmount { get; set; }
+		
 
-    public DateOnly PaymentDate { get; set; }
+		[Required]
+		public DateTime PaymentDate { get; set; }
 
-    public string? PaymentMessage { get; set; }
+		[StringLength(200)]
+		public string PaymentMessage { get; set; }
 
-    public string? PaymentStatus { get; set; }
+		[StringLength(50)]
+		public string PaymentStatus { get; set; }
 
-    public string? PaymentSignature { get; set; }
+		[StringLength(50)]
+		public string PaymentSignature { get; set; }
 
-    public virtual Booking? Booking { get; set; }
+		// Navigation property
+		public Booking Booking { get; set; }
+	}
 }
