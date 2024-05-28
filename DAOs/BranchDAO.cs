@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication2.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
@@ -21,10 +22,35 @@ namespace DAOs
             }
         }
 
+        // hàm getbranch trả danh sách branch, lấy luôn courtid (là khóa ngoại)
         public List<Branch> GetBranches()
         {
-            return dbContext.Branches.ToList();
+            var branches = dbContext.Branches
+                .Include(b => b.Courts)
+                .ToList();
+
+            return   branches.Select(b => new Branch
+            {
+                BranchId = b.BranchId,
+                Address = b.Address,
+                Description = b.Description,
+                Picture = b.Picture,
+                OpenTime = b.OpenTime,
+                CloseTime = b.CloseTime,
+                OpenDay = b.OpenDay,
+                Status = b.Status,
+                Courts = b.Courts.Select(c => new Court
+                {
+                    CourtId = c.CourtId
+                    
+                }).ToList()
+            }).ToList();
+
+            
         }
+
+
+
 
         public Branch GetBranch(string id)
         {

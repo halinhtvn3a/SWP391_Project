@@ -38,6 +38,6 @@ namespace BusinessObjects
 		public bool Status { get; set; }
 
 		// Navigation property
-		public ICollection<Court> Courts { get; set; }
+		public  ICollection<Court> Courts { get; set; }
 	}
 }

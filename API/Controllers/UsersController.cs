@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
     public class UsersController : ControllerBase
     {
         private readonly UserService userService;
@@ -31,6 +33,7 @@ namespace API.Controllers
 
         // GET: api/Users/5
         [HttpGet("{id}")]
+        
         public async Task<ActionResult<IdentityUser>> GetUser(string id)
         {
             var user = userService.GetUser(id);

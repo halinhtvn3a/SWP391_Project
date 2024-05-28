@@ -1,118 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\new\\SWP391_Project\\",
+  "WorkspaceRootPath": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\new\\SWP391_Project\\BusinessObjects\\Migrations\\20240528152454_initialDb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BusinessObjects\\Migrations\\20240528152454_initialDb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\new\\swp391_project\\businessobjects\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\new\\swp391_project\\businessobjects\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\new\\swp391_project\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\new\\swp391_project\\api\\controllers\\userdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\userdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\new\\swp391_project\\api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\new\\swp391_project\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\new\\swp391_project\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\new\\swp391_project\\services\\userdetailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\userdetailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\new\\swp391_project\\daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\new\\swp391_project\\repositories\\helper\\mailsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\helper\\mailsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\new\\swp391_project\\repositories\\helper\\mailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\helper\\mailrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\new\\swp391_project\\repositories\\userdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\userdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\new\\swp391_project\\daos\\userdetaildao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\userdetaildao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\new\\swp391_project\\api\\controllers\\mailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\mailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\new\\swp391_project\\services\\interface\\imailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\interface\\imailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\new\\swp391_project\\businessobjects\\userdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\userdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\new\\swp391_project\\daos\\reviewdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\reviewdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\new\\swp391_project\\daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\new\\swp391_project\\daos\\paymentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\paymentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\new\\swp391_project\\daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\new\\swp391_project\\daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\masterbranch\\swp391_project\\daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\new\\swp391_project\\daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|c:\\fptuni\\5\\masterbranch\\swp391_project\\businessobjects\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\new\\swp391_project\\businessobjects\\businessobjects.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\businessobjects.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\new\\swp391_project\\businessobjects\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\new\\swp391_project\\businessobjects\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\new\\swp391_project\\businessobjects\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\review.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\new\\swp391_project\\businessobjects\\timeslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\timeslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/DESKTOP_RGB0PJ4/CourtCallerDb/sa/SqlTable/dbo.Branches.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
     }
   ],
   "DocumentGroupContainers": [
@@ -122,370 +21,42 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20240528152454_initialDb.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\BusinessObjects\\Migrations\\20240528152454_initialDb.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\Migrations\\20240528152454_initialDb.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\BusinessObjects\\Migrations\\20240528152454_initialDb.cs",
-              "RelativeToolTip": "BusinessObjects\\Migrations\\20240528152454_initialDb.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T15:24:54.667Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Program.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\API\\Program.cs",
-              "RelativeDocumentMoniker": "API\\Program.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\API\\Program.cs",
-              "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T15:23:42.076Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "UserDetailsController.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\UserDetailsController.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
-              "RelativeToolTip": "API\\Controllers\\UserDetailsController.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAAADcAAAAmAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T15:17:58.605Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\UserService.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\Services\\UserService.cs",
-              "RelativeToolTip": "Services\\UserService.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAoAAAAZAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T15:11:43.232Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\UserRepository.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "Repositories\\UserRepository.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAAABgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T15:07:45.515Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CourtCallerDbContext.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\BusinessObjects\\CourtCallerDbContext.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\CourtCallerDbContext.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\BusinessObjects\\CourtCallerDbContext.cs",
-              "RelativeToolTip": "BusinessObjects\\CourtCallerDbContext.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAAB8AAAAiAAAA",
+              "Title": "dbo.Branches [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/DESKTOP_RGB0PJ4/CourtCallerDb/sa/SqlTable/dbo.Branches.sql",
+              "ToolTip": "dbo.Branches [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-05-28T17:19:15.844Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BranchDAO.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\DAOs\\BranchDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\BranchDAO.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\DAOs\\BranchDAO.cs",
+              "RelativeToolTip": "DAOs\\BranchDAO.cs",
+              "ViewState": "AQIAADwAAAAAAAAAAAAIwCgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:34:51.471Z",
+              "WhenOpened": "2024-05-28T17:07:50.833Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\BusinessObjects\\appsettings.json",
-              "RelativeDocumentMoniker": "BusinessObjects\\appsettings.json",
-              "ToolTip": "E:\\new\\SWP391_Project\\BusinessObjects\\appsettings.json",
-              "RelativeToolTip": "BusinessObjects\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAVAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-05-28T14:34:10.029Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UserDetailService.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\Services\\UserDetailService.cs",
-              "RelativeDocumentMoniker": "Services\\UserDetailService.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\Services\\UserDetailService.cs",
-              "RelativeToolTip": "Services\\UserDetailService.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAAA4AAAAJAAAA",
+              "Title": "Branch.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\BusinessObjects\\Branch.cs",
+              "RelativeDocumentMoniker": "BusinessObjects\\Branch.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\BusinessObjects\\Branch.cs",
+              "RelativeToolTip": "BusinessObjects\\Branch.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAswCgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T15:10:42.886Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "UserDAO.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\DAOs\\UserDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\UserDAO.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\DAOs\\UserDAO.cs",
-              "RelativeToolTip": "DAOs\\UserDAO.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAAABgAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:58:51.113Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "MailSettings.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\Repositories\\Helper\\MailSettings.cs",
-              "RelativeDocumentMoniker": "Repositories\\Helper\\MailSettings.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\Repositories\\Helper\\MailSettings.cs",
-              "RelativeToolTip": "Repositories\\Helper\\MailSettings.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T15:10:11.24Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\API\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\UsersController.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\API\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "API\\Controllers\\UsersController.cs",
-              "ViewState": "AQIAAEcAAAAAAAAAAAAIwFsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:54:42.129Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "MailRequest.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\Repositories\\Helper\\MailRequest.cs",
-              "RelativeDocumentMoniker": "Repositories\\Helper\\MailRequest.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\Repositories\\Helper\\MailRequest.cs",
-              "RelativeToolTip": "Repositories\\Helper\\MailRequest.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T15:10:07.792Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "UserDetailRepository.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\Repositories\\UserDetailRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\UserDetailRepository.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\Repositories\\UserDetailRepository.cs",
-              "RelativeToolTip": "Repositories\\UserDetailRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T15:04:49.527Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "MailController.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\API\\Controllers\\MailController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\MailController.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\API\\Controllers\\MailController.cs",
-              "RelativeToolTip": "API\\Controllers\\MailController.cs",
-              "ViewState": "AQIAAAIAAAAAAAAAAAAAAAgAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:52:59.244Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "IMailService.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\Services\\Interface\\IMailService.cs",
-              "RelativeDocumentMoniker": "Services\\Interface\\IMailService.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\Services\\Interface\\IMailService.cs",
-              "RelativeToolTip": "Services\\Interface\\IMailService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:52:50.238Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "UserDetailDAO.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\UserDetailDAO.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
-              "RelativeToolTip": "DAOs\\UserDetailDAO.cs",
-              "ViewState": "AQIAAE8AAAAAAAAAAAAAAFgAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:38:27.334Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "ReviewDAO.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\DAOs\\ReviewDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\ReviewDAO.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\DAOs\\ReviewDAO.cs",
-              "RelativeToolTip": "DAOs\\ReviewDAO.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAAAEEAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:38:09.434Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "TimeSlotDAO.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\TimeSlotDAO.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
-              "RelativeToolTip": "DAOs\\TimeSlotDAO.cs",
-              "ViewState": "AQIAAB0AAAAAAAAAAAAwwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:38:14.081Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "PaymentDAO.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\DAOs\\PaymentDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\PaymentDAO.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\DAOs\\PaymentDAO.cs",
-              "RelativeToolTip": "DAOs\\PaymentDAO.cs",
-              "ViewState": "AQIAADQAAAAAAAAAAAAIwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:38:04.856Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "CourtDAO.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\DAOs\\CourtDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\CourtDAO.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\DAOs\\CourtDAO.cs",
-              "RelativeToolTip": "DAOs\\CourtDAO.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAcwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:38:00.235Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "BranchDAO.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\DAOs\\BranchDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\BranchDAO.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\DAOs\\BranchDAO.cs",
-              "RelativeToolTip": "DAOs\\BranchDAO.cs",
-              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAwAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:37:00.776Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "UserDetail.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\BusinessObjects\\UserDetail.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\UserDetail.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\BusinessObjects\\UserDetail.cs",
-              "RelativeToolTip": "BusinessObjects\\UserDetail.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAAAkAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:33:00.359Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "BookingDAO.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\DAOs\\BookingDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\BookingDAO.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\DAOs\\BookingDAO.cs",
-              "RelativeToolTip": "DAOs\\BookingDAO.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAAA0AAAAoAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:36:35.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 23,
-              "Title": "BusinessObjects",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
-              "RelativeDocumentMoniker": "BusinessObjects\\BusinessObjects.csproj",
-              "ToolTip": "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
-              "RelativeToolTip": "BusinessObjects\\BusinessObjects.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAkwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-05-28T14:35:18.335Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "Booking.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\BusinessObjects\\Booking.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\Booking.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\BusinessObjects\\Booking.cs",
-              "RelativeToolTip": "BusinessObjects\\Booking.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAAACAAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:33:44.911Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "Payment.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\BusinessObjects\\Payment.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\Payment.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\BusinessObjects\\Payment.cs",
-              "RelativeToolTip": "BusinessObjects\\Payment.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAAABQAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:33:31.446Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "Review.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\BusinessObjects\\Review.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\Review.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\BusinessObjects\\Review.cs",
-              "RelativeToolTip": "BusinessObjects\\Review.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAAABUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:33:22.775Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "TimeSlot.cs",
-              "DocumentMoniker": "E:\\new\\SWP391_Project\\BusinessObjects\\TimeSlot.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\TimeSlot.cs",
-              "ToolTip": "E:\\new\\SWP391_Project\\BusinessObjects\\TimeSlot.cs",
-              "RelativeToolTip": "BusinessObjects\\TimeSlot.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T14:33:12.089Z",
+              "WhenOpened": "2024-05-28T17:27:25.199Z",
               "EditorCaption": ""
             }
           ]
