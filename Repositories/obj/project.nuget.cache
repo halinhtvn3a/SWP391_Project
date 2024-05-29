@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Zzp56a7t8JQ=",
+  "dgSpecHash": "8YGt+453M1Y=",
   "success": true,
-  "projectFilePath": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\Repositories\\Repositories.csproj",
+  "projectFilePath": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Lenovo\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

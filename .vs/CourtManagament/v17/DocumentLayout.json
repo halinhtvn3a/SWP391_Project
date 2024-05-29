@@ -1,13 +1,13 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\",
+  "WorkspaceRootPath": "C:\\FPTUNI\\5\\SWP391_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\masterbranch\\swp391_project\\daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|c:\\fptuni\\5\\masterbranch\\swp391_project\\businessobjects\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|c:\\fptuni\\5\\swp391_project\\businessobjects\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -30,18 +30,17 @@
               "DocumentMoniker": "ViewDataWindow_MSSQL__/DESKTOP_RGB0PJ4/CourtCallerDb/sa/SqlTable/dbo.Branches.sql",
               "ToolTip": "dbo.Branches [Data]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-05-28T17:19:15.844Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T17:19:15.844Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "BranchDAO.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\DAOs\\BranchDAO.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\BranchDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\BranchDAO.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\DAOs\\BranchDAO.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\BranchDAO.cs",
               "RelativeToolTip": "DAOs\\BranchDAO.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAIwCgAAAAYAAAA",
+              "ViewState": "AQIAAF8AAAAAAAAAAAAAACgAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-28T17:07:50.833Z",
               "EditorCaption": ""
@@ -50,14 +49,13 @@
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Branch.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\BusinessObjects\\Branch.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\Branch.cs",
               "RelativeDocumentMoniker": "BusinessObjects\\Branch.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\BusinessObjects\\Branch.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\Branch.cs",
               "RelativeToolTip": "BusinessObjects\\Branch.cs",
               "ViewState": "AQIAAB0AAAAAAAAAAAAswCgAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-28T17:27:25.199Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-05-28T17:27:25.199Z"
             }
           ]
         }
