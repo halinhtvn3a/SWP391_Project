@@ -105,6 +105,13 @@ namespace API
                 };
             });
 
+            //email setting
+              builder.Services.AddEndpointsApiExplorer();
+              builder.Services.AddSwaggerGen();
+              builder.Services.AddTransient<IMailService, MailService>();
+
+              builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
