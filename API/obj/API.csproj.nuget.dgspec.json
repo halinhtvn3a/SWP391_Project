@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\new\\SWP391_Project\\API\\API.csproj": {}
+    "E:\\29-5\\SWP391_Project\\API\\API.csproj": {}
   },
   "projects": {
-    "E:\\new\\SWP391_Project\\API\\API.csproj": {
+    "E:\\29-5\\SWP391_Project\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\new\\SWP391_Project\\API\\API.csproj",
+        "projectUniqueName": "E:\\29-5\\SWP391_Project\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "E:\\new\\SWP391_Project\\API\\API.csproj",
+        "projectPath": "E:\\29-5\\SWP391_Project\\API\\API.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\new\\SWP391_Project\\API\\obj\\",
+        "outputPath": "E:\\29-5\\SWP391_Project\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\new\\SWP391_Project\\Services\\Services.csproj": {
-                "projectPath": "E:\\new\\SWP391_Project\\Services\\Services.csproj"
+              "E:\\29-5\\SWP391_Project\\Services\\Services.csproj": {
+                "projectPath": "E:\\29-5\\SWP391_Project\\Services\\Services.csproj"
               }
             }
           }
@@ -54,7 +54,7 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.4, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -62,7 +62,7 @@
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.6.2, )"
             }
           },
           "imports": [
@@ -88,14 +88,14 @@
         }
       }
     },
-    "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+    "E:\\29-5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "E:\\29-5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectPath": "E:\\29-5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\new\\SWP391_Project\\BusinessObjects\\obj\\",
+        "outputPath": "E:\\29-5\\SWP391_Project\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -132,35 +132,35 @@
           "dependencies": {
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.AspNetCore.Identity.UI": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.Extensions.Configuration": {
               "target": "Package",
@@ -191,14 +191,14 @@
         }
       }
     },
-    "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj": {
+    "E:\\29-5\\SWP391_Project\\DAOs\\DAOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectUniqueName": "E:\\29-5\\SWP391_Project\\DAOs\\DAOs.csproj",
         "projectName": "DAOs",
-        "projectPath": "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectPath": "E:\\29-5\\SWP391_Project\\DAOs\\DAOs.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\new\\SWP391_Project\\DAOs\\obj\\",
+        "outputPath": "E:\\29-5\\SWP391_Project\\DAOs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -216,8 +216,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "E:\\new\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
+              "E:\\29-5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "E:\\29-5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
               }
             }
           }
@@ -256,14 +256,14 @@
         }
       }
     },
-    "E:\\new\\SWP391_Project\\Repositories\\Repositories.csproj": {
+    "E:\\29-5\\SWP391_Project\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\new\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "E:\\29-5\\SWP391_Project\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "E:\\new\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "projectPath": "E:\\29-5\\SWP391_Project\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\new\\SWP391_Project\\Repositories\\obj\\",
+        "outputPath": "E:\\29-5\\SWP391_Project\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -281,8 +281,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj": {
-                "projectPath": "E:\\new\\SWP391_Project\\DAOs\\DAOs.csproj"
+              "E:\\29-5\\SWP391_Project\\DAOs\\DAOs.csproj": {
+                "projectPath": "E:\\29-5\\SWP391_Project\\DAOs\\DAOs.csproj"
               }
             }
           }
@@ -321,14 +321,14 @@
         }
       }
     },
-    "E:\\new\\SWP391_Project\\Services\\Services.csproj": {
+    "E:\\29-5\\SWP391_Project\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\new\\SWP391_Project\\Services\\Services.csproj",
+        "projectUniqueName": "E:\\29-5\\SWP391_Project\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "E:\\new\\SWP391_Project\\Services\\Services.csproj",
+        "projectPath": "E:\\29-5\\SWP391_Project\\Services\\Services.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\new\\SWP391_Project\\Services\\obj\\",
+        "outputPath": "E:\\29-5\\SWP391_Project\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -346,8 +346,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\new\\SWP391_Project\\Repositories\\Repositories.csproj": {
-                "projectPath": "E:\\new\\SWP391_Project\\Repositories\\Repositories.csproj"
+              "E:\\29-5\\SWP391_Project\\Repositories\\Repositories.csproj": {
+                "projectPath": "E:\\29-5\\SWP391_Project\\Repositories\\Repositories.csproj"
               }
             }
           }
