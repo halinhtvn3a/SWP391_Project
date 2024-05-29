@@ -24,7 +24,7 @@ namespace WebApplication2.Data
 				.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
 
 			IConfigurationRoot configurationRoot = builder.Build();
-			optionsBuilder.UseSqlServer(configurationRoot.GetConnectionString("BadmintonCourtDb"));
+			optionsBuilder.UseSqlServer(configurationRoot.GetConnectionString("CourtCallerDb"));
 
 		}
 

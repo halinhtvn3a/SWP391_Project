@@ -1,4 +1,8 @@
 
+using Repositories.Helper;
+using Services.Interface;
+using Services;
+
 namespace API
 {
     public class Program
@@ -14,6 +18,16 @@ namespace API
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
+
+            //Email Service
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+            builder.Services.AddTransient<IMailService, MailService>();
+
+            builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
+
+
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -24,6 +38,8 @@ namespace API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
