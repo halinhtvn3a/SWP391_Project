@@ -19,6 +19,10 @@ namespace API
             builder.Services.AddSwaggerGen();
 
 
+            //VNPay Service
+            builder.Services.AddScoped<Services.VnpayService>();
+
+
             //Email Service
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
