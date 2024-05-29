@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\FPTUNI\\5\\SWP391_Project\\Services\\Services.csproj": {}
+    "E:\\C#\\SWP391_Project\\Services\\Services.csproj": {}
   },
   "projects": {
-    "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+    "E:\\C#\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "E:\\C#\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\obj\\",
+        "projectPath": "E:\\C#\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\C#\\SWP391_Project\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -107,17 +107,17 @@
         }
       }
     },
-    "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj": {
+    "E:\\C#\\SWP391_Project\\DAOs\\DAOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectUniqueName": "E:\\C#\\SWP391_Project\\DAOs\\DAOs.csproj",
         "projectName": "DAOs",
-        "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\obj\\",
+        "projectPath": "E:\\C#\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\C#\\SWP391_Project\\DAOs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -132,8 +132,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
+              "E:\\C#\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "E:\\C#\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
               }
             }
           }
@@ -172,17 +172,17 @@
         }
       }
     },
-    "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj": {
+    "E:\\C#\\SWP391_Project\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "E:\\C#\\SWP391_Project\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\obj\\",
+        "projectPath": "E:\\C#\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\C#\\SWP391_Project\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -197,8 +197,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj": {
-                "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj"
+              "E:\\C#\\SWP391_Project\\DAOs\\DAOs.csproj": {
+                "projectPath": "E:\\C#\\SWP391_Project\\DAOs\\DAOs.csproj"
               }
             }
           }
@@ -237,17 +237,17 @@
         }
       }
     },
-    "C:\\FPTUNI\\5\\SWP391_Project\\Services\\Services.csproj": {
+    "E:\\C#\\SWP391_Project\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\Services.csproj",
+        "projectUniqueName": "E:\\C#\\SWP391_Project\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\Services.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\obj\\",
+        "projectPath": "E:\\C#\\SWP391_Project\\Services\\Services.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\C#\\SWP391_Project\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -262,8 +262,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj": {
-                "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj"
+              "E:\\C#\\SWP391_Project\\Repositories\\Repositories.csproj": {
+                "projectPath": "E:\\C#\\SWP391_Project\\Repositories\\Repositories.csproj"
               }
             }
           }

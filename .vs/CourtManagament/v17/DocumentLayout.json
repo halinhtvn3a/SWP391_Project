@@ -1,29 +1,57 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\FPTUNI\\5\\SWP391_Project\\",
+  "WorkspaceRootPath": "E:\\C#\\SWP391_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|e:\\c#\\swp391_project\\frontend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|e:\\c#\\swp391_project\\frontend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\c#\\swp391_project\\daos\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\c#\\swp391_project\\businessobjects\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|e:\\c#\\swp391_project\\frontend\\areas\\identity\\pages\\account\\manage\\enableauthenticator.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\areas\\identity\\pages\\account\\manage\\enableauthenticator.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|e:\\c#\\swp391_project\\frontend\\wwwroot\\js\\qr.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\wwwroot\\js\\qr.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|e:\\c#\\swp391_project\\frontend\\areas\\identity\\pages\\account\\manage\\enableauthenticator.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{47C6BA12-E001-496F-8338-D09F7032A5D7}|FrontEnd\\FrontEnd.csproj|solutionrelative:frontend\\areas\\identity\\pages\\account\\manage\\enableauthenticator.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\c#\\swp391_project\\api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\c#\\swp391_project\\daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\c#\\swp391_project\\repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|c:\\fptuni\\5\\swp391_project\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\c#\\swp391_project\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\helper\\paylib.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\c#\\swp391_project\\repositories\\helper\\paylib.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\helper\\paylib.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|c:\\fptuni\\5\\swp391_project\\services\\mailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\c#\\swp391_project\\services\\mailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\mailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -34,15 +62,15 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 7,
               "Title": "UsersController.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\UsersController.cs",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\API\\Controllers\\UsersController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\UsersController.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\UsersController.cs",
+              "ToolTip": "E:\\C#\\SWP391_Project\\API\\Controllers\\UsersController.cs",
               "RelativeToolTip": "API\\Controllers\\UsersController.cs",
               "ViewState": "AQIAAE4AAAAAAAAAAAAqwGUAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -52,50 +80,138 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UserDAO.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\UserDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\UserDAO.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\UserDAO.cs",
-              "RelativeToolTip": "DAOs\\UserDAO.cs",
-              "ViewState": "AQIAAFgAAAAAAAAAAAAuwF8AAAAtAAAA",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\FrontEnd\\Program.cs",
+              "RelativeDocumentMoniker": "FrontEnd\\Program.cs",
+              "ToolTip": "E:\\C#\\SWP391_Project\\FrontEnd\\Program.cs",
+              "RelativeToolTip": "FrontEnd\\Program.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAAgwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:47:04.69Z",
+              "WhenOpened": "2024-05-29T17:44:53.799Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\UserRepository.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "Repositories\\UserRepository.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwCEAAAA6AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:46:47.678Z",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\FrontEnd\\appsettings.json",
+              "RelativeDocumentMoniker": "FrontEnd\\appsettings.json",
+              "ToolTip": "E:\\C#\\SWP391_Project\\FrontEnd\\appsettings.json",
+              "RelativeToolTip": "FrontEnd\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAABSAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-29T17:44:15.827Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\UserService.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\UserService.cs",
-              "RelativeToolTip": "Services\\UserService.cs",
-              "ViewState": "AQIAABUAAAAAAAAAAAAgwB0AAAAhAAAA",
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\BusinessObjects\\appsettings.json",
+              "RelativeDocumentMoniker": "BusinessObjects\\appsettings.json",
+              "ToolTip": "E:\\C#\\SWP391_Project\\BusinessObjects\\appsettings.json",
+              "RelativeToolTip": "BusinessObjects\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-29T17:43:04.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CourtCallerDbContext.cs",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\DAOs\\CourtCallerDbContext.cs",
+              "RelativeDocumentMoniker": "DAOs\\CourtCallerDbContext.cs",
+              "ToolTip": "E:\\C#\\SWP391_Project\\DAOs\\CourtCallerDbContext.cs",
+              "RelativeToolTip": "DAOs\\CourtCallerDbContext.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T15:46:03.17Z",
+              "WhenOpened": "2024-05-29T17:42:52.235Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "qr.js",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\FrontEnd\\wwwroot\\js\\qr.js",
+              "RelativeDocumentMoniker": "FrontEnd\\wwwroot\\js\\qr.js",
+              "ToolTip": "E:\\C#\\SWP391_Project\\FrontEnd\\wwwroot\\js\\qr.js",
+              "RelativeToolTip": "FrontEnd\\wwwroot\\js\\qr.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAADAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-05-29T17:40:55.095Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "EnableAuthenticator.cshtml.cs",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\FrontEnd\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml.cs",
+              "RelativeDocumentMoniker": "FrontEnd\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml.cs",
+              "ToolTip": "E:\\C#\\SWP391_Project\\FrontEnd\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml.cs",
+              "RelativeToolTip": "FrontEnd\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml.cs",
+              "ViewState": "AQIAAKoAAAAAAAAAAAAqwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T17:39:49.1Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "EnableAuthenticator.cshtml",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\FrontEnd\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+              "RelativeDocumentMoniker": "FrontEnd\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+              "ToolTip": "E:\\C#\\SWP391_Project\\FrontEnd\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+              "RelativeToolTip": "FrontEnd\\Areas\\Identity\\Pages\\Account\\Manage\\EnableAuthenticator.cshtml",
+              "ViewState": "AQIAACAAAAAAAAAAAAAwwDcAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-29T17:39:46.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\DAOs\\UserDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\UserDAO.cs",
+              "ToolTip": "E:\\C#\\SWP391_Project\\DAOs\\UserDAO.cs",
+              "RelativeToolTip": "DAOs\\UserDAO.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAuwF8AAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T15:47:04.69Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\UserRepository.cs",
+              "ToolTip": "E:\\C#\\SWP391_Project\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Repositories\\UserRepository.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwCEAAAA6AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T15:46:47.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\UserService.cs",
+              "ToolTip": "E:\\C#\\SWP391_Project\\Services\\UserService.cs",
+              "RelativeToolTip": "Services\\UserService.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAgwB0AAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T15:46:03.17Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "PayLib.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Helper\\PayLib.cs",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\Repositories\\Helper\\PayLib.cs",
               "RelativeDocumentMoniker": "Repositories\\Helper\\PayLib.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Helper\\PayLib.cs",
+              "ToolTip": "E:\\C#\\SWP391_Project\\Repositories\\Helper\\PayLib.cs",
               "RelativeToolTip": "Repositories\\Helper\\PayLib.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -103,11 +219,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 12,
               "Title": "MailService.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\MailService.cs",
+              "DocumentMoniker": "E:\\C#\\SWP391_Project\\Services\\MailService.cs",
               "RelativeDocumentMoniker": "Services\\MailService.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\MailService.cs",
+              "ToolTip": "E:\\C#\\SWP391_Project\\Services\\MailService.cs",
               "RelativeToolTip": "Services\\MailService.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAowAkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
