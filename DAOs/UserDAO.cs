@@ -63,29 +63,56 @@ namespace DAOs
 			return IdentityUser;
 		}
 
-		//public IdentityUser UpdateIdentityUser(string id, IdentityUser IdentityUser)
-		//{
-		//	IdentityUser oIdentityUser = GetIdentityUser(id);
-		//	if (oIdentityUser != null)
-		//	{
-		//		oIdentityUser.Balance = IdentityUser.Balance;
-		//		oIdentityUser.FullName = IdentityUser.FullName;
-		//		oIdentityUser.Status = IdentityUser.Status;
-		//		dbContext.Update(oIdentityUser);
-		//		dbContext.SaveChanges();
-		//	}
-		//	return oIdentityUser;
-		//}
+        //public IdentityUser UpdateIdentityUser(string id, IdentityUser IdentityUser)
+        //{
+        //	IdentityUser oIdentityUser = GetIdentityUser(id);
+        //	if (oIdentityUser != null)
+        //	{
+        //		oIdentityUser.Balance = IdentityUser.Balance;
+        //		oIdentityUser.FullName = IdentityUser.FullName;
+        //		oIdentityUser.Status = IdentityUser.Status;
+        //		dbContext.Update(oIdentityUser);
+        //		dbContext.SaveChanges();
+        //	}
+        //	return oIdentityUser;
+        //}
 
-		//public void DeleteIdentityUser(string id)
-		//{
-		//	IdentityUser oIdentityUser = GetIdentityUser(id);
-		//	if (oIdentityUser != null)
-		//	{
-		//		oIdentityUser.Status = false;
-		//		dbContext.Update(oIdentityUser);
-		//		dbContext.SaveChanges();
-		//	}
-		//}
-	}
+        //public void DeleteIdentityUser(string id)
+        //{
+        //	IdentityUser oIdentityUser = GetIdentityUser(id);
+        //	if (oIdentityUser != null)
+        //	{
+        //		oIdentityUser.Status = false;
+        //		dbContext.Update(oIdentityUser);
+        //		dbContext.SaveChanges();
+        //	}
+        //}
+
+        public IdentityUser BanUser(string id, IdentityUser user)
+        {
+            IdentityUser oUser = GetUser(id);
+            if (oUser != null)
+            {
+                oUser.LockoutEnabled = false;
+                dbContext.Update(oUser);
+                dbContext.SaveChanges();
+            }
+            return oUser;
+        }
+
+
+        public IdentityUser UnBanUser(string id, IdentityUser user)
+        {
+            IdentityUser oUser = GetUser(id);
+            if (oUser != null)
+            {
+                oUser.LockoutEnabled = true;
+                dbContext.Update(oUser);
+                dbContext.SaveChanges();
+            }
+            return oUser;
+        }
+
+
+    }
 }

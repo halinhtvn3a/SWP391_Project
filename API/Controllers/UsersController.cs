@@ -87,5 +87,31 @@ namespace API.Controllers
         //{
         //    return userService.Users.Any(e => e.UserId == id);
         //}
+
+        [HttpPut("{id}/ban")]
+        public async Task<IActionResult> BanUser(string id, IdentityUser user)
+        {
+            if (id != user.Id)
+            {
+                return BadRequest();
+            }
+            else userService.BanUser(id, user);
+
+            return NoContent();
+        }
+
+
+        [HttpPut("{id}/unban")]
+        public async Task<IActionResult> UnbanUser(string id, IdentityUser user)
+        {
+            if (id != user.Id)
+                return BadRequest();
+            else userService.UnBanUser(id,user);
+            return NoContent();
+        }
+
+
+
+
     }
 }

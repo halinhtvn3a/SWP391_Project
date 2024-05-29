@@ -28,5 +28,9 @@ namespace Repositories
 		public List<IdentityUser> GetUsers() => UserDAO.GetUsers();
 
 		//public IdentityUser UpdateIdentityUser(string id, IdentityUser IdentityUser) => UserDAO.UpdateIdentityUser(id, IdentityUser);
+
+		public void BanUser(string id, IdentityUser user) => UserDAO.BanUser(id, user);
+
+		public void UnBanUser(string id, IdentityUser user) => UserDAO.UnBanUser(id,user);
 	}
 }

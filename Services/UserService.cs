@@ -23,5 +23,11 @@ namespace Services
 		public IdentityUser GetUser(string id) => UserRepository.GetUser(id);
 		public List<IdentityUser> GetUsers() => UserRepository.GetUsers();
 		//public IdentityUser UpdateUser(string id, IdentityUser User) => UserRepository.UpdateUser(id, User);
+
+		
+		public void BanUser(string id, IdentityUser user) => UserRepository.BanUser(id,user);
+		
+		public void UnBanUser(string id, IdentityUser user) => UserRepository.UnBanUser(id, user);
+        
 	}
 }
