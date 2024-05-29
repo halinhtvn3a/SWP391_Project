@@ -16,6 +16,7 @@ namespace API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UserService userService;
+        
 
         public UsersController()
         {
@@ -89,24 +90,26 @@ namespace API.Controllers
         //}
 
         [HttpPut("{id}/ban")]
-        public async Task<IActionResult> BanUser(string id, IdentityUser user)
+        public async Task<IActionResult> BanUser(string id)
         {
+            
+            IdentityUser user = userService.GetUser(id);
             if (id != user.Id)
-            {
                 return BadRequest();
-            }
-            else userService.BanUser(id, user);
+            else userService.BanUser(id);
 
             return NoContent();
         }
 
 
         [HttpPut("{id}/unban")]
-        public async Task<IActionResult> UnbanUser(string id, IdentityUser user)
+        public async Task<IActionResult> UnbanUser(string id)
         {
+            IdentityUser user = userService.GetUser(id);
             if (id != user.Id)
                 return BadRequest();
-            else userService.UnBanUser(id,user);
+            else userService.UnBanUser(id);
+
             return NoContent();
         }
 

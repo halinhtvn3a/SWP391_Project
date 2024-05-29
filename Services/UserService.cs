@@ -25,9 +25,9 @@ namespace Services
 		//public IdentityUser UpdateUser(string id, IdentityUser User) => UserRepository.UpdateUser(id, User);
 
 		
-		public void BanUser(string id, IdentityUser user) => UserRepository.BanUser(id,user);
+		public void BanUser(string id) => UserRepository.BanUser(id);
 		
-		public void UnBanUser(string id, IdentityUser user) => UserRepository.UnBanUser(id, user);
+		public void UnBanUser(string id) => UserRepository.UnBanUser(id);
         
 	}
 }

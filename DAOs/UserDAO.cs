@@ -88,7 +88,7 @@ namespace DAOs
         //	}
         //}
 
-        public IdentityUser BanUser(string id, IdentityUser user)
+        public IdentityUser BanUser(string id)
         {
             IdentityUser oUser = GetUser(id);
             if (oUser != null)
@@ -101,7 +101,7 @@ namespace DAOs
         }
 
 
-        public IdentityUser UnBanUser(string id, IdentityUser user)
+        public IdentityUser UnBanUser(string id)
         {
             IdentityUser oUser = GetUser(id);
             if (oUser != null)
