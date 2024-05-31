@@ -14,7 +14,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   
     public class BranchesController : ControllerBase
     {
         private readonly BranchService branchService;
@@ -26,6 +26,7 @@ namespace API.Controllers
 
         // GET: api/Branches
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Branch>>> GetBranches()
         {
             return branchService.GetBranches().ToList();

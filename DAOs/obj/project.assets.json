@@ -3622,11 +3622,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\31-5\\SWP391_Project\\DAOs\\DAOs.csproj",
+      "projectUniqueName": "C:\\Users\\admin\\Downloads\\New folder\\SWP391_Project\\DAOs\\DAOs.csproj",
       "projectName": "DAOs",
-      "projectPath": "E:\\31-5\\SWP391_Project\\DAOs\\DAOs.csproj",
+      "projectPath": "C:\\Users\\admin\\Downloads\\New folder\\SWP391_Project\\DAOs\\DAOs.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\31-5\\SWP391_Project\\DAOs\\obj\\",
+      "outputPath": "C:\\Users\\admin\\Downloads\\New folder\\SWP391_Project\\DAOs\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -3644,8 +3644,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\31-5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
-              "projectPath": "E:\\31-5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
+            "C:\\Users\\admin\\Downloads\\New folder\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+              "projectPath": "C:\\Users\\admin\\Downloads\\New folder\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vd/hQrDBn/4=",
+  "dgSpecHash": "tq5Ee2K1YZs=",
   "success": true,
-  "projectFilePath": "E:\\31-5\\SWP391_Project\\DAOs\\DAOs.csproj",
+  "projectFilePath": "C:\\Users\\admin\\Downloads\\New folder\\SWP391_Project\\DAOs\\DAOs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
+using Microsoft.AspNetCore.Authorization;
 using Services;
 using Microsoft.AspNetCore.Identity;
 
@@ -13,6 +14,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Staff")]
     public class UsersController : ControllerBase
     {
         private readonly UserService userService;
