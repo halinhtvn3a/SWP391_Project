@@ -5131,11 +5131,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+      "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
       "projectName": "BusinessObjects",
-      "projectPath": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+      "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
       "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\FPTUNI\\5\\MasterBranch\\SWP391_Project\\BusinessObjects\\obj\\",
+      "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",

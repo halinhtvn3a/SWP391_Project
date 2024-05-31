@@ -59,7 +59,6 @@ E:\29-5\SWP391_Project\Services\obj\Debug\net8.0\Services.dll
 E:\29-5\SWP391_Project\Services\obj\Debug\net8.0\refint\Services.dll
 E:\29-5\SWP391_Project\Services\obj\Debug\net8.0\Services.pdb
 E:\29-5\SWP391_Project\Services\obj\Debug\net8.0\ref\Services.dll
-C:\FPTUNI\5\SWP391_Project\Services\bin\Debug\net8.0\appsettings.json
 C:\FPTUNI\5\SWP391_Project\Services\bin\Debug\net8.0\Services.deps.json
 C:\FPTUNI\5\SWP391_Project\Services\bin\Debug\net8.0\Services.dll
 C:\FPTUNI\5\SWP391_Project\Services\bin\Debug\net8.0\Services.pdb

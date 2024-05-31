@@ -47,7 +47,6 @@ E:\29-5\SWP391_Project\DAOs\obj\Debug\net8.0\DAOs.dll
 E:\29-5\SWP391_Project\DAOs\obj\Debug\net8.0\refint\DAOs.dll
 E:\29-5\SWP391_Project\DAOs\obj\Debug\net8.0\DAOs.pdb
 E:\29-5\SWP391_Project\DAOs\obj\Debug\net8.0\ref\DAOs.dll
-C:\FPTUNI\5\SWP391_Project\DAOs\bin\Debug\net8.0\appsettings.json
 C:\FPTUNI\5\SWP391_Project\DAOs\bin\Debug\net8.0\DAOs.deps.json
 C:\FPTUNI\5\SWP391_Project\DAOs\bin\Debug\net8.0\DAOs.dll
 C:\FPTUNI\5\SWP391_Project\DAOs\bin\Debug\net8.0\DAOs.pdb
