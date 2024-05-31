@@ -7,11 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    
+    
     public class BookingsController : ControllerBase
     {
         private readonly BookingService bookingService;
@@ -23,6 +26,8 @@ namespace API.Controllers
 
         // GET: api/Bookings
         [HttpGet]
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Staff")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         {
             return bookingService.GetBookings().ToList();

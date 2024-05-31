@@ -8,11 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Repositories;
 using Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class BranchesController : ControllerBase
     {
         private readonly BranchService branchService;

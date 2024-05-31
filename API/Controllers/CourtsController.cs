@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -23,6 +24,7 @@ namespace API.Controllers
 
         // GET: api/Courts
         [HttpGet]
+        [Authorize(Roles = "Customer")]
         public async Task<ActionResult<IEnumerable<Court>>> GetCourts()
         {
             return courtService.GetCourts();

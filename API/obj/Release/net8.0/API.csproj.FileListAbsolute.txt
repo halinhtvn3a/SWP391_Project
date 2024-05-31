@@ -594,3 +594,4 @@ C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\refint\API.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\API.pdb
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\API.genruntimeconfig.cache
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\ref\API.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
