@@ -14,7 +14,7 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+  
     public class BranchesController : ControllerBase
     {
         private readonly BranchService branchService;

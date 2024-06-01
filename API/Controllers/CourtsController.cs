@@ -24,7 +24,7 @@ namespace API.Controllers
 
         // GET: api/Courts
         [HttpGet]
-        [Authorize(Roles = "Customer")]
+        
         public async Task<ActionResult<IEnumerable<Court>>> GetCourts()
         {
             return courtService.GetCourts();

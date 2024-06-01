@@ -26,8 +26,7 @@ namespace API.Controllers
 
         // GET: api/Bookings
         [HttpGet]
-        [Authorize(Roles = "Admin")]
-        [Authorize(Roles = "Staff")]
+        
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
         {
             return bookingService.GetBookings().ToList();
