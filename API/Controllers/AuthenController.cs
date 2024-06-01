@@ -51,7 +51,9 @@ namespace API.Controllers
                     return Ok(new
                     {
                         Token = _tokenService.GenerateToken(user, userRole)
-                    });
+                    }
+                    
+                    );
                 }
             }
             catch (Exception ex)
@@ -191,7 +193,7 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User does not exist!" });
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token, email = user.Email }, Request.Scheme);
+            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token = Uri.EscapeDataString(token), email = Uri.EscapeDataString(user.Email) }, Request.Scheme);
             Console.WriteLine("Generated Token: " + token);
             var mailRequest = new MailRequest
             {
@@ -204,6 +206,7 @@ namespace API.Controllers
             return Ok(new ResponseModel { Status = "Success", Message = "Reset password link has been sent to your email address." });
         }
 
+
         //ResetPassword
         [HttpPost]
         [Route("reset-password")]
@@ -213,10 +216,19 @@ namespace API.Controllers
             if (user == null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User does not exist!" });
 
-            var resetPassResult = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
-            var isTokenValid = await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", model.Token);
+            // Giải mã token và email
+            var decodedToken = Uri.UnescapeDataString(model.Token);
+            var decodedEmail = Uri.UnescapeDataString(model.Email);
+
+            var isTokenValid = await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", decodedToken);
             Console.WriteLine("Is Token Valid: " + isTokenValid);
 
+            if (!isTokenValid)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "Invalid token." });
+            }
+
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, decodedToken, model.Password);
             if (!resetPassResult.Succeeded)
             {
                 var errors = resetPassResult.Errors.Select(e => e.Description);
@@ -225,5 +237,6 @@ namespace API.Controllers
 
             return Ok(new ResponseModel { Status = "Success", Message = "Password has been reset successfully!" });
         }
+
     }
 }
