@@ -14,6 +14,7 @@ using RegisterModel = BusinessObjects.Models.RegisterModel;
 using Repositories.Helper;
 using Services.Interface;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Cors;
 
 namespace API.Controllers
 {
