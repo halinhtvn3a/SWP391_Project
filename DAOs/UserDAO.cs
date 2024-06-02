@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using WebApplication2.Data;
+using DAOs.Helper;
 
 namespace DAOs
 {
@@ -21,37 +22,46 @@ namespace DAOs
 			}
 		}
 
-		public List<IdentityUser> GetUsers()
-		{
+        public async Task<List<IdentityUser>> GetUsers(PageResult pageResult)
+        {
+            var query = dbContext.Users.AsQueryable();
+            Pagination pagination = new Pagination(dbContext);
+            List<IdentityUser> identityUsers = await pagination.GetListAsync<IdentityUser>(query, pageResult);
+            return identityUsers;
+        }
 
-			return dbContext.Users.ToList();
-		}
-		//public List<IdentityUser> GetIdentityUsers()
-		//{
-		//	var IdentityUsers = dbContext.Users
-		//  .Include(u => u.IdentityUser)
-		//  .ToList();
 
-		//	return IdentityUsers.Select(u => new IdentityUser
-		//	{
-		//		IdentityUserId = u.IdentityUserId,
-		//		Balance = u.Balance,
-		//		FullName = u.FullName,
-		//		Status = u.Status,
-		//		//only BookingId
-		//		IdentityUsers = u.IdentityUsers.Select(b => new Booking
-		//		{
-		//			BookingId = b.BookingId
-		//		}).ToList(),
-		//		//only ReviewId
-		//		Reviews = u.Reviews.Select(r => new Review
-		//		{
-		//			ReviewId = r.ReviewId
-		//		}).ToList()
-		//	}).ToList();
-		//}
+        //public List<IdentityUser> GetUsers()
+        //{
 
-		public IdentityUser GetUser(string id)
+        //	return dbContext.Users.ToList();
+        //}
+        //public List<IdentityUser> GetIdentityUsers()
+        //{
+        //	var IdentityUsers = dbContext.Users
+        //  .Include(u => u.IdentityUser)
+        //  .ToList();
+
+        //	return IdentityUsers.Select(u => new IdentityUser
+        //	{
+        //		IdentityUserId = u.IdentityUserId,
+        //		Balance = u.Balance,
+        //		FullName = u.FullName,
+        //		Status = u.Status,
+        //		//only BookingId
+        //		IdentityUsers = u.IdentityUsers.Select(b => new Booking
+        //		{
+        //			BookingId = b.BookingId
+        //		}).ToList(),
+        //		//only ReviewId
+        //		Reviews = u.Reviews.Select(r => new Review
+        //		{
+        //			ReviewId = r.ReviewId
+        //		}).ToList()
+        //	}).ToList();
+        //}
+
+        public IdentityUser GetUser(string id)
 		{
 			return dbContext.Users.FirstOrDefault(m => m.Id.Equals(id));
 		}

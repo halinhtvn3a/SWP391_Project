@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
+using Microsoft.AspNetCore.Identity;
+using DAOs.Helper;
 
 namespace API.Controllers
 {
@@ -23,9 +25,17 @@ namespace API.Controllers
 
         // GET: api/Reviews
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Review>>> GetReviews()
+        public async Task<IActionResult> GetReviews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            return reviewService.GetReviews();
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            List<Review> review = await reviewService.GetReview(pageResult);
+
+            return Ok(review);
         }
 
         // GET: api/Reviews/5
@@ -78,9 +88,9 @@ namespace API.Controllers
             return NoContent();
         }
 
-        private bool ReviewExists(string id)
-        {
-            return reviewService.GetReviews().Any(e => e.ReviewId == id);
-        }
+        //private bool ReviewExists(string id)
+        //{
+        //    return reviewService.GetReviews().Any(e => e.ReviewId == id);
+        //}
     }
 }

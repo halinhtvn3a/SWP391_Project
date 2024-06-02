@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using DAOs.Helper;
 
 namespace Repositories
 {
@@ -21,11 +22,15 @@ namespace Repositories
 		}
 		public IdentityUser AddUser(IdentityUser IdentityUser) => UserDAO.AddUser(IdentityUser);
 
-		//public void DeleteIdentityUser(string id) => UserDAO.DeleteIdentityUser(id);
+        //public void DeleteIdentityUser(string id) => UserDAO.DeleteIdentityUser(id);
 
-		public IdentityUser GetUser(string id) => UserDAO.GetUser(id);
+        public async Task<List<IdentityUser>> GetUsers(PageResult page) => await UserDAO.GetUsers(page);
 
-		public List<IdentityUser> GetUsers() => UserDAO.GetUsers();
+
+
+        public IdentityUser GetUser(string id) => UserDAO.GetUser(id);
+
+		//public List<IdentityUser> GetUsers() => UserDAO.GetUsers();
 
 		//public IdentityUser UpdateIdentityUser(string id, IdentityUser IdentityUser) => UserDAO.UpdateIdentityUser(id, IdentityUser);
 

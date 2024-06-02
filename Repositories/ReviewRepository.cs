@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 
 namespace Repositories
 {
@@ -24,7 +25,7 @@ namespace Repositories
 
         public Review GetReview(string id) => ReviewDAO.GetReview(id);
 
-        public List<Review> GetReviews() => ReviewDAO.GetReviews();
+        public async Task<List<Review>> GetReview(PageResult pageResult) => await ReviewDAO.GetReview(pageResult);
 
         public Review UpdateReview(string id, Review Review) => ReviewDAO.UpdateReview(id, Review);
     }

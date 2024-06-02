@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication2.Data;
+using DAOs.Helper;
 
 namespace DAOs
 {
@@ -21,10 +22,15 @@ namespace DAOs
             }
         }
 
-        public List<Court> GetCourts()
+       public async Task<List<Court>> GetCourts (PageResult pageResult)
         {
-            return dbContext.Courts.ToList();
+            var query = dbContext.Courts.AsQueryable();
+            Pagination pagination = new Pagination(dbContext);
+            List<Court> courts = await pagination.GetListAsync<Court>(query, pageResult);
+            return courts;
+
         }
+
 
         public Court GetCourt(string id)
         {

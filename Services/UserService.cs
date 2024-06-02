@@ -21,11 +21,13 @@ namespace Services
 		public IdentityUser AddUser(IdentityUser User) => UserRepository.AddUser(User);
 		//public void DeleteUser(string id) => UserRepository.DeleteUser(id);
 		public IdentityUser GetUser(string id) => UserRepository.GetUser(id);
-		public List<IdentityUser> GetUsers() => UserRepository.GetUsers();
-		//public IdentityUser UpdateUser(string id, IdentityUser User) => UserRepository.UpdateUser(id, User);
+		//public List<IdentityUser> GetUsers() => UserRepository.GetUsers();
+        //public IdentityUser UpdateUser(string id, IdentityUser User) => UserRepository.UpdateUser(id, User);
 
-		
-		public void BanUser(string id) => UserRepository.BanUser(id);
+        public async Task<List<IdentityUser>> GetUsers(DAOs.Helper.PageResult page) => await UserRepository.GetUsers(page);
+
+
+        public void BanUser(string id) => UserRepository.BanUser(id);
 		
 		public void UnBanUser(string id) => UserRepository.UnBanUser(id);
         

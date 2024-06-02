@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Authorization;
+using DAOs.Helper;
 
 namespace API.Controllers
 {
@@ -25,9 +26,15 @@ namespace API.Controllers
         // GET: api/Courts
         [HttpGet]
         
-        public async Task<ActionResult<IEnumerable<Court>>> GetCourts()
+        public async Task<ActionResult<IEnumerable<Court>>> GetCourts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10) 
         {
-            return courtService.GetCourts();
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            var court = await courtService.GetCourts(pageResult);
+            return Ok(court);
         }
 
         // GET: api/Courts/5
@@ -85,9 +92,9 @@ namespace API.Controllers
             return NoContent();
         }
 
-        private bool CourtExists(string id)
-        {
-            return courtService.GetCourts().Any(e => e.CourtId == id);
-        }
+        //private bool CourtExists(string id)
+        //{
+        //    return courtService.GetCourts().Any(e => e.CourtId == id);
+        //}
     }
 }

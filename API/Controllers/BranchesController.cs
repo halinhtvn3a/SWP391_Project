@@ -9,6 +9,7 @@ using BusinessObjects;
 using Repositories;
 using Services;
 using Microsoft.AspNetCore.Authorization;
+using DAOs.Helper;
 
 namespace API.Controllers
 {
@@ -26,9 +27,17 @@ namespace API.Controllers
 
         // GET: api/Branches
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Branch>>> GetBranches()
+        public async Task<ActionResult<IEnumerable<Branch>>> GetBranches([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            return branchService.GetBranches().ToList();
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            List<Branch> branches = await branchService.GetBranches(pageResult);
+
+            return Ok(branches);
         }
 
         // GET: api/Branches/5
@@ -83,9 +92,9 @@ namespace API.Controllers
             return NoContent();
         }
 
-        private bool BranchExists(string id)
-        {
-            return branchService.GetBranches().Any(e => e.BranchId == id);
-        }
+        //private bool BranchExists(string id)
+        //{
+        //    return branchService.GetBranches().Any(e => e.BranchId == id);
+        //}
     }
 }

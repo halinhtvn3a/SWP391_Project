@@ -1,5 +1,6 @@
 ﻿using BusinessObjects;
 using DAOs;
+using DAOs.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Repositories
 
         public Branch GetBranch(string id) => BranchDAO.GetBranch(id);
 
-        public List<Branch> GetBranches() => BranchDAO.GetBranches();
+        public async Task<List<Branch>> GetBranches(PageResult pageResult) => await BranchDAO.GetBranches(pageResult);
 
         public Branch UpdateBranch(string id, Branch Branch) => BranchDAO.UpdateBranch(id, Branch);
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication2.Data;
+using DAOs.Helper;
 
 namespace DAOs
 {
@@ -21,9 +22,12 @@ namespace DAOs
             }
         }
 
-        public List<Branch> GetBranches()
+        public async Task<List<Branch>> GetBranches(PageResult pageResult)
         {
-            return dbContext.Branches.ToList();
+            var query = dbContext.Branches.AsQueryable();
+            Pagination pagination = new Pagination(dbContext);
+            List<Branch> Branches = await pagination.GetListAsync<Branch>(query, pageResult);
+            return Branches;
         }
 
         public Branch GetBranch(string id)

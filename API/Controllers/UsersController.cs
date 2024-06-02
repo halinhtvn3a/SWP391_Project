@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Identity;
+using DAOs.Helper;
 
 namespace API.Controllers
 {
@@ -25,10 +26,30 @@ namespace API.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUsers()
+        public async Task<IActionResult> GetUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            return userService.GetUsers().ToList();
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            List<IdentityUser> users = await userService.GetUsers(pageResult);
+
+            return Ok(users);
         }
+
+
+
+
+
+
+
+        //[HttpGet]
+        //public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUsers()
+        //{
+        //    return userService.GetUsers().ToList();
+        //}
 
         // GET: api/Users/5
         [HttpGet("{id}")]

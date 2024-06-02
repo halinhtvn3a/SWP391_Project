@@ -1,5 +1,6 @@
 ﻿using BusinessObjects;
 using DAOs;
+using DAOs.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Repositories
 
         public Court GetCourt(string id) => CourtDAO.GetCourt(id);
 
-        public List<Court> GetCourts() => CourtDAO.GetCourts();
+        public async Task<List<Court>> GetCourts(PageResult pageResult) => await CourtDAO.GetCourts(pageResult);
 
         public Court UpdateCourt(string id, Court Court) => CourtDAO.UpdateCourt(id, Court);
     }

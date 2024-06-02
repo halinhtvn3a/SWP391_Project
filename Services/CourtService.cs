@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using DAOs.Helper;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -21,7 +22,7 @@ namespace Services
         public Court AddCourt(Court Court) => CourtRepository.AddCourt(Court);
         public void DeleteCourt(string id) => CourtRepository.DeleteCourt(id);
         public Court GetCourt(string id) => CourtRepository.GetCourt(id);
-        public List<Court> GetCourts() => CourtRepository.GetCourts();
+        public async Task<List<Court>> GetCourts(PageResult pageResult) => await CourtRepository.GetCourts(pageResult);
         public Court UpdateCourt(string id, Court Court) => CourtRepository.UpdateCourt(id, Court);
     }
 }

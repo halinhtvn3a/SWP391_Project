@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication2.Data;
+using DAOs.Helper;
+using Microsoft.AspNetCore.Identity;
 
 namespace DAOs
 {
@@ -21,9 +23,12 @@ namespace DAOs
             }
         }
 
-        public List<Review> GetReviews()
+        public async Task<List<Review>> GetReview(PageResult pageResult)
         {
-            return dbContext.Reviews.ToList();
+            var query = dbContext.Reviews.AsQueryable();
+            Pagination pagination = new Pagination(dbContext);
+            List<Review> reviews = await pagination.GetListAsync<Review>(query, pageResult);
+            return reviews;
         }
 
         public Review GetReview(string id)
