@@ -131,22 +131,61 @@ namespace Repositories.Helper
 
             return hash.ToString();
         }
+        //public static string GetIpAddress(HttpContext httpContext)
+        //{
+        //    string ipAddress;
+        //    try
+        //    {
+        //        ipAddress = httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+
+        //        if (string.IsNullOrEmpty(ipAddress) || (ipAddress.ToLower() == "unknown") || ipAddress.Length > 45)
+        //            ipAddress = httpContext.Connection.RemoteIpAddress.ToString();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ipAddress = "Invalid IP:" + ex.Message;
+        //    }
+
+        //    return ipAddress;
+        //}
         public static string GetIpAddress(HttpContext httpContext)
         {
-            string ipAddress;
+            string ipAddress = null;
             try
             {
-                ipAddress = httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+                // Get the X-Forwarded-For header, which may contain multiple IPs
+                string xForwardedFor = httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
 
-                if (string.IsNullOrEmpty(ipAddress) || (ipAddress.ToLower() == "unknown") || ipAddress.Length > 45)
-                    ipAddress = httpContext.Connection.RemoteIpAddress.ToString();
+                if (!string.IsNullOrEmpty(xForwardedFor))
+                {
+                    // If there are multiple IPs, take the first one which is the original client IP
+                    ipAddress = xForwardedFor.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).FirstOrDefault();
+                }
+
+                // Fall back to X-Real-IP header if X-Forwarded-For is not set
+                if (string.IsNullOrEmpty(ipAddress))
+                {
+                    ipAddress = httpContext.Request.Headers["X-Real-IP"].FirstOrDefault();
+                }
+
+                // If still no IP found, fall back to the remote IP address
+                if (string.IsNullOrEmpty(ipAddress))
+                {
+                    ipAddress = httpContext.Connection.RemoteIpAddress?.ToString();
+                }
+
+                // Validate IP length (both IPv4 and IPv6 should be handled)
+                if (!string.IsNullOrEmpty(ipAddress) && ipAddress.Length <= 45 && ipAddress.ToLower() != "unknown")
+                {
+                    return ipAddress;
+                }
             }
             catch (Exception ex)
             {
-                ipAddress = "Invalid IP:" + ex.Message;
+                return "Invalid IP: " + ex.Message;
             }
 
-            return ipAddress;
+            return "IP Not Found";
         }
 
     }

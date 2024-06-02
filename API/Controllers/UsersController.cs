@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
-using Microsoft.AspNetCore.Authorization;
 using Services;
 using Microsoft.AspNetCore.Identity;
 
@@ -14,7 +13,6 @@ namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Staff")]
     public class UsersController : ControllerBase
     {
         private readonly UserService userService;
@@ -115,8 +113,16 @@ namespace API.Controllers
             return NoContent();
         }
 
+        [HttpGet("{sort-by-email}")]
+        public async Task<ActionResult<IEnumerable<IdentityUser>>> GetSortList(string sort)
+        {
+            return userService.SortByEmail().ToList();
+        }
 
-
-
+        [HttpGet("{search}")]
+        public async Task<ActionResult<IEnumerable<IdentityUser>>> SearchUsers(string search)
+        {
+            return userService.SearchUsers(search).ToList();
+        }
     }
 }

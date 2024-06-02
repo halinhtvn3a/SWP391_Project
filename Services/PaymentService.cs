@@ -23,5 +23,6 @@ namespace Services
         public Payment GetPayment(string id) => PaymentRepository.GetPayment(id);
         public List<Payment> GetPayments() => PaymentRepository.GetPayments();
         //public Payment UpdatePayment(string id, Payment Payment) => PaymentRepository.UpdatePayment(id, Payment);
+        public List<Payment> SearchByDate(DateTime start, DateTime end) => PaymentRepository.SearchByDate(start, end);
     }
 }

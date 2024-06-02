@@ -27,5 +27,9 @@ namespace Repositories
         public List<Branch> GetBranches() => BranchDAO.GetBranches();
 
         public Branch UpdateBranch(string id, Branch Branch) => BranchDAO.UpdateBranch(id, Branch);
+
+        public List<Branch> GetBranchesByStatus(bool status) => BranchDAO.GetBranchesByStatus(status);
+
+        public List<Branch> SearchBranches(string search) => BranchDAO.SearchBranches(search);
     }
 }

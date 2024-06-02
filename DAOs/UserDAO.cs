@@ -63,29 +63,27 @@ namespace DAOs
 			return IdentityUser;
 		}
 
-        //public IdentityUser UpdateIdentityUser(string id, IdentityUser IdentityUser)
-        //{
-        //	IdentityUser oIdentityUser = GetIdentityUser(id);
-        //	if (oIdentityUser != null)
-        //	{
-        //		oIdentityUser.Balance = IdentityUser.Balance;
-        //		oIdentityUser.FullName = IdentityUser.FullName;
-        //		oIdentityUser.Status = IdentityUser.Status;
-        //		dbContext.Update(oIdentityUser);
-        //		dbContext.SaveChanges();
-        //	}
-        //	return oIdentityUser;
-        //}
+        public IdentityUser UpdateIdentityUser(string id, string email)
+        {
+            IdentityUser oIdentityUser = GetUser(id);
+            if (oIdentityUser != null)
+            {
+                oIdentityUser.Email = email;
+                dbContext.Update(oIdentityUser);
+                dbContext.SaveChanges();
+            }
+            return oIdentityUser;
+        }
 
         //public void DeleteIdentityUser(string id)
         //{
-        //	IdentityUser oIdentityUser = GetIdentityUser(id);
-        //	if (oIdentityUser != null)
-        //	{
-        //		oIdentityUser.Status = false;
-        //		dbContext.Update(oIdentityUser);
-        //		dbContext.SaveChanges();
-        //	}
+        //    IdentityUser oIdentityUser = GetIdentityUser(id);
+        //    if (oIdentityUser != null)
+        //    {
+        //        oIdentityUser.Status = false;
+        //        dbContext.Update(oIdentityUser);
+        //        dbContext.SaveChanges();
+        //    }
         //}
 
         public IdentityUser BanUser(string id)
@@ -113,6 +111,9 @@ namespace DAOs
             return oUser;
         }
 
+        public List<IdentityUser> SortByEmail() =>  GetUsers().OrderBy(u => u.Email).ToList();
+
+        public List<IdentityUser> SearchUser(string search) => GetUsers().Where(u => u.Email.Contains(search) || u.Id.Contains(search)).ToList();
 
     }
 }

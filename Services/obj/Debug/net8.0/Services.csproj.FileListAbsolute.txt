@@ -59,7 +59,6 @@ E:\29-5\SWP391_Project\Services\obj\Debug\net8.0\Services.dll
 E:\29-5\SWP391_Project\Services\obj\Debug\net8.0\refint\Services.dll
 E:\29-5\SWP391_Project\Services\obj\Debug\net8.0\Services.pdb
 E:\29-5\SWP391_Project\Services\obj\Debug\net8.0\ref\Services.dll
-C:\FPTUNI\5\SWP391_Project\Services\bin\Debug\net8.0\appsettings.json
 C:\FPTUNI\5\SWP391_Project\Services\bin\Debug\net8.0\Services.deps.json
 C:\FPTUNI\5\SWP391_Project\Services\bin\Debug\net8.0\Services.dll
 C:\FPTUNI\5\SWP391_Project\Services\bin\Debug\net8.0\Services.pdb
@@ -101,45 +100,43 @@ E:\C#\SWP391_Project\Services\obj\Debug\net8.0\Services.dll
 E:\C#\SWP391_Project\Services\obj\Debug\net8.0\refint\Services.dll
 E:\C#\SWP391_Project\Services\obj\Debug\net8.0\Services.pdb
 E:\C#\SWP391_Project\Services\obj\Debug\net8.0\ref\Services.dll
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\appsettings.json
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\Services.deps.json
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\Services.dll
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\Services.pdb
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\BusinessObjects.dll
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\DAOs.dll
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\Repositories.dll
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\Repositories.pdb
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\BusinessObjects.pdb
-E:\31-5\SWP391_Project\Services\bin\Debug\net8.0\DAOs.pdb
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\Services.sourcelink.json
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.Up2Date
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\Services.dll
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\refint\Services.dll
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\Services.pdb
-E:\31-5\SWP391_Project\Services\obj\Debug\net8.0\ref\Services.dll
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\appsettings.json
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\Services.deps.json
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\Services.dll
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\Services.pdb
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\BusinessObjects.dll
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\DAOs.dll
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\Repositories.dll
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\Repositories.pdb
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\BusinessObjects.pdb
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\bin\Debug\net8.0\DAOs.pdb
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\Services.sourcelink.json
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.Up2Date
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\Services.dll
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\refint\Services.dll
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\Services.pdb
-C:\Users\admin\Downloads\New folder\SWP391_Project\Services\obj\Debug\net8.0\ref\Services.dll
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\bin\Debug\net8.0\Services.deps.json
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\bin\Debug\net8.0\Services.dll
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\bin\Debug\net8.0\Services.pdb
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\bin\Debug\net8.0\BusinessObjects.dll
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\bin\Debug\net8.0\DAOs.dll
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\bin\Debug\net8.0\Repositories.dll
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\bin\Debug\net8.0\Repositories.pdb
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\bin\Debug\net8.0\BusinessObjects.pdb
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\bin\Debug\net8.0\DAOs.pdb
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\Services.sourcelink.json
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.Up2Date
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\Services.dll
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\refint\Services.dll
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\Services.pdb
+C:\FPTUNI\5\MasterBranch\SWP391_Project\Services\obj\Debug\net8.0\ref\Services.dll
+E:\1-6\SWP391_Project\Services\bin\Debug\net8.0\Services.deps.json
+E:\1-6\SWP391_Project\Services\bin\Debug\net8.0\Services.dll
+E:\1-6\SWP391_Project\Services\bin\Debug\net8.0\Services.pdb
+E:\1-6\SWP391_Project\Services\bin\Debug\net8.0\BusinessObjects.dll
+E:\1-6\SWP391_Project\Services\bin\Debug\net8.0\DAOs.dll
+E:\1-6\SWP391_Project\Services\bin\Debug\net8.0\Repositories.dll
+E:\1-6\SWP391_Project\Services\bin\Debug\net8.0\Repositories.pdb
+E:\1-6\SWP391_Project\Services\bin\Debug\net8.0\BusinessObjects.pdb
+E:\1-6\SWP391_Project\Services\bin\Debug\net8.0\DAOs.pdb
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.AssemblyReference.cache
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\Services.GeneratedMSBuildEditorConfig.editorconfig
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\Services.AssemblyInfoInputs.cache
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\Services.AssemblyInfo.cs
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.CoreCompileInputs.cache
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\Services.sourcelink.json
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\Services.csproj.Up2Date
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\Services.dll
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\refint\Services.dll
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\Services.pdb
+E:\1-6\SWP391_Project\Services\obj\Debug\net8.0\ref\Services.dll

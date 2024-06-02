@@ -27,5 +27,12 @@ namespace Repositories
         public List<Review> GetReviews() => ReviewDAO.GetReviews();
 
         public Review UpdateReview(string id, Review Review) => ReviewDAO.UpdateReview(id, Review);
+
+        public List<Review> GetReviewsByCourt(string id) => ReviewDAO.GetReviewsByCourt(id);
+        public List<Review> SearchByUser(string id) => ReviewDAO.SearchByUser(id);
+
+        public List<Review> SearchByDate(DateTime start, DateTime end) => ReviewDAO.SearchByDate(start, end);
+
+        public List<Review> SearchByRating(int rating) => ReviewDAO.SearchByRating(rating);
     }
 }

@@ -6,14 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
-using Microsoft.AspNetCore.Authorization;
 using Services;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class TimeSlotsController : ControllerBase
     {
         private readonly TimeSlotService timeSlotService;

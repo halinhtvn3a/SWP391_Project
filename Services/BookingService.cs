@@ -23,5 +23,11 @@ namespace Services
         public Booking GetBooking(string id) => BookingRepository.GetBooking(id);
         public List<Booking> GetBookings() => BookingRepository.GetBookings();
         //public Booking UpdateBooking(string id, Booking Booking) => BookingRepository.UpdateBooking(id, Booking);
+
+        public List<Booking> GetBookingsByStatus(bool status) => BookingRepository.GetBookingsByStatus(status);
+        public List<Booking> SearchBookings(DateTime start, DateTime end) => BookingRepository.SearchBookings(start, end);
+        public List<Booking> SearchBookingsByUser(string userId) => BookingRepository.SearchBookingsByUser(userId);
+        public List<Booking> SortByPrice() => BookingRepository.SortByPrice();
+
     }
 }

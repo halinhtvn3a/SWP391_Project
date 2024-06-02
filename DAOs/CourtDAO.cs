@@ -61,5 +61,10 @@ namespace DAOs
                 dbContext.SaveChanges();
             }
         }
+
+        public List<Court> GetActiveCourts() => dbContext.Courts.Where(m => m.Status.Equals(true)).ToList();
+        
+        public List<Court> SortByName() => dbContext.Courts.OrderBy(m => m.CourtName).ToList();
+
     }
 }

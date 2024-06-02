@@ -1,16 +1,11 @@
 ﻿using BusinessObjects;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Staff")]
-    public class RolesController : ControllerBase
+	public class RolesController : Controller
 	{
 		private readonly RoleService RoleService;
 

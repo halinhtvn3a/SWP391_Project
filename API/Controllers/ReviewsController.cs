@@ -6,14 +6,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
-using Microsoft.AspNetCore.Authorization;
 using Services;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Customer")]
     public class ReviewsController : ControllerBase
     {
         private readonly ReviewService reviewService;
@@ -84,5 +82,31 @@ namespace API.Controllers
         {
             return reviewService.GetReviews().Any(e => e.ReviewId == id);
         }
+
+        [HttpGet("GetReviewsByCourt/{id}")]
+        public async Task<ActionResult<IEnumerable<Review>>> GetReviewsByCourt(string id)
+        {
+            return reviewService.GetReviewsByCourt(id);
+        }
+
+        [HttpGet("SearchByUser/{id}")]
+        public async Task<ActionResult<IEnumerable<Review>>> SearchByUser(string id)
+        {
+            return reviewService.SearchByUser(id);
+        }
+
+        [HttpGet("SearchByDate/{start}/{end}")]
+        public async Task<ActionResult<IEnumerable<Review>>> SearchByDate(DateTime start, DateTime end)
+        {
+            return reviewService.SearchByDate(start, end);
+        }
+
+        [HttpGet("SearchByRating/{rating}")]
+        public async Task<ActionResult<IEnumerable<Review>>> SearchByRating(int rating)
+        {
+            return reviewService.SearchByRating(rating);
+        }
+
+
     }
 }

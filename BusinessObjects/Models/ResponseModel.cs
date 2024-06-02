@@ -13,9 +13,9 @@ namespace BusinessObjects.Models
         public string Status { get; set; }
         public string Message { get; set; }
 
-        [IgnoreDataMember]
-        [JsonIgnore]
-        public System.Threading.Tasks.Task<String>? ConfirmEmailToken { get; set; }
+        //[IgnoreDataMember]
+        //[JsonIgnore]
+        //public System.Threading.Tasks.Task<String>? ConfirmEmailToken { get; set; }
 
         //public string? PaymentUrl { get; set; }
     }

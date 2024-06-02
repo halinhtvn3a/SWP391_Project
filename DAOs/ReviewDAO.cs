@@ -61,5 +61,15 @@ namespace DAOs
                 dbContext.SaveChanges();
             }
         }
+
+        public List<Review> SearchByDate(DateTime start, DateTime end) => dbContext.Reviews.Where(m => m.ReviewDate >= start && m.ReviewDate <= end).ToList();
+        
+
+        public List<Review> SearchByRating(int rating)=> dbContext.Reviews.Where(m => m.Rating == rating).ToList();
+        
+        public List<Review> SearchByUser(string id) => dbContext.Reviews.Where(m => m.Id == id).ToList();
+        
+
+        public List<Review> GetReviewsByCourt(string id) => dbContext.Reviews.Where(m => m.CourtId == id).ToList();
     }
 }

@@ -23,5 +23,7 @@ namespace Services
         public UserDetail GetUserDetail(string id) => UserDetailRepository.GetUserDetail(id);
         public List<UserDetail> GetUserDetails() => UserDetailRepository.GetUserDetails();
         public UserDetail UpdateUserDetail(string id, UserDetail UserDetail) => UserDetailRepository.UpdateUserDetail(id, UserDetail);
+
+        public UserDetail GetUserDetailByUserId(string userId) => UserDetailRepository.GetUserDetailByUserId(userId);
     }
 }

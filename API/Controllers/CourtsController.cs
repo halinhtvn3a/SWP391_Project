@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
-using Microsoft.AspNetCore.Authorization;
 using Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -46,6 +46,7 @@ namespace API.Controllers
         // PUT: api/Courts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutCourt(string id, Court court)
         {
             if (id != court.CourtId)
@@ -61,6 +62,7 @@ namespace API.Controllers
         // POST: api/Courts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Court>> PostCourt(Court court)
         {
 
@@ -71,6 +73,7 @@ namespace API.Controllers
 
         // DELETE: api/Courts/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourt(string id)
         {
             var court = courtService.GetCourt(id);
@@ -87,6 +90,18 @@ namespace API.Controllers
         private bool CourtExists(string id)
         {
             return courtService.GetCourts().Any(e => e.CourtId == id);
+        }
+
+        [HttpGet("active")]
+        public async Task<ActionResult<IEnumerable<Court>>> GetActiveCourts()
+        {
+            return courtService.GetActiveCourts();
+        }
+
+        [HttpGet("sort")]
+        public async Task<ActionResult<IEnumerable<Court>>> SortByName()
+        {
+            return courtService.SortByName();
         }
     }
 }

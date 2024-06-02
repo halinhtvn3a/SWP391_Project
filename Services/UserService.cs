@@ -29,5 +29,8 @@ namespace Services
 		
 		public void UnBanUser(string id) => UserRepository.UnBanUser(id);
         
+		public List<IdentityUser> SortByEmail() => UserRepository.SortByEmail();
+
+		public List<IdentityUser> SearchUsers(string search) => UserRepository.SearchUsers(search);
 	}
 }

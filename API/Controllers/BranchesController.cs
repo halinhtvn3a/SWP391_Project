@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
-using Microsoft.AspNetCore.Authorization;
 using Repositories;
 using Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-   
+    
     public class BranchesController : ControllerBase
     {
         private readonly BranchService branchService;
@@ -26,7 +26,6 @@ namespace API.Controllers
 
         // GET: api/Branches
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<Branch>>> GetBranches()
         {
             return branchService.GetBranches().ToList();
@@ -49,6 +48,7 @@ namespace API.Controllers
         // PUT: api/Branches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutBranch(string id, Branch branch)
         {
             if (id != branch.BranchId)
@@ -64,6 +64,7 @@ namespace API.Controllers
         // POST: api/Branches
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Branch>> PostBranch(Branch branch)
         {
             branchService.AddBranch(branch);
@@ -73,6 +74,7 @@ namespace API.Controllers
 
         // DELETE: api/Branches/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteBranch(string id)
         {
             var branch = branchService.GetBranch(id);
@@ -87,6 +89,18 @@ namespace API.Controllers
         private bool BranchExists(string id)
         {
             return branchService.GetBranches().Any(e => e.BranchId == id);
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Branch>>> SearchBranches(string search)
+        {
+            return branchService.SearchBranches(search).ToList();
+        }
+
+        [HttpGet("status")]
+        public async Task<ActionResult<IEnumerable<Branch>>> GetBranchesByStatus(bool status)
+        {
+            return branchService.GetBranchesByStatus(status).ToList();
         }
     }
 }

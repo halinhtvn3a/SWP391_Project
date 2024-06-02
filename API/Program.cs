@@ -1,4 +1,4 @@
-
+﻿
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -18,21 +18,26 @@ namespace API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
             ConfigurationManager configuration = builder.Configuration;
             builder.Services.AddDbContext<DbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("CourtCallerDb"));
             });
 
-
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<DbContext>()
-                .AddDefaultTokenProviders();
+               .AddEntityFrameworkStores<DbContext>()
+               .AddDefaultTokenProviders();
 
-            
+
+
+
             // Add services to the container.
 
             builder.Services.AddControllers();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
 
             builder.Services.AddAuthentication(options =>
             {
@@ -55,7 +60,8 @@ namespace API
                 };
             });
 
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen(c =>
             {
@@ -93,28 +99,37 @@ namespace API
 
             //Email Service
             builder.Services.AddEndpointsApiExplorer();
-
+            builder.Services.AddSwaggerGen();
             builder.Services.AddTransient<IMailService, MailService>();
 
             builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
 
-
+            //cors cho mấy thằng gà react
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    policy =>
+                    {
+                        policy.WithOrigins("http://localhost:5000") // Địa chỉ của ứng dụng React
+                              .AllowAnyHeader()
+                              .AllowAnyMethod();
+                    });
+            });
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+
+            app.UseSwagger();
+            app.UseSwaggerUI();
+
 
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
 
             app.UseAuthorization();
-
+            app.UseCors("AllowSpecificOrigin");
 
             app.MapControllers();
 

@@ -23,5 +23,8 @@ namespace Services
         public Court GetCourt(string id) => CourtRepository.GetCourt(id);
         public List<Court> GetCourts() => CourtRepository.GetCourts();
         public Court UpdateCourt(string id, Court Court) => CourtRepository.UpdateCourt(id, Court);
+
+        public List<Court> GetActiveCourts() => CourtRepository.GetActiveCourts();
+        public List<Court> SortByName() => CourtRepository.SortByName();
     }
 }

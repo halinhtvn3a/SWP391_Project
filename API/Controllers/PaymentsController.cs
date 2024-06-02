@@ -7,14 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
-using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Staff")]
     public class PaymentsController : ControllerBase
     {
         private readonly PaymentService paymentService;
@@ -104,6 +101,12 @@ namespace API.Controllers
         private bool PaymentExists(string id)
         {
             return paymentService.GetPayments().Any(e => e.PaymentId == id);
+        }
+
+        [HttpGet("SearchByDate")]
+        public async Task<ActionResult<IEnumerable<Payment>>> SearchByDate(DateTime start, DateTime end)
+        {
+            return paymentService.SearchByDate(start, end);
         }
     }
 }

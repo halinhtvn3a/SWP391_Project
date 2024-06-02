@@ -27,5 +27,9 @@ namespace Repositories
         public List<Court> GetCourts() => CourtDAO.GetCourts();
 
         public Court UpdateCourt(string id, Court Court) => CourtDAO.UpdateCourt(id, Court);
+
+        public List<Court> GetActiveCourts() => CourtDAO.GetActiveCourts();
+
+        public List<Court> SortByName() => CourtDAO.SortByName();
     }
 }

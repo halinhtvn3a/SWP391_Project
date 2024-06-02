@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace DAOs
 {
@@ -24,32 +25,24 @@ namespace DAOs
 
         public List<UserDetail> GetUserDetails()
         {
-            return dbContext.UserDetails.ToList();
-        }
-        //public List<UserDetail> GetUserDetails()
-        //{
-        //    var UserDetails = dbContext.UserDetails
-        //  .Include(u => u.User)
-        //  .ToList();
+            //    return dbContext.UserDetails.ToList();
+            //}
+            //public List<UserDetail> GetUserDetails()
+            //{
+            var UserDetails = dbContext.UserDetails
+          .Include(u => u.User)
+          .ToList();
 
-        //    return UserDetails.Select(u => new UserDetail
-        //    {
-        //        UserDetailId = u.UserDetailId,
-        //        Balance = u.Balance,
-        //        FullName = u.FullName,
-        //        Status = u.Status,
-        //        //only BookingId
-        //        Users = u.Users.Select(b => new Booking
-        //        {
-        //            BookingId = b.BookingId
-        //        }).ToList(),
-        //        //only ReviewId
-        //        Reviews = u.Reviews.Select(r => new Review
-        //        {
-        //            ReviewId = r.ReviewId
-        //        }).ToList()
-        //    }).ToList();
-        //}
+            return UserDetails.Select(u => new UserDetail
+            {
+                UserDetailId = u.UserDetailId,
+                Balance = u.Balance,
+                FullName = u.FullName,
+                Status = u.Status,
+                User = dbContext.Users.FirstOrDefault(m => m.Id.Equals(u.User.Id))
+            }).ToList();
+        }
+
 
         public UserDetail GetUserDetail(string id)
         {
@@ -86,6 +79,16 @@ namespace DAOs
                 dbContext.Update(oUserDetail);
                 dbContext.SaveChanges();
             }
+        }
+
+        //public List<IdentityUser> GetSortList(string field) => GetUsers().OrderBy(u => GetPropertyValue(u, field)).ToList();
+
+        //private object GetPropertyValue(object obj, string propertyName) => obj.GetType().GetProperty(propertyName)?.GetValue(obj, null);
+
+        //public List<IdentityUser> SearchUser(string search) => GetUsers().Where(u => u.Email.Contains(search) || u.Id.Contains(search)).ToList();
+        public UserDetail GetUserDetailByUserId(string userId)
+        {
+            return dbContext.UserDetails.FirstOrDefault(m => m.User.Id.Equals(userId));
         }
     }
 }

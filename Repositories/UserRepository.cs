@@ -32,5 +32,10 @@ namespace Repositories
 		public void BanUser(string id) => UserDAO.BanUser(id);
 
 		public void UnBanUser(string id) => UserDAO.UnBanUser(id);
-	}
+
+		public List<IdentityUser> SortByEmail() => UserDAO.SortByEmail();
+
+		public List<IdentityUser> SearchUsers(string search) => UserDAO.SearchUser(search);
+
+    }
 }

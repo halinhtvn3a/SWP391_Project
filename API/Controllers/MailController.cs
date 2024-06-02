@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Repositories.Helper;
 using Services.Interface;
@@ -8,8 +7,6 @@ namespace API.Controllers
 {
     [Route("api/mail")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Staff")]
     public class MailController : ControllerBase
     {
         private readonly IMailService mailService;

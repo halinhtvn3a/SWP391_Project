@@ -23,5 +23,9 @@ namespace Services
         public Branch GetBranch(string id) => BranchRepository.GetBranch(id);
         public List<Branch> GetBranches() => BranchRepository.GetBranches();
         public Branch UpdateBranch(string id, Branch Branch) => BranchRepository.UpdateBranch(id, Branch);
+
+        public List<Branch> GetBranchesByStatus(bool status) => BranchRepository.GetBranchesByStatus(status);
+
+        public List<Branch> SearchBranches(string search) => BranchRepository.SearchBranches(search);
     }
 }

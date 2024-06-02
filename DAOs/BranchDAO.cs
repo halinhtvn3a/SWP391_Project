@@ -65,5 +65,11 @@ namespace DAOs
                 dbContext.SaveChanges();
             }
         }
+
+        public List<Branch> GetBranchesByStatus(bool status) => GetBranches().Where(m => m.Status == status).ToList();
+
+        public List<Branch> SearchBranches(string search) => GetBranches().Where(m => m.Address.Contains(search) || m.Description.Contains(search)).ToList();
+
+        //public List<Branch> SortByAddress()
     }
 }

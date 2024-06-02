@@ -27,5 +27,7 @@ namespace Repositories
         public List<UserDetail> GetUserDetails() => UserDetailDAO.GetUserDetails();
 
         public UserDetail UpdateUserDetail(string id, UserDetail UserDetail) => UserDetailDAO.UpdateUserDetail(id, UserDetail);
+
+        public UserDetail GetUserDetailByUserId(string userId) => UserDetailDAO.GetUserDetailByUserId(userId);
     }
 }

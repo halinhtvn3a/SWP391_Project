@@ -27,5 +27,7 @@ namespace Repositories
         public List<Payment> GetPayments() => PaymentDAO.GetPayments();
 
         //public Payment UpdatePayment(string id, Payment Payment) => PaymentDAO.UpdatePayment(id, Payment);
+
+        public List<Payment> SearchByDate(DateTime start, DateTime end) => PaymentDAO.SearchByDate(start, end);
     }
 }

@@ -23,5 +23,12 @@ namespace Services
         public Review GetReview(string id) => ReviewRepository.GetReview(id);
         public List<Review> GetReviews() => ReviewRepository.GetReviews();
         public Review UpdateReview(string id, Review Review) => ReviewRepository.UpdateReview(id, Review);
+
+        public List<Review> GetReviewsByCourt(string id) => ReviewRepository.GetReviewsByCourt(id);
+        public List<Review> SearchByUser(string id) => ReviewRepository.SearchByUser(id);
+        public List<Review> SearchByDate(DateTime start, DateTime end) => ReviewRepository.SearchByDate(start, end);
+
+        public List<Review> SearchByRating(int rating) => ReviewRepository.SearchByRating(rating);
+
     }
 }
