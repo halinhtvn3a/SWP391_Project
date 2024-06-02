@@ -1,5 +1,7 @@
 ﻿using BusinessObjects;
 using DAOs;
+using DAOs.Helper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +23,19 @@ namespace DAOs
             }
         }
 
-        public List<Booking> GetBookings()
+
+        public async Task<List<Booking>> GetBookings(PageResult pageResult)
         {
-            return dbContext.Bookings.ToList();
+            var query = dbContext.Bookings.Include(b => b.User).Select(b => new Booking {  BookingId = b.BookingId, Id = b.User.Id,BookingDate= b.BookingDate, Check = b.Check, PaymentAmount = b.PaymentAmount
+                
+            });
+            
+            Pagination pagination = new Pagination(dbContext);
+            List<Booking> bookings = await pagination.GetListAsync<Booking>(query,pageResult);
+            return bookings;
         }
 
+       
         public Booking GetBooking(string id)
         {
             return dbContext.Bookings.FirstOrDefault(m => m.BookingId.Equals(id));

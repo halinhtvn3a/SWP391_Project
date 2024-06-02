@@ -26,7 +26,7 @@ namespace API.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly TokenService _tokenService;
         private readonly IConfiguration _configuration;
-        private readonly Services.Interface.IMailService _mailService;
+        private readonly IMailService _mailService;
 
         public AuthenticationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IMailService mailService)
         {
@@ -77,7 +77,7 @@ namespace API.Controllers
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Email
+                UserName = model.FullName
 
 
 

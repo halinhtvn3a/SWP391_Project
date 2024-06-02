@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 
 namespace Services
 {
@@ -21,7 +22,8 @@ namespace Services
         public Booking AddBooking(Booking Booking) => BookingRepository.AddBooking(Booking);
         public void DeleteBooking(string id) => BookingRepository.DeleteBooking(id);
         public Booking GetBooking(string id) => BookingRepository.GetBooking(id);
-        public List<Booking> GetBookings() => BookingRepository.GetBookings();
+        //public List<Booking> GetBookings() => BookingRepository.GetBookings();
         //public Booking UpdateBooking(string id, Booking Booking) => BookingRepository.UpdateBooking(id, Booking);
+        public async Task<List<Booking>> GetBookings(PageResult pageResult) => await BookingRepository.GetBookings(pageResult);
     }
 }

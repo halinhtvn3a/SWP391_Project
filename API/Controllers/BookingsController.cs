@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Page =  DAOs.Helper;
 
 namespace API.Controllers
 {
@@ -26,10 +28,15 @@ namespace API.Controllers
 
         // GET: api/Bookings
         [HttpGet]
-        
-        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings()
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            return bookingService.GetBookings().ToList();
+            var pageResult = new Page.PageResult
+            {
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+            };
+            List<Booking> bookings = await bookingService.GetBookings(pageResult);
+            return Ok(bookings);
         }
 
         // GET: api/Bookings/5

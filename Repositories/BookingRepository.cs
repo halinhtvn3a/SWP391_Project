@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 
 namespace Repositories
 {
@@ -24,6 +25,8 @@ namespace Repositories
 
         public Booking GetBooking(string id) => BookingDAO.GetBooking(id);
 
-        public List<Booking> GetBookings() => BookingDAO.GetBookings();
+        
+
+        public async Task<List<Booking>> GetBookings(PageResult pageResult) => await BookingDAO.GetBookings(pageResult);
     }
 }
