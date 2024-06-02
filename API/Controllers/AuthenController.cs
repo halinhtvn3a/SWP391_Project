@@ -248,18 +248,25 @@ namespace API.Controllers
                     SecurityStamp = Guid.NewGuid().ToString()
                 };
                 await _userManager.CreateAsync(user);
+                UserDetail userDetail = new UserDetail()
+                {
+                    UserDetailId = user.Id,
+                    Balance = 0,
+                    FullName = name,
+                    Status = true,
+                    //Id = user.Id
+                };
+                _userDetailService.AddUserDetail(userDetail);
             }
 
             var roles = await _userManager.GetRolesAsync(user);
             var userRole = roles.FirstOrDefault();
+ 
             return Ok(new
             {
                 Token = _tokenService.GenerateToken(user, userRole)
             });
         }
-        
-
-
 
         //ForgetPassword
         [HttpPost]

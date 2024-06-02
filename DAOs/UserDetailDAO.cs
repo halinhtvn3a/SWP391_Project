@@ -88,7 +88,7 @@ namespace DAOs
         //public List<IdentityUser> SearchUser(string search) => GetUsers().Where(u => u.Email.Contains(search) || u.Id.Contains(search)).ToList();
         public UserDetail GetUserDetailByUserId(string userId)
         {
-            return dbContext.UserDetails.FirstOrDefault(m => m.User.Id.Equals(userId));
+            return dbContext.UserDetails.FirstOrDefault(m => m.UserDetailId.Equals(userId));
         }
     }
 }

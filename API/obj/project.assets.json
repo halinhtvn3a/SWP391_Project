@@ -9274,11 +9274,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\1-6\\SWP391_Project\\API\\API.csproj",
+      "projectUniqueName": "E:\\2-6\\SWP391_Project\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "E:\\1-6\\SWP391_Project\\API\\API.csproj",
+      "projectPath": "E:\\2-6\\SWP391_Project\\API\\API.csproj",
       "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\1-6\\SWP391_Project\\API\\obj\\",
+      "outputPath": "E:\\2-6\\SWP391_Project\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -9296,8 +9296,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\1-6\\SWP391_Project\\Services\\Services.csproj": {
-              "projectPath": "E:\\1-6\\SWP391_Project\\Services\\Services.csproj"
+            "E:\\2-6\\SWP391_Project\\Services\\Services.csproj": {
+              "projectPath": "E:\\2-6\\SWP391_Project\\Services\\Services.csproj"
             }
           }
         }
