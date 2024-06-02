@@ -21,5 +21,13 @@ namespace Services
        
         public Review UpdateReview(string id, Review Review) => ReviewRepository.UpdateReview(id, Review);
         public async Task<List<Review>> GetReview(HelperResult.PageResult pageResult) => await ReviewRepository.GetReview(pageResult);
+
+        public List<Review> GetReviewsByCourt(string id) => ReviewRepository.GetReviewsByCourt(id);
+        public List<Review> SearchByUser(string id) => ReviewRepository.SearchByUser(id);
+        public List<Review> SearchByDate(DateTime start, DateTime end) => ReviewRepository.SearchByDate(start, end);
+
+        public List<Review> SearchByRating(int rating) => ReviewRepository.SearchByRating(rating);
+
+
     }
 }

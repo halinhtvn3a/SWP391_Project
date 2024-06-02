@@ -71,5 +71,20 @@ namespace DAOs
                 dbContext.SaveChanges();
             }
         }
+
+        public List<Booking> GetBookingsByStatus(bool status)
+        {
+            return dbContext.Bookings.Where(m => m.Check.Equals(status)).ToList();
+        }
+
+        public List<Booking> SearchBookings(DateTime start, DateTime end)
+        {
+            return dbContext.Bookings.Where(m => m.BookingDate >= start && m.BookingDate <= end).ToList();
+        }
+
+        public List<Booking> SearchBookingsByUser(string userId)
+        {
+            return dbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
+        }
     }
 }

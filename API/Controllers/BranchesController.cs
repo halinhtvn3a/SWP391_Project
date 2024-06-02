@@ -96,5 +96,12 @@ namespace API.Controllers
         //{
         //    return branchService.GetBranches().Any(e => e.BranchId == id);
         //}
+
+        [HttpGet("status")]
+        public async Task<ActionResult<IEnumerable<Branch>>> GetBranchesByStatus(bool status)
+        {
+            return branchService.GetBranchesByStatus(status).ToList();
+        }
+
     }
 }

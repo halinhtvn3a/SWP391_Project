@@ -24,5 +24,8 @@ namespace Services
         public Branch GetBranch(string id) => BranchRepository.GetBranch(id);
         public async Task<List<Branch>> GetBranches(PageResult pageResult) => await BranchRepository.GetBranches(pageResult);
         public Branch UpdateBranch(string id, Branch Branch) => BranchRepository.UpdateBranch(id, Branch);
+
+        public List<Branch> GetBranchesByStatus(bool status) => BranchRepository.GetBranchesByStatus(status);
+
     }
 }

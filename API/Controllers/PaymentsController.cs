@@ -98,9 +98,17 @@ namespace API.Controllers
             return NoContent();
         }
 
-        private bool PaymentExists(string id)
+        //private bool PaymentExists(string id)
+        //{
+        //    return paymentService.GetPayments().Any(e => e.PaymentId == id);
+        //}
+
+        [HttpGet("SearchByDate")]
+        public async Task<ActionResult<IEnumerable<Payment>>> SearchByDate(DateTime start, DateTime end)
         {
-            return paymentService.GetPayments().Any(e => e.PaymentId == id);
+            return paymentService.SearchByDate(start, end);
         }
+
+
     }
 }

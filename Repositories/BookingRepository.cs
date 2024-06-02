@@ -25,8 +25,13 @@ namespace Repositories
 
         public Booking GetBooking(string id) => BookingDAO.GetBooking(id);
 
-        
 
         public async Task<List<Booking>> GetBookings(PageResult pageResult) => await BookingDAO.GetBookings(pageResult);
+
+        public List<Booking> GetBookingsByStatus(bool status) => BookingDAO.GetBookingsByStatus(status);
+
+        public List<Booking> SearchBookings(DateTime start, DateTime end) => BookingDAO.SearchBookings(start, end);
+
+        public List<Booking> SearchBookingsByUser(string userId) => BookingDAO.SearchBookingsByUser(userId);
     }
 }

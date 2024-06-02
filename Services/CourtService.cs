@@ -24,5 +24,7 @@ namespace Services
         public Court GetCourt(string id) => CourtRepository.GetCourt(id);
         public async Task<List<Court>> GetCourts(PageResult pageResult) => await CourtRepository.GetCourts(pageResult);
         public Court UpdateCourt(string id, Court Court) => CourtRepository.UpdateCourt(id, Court);
+        public List<Court> GetActiveCourts() => CourtRepository.GetActiveCourts();
+
     }
 }

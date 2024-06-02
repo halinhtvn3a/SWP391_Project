@@ -15,6 +15,11 @@ using Repositories.Helper;
 using Services.Interface;
 
 
+
+
+
+
+
 namespace API.Controllers
 {
     [Route("api/authentication")]
@@ -24,6 +29,8 @@ namespace API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly TokenService _tokenService;
+        private readonly UserService _userService = new UserService();
+        private readonly UserDetailService _userDetailService = new UserDetailService();
         private readonly IConfiguration _configuration;
         private readonly IMailService _mailService;
 
@@ -34,31 +41,49 @@ namespace API.Controllers
             _configuration = configuration;
             _tokenService = new TokenService(_configuration, _roleManager);
             _mailService = mailService;
-           
         }
 
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            try
+            //var ip = Utils.GetIpAddress(HttpContext);
+            var user = await _userManager.FindByNameAsync(model.Email);
+            var userDetail = _userDetailService.GetUserDetailByUserId(user.Id);
+            //check if user is banned
+            //if (BanList.BannedUsers.Contains(ip) || userDetail.Status == false)
+            if (userDetail.Status == false)
             {
-                var user = await _userManager.FindByNameAsync(model.Email);
-                if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-                {
-                    var roles = await _userManager.GetRolesAsync(user);
-                    var userRole = roles.FirstOrDefault();
-                    return Ok(new
-                    {
-                        Token = _tokenService.GenerateToken(user, userRole)
-                    }
-                    
-                    );
-                }
+                return
+                    StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User is banned!" });
             }
-            catch (Exception ex)
+            else
             {
-                return BadRequest();
+                try
+                {
+                    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+                    {
+                        var roles = await _userManager.GetRolesAsync(user);
+                        var userRole = roles.FirstOrDefault();
+                        return Ok(new
+                        {
+                            Token = _tokenService.GenerateToken(user, userRole)
+                        });
+                    }
+                    else
+                    {
+                        user.AccessFailedCount++;
+                        if (user.AccessFailedCount == 5)
+                        {
+                            //BanList.BannedUsers.Add(ip);
+                            userDetail.Status = false;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest();
+                }
             }
 
             return Unauthorized();
@@ -76,18 +101,15 @@ namespace API.Controllers
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.FullName
-
-
-
+                UserName = model.Email
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-            //return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel() { Status = "Error", Message = "User creation failed! Please check user details and try again." });
             {
                 var errors = result.Errors.Select(e => e.Description);
                 return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = string.Join(" ", errors) });
             }
+
             if (!await _roleManager.RoleExistsAsync("Customer"))
             {
                 var role = new IdentityRole("Customer");
@@ -95,9 +117,21 @@ namespace API.Controllers
             }
 
             await _userManager.AddToRoleAsync(user, "Customer");
+            UserDetail userDetail = new UserDetail()
+            {
+                UserDetailId = user.Id,
+                Balance = 0,
+                FullName = model.FullName,
+                Status = true,
 
+            };
+            _userDetailService.AddUserDetail(userDetail);
             return Ok(new ResponseModel() { Status = "Success", Message = "User created successfully!" });
         }
+
+
+
+
 
         [HttpPost]
         [Route("register-admin")]
@@ -124,9 +158,22 @@ namespace API.Controllers
             {
                 await _userManager.AddToRoleAsync(user, UserRoles.Admin);
             }
+            UserDetail userDetail = new UserDetail()
+            {
+                UserDetailId = user.Id,
+                Balance = 0,
+                FullName = model.FullName,
+                Status = true,
+                //Id = user.Id
+            };
+            _userDetailService.AddUserDetail(userDetail);
 
             return Ok(new ResponseModel { Status = "Success", Message = "User created successfully!" });
         }
+
+
+
+
 
         [HttpPost]
         [Route("register-staff")]
@@ -153,9 +200,19 @@ namespace API.Controllers
             {
                 await _userManager.AddToRoleAsync(user, UserRoles.Staff);
             }
+            UserDetail userDetail = new UserDetail()
+            {
+                UserDetailId = user.Id,
+                Balance = 0,
+                FullName = model.FullName,
+                Status = true,
+                //Id = user.Id
+            };
+            _userDetailService.AddUserDetail(userDetail);
 
             return Ok(new ResponseModel { Status = "Success", Message = "Staff created successfully!" });
         }
+
 
         // externalLogin like google and facebook
         //[HttpPost]
@@ -183,6 +240,53 @@ namespace API.Controllers
         //    });
         //}
 
+
+
+        [HttpPost]
+        [Route("google-login")]
+        public async Task<IActionResult> GoogleLogin(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+            var email = jsonToken.Claims.First(claim => claim.Type == "email").Value;
+            var name = jsonToken.Claims.First(claim => claim.Type == "name").Value;
+            var picture = jsonToken.Claims.First(claim => claim.Type == "picture").Value;
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                user = new IdentityUser
+                {
+                    Email = email,
+                    UserName = email,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                };
+                await _userManager.CreateAsync(user);
+                UserDetail userDetail = new UserDetail()
+                {
+                    UserDetailId = user.Id,
+                    Balance = 0,
+                    FullName = name,
+                    Status = true,
+                    //Id = user.Id
+                };
+                _userDetailService.AddUserDetail(userDetail);
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var userRole = roles.FirstOrDefault();
+
+            return Ok(new
+            {
+                Token = _tokenService.GenerateToken(user, userRole)
+            });
+        }
+
+
+
+
+
+
         //ForgetPassword
         [HttpPost]
         [Route("forget-password")]
@@ -193,7 +297,7 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User does not exist!" });
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token = Uri.EscapeDataString(token), email = Uri.EscapeDataString(user.Email) }, Request.Scheme);
+            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token, email = user.Email }, Request.Scheme);
             Console.WriteLine("Generated Token: " + token);
             var mailRequest = new MailRequest
             {
@@ -216,19 +320,10 @@ namespace API.Controllers
             if (user == null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User does not exist!" });
 
-            // Giải mã token và email
-            var decodedToken = Uri.UnescapeDataString(model.Token);
-            var decodedEmail = Uri.UnescapeDataString(model.Email);
-
-            var isTokenValid = await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", decodedToken);
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
+            var isTokenValid = await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", model.Token);
             Console.WriteLine("Is Token Valid: " + isTokenValid);
 
-            if (!isTokenValid)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "Invalid token." });
-            }
-
-            var resetPassResult = await _userManager.ResetPasswordAsync(user, decodedToken, model.Password);
             if (!resetPassResult.Succeeded)
             {
                 var errors = resetPassResult.Errors.Select(e => e.Description);

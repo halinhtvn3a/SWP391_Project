@@ -97,5 +97,25 @@ namespace API.Controllers
         //{
         //    return bookingService.Bookings.Any(e => e.BookingId == id);
         //}
+
+        [HttpGet("status/{status}")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByStatus(bool status)
+        {
+            return bookingService.GetBookingsByStatus(status).ToList();
+        }
+
+        [HttpGet("search/{start}/{end}")]
+        public async Task<ActionResult<IEnumerable<Booking>>> SearchBookings(DateTime start, DateTime end)
+        {
+            return bookingService.SearchBookings(start, end).ToList();
+        }
+
+        [HttpGet("search/{userId}")]
+        public async Task<ActionResult<IEnumerable<Booking>>> SearchBookingsByUser(string userId)
+        {
+            return bookingService.SearchBookingsByUser(userId).ToList();
+        }
+
+
     }
 }

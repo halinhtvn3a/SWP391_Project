@@ -69,5 +69,11 @@ namespace DAOs
                 dbContext.SaveChanges();
             }
         }
+
+            public List<Branch> GetBranchesByStatus(bool status)
+        {
+            return dbContext.Branches.Where(m => m.Status == status).ToList();
+        }
+
     }
 }

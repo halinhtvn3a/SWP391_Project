@@ -87,5 +87,13 @@ namespace DAOs
                 dbContext.SaveChanges();
             }
         }
+
+        public UserDetail GetUserDetailByUserId(string userId)
+        {
+            return dbContext.UserDetails.FirstOrDefault(m => m.UserDetailId.Equals(userId));
+        }
+
+
+
     }
 }

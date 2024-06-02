@@ -10,6 +10,9 @@ using Services;
 using Microsoft.AspNetCore.Authorization;
 using DAOs.Helper;
 
+
+
+
 namespace API.Controllers
 {
     [Route("api/[controller]")]
@@ -96,5 +99,12 @@ namespace API.Controllers
         //{
         //    return courtService.GetCourts().Any(e => e.CourtId == id);
         //}
+
+        [HttpGet("active")]
+        public async Task<ActionResult<IEnumerable<Court>>> GetActiveCourts()
+        {
+            return courtService.GetActiveCourts();
+        }
+
     }
 }

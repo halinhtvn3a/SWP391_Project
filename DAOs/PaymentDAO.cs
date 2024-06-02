@@ -61,5 +61,9 @@ namespace DAOs
                 dbContext.SaveChanges();
             }
         }
+
+        public List<Payment> SearchByDate(DateTime start, DateTime end) => dbContext.Payments.Where(m => m.PaymentDate >= start && m.PaymentDate <= end).ToList();
+
+
     }
 }

@@ -67,5 +67,7 @@ namespace DAOs
                 dbContext.SaveChanges();
             }
         }
+
+        public List<Court> GetActiveCourts() => dbContext.Courts.Where(m => m.Status.Equals(true)).ToList();
     }
 }

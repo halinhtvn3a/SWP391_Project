@@ -87,5 +87,19 @@ namespace API.Controllers
 		{
 			return UserDetailservice.GetUserDetails().Any(e => e.UserDetailId == id);
 		}
-	}
+
+        [HttpGet("GetUserDetailByUserId/{userId}")]
+        public async Task<ActionResult<UserDetail>> GetUserDetailByUserId(string userId)
+        {
+            var user = UserDetailservice.GetUserDetailByUserId(userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
+    }
 }
