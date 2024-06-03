@@ -271,6 +271,8 @@ namespace API.Controllers
                     //Id = user.Id
                 };
                 _userDetailService.AddUserDetail(userDetail);
+                await _userManager.AddToRoleAsync(user, "Customer");
+
             }
 
             var roles = await _userManager.GetRolesAsync(user);
@@ -282,7 +284,48 @@ namespace API.Controllers
             });
         }
 
+        //Facebook Login
+        [HttpPost]
+        [Route("facebook-login")]
+        public async Task<IActionResult> FacebookLogin(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+            var email = jsonToken.Claims.First(claim => claim.Type == "email").Value;
+            var name = jsonToken.Claims.First(claim => claim.Type == "name").Value;
+            var picture = jsonToken.Claims.First(claim => claim.Type == "picture").Value;
 
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                user = new IdentityUser
+                {
+                    Email = email,
+                    UserName = email,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                };
+                await _userManager.CreateAsync(user);
+                UserDetail userDetail = new UserDetail()
+                {
+                    UserDetailId = user.Id,
+                    Balance = 0,
+                    FullName = name,
+                    Status = true,
+                    //Id = user.Id
+                };
+                _userDetailService.AddUserDetail(userDetail);
+                await _userManager.AddToRoleAsync(user, "Customer");
+
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var userRole = roles.FirstOrDefault();
+
+            return Ok(new
+            {
+                Token = _tokenService.GenerateToken(user, userRole)
+            });
+        }
 
 
 
