@@ -5,36 +5,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using WebApplication2.Data;
 
 namespace DAOs
 {
 	public class RoleDAO
 	{
-		private readonly CourtCallerDbContext dbContext = null;
+		private readonly CourtCallerDbContext DbContext = null;
 
 		public RoleDAO()
 		{
-			if (dbContext == null)
+			if (DbContext == null)
 			{
-				dbContext = new CourtCallerDbContext();
+				DbContext = new CourtCallerDbContext();
 			}
 		}
 
 		public List<IdentityRole> GetRoles()
 		{
-			return dbContext.Roles.ToList();
+			return DbContext.Roles.ToList();
 		}
 
 		public IdentityRole GetRole(string id)
 		{
-			return dbContext.Roles.FirstOrDefault(m => m.Id.Equals(id));
+			return DbContext.Roles.FirstOrDefault(m => m.Id.Equals(id));
 		}
 
 		public IdentityRole AddRole(IdentityRole IdentityRole)
 		{
-			dbContext.Roles.Add(IdentityRole);
-			dbContext.SaveChanges();
+			DbContext.Roles.Add(IdentityRole);
+			DbContext.SaveChanges();
 			return IdentityRole;
 		}
 
@@ -46,8 +45,8 @@ namespace DAOs
 				oIdentityRole.Name = IdentityRole.Name;
 				oIdentityRole.ConcurrencyStamp = IdentityRole.ConcurrencyStamp;
 				oIdentityRole.NormalizedName = IdentityRole.NormalizedName;
-				dbContext.Update(oIdentityRole);
-				dbContext.SaveChanges();
+				DbContext.Update(oIdentityRole);
+				DbContext.SaveChanges();
 			}
 			return oIdentityRole;
 		}
@@ -57,8 +56,8 @@ namespace DAOs
 			IdentityRole oIdentityRole = GetRole(id);
 			if (oIdentityRole != null)
 			{
-				dbContext.Remove(oIdentityRole);
-				dbContext.SaveChanges();
+				DbContext.Remove(oIdentityRole);
+				DbContext.SaveChanges();
 			}
 		}
 	}

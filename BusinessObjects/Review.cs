@@ -12,26 +12,28 @@ namespace BusinessObjects
 	public class Review
 	{
 		[Key]
-		[StringLength(5)]
+		[StringLength(10)]
 		public string ReviewId { get; set; }
 
 		[StringLength(255)]
 		public string ReviewText { get; set; }
 
-		public DateTime? ReviewDate { get; set; }
+        [Required]
+        public DateTime? ReviewDate { get; set; }
 
-		public int? Rating { get; set; }
+        [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5.")]
+        public int? Rating { get; set; }
 
 		[ForeignKey("User")]
 		[StringLength(450)]
 		public string Id { get; set; }
 
-		[ForeignKey("Court")]
-		[StringLength(5)]
-		public string CourtId { get; set; }
+		[ForeignKey("Branch")]
+		[StringLength(10)]
+		public string BranchId { get; set; }
 
 		// Navigation properties
-		public IdentityUser User { get; set; }
-		public Court Court { get; set; }
+		public virtual IdentityUser User { get; set; }
+		public virtual Branch Branch { get; set; }
 	}
 }

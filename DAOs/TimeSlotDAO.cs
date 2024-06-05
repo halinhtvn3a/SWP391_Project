@@ -5,36 +5,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebApplication2.Data;
 
 namespace DAOs
 {
     public class TimeSlotDAO
     {
-        private readonly CourtCallerDbContext dbContext = null;
+        private readonly CourtCallerDbContext DbContext = null;
 
         public TimeSlotDAO()
         {
-            if (dbContext == null)
+            if (DbContext == null)
             {
-                dbContext = new CourtCallerDbContext();
+                DbContext = new CourtCallerDbContext();
             }
         }
 
         public List<TimeSlot> GetTimeSlots()
         {
-            return dbContext.TimeSlots.ToList();
+            return DbContext.TimeSlots.ToList();
         }
 
         public TimeSlot GetTimeSlot(string id)
         {
-            return dbContext.TimeSlots.FirstOrDefault(m => m.SlotId.Equals(id));
+            return DbContext.TimeSlots.FirstOrDefault(m => m.SlotId.Equals(id));
         }
 
         public TimeSlot AddTimeSlot(TimeSlot TimeSlot)
         {
-            dbContext.TimeSlots.Add(TimeSlot);
-            dbContext.SaveChanges();
+            DbContext.TimeSlots.Add(TimeSlot);
+            DbContext.SaveChanges();
             return TimeSlot;
         }
 
@@ -44,15 +43,16 @@ namespace DAOs
             if (oTimeSlot != null)
             {
                 oTimeSlot.IsAvailable = false;
-                dbContext.Update(oTimeSlot);
-                dbContext.SaveChanges();
+                oTimeSlot.Price = TimeSlot.Price;
+                DbContext.Update(oTimeSlot);
+                DbContext.SaveChanges();
             }
             return oTimeSlot;
         }
 
         public void UpdateSlot(TimeSlot slot)
         {
-            dbContext.TimeSlots.Update(slot);
+            DbContext.TimeSlots.Update(slot);
         }
 
         //public void DeleteTimeSlot(int id)
@@ -60,8 +60,8 @@ namespace DAOs
         //    TimeSlot oTimeSlot = GetTimeSlot(id);
         //    if (oTimeSlot != null)
         //    {
-        //        dbContext.Remove(oTimeSlot);
-        //        dbContext.SaveChanges();
+        //        DbContext.Remove(oTimeSlot);
+        //        DbContext.SaveChanges();
         //    }
         //}
     }

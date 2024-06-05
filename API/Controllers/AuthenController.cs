@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Services;
-using LoginModel = BusinessObjects.Models.LoginModel;
-using RegisterModel = BusinessObjects.Models.RegisterModel;
 using Repositories.Helper;
 using Services.Interface;
 
@@ -49,10 +47,10 @@ namespace API.Controllers
         {
             //var ip = Utils.GetIpAddress(HttpContext);
             var user = await _userManager.FindByNameAsync(model.Email);
-            var userDetail = _userDetailService.GetUserDetailByUserId(user.Id);
+
             //check if user is banned
             //if (BanList.BannedUsers.Contains(ip) || userDetail.Status == false)
-            if (userDetail.Status == false)
+            if (user.LockoutEnabled == false)
             {
                 return
                     StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User is banned!" });
@@ -76,7 +74,7 @@ namespace API.Controllers
                         if (user.AccessFailedCount == 5)
                         {
                             //BanList.BannedUsers.Add(ip);
-                            userDetail.Status = false;
+                            user.LockoutEnabled = false;
                         }
                     }
                 }
@@ -119,11 +117,10 @@ namespace API.Controllers
             await _userManager.AddToRoleAsync(user, "Customer");
             UserDetail userDetail = new UserDetail()
             {
-                UserDetailId = user.Id,
+                UserId = user.Id,
                 Balance = 0,
                 FullName = model.FullName,
-                Status = true,
-
+                
             };
             _userDetailService.AddUserDetail(userDetail);
             return Ok(new ResponseModel() { Status = "Success", Message = "User created successfully!" });
@@ -151,20 +148,18 @@ namespace API.Controllers
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
 
-            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
-            {
-                await _userManager.AddToRoleAsync(user, UserRoles.Admin);
-            }
+
+            await _userManager.AddToRoleAsync(user, "Admin");
+
             UserDetail userDetail = new UserDetail()
             {
-                UserDetailId = user.Id,
+                UserId = user.Id,
                 Balance = 0,
                 FullName = model.FullName,
-                Status = true,
-                //Id = user.Id
+
             };
             _userDetailService.AddUserDetail(userDetail);
 
@@ -193,52 +188,22 @@ namespace API.Controllers
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Staff))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Staff));
+            if (!await _roleManager.RoleExistsAsync("Staff"))
+                await _roleManager.CreateAsync(new IdentityRole("Staff"));
 
-            if (await _roleManager.RoleExistsAsync(UserRoles.Staff))
-            {
-                await _userManager.AddToRoleAsync(user, UserRoles.Staff);
-            }
+            await _userManager.AddToRoleAsync(user, "Staff");
+
             UserDetail userDetail = new UserDetail()
             {
-                UserDetailId = user.Id,
+                UserId = user.Id,
                 Balance = 0,
                 FullName = model.FullName,
-                Status = true,
-                //Id = user.Id
+
             };
             _userDetailService.AddUserDetail(userDetail);
 
             return Ok(new ResponseModel { Status = "Success", Message = "Staff created successfully!" });
         }
-
-
-        // externalLogin like google and facebook
-        //[HttpPost]
-        //[Route("external-login")]
-        //public async Task<IActionResult> ExternalLogin([FromBody] ExternalLoginModel model)
-        //{
-        //    var payload = new JwtPayload
-        //    {
-        //        { "sub", model.Email },
-        //        { "email", model.Email },
-        //        { "name", model.Name },
-        //        //{ "picture", model.Picture },
-        //        { "iss", "https://localhost:7104" },
-        //        { "aud", "https://localhost:7104" },
-        //        { "exp", DateTimeOffset.UtcNow.AddHours(3).ToUnixTimeSeconds() },
-        //        { ClaimTypes.Role, "Customer" } // Add the first role as a claim
-        //    };
-
-        //    var token = new JwtSecurityToken(new JwtHeader(new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])), SecurityAlgorithms.HmacSha256)), payload);
-
-        //    return Ok(new
-        //    {
-        //        token = new JwtSecurityTokenHandler().WriteToken(token),
-        //        expiration = token.ValidTo
-        //    });
-        //}
 
 
 
@@ -264,10 +229,10 @@ namespace API.Controllers
                 await _userManager.CreateAsync(user);
                 UserDetail userDetail = new UserDetail()
                 {
-                    UserDetailId = user.Id,
+                    UserId = user.Id,
                     Balance = 0,
                     FullName = name,
-                    Status = true,
+                    ProfilePicture = picture
                     //Id = user.Id
                 };
                 _userDetailService.AddUserDetail(userDetail);
@@ -307,11 +272,10 @@ namespace API.Controllers
                 await _userManager.CreateAsync(user);
                 UserDetail userDetail = new UserDetail()
                 {
-                    UserDetailId = user.Id,
+                    UserId = user.Id,
                     Balance = 0,
                     FullName = name,
-                    Status = true,
-                    //Id = user.Id
+                    ProfilePicture = picture
                 };
                 _userDetailService.AddUserDetail(userDetail);
                 await _userManager.AddToRoleAsync(user, "Customer");

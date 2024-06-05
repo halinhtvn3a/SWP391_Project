@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace DAOs
+namespace BusinessObjects
 {
 	public class CourtCallerDbContext : IdentityDbContext
 	{

@@ -10,34 +10,44 @@ namespace BusinessObjects
 	public class Branch
 	{
 		[Key]
-		[StringLength(5)]
+		[StringLength(10)]
 		public string BranchId { get; set; }
 
 		[Required]
 		[StringLength(255)]
-		public string Address { get; set; }
+		public string BranchAddress { get; set; }
+        
+        [Required]
+		[StringLength(255)]
+		public string BranchName { get; set; }
+        
+        [Required]
+		[StringLength(15)]
+		public string BranchPhone { get; set; }
 
 		[StringLength(255)]
 		public string Description { get; set; }
 
-		[Required]
 		[StringLength(255)]
-		public string Picture { get; set; }
+		public string BranchPicture { get; set; }
 
 		[Required]
-		public TimeSpan OpenTime { get; set; }
+		public TimeOnly OpenTime { get; set; }
 
 		[Required]
-		public TimeSpan CloseTime { get; set; }
+		public TimeOnly CloseTime { get; set; }
 
 		[Required]
 		[StringLength(255)]
 		public string OpenDay { get; set; }
 
 		[Required]
-		public bool Status { get; set; }
+        [StringLength(50)]
+        public string Status { get; set; }
 
 		// Navigation property
-		public ICollection<Court> Courts { get; set; }
-	}
+		public virtual ICollection<Court> Courts { get; set; }
+
+        public virtual ICollection<Review> Reviews { get; set; }
+    }
 }

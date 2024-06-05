@@ -5,40 +5,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebApplication2.Data;
 using DAOs.Helper;
 
 namespace DAOs
 {
     public class BranchDAO
     {
-        private readonly CourtCallerDbContext dbContext = null;
+        private readonly CourtCallerDbContext DbContext = null;
 
         public BranchDAO()
         {
-            if (dbContext == null)
+            if (DbContext == null)
             {
-                dbContext = new CourtCallerDbContext();
+                DbContext = new CourtCallerDbContext();
             }
         }
 
         public async Task<List<Branch>> GetBranches(PageResult pageResult)
         {
-            var query = dbContext.Branches.AsQueryable();
-            Pagination pagination = new Pagination(dbContext);
+            var query = DbContext.Branches.AsQueryable();
+            Pagination pagination = new Pagination(DbContext);
             List<Branch> Branches = await pagination.GetListAsync<Branch>(query, pageResult);
             return Branches;
         }
 
         public Branch GetBranch(string id)
         {
-            return dbContext.Branches.FirstOrDefault(m => m.BranchId.Equals(id));
+            return DbContext.Branches.FirstOrDefault(m => m.BranchId.Equals(id));
         }
 
         public Branch AddBranch(Branch Branch)
         {
-            dbContext.Branches.Add(Branch);
-            dbContext.SaveChanges();
+            DbContext.Branches.Add(Branch);
+            DbContext.SaveChanges();
             return Branch;
         }
 
@@ -47,14 +46,16 @@ namespace DAOs
             Branch oBranch = GetBranch(id);
             if (oBranch != null)
             {
-                oBranch.Address = Branch.Address;
+                oBranch.BranchAddress = Branch.BranchAddress;
                 oBranch.Description = Branch.Description;
-                oBranch.Picture = Branch.Picture;
+                oBranch.BranchName = Branch.BranchName;
+                oBranch.BranchPhone = Branch.BranchPhone;
+                oBranch.BranchPicture = Branch.BranchPicture;
                 oBranch.OpenTime = Branch.OpenTime;
                 oBranch.CloseTime = Branch.CloseTime;
                 oBranch.OpenDay = Branch.OpenDay;
-                dbContext.Update(oBranch);
-                dbContext.SaveChanges();
+                DbContext.Update(oBranch);
+                DbContext.SaveChanges();
             }
             return oBranch;
         }
@@ -64,15 +65,15 @@ namespace DAOs
             Branch oBranch = GetBranch(id);
             if (oBranch != null)
             {
-                oBranch.Status = false;
-                dbContext.Update(oBranch);
-                dbContext.SaveChanges();
+                oBranch.Status = "Cancel";
+                DbContext.Update(oBranch);
+                DbContext.SaveChanges();
             }
         }
 
-            public List<Branch> GetBranchesByStatus(bool status)
+            public List<Branch> GetBranchesByStatus(string status)
         {
-            return dbContext.Branches.Where(m => m.Status == status).ToList();
+            return DbContext.Branches.Where(m => m.Status == status).ToList();
         }
 
     }

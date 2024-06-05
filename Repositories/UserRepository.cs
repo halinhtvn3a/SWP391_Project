@@ -12,30 +12,30 @@ namespace Repositories
 {
 	public class UserRepository
 	{
-		private readonly UserDAO UserDAO = null;
+		private readonly UserDAO _userDao = null;
 		public UserRepository()
 		{
-			if (UserDAO == null)
+			if (_userDao == null)
 			{
-				UserDAO = new UserDAO();
+                _userDao = new UserDAO();
 			}
 		}
-		public IdentityUser AddUser(IdentityUser IdentityUser) => UserDAO.AddUser(IdentityUser);
+		public IdentityUser AddUser(IdentityUser IdentityUser) => _userDao.AddUser(IdentityUser);
 
         //public void DeleteIdentityUser(string id) => UserDAO.DeleteIdentityUser(id);
 
-        public async Task<List<IdentityUser>> GetUsers(PageResult page) => await UserDAO.GetUsers(page);
+        public async Task<List<IdentityUser>> GetUsers(PageResult page) => await _userDao.GetUsers(page);
 
 
 
-        public IdentityUser GetUser(string id) => UserDAO.GetUser(id);
+        public IdentityUser GetUser(string id) => _userDao.GetUser(id);
 
 		//public List<IdentityUser> GetUsers() => UserDAO.GetUsers();
 
 		//public IdentityUser UpdateIdentityUser(string id, IdentityUser IdentityUser) => UserDAO.UpdateIdentityUser(id, IdentityUser);
 
-		public void BanUser(string id) => UserDAO.BanUser(id);
+		public void BanUser(string id) => _userDao.BanUser(id);
 
-		public void UnBanUser(string id) => UserDAO.UnBanUser(id);
+		public void UnBanUser(string id) => _userDao.UnBanUser(id);
 	}
 }

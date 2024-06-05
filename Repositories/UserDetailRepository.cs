@@ -10,24 +10,22 @@ namespace Repositories
 {
     public class UserDetailRepository
     {
-        private readonly UserDetailDAO UserDetailDAO = null;
+        private readonly UserDetailDAO _userDetailDao = null;
         public UserDetailRepository()
         {
-            if (UserDetailDAO == null)
+            if (_userDetailDao == null)
             {
-                UserDetailDAO = new UserDetailDAO();
+                _userDetailDao = new UserDetailDAO();
             }
         }
-        public UserDetail AddUserDetail(UserDetail UserDetail) => UserDetailDAO.AddUserDetail(UserDetail);
+        public UserDetail AddUserDetail(UserDetail UserDetail) => _userDetailDao.AddUserDetail(UserDetail);
 
-        public void DeleteUserDetail(string id) => UserDetailDAO.DeleteUserDetail(id);
+        //public void DeleteUserDetail(string id) => _userDetailDao.DeleteUserDetail(id);
 
-        public UserDetail GetUserDetail(string id) => UserDetailDAO.GetUserDetail(id);
+        public UserDetail GetUserDetail(string id) => _userDetailDao.GetUserDetail(id);
 
-        public List<UserDetail> GetUserDetails() => UserDetailDAO.GetUserDetails();
+        public List<UserDetail> GetUserDetails() => _userDetailDao.GetUserDetails();
 
-        public UserDetail UpdateUserDetail(string id, UserDetail UserDetail) => UserDetailDAO.UpdateUserDetail(id, UserDetail);
-
-        public UserDetail GetUserDetailByUserId(string userId) => UserDetailDAO.GetUserDetailByUserId(userId);
+        public UserDetail UpdateUserDetail(string id, UserDetail UserDetail) => _userDetailDao.UpdateUserDetail(id, UserDetail);
     }
 }

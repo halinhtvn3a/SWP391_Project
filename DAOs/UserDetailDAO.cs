@@ -6,29 +6,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WebApplication2.Data;
 
 namespace DAOs
 {
     public class UserDetailDAO
 	{
-        private readonly CourtCallerDbContext dbContext = null;
+        private readonly CourtCallerDbContext _dbContext = null;
 
         public UserDetailDAO()
         {
-            if (dbContext == null)
+            if (_dbContext == null)
             {
-                dbContext = new CourtCallerDbContext();
+                _dbContext = new CourtCallerDbContext();
             }
         }
 
         public List<UserDetail> GetUserDetails()
         {
-            return dbContext.UserDetails.ToList();
+            return _dbContext.UserDetails.ToList();
         }
         //public List<UserDetail> GetUserDetails()
         //{
-        //    var UserDetails = dbContext.UserDetails
+        //    var UserDetails = _dbContext.UserDetails
         //  .Include(u => u.User)
         //  .ToList();
 
@@ -53,13 +52,13 @@ namespace DAOs
 
         public UserDetail GetUserDetail(string id)
         {
-            return dbContext.UserDetails.FirstOrDefault(m => m.UserDetailId.Equals(id));
+            return _dbContext.UserDetails.FirstOrDefault(m => m.UserId.Equals(id));
         }
 
         public UserDetail AddUserDetail(UserDetail UserDetail)
         {
-            dbContext.UserDetails.Add(UserDetail);
-            dbContext.SaveChanges();
+            _dbContext.UserDetails.Add(UserDetail);
+            _dbContext.SaveChanges();
             return UserDetail;
         }
 
@@ -70,30 +69,25 @@ namespace DAOs
             {
                 oUserDetail.Balance = UserDetail.Balance;
                 oUserDetail.FullName = UserDetail.FullName;
-                oUserDetail.Status = UserDetail.Status;
-                dbContext.Update(oUserDetail);
-                dbContext.SaveChanges();
+                oUserDetail.Address = UserDetail.Address;
+                oUserDetail.ProfilePicture = UserDetail.ProfilePicture;
+                oUserDetail.YearOfBirth = UserDetail.YearOfBirth;
+                
+                _dbContext.Update(oUserDetail);
+                _dbContext.SaveChanges();
             }
             return oUserDetail;
         }
 
-        public void DeleteUserDetail(string id)
-        {
-            UserDetail oUserDetail = GetUserDetail(id);
-            if (oUserDetail != null)
-            {
-                oUserDetail.Status = false;
-                dbContext.Update(oUserDetail);
-                dbContext.SaveChanges();
-            }
-        }
-
-        public UserDetail GetUserDetailByUserId(string userId)
-        {
-            return dbContext.UserDetails.FirstOrDefault(m => m.UserDetailId.Equals(userId));
-        }
-
-
-
+        //public void DeleteUserDetail(string id)
+        //{
+        //    UserDetail oUserDetail = GetUserDetail(id);
+        //    if (oUserDetail != null)
+        //    {
+        //        oUserDetail.Status = false;
+        //        _dbContext.Update(oUserDetail);
+        //        _dbContext.SaveChanges();
+        //    }
+        //}
     }
 }

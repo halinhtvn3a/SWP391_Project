@@ -28,11 +28,11 @@ namespace DAOs.Helper
 
     public class Pagination
     {
-        private readonly DbContext dbContext;
+        private readonly DbContext DbContext;
 
-        public Pagination(DbContext dbContext)
+        public Pagination(DbContext DbContext)
         {
-            this.dbContext = dbContext;
+            this.DbContext = DbContext;
         }
 
         public async Task<List<T>> GetListAsync<T>(IQueryable<T> query,PageResult pageResult) where T : class

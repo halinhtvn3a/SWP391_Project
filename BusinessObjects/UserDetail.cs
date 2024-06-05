@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
 namespace BusinessObjects
@@ -6,18 +7,24 @@ namespace BusinessObjects
 	public class UserDetail
 	{
 		[Key]
-		[StringLength(5)]
-		public string UserDetailId { get; set; }
+        [ForeignKey("User")]
+        [StringLength(450)]
+        public string UserId { get; set; }
 
 		public decimal? Balance { get; set; }
 
 		[StringLength(50)]
 		public string? FullName { get; set; }
+        
+        [StringLength(500)]
+		public string? Address { get; set; }
+        
+        [StringLength(500)]
+		public string? ProfilePicture { get; set; }
 
-		[Required]
-		public bool Status { get; set; }
+		public int? YearOfBirth { get; set; }
 
 		// Navigation property
-		public IdentityUser User { get; set; }
+		public virtual IdentityUser User { get; set; }
 	}
 }

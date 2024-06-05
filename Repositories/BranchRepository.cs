@@ -11,24 +11,24 @@ namespace Repositories
 {
     public class BranchRepository
     {
-        private readonly BranchDAO BranchDAO = null;
+        private readonly BranchDAO _branchDao = null;
         public BranchRepository()
         {
-            if (BranchDAO == null)
+            if (_branchDao == null)
             {
-                BranchDAO = new BranchDAO();
+                _branchDao = new BranchDAO();
             }
         }
-        public Branch AddBranch(Branch Branch) => BranchDAO.AddBranch(Branch);
+        public Branch AddBranch(Branch Branch) => _branchDao.AddBranch(Branch);
 
-        public void DeleteBranch(string id) => BranchDAO.DeleteBranch(id);
+        public void DeleteBranch(string id) => _branchDao.DeleteBranch(id);
 
-        public Branch GetBranch(string id) => BranchDAO.GetBranch(id);
+        public Branch GetBranch(string id) => _branchDao.GetBranch(id);
 
-        public async Task<List<Branch>> GetBranches(PageResult pageResult) => await BranchDAO.GetBranches(pageResult);
+        public async Task<List<Branch>> GetBranches(PageResult pageResult) => await _branchDao.GetBranches(pageResult);
 
-        public Branch UpdateBranch(string id, Branch Branch) => BranchDAO.UpdateBranch(id, Branch);
+        public Branch UpdateBranch(string id, Branch Branch) => _branchDao.UpdateBranch(id, Branch);
 
-        public List<Branch> GetBranchesByStatus(bool status) => BranchDAO.GetBranchesByStatus(status);
+        public List<Branch> GetBranchesByStatus(string status) => _branchDao.GetBranchesByStatus(status);
     }
 }

@@ -11,25 +11,25 @@ namespace Repositories
 {
     public class CourtRepository
     {
-        private readonly CourtDAO CourtDAO = null;
+        private readonly CourtDAO _courtDao = null;
         public CourtRepository()
         {
-            if (CourtDAO == null)
+            if (_courtDao == null)
             {
-                CourtDAO = new CourtDAO();
+                _courtDao = new CourtDAO();
             }
         }
-        public Court AddCourt(Court Court) => CourtDAO.AddCourt(Court);
+        public Court AddCourt(Court Court) => _courtDao.AddCourt(Court);
 
-        public void DeleteCourt(string id) => CourtDAO.DeleteCourt(id);
+        public void DeleteCourt(string id) => _courtDao.DeleteCourt(id);
 
-        public Court GetCourt(string id) => CourtDAO.GetCourt(id);
+        public Court GetCourt(string id) => _courtDao.GetCourt(id);
 
-        public async Task<List<Court>> GetCourts(PageResult pageResult) => await CourtDAO.GetCourts(pageResult);
+        public async Task<List<Court>> GetCourts(PageResult pageResult) => await _courtDao.GetCourts(pageResult);
 
-        public Court UpdateCourt(string id, Court Court) => CourtDAO.UpdateCourt(id, Court);
+        public Court UpdateCourt(string id, Court Court) => _courtDao.UpdateCourt(id, Court);
 
-        public List<Court> GetActiveCourts() => CourtDAO.GetActiveCourts();
+        public List<Court> GetActiveCourts() => _courtDao.GetActiveCourts();
 
     }
 }

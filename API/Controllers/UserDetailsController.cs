@@ -48,7 +48,7 @@ namespace API.Controllers
 		[HttpPut("{id}")]
 		public async Task<IActionResult> PutUser(string id, UserDetail user)
 		{
-			if (id != user.UserDetailId)
+			if (id != user.UserId)
 			{
 				return BadRequest();
 			}
@@ -65,33 +65,33 @@ namespace API.Controllers
 		{
 			UserDetailservice.AddUserDetail(user);
 
-			return CreatedAtAction("GetUser", new { id = user.UserDetailId }, user);
+			return CreatedAtAction("GetUser", new { id = user.UserId }, user);
 		}
 
 		//DELETE: api/UserDetails/5
-		[HttpDelete("{id}")]
-		public async Task<IActionResult> DeleteUser(string id)
-		{
-			var user = UserDetailservice.GetUserDetail(id);
-			if (user == null)
-			{
-				return NotFound();
-			}
+		//[HttpDelete("{id}")]
+		//public async Task<IActionResult> DeleteUser(string id)
+		//{
+		//	var user = UserDetailservice.GetUserDetail(id);
+		//	if (user == null)
+		//	{
+		//		return NotFound();
+		//	}
 
-			UserDetailservice.DeleteUserDetail(id);
+		//	UserDetailservice.DeleteUserDetail(id);
 
-			return NoContent();
-		}
+		//	return NoContent();
+		//}
 
 		private bool UserExists(string id)
 		{
-			return UserDetailservice.GetUserDetails().Any(e => e.UserDetailId == id);
+			return UserDetailservice.GetUserDetails().Any(e => e.UserId == id);
 		}
 
         [HttpGet("GetUserDetailByUserId/{userId}")]
         public async Task<ActionResult<UserDetail>> GetUserDetailByUserId(string userId)
         {
-            var user = UserDetailservice.GetUserDetailByUserId(userId);
+            var user = UserDetailservice.GetUserDetail(userId);
 
             if (user == null)
             {

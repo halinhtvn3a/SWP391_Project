@@ -11,26 +11,34 @@ namespace BusinessObjects
 	public class TimeSlot
 	{
 		[Key]
-		[StringLength(5)]
+		[StringLength(10)]
 		public string SlotId { get; set; }
 
 		[ForeignKey("Court")]
-		[StringLength(5)]
+		[StringLength(10)]
 		public string CourtId { get; set; }
+        
+        [ForeignKey("Booking")]
+		[StringLength(10)]
+		public string BookingId { get; set; }
 
 		[Required]
 		public DateTime SlotDate { get; set; }
+        
+        [Required]
+        public decimal Price { get; set; }
+
+        [Required]
+		public TimeOnly SlotStartTime { get; set; }
 
 		[Required]
-		public TimeSpan SlotStartTime { get; set; }
+		public TimeOnly SlotEndTime { get; set; }
 
-		[Required]
-		public TimeSpan SlotEndTime { get; set; }
-
-		public bool? IsAvailable { get; set; }
+        [Required]
+        public bool? IsAvailable { get; set; }
 
 		// Navigation property
-		public Court Court { get; set; }
-		public ICollection<Booking> Bookings { get; set; }
-	}
+		public virtual Court Court { get; set; }
+        public virtual Booking? Booking { get; set; }
+    }
 }

@@ -98,7 +98,7 @@ namespace API.Controllers
         //}
 
         [HttpGet("status")]
-        public async Task<ActionResult<IEnumerable<Branch>>> GetBranchesByStatus(bool status)
+        public async Task<ActionResult<IEnumerable<Branch>>> GetBranchesByStatus(string status)
         {
             return branchService.GetBranchesByStatus(status).ToList();
         }

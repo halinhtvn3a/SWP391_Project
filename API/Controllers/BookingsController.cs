@@ -101,7 +101,7 @@ namespace API.Controllers
         //}
 
         [HttpGet("status/{status}")]
-        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByStatus(bool status)
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByStatus(string status)
         {
             return bookingService.GetBookingsByStatus(status).ToList();
         }
@@ -118,12 +118,12 @@ namespace API.Controllers
             return bookingService.SearchBookingsByUser(userId).ToList();
         }
 
-        [HttpPost]
-        [HttpPost("reserve")]
-        public async Task<IActionResult> ReserveSlot(string slotId, string userId, decimal paymentAmount)
-        {
-            return await bookingService.PessimistLockAsync(slotId, userId, paymentAmount);
-        }
+        //[HttpPost]
+        //[HttpPost("reserve")]
+        //public async Task<IActionResult> ReserveSlot(string slotId, string userId, decimal paymentAmount)
+        //{
+        //    return await bookingService.PessimistLockAsync(slotId, userId, paymentAmount);
+        //}
 
     }
 }

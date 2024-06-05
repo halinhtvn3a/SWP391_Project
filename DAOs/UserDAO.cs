@@ -5,27 +5,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
-using WebApplication2.Data;
 using DAOs.Helper;
 
 namespace DAOs
 {
 	public class UserDAO
 	{
-		private readonly CourtCallerDbContext dbContext = null;
+		private readonly CourtCallerDbContext _dbContext = null;
 
 		public UserDAO()
 		{
-			if (dbContext == null)
+			if (_dbContext == null)
 			{
-				dbContext = new CourtCallerDbContext();
+				_dbContext = new CourtCallerDbContext();
 			}
 		}
 
         public async Task<List<IdentityUser>> GetUsers(PageResult pageResult)
         {
-            var query = dbContext.Users.AsQueryable();
-            Pagination pagination = new Pagination(dbContext);
+            var query = _dbContext.Users.AsQueryable();
+            Pagination pagination = new Pagination(_dbContext);
             List<IdentityUser> identityUsers = await pagination.GetListAsync<IdentityUser>(query, pageResult);
             return identityUsers;
         }
@@ -34,11 +33,11 @@ namespace DAOs
         //public List<IdentityUser> GetUsers()
         //{
 
-        //	return dbContext.Users.ToList();
+        //	return _dbContext.Users.ToList();
         //}
         //public List<IdentityUser> GetIdentityUsers()
         //{
-        //	var IdentityUsers = dbContext.Users
+        //	var IdentityUsers = _dbContext.Users
         //  .Include(u => u.IdentityUser)
         //  .ToList();
 
@@ -63,13 +62,13 @@ namespace DAOs
 
         public IdentityUser GetUser(string id)
 		{
-			return dbContext.Users.FirstOrDefault(m => m.Id.Equals(id));
+			return _dbContext.Users.FirstOrDefault(m => m.Id.Equals(id));
 		}
 
 		public IdentityUser AddUser(IdentityUser IdentityUser)
 		{
-			dbContext.Users.Add(IdentityUser);
-			dbContext.SaveChanges();
+			_dbContext.Users.Add(IdentityUser);
+			_dbContext.SaveChanges();
 			return IdentityUser;
 		}
 
@@ -81,22 +80,22 @@ namespace DAOs
         //		oIdentityUser.Balance = IdentityUser.Balance;
         //		oIdentityUser.FullName = IdentityUser.FullName;
         //		oIdentityUser.Status = IdentityUser.Status;
-        //		dbContext.Update(oIdentityUser);
-        //		dbContext.SaveChanges();
+        //		_dbContext.Update(oIdentityUser);
+        //		_dbContext.SaveChanges();
         //	}
         //	return oIdentityUser;
         //}
 
-        //public void DeleteIdentityUser(string id)
-        //{
-        //	IdentityUser oIdentityUser = GetIdentityUser(id);
-        //	if (oIdentityUser != null)
-        //	{
-        //		oIdentityUser.Status = false;
-        //		dbContext.Update(oIdentityUser);
-        //		dbContext.SaveChanges();
-        //	}
-        //}
+        public void DeleteUser(string id)
+        {
+            IdentityUser oidentityuser = GetUser(id);
+            if (oidentityuser != null)
+            {
+                oidentityuser.LockoutEnabled = false;
+                _dbContext.Update(oidentityuser);
+                _dbContext.SaveChanges();
+            }
+        }
 
         public IdentityUser BanUser(string id)
         {
@@ -104,8 +103,8 @@ namespace DAOs
             if (oUser != null)
             {
                 oUser.LockoutEnabled = false;
-                dbContext.Update(oUser);
-                dbContext.SaveChanges();
+                _dbContext.Update(oUser);
+                _dbContext.SaveChanges();
             }
             return oUser;
         }
@@ -117,8 +116,8 @@ namespace DAOs
             if (oUser != null)
             {
                 oUser.LockoutEnabled = true;
-                dbContext.Update(oUser);
-                dbContext.SaveChanges();
+                _dbContext.Update(oUser);
+                _dbContext.SaveChanges();
             }
             return oUser;
         }

@@ -28,28 +28,28 @@ namespace Services
         //public Booking UpdateBooking(string id, Booking Booking) => BookingRepository.UpdateBooking(id, Booking);
         public async Task<List<Booking>> GetBookings(PageResult pageResult) => await BookingRepository.GetBookings(pageResult);
 
-        public List<Booking> GetBookingsByStatus(bool status) => BookingRepository.GetBookingsByStatus(status);
+        public List<Booking> GetBookingsByStatus(string status) => BookingRepository.GetBookingsByStatus(status);
         public List<Booking> SearchBookings(DateTime start, DateTime end) => BookingRepository.SearchBookings(start, end);
         public List<Booking> SearchBookingsByUser(string userId) => BookingRepository.SearchBookingsByUser(userId);
 
-        public async Task<IActionResult> PessimistLockAsync(string slotId, string userId, decimal paymentAmount)
-        {
-            try
-            {
-                var success = await BookingRepository.ReserveSlotAsync(slotId, userId, paymentAmount);
+        //public async Task<IActionResult> PessimistLockAsync(string slotId, string userId, decimal paymentAmount)
+        //{
+        //    try
+        //    {
+        //        var success = await BookingRepository.ReserveSlotAsync(slotId, userId, paymentAmount);
 
-                if (!success)
-                {
-                    return new ConflictObjectResult("Slot is already reserved.");
-                }
+        //        if (!success)
+        //        {
+        //            return new ConflictObjectResult("Slot is already reserved.");
+        //        }
 
-                return new OkObjectResult("Slot reserved successfully.");
-            }
-            catch (Exception ex)
-            {
-                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
-            }
-        }
+        //        return new OkObjectResult("Slot reserved successfully.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+        //    }
+        //}
 
     }
 }

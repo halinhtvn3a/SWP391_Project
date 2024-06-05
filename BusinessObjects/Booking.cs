@@ -12,29 +12,25 @@ namespace BusinessObjects
 	public class Booking
 	{
 		[Key]
-		[StringLength(450)]
+		[StringLength(10)]
 		public string BookingId { get; set; }
 
 		[ForeignKey("User")]
 		[StringLength(450)]
 		public string Id { get; set; }
 
-		[ForeignKey("TimeSlot")]
-		[StringLength(5)]
-		public string SlotId { get; set; }
-
 		[Required]
 		public DateTime BookingDate { get; set; }
 
 		[Required]
-		public bool Check { get; set; }
+		public string Status { get; set; }
 
 		[Required]
-		public decimal PaymentAmount { get; set; }
+		public decimal TotalPrice { get; set; }
 
 		// Navigation properties
-		public IdentityUser User { get; set; }
-		public TimeSlot TimeSlot { get; set; }
-		public ICollection<Payment> Payments { get; set; }
+		public virtual IdentityUser User { get; set; }
+		public virtual ICollection<TimeSlot> TimeSlots { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
 	}
 }
