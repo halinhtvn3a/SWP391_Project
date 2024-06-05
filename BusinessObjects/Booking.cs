@@ -12,7 +12,7 @@ namespace BusinessObjects
 	public class Booking
 	{
 		[Key]
-		[StringLength(5)]
+		[StringLength(450)]
 		public string BookingId { get; set; }
 
 		[ForeignKey("User")]

@@ -50,6 +50,11 @@ namespace DAOs
             return oTimeSlot;
         }
 
+        public void UpdateSlot(TimeSlot slot)
+        {
+            dbContext.TimeSlots.Update(slot);
+        }
+
         //public void DeleteTimeSlot(int id)
         //{
         //    TimeSlot oTimeSlot = GetTimeSlot(id);

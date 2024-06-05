@@ -4,6 +4,7 @@ using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ using WebApplication2.Data;
 namespace DAOs
 {
     public class BookingDAO
-    {
+    {   private int counter = 3;
         private readonly CourtCallerDbContext dbContext = null;
 
         public BookingDAO()
@@ -41,12 +42,55 @@ namespace DAOs
             return dbContext.Bookings.FirstOrDefault(m => m.BookingId.Equals(id));
         }
 
-        public Booking AddBooking(Booking Booking)
+        public async Task<TimeSlot> AddBookingTransaction(string slotId)
         {
-            dbContext.Bookings.Add(Booking);
-            dbContext.SaveChanges();
-            return Booking;
+            return await dbContext.TimeSlots
+                .FromSqlRaw("SELECT * FROM TimeSlots WITH (UPDLOCK) WHERE SlotId = {0} AND IsAvailable = 1", slotId)
+                .FirstOrDefaultAsync();
         }
+
+
+        public void AddBooking(Booking booking)
+        {
+            dbContext.Bookings.Add(booking);
+        }
+        public async Task SaveChangesAsync()
+        {
+            await dbContext.SaveChangesAsync();
+        }
+
+        public async Task CommitTransactionAsync()
+        {
+            try
+            {
+                await dbContext.Database.CommitTransactionAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+
+        public async Task RollbackTransactionAsync()
+        {
+            try
+            {
+                await dbContext.Database.RollbackTransactionAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public string GenerateID()
+        {
+            return "B" + counter.ToString("D3");
+        }
+
 
         //public Booking UpdateBooking(int id, Booking Booking)
         //{
@@ -86,5 +130,20 @@ namespace DAOs
         {
             return dbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
         }
+
+
+        public async Task BeginTransactionAsync()
+        {
+            try
+            {
+                await dbContext.Database.BeginTransactionAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
     }
 }
