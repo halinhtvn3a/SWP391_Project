@@ -3,7 +3,7 @@
 
 Court Callerd is a web application designed to simplify the process of booking badminton courts. Whether you’re a passionate player or a casual enthusiast, Court Callerd provides an intuitive platform for reserving your favorite courts hassle-free.
 
-## You wil find in thí repo the following stuff
+## You wil find in this repo the following stuff
 
 #### Features
 * Easy Booking: Simple and intuitive court reservation system.
