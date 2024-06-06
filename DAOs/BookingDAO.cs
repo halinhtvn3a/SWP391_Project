@@ -96,7 +96,7 @@ namespace DAOs
 
         public string GenerateID()
         {
-            return "B" + counter.ToString("D3");
+            return "B" + counter.ToString("D5");
         }
 
 

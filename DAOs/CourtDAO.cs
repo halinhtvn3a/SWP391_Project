@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
+using BusinessObjects.Models;
 
 namespace DAOs
 {
@@ -36,20 +37,31 @@ namespace DAOs
             return DbContext.Courts.FirstOrDefault(m => m.CourtId.Equals(id));
         }
 
-        public Court AddCourt(Court Court)
+        public Court AddCourt(CourtModel courtModel)
         {
+            Court Court = new Court()
+            {
+                CourtId = "C" + (DbContext.Courts.Count() + 1).ToString("D5"),
+                CourtName = courtModel.CourtName,
+                BranchId = courtModel.BranchId,
+                CourtPicture = courtModel.CourtPicture,
+                Status = courtModel.Status
+            };
+
             DbContext.Courts.Add(Court);
             DbContext.SaveChanges();
             return Court;
         }
 
-        public Court UpdateCourt(string id, Court Court)
+        public Court UpdateCourt(string id, CourtModel courtModel)
         {
             Court oCourt = GetCourt(id);
             if (oCourt != null)
             {
-                oCourt.CourtName = Court.CourtName;
-                oCourt.Status = Court.Status;
+                oCourt.CourtName = courtModel.CourtName;
+                oCourt.BranchId = courtModel.BranchId;
+                oCourt.CourtPicture = courtModel.CourtPicture;
+                oCourt.Status = courtModel.Status;
                 DbContext.Update(oCourt);
                 DbContext.SaveChanges();
             }
@@ -61,12 +73,12 @@ namespace DAOs
             Court oCourt = GetCourt(id);
             if (oCourt != null)
             {
-                oCourt.Status = "Deleted";
+                oCourt.Status = "Inactive";
                 DbContext.Update(oCourt);
                 DbContext.SaveChanges();
             }
         }
 
-        public List<Court> GetActiveCourts() => DbContext.Courts.Where(m => m.Status.Equals(true)).ToList();
+        public List<Court> GetActiveCourts() => DbContext.Courts.Where(m => m.Status.Equals("Active")).ToList();
     }
 }

@@ -21,8 +21,6 @@ namespace Repositories
 			}
 		}
 
-        public string GenerateUserId() => _userDao.GenerateUserId();
-
         public IdentityUser AddUser(IdentityUser IdentityUser) => _userDao.AddUser(IdentityUser);
 
         //public void DeleteIdentityUser(string id) => UserDAO.DeleteIdentityUser(id);
@@ -40,5 +38,8 @@ namespace Repositories
 		public void BanUser(string id) => _userDao.BanUser(id);
 
 		public void UnBanUser(string id) => _userDao.UnBanUser(id);
-	}
+
+        public List<IdentityUser> SearchUserByEmail(string searchValue) => _userDao.SearchUserByEmail(searchValue);
+
+    }
 }

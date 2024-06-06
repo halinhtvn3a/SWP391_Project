@@ -19,7 +19,6 @@ namespace Services
 			}
 		}
 
-		public string GenerateUserId() => UserRepository.GenerateUserId();
 		public IdentityUser AddUser(IdentityUser User) => UserRepository.AddUser(User);
 		//public void DeleteUser(string id) => UserRepository.DeleteUser(id);
 		public IdentityUser GetUser(string id) => UserRepository.GetUser(id);
@@ -32,6 +31,8 @@ namespace Services
         public void BanUser(string id) => UserRepository.BanUser(id);
 		
 		public void UnBanUser(string id) => UserRepository.UnBanUser(id);
-        
-	}
+
+        public List<IdentityUser> SearchUserByEmail(string searchValue) => UserRepository.SearchUserByEmail(searchValue);
+
+    }
 }

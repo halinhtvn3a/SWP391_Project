@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using BusinessObjects.Models;
 using DAOs;
 using DAOs.Helper;
 using System;
@@ -19,7 +20,7 @@ namespace Repositories
                 _branchDao = new BranchDAO();
             }
         }
-        public Branch AddBranch(Branch Branch) => _branchDao.AddBranch(Branch);
+        public Branch AddBranch(BranchModel branchModel) => _branchDao.AddBranch(branchModel);
 
         public void DeleteBranch(string id) => _branchDao.DeleteBranch(id);
 
@@ -27,7 +28,7 @@ namespace Repositories
 
         public async Task<List<Branch>> GetBranches(PageResult pageResult) => await _branchDao.GetBranches(pageResult);
 
-        public Branch UpdateBranch(string id, Branch Branch) => _branchDao.UpdateBranch(id, Branch);
+        public Branch UpdateBranch(string id, BranchModel branchModel) => _branchDao.UpdateBranch(id, branchModel);
 
         public List<Branch> GetBranchesByStatus(string status) => _branchDao.GetBranchesByStatus(status);
     }

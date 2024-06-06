@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
+using BusinessObjects.Models;
 
 namespace DAOs
 {
@@ -34,44 +35,59 @@ namespace DAOs
             return DbContext.Branches.FirstOrDefault(m => m.BranchId.Equals(id));
         }
 
-        public Branch AddBranch(Branch Branch)
+        public Branch AddBranch(BranchModel branchModel)
         {
-            DbContext.Branches.Add(Branch);
+            Branch branch = new Branch()
+            {
+                BranchId = "B" + (DbContext.Branches.Count() + 1).ToString("D5"),
+                BranchAddress = branchModel.BranchAddress,
+                BranchName = branchModel.BranchName,
+                BranchPhone = branchModel.BranchPhone,
+                Description = branchModel.Description,
+                BranchPicture = branchModel.BranchPicture,
+                OpenTime = branchModel.OpenTime,
+                CloseTime = branchModel.CloseTime,
+                OpenDay = branchModel.OpenDay,
+                Status = branchModel.Status
+            };
+            DbContext.Branches.Add(branch);
             DbContext.SaveChanges();
-            return Branch;
+            return branch;
         }
 
-        public Branch UpdateBranch(string id, Branch Branch)
+        public Branch UpdateBranch(string id, BranchModel branchModel)
         {
             Branch oBranch = GetBranch(id);
             if (oBranch != null)
             {
-                oBranch.BranchAddress = Branch.BranchAddress;
-                oBranch.Description = Branch.Description;
-                oBranch.BranchName = Branch.BranchName;
-                oBranch.BranchPhone = Branch.BranchPhone;
-                oBranch.BranchPicture = Branch.BranchPicture;
-                oBranch.OpenTime = Branch.OpenTime;
-                oBranch.CloseTime = Branch.CloseTime;
-                oBranch.OpenDay = Branch.OpenDay;
+                oBranch.BranchAddress = branchModel.BranchAddress;
+                oBranch.Description = branchModel.Description;
+                oBranch.BranchName = branchModel.BranchName;
+                oBranch.BranchPhone = branchModel.BranchPhone;
+                oBranch.BranchPicture = branchModel.BranchPicture;
+                oBranch.OpenTime = branchModel.OpenTime;
+                oBranch.CloseTime = branchModel.CloseTime;
+                oBranch.OpenDay = branchModel.OpenDay;
+                oBranch.Status = branchModel.Status;
                 DbContext.Update(oBranch);
                 DbContext.SaveChanges();
             }
             return oBranch;
         }
 
+
         public void DeleteBranch(string id)
         {
             Branch oBranch = GetBranch(id);
             if (oBranch != null)
             {
-                oBranch.Status = "Cancel";
+                oBranch.Status = "Inactive";
                 DbContext.Update(oBranch);
                 DbContext.SaveChanges();
             }
         }
 
-            public List<Branch> GetBranchesByStatus(string status)
+        public List<Branch> GetBranchesByStatus(string status)
         {
             return DbContext.Branches.Where(m => m.Status == status).ToList();
         }

@@ -16,12 +16,12 @@ namespace API.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly UserService userService;
+        private readonly UserService _userService;
         
 
         public UsersController()
         {
-            userService = new UserService();
+            _userService = new UserService();
         }
 
         // GET: api/Users
@@ -34,7 +34,7 @@ namespace API.Controllers
                 PageSize = pageSize
             };
 
-            List<IdentityUser> users = await userService.GetUsers(pageResult);
+            List<IdentityUser> users = await _userService.GetUsers(pageResult);
 
             return Ok(users);
         }
@@ -48,14 +48,14 @@ namespace API.Controllers
         //[HttpGet]
         //public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUsers()
         //{
-        //    return userService.GetUsers().ToList();
+        //    return _userService.GetUsers().ToList();
         //}
 
         // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<IdentityUser>> GetUser(string id)
         {
-            var user = userService.GetUser(id);
+            var user = _userService.GetUser(id);
 
             if (user == null)
             {
@@ -75,7 +75,7 @@ namespace API.Controllers
         //        return BadRequest();
         //    }
 
-        //    userService.UpdateUser(id, user);
+        //    _userService.UpdateUser(id, user);
 
         //    return NoContent();
         //}
@@ -85,7 +85,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<IdentityUser>> PostUser(IdentityUser user)
         {
-            userService.AddUser(user);
+            _userService.AddUser(user);
 
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
@@ -94,30 +94,30 @@ namespace API.Controllers
         //[HttpDelete("{id}")]
         //public async Task<IActionResult> DeleteUser(string id)
         //{
-        //    var user = userService.GetUser(id);
+        //    var user = _userService.GetUser(id);
         //    if (user == null)
         //    {
         //        return NotFound();
         //    }
 
-        //    userService.DeleteUser(id);
+        //    _userService.DeleteUser(id);
 
         //    return NoContent();
         //}
 
         //private bool UserExists(string id)
         //{
-        //    return userService.Users.Any(e => e.UserId == id);
+        //    return _userService.Users.Any(e => e.UserId == id);
         //}
 
         [HttpPut("{id}/ban")]
         public async Task<IActionResult> BanUser(string id)
         {
             
-            IdentityUser user = userService.GetUser(id);
+            IdentityUser user = _userService.GetUser(id);
             if (id != user.Id)
                 return BadRequest();
-            else userService.BanUser(id);
+            else _userService.BanUser(id);
 
             return NoContent();
         }
@@ -126,15 +126,38 @@ namespace API.Controllers
         [HttpPut("{id}/unban")]
         public async Task<IActionResult> UnbanUser(string id)
         {
-            IdentityUser user = userService.GetUser(id);
+            IdentityUser user = _userService.GetUser(id);
             if (id != user.Id)
                 return BadRequest();
-            else userService.UnBanUser(id);
+            else _userService.UnBanUser(id);
 
             return NoContent();
         }
 
+        [HttpGet("GetUserDetailByUserEmail/{userEmail}")]
+        public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUserByEmail(string searchValue)
+        {
+            if (string.IsNullOrEmpty(searchValue))
+            {
+                return BadRequest("User email cannot be null or empty.");
+            }
 
+            try
+            {
+                List<IdentityUser> user = _userService.SearchUserByEmail(searchValue);
+                if (user == null)
+                {
+                    return NotFound($"User with email {searchValue} not found.");
+                }
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception here
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
+        }
 
 
     }

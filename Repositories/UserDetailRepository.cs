@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessObjects;
+using BusinessObjects.Models;
 using DAOs;
 
 namespace Repositories
@@ -26,6 +27,9 @@ namespace Repositories
 
         public List<UserDetail> GetUserDetails() => _userDetailDao.GetUserDetails();
 
-        public UserDetail UpdateUserDetail(string id, UserDetail UserDetail) => _userDetailDao.UpdateUserDetail(id, UserDetail);
+        public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel) => _userDetailDao.UpdateUserDetail(id, userDetailsModel);
+
+        public List<UserDetail> SearchUserByEmail(string searchValue) => _userDetailDao.SearchUserByEmail(searchValue);
+
     }
 }

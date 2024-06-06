@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using BusinessObjects.Models;
 using DAOs;
 using DAOs.Helper;
 using System;
@@ -19,7 +20,7 @@ namespace Repositories
                 _courtDao = new CourtDAO();
             }
         }
-        public Court AddCourt(Court Court) => _courtDao.AddCourt(Court);
+        public Court AddCourt(CourtModel courtModel) => _courtDao.AddCourt(courtModel);
 
         public void DeleteCourt(string id) => _courtDao.DeleteCourt(id);
 
@@ -27,7 +28,7 @@ namespace Repositories
 
         public async Task<List<Court>> GetCourts(PageResult pageResult) => await _courtDao.GetCourts(pageResult);
 
-        public Court UpdateCourt(string id, Court Court) => _courtDao.UpdateCourt(id, Court);
+        public Court UpdateCourt(string id, CourtModel courtModel) => _courtDao.UpdateCourt(id, courtModel);
 
         public List<Court> GetActiveCourts() => _courtDao.GetActiveCourts();
 

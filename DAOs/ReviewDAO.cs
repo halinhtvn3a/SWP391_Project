@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Identity;
+using BusinessObjects.Models;
 
 namespace DAOs
 {
@@ -35,20 +36,29 @@ namespace DAOs
             return DbContext.Reviews.FirstOrDefault(m => m.ReviewId.Equals(id));
         }
 
-        public Review AddReview(Review Review)
+        public Review AddReview(ReviewModel reviewModel)
         {
-            DbContext.Reviews.Add(Review);
+            Review review = new Review()
+            {
+                ReviewId = "R" + (DbContext.Reviews.Count() + 1).ToString("D5"),
+                ReviewText = reviewModel.ReviewText,
+                Rating = reviewModel.Rating,
+                ReviewDate = DateTime.Now,
+                BranchId = reviewModel.BranchId,
+                Id = reviewModel.UserId
+            };
+            DbContext.Reviews.Add(review);
             DbContext.SaveChanges();
-            return Review;
+            return review;
         }
 
-        public Review UpdateReview(string id, Review Review)
+        public Review UpdateReview(string id, ReviewModel reviewModel)
         {
             Review oReview = GetReview(id);
             if (oReview != null)
             {
-                oReview.ReviewText = Review.ReviewText;
-                oReview.Rating = Review.Rating;
+                oReview.ReviewText = reviewModel.ReviewText;
+                oReview.Rating = reviewModel.Rating;
                 oReview.ReviewDate = DateTime.Now;
                 DbContext.Update(oReview);
                 DbContext.SaveChanges();

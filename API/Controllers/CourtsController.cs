@@ -9,6 +9,7 @@ using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Authorization;
 using DAOs.Helper;
+using BusinessObjects.Models;
 
 
 
@@ -57,25 +58,26 @@ namespace API.Controllers
         // PUT: api/Courts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCourt(string id, Court court)
+        public async Task<IActionResult> PutCourt(string id, CourtModel courtModel)
         {
+            var court = courtService.GetCourt(id);
             if (id != court.CourtId)
             {
                 return BadRequest();
             }
 
-            courtService.UpdateCourt(id, court);
+            courtService.UpdateCourt(id, courtModel);
 
-            return NoContent();
+            return CreatedAtAction("GetCourt", new { id = court.CourtId }, court);
         }
 
         // POST: api/Courts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Court>> PostCourt(Court court)
+        public async Task<ActionResult<Court>> PostCourt(CourtModel courtModel)
         {
 
-            courtService.AddCourt(court);
+            var court = courtService.AddCourt(courtModel);
 
             return CreatedAtAction("GetCourt", new { id = court.CourtId }, court);
         }

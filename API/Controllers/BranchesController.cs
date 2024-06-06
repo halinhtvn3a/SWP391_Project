@@ -10,6 +10,7 @@ using Repositories;
 using Services;
 using Microsoft.AspNetCore.Authorization;
 using DAOs.Helper;
+using BusinessObjects.Models;
 
 namespace API.Controllers
 {
@@ -57,24 +58,25 @@ namespace API.Controllers
         // PUT: api/Branches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBranch(string id, Branch branch)
+        public async Task<IActionResult> PutBranch(string id, BranchModel branchModel)
         {
+            var branch = branchService.GetBranch(id);
             if (id != branch.BranchId)
             {
                 return BadRequest();
             }
 
-            branchService.UpdateBranch(id, branch);
+            branchService.UpdateBranch(id, branchModel);
 
-            return NoContent();
+            return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
         }
 
         // POST: api/Branches
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Branch>> PostBranch(Branch branch)
+        public async Task<ActionResult<Branch>> PostBranch(BranchModel branchModel)
         {
-            branchService.AddBranch(branch);
+            var branch = branchService.AddBranch(branchModel);
 
             return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
         }

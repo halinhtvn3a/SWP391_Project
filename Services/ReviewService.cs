@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using BusinessObjects.Models;
 using Repositories;
 
 using HelperResult = DAOs.Helper;
@@ -15,11 +16,11 @@ namespace Services
                 ReviewRepository = new ReviewRepository();
             }
         }
-        public Review AddReview(Review Review) => ReviewRepository.AddReview(Review);
+        public Review AddReview(ReviewModel reviewModel) => ReviewRepository.AddReview(reviewModel);
         public void DeleteReview(string id) => ReviewRepository.DeleteReview(id);
         public Review GetReview(string id) => ReviewRepository.GetReview(id);
-       
-        public Review UpdateReview(string id, Review Review) => ReviewRepository.UpdateReview(id, Review);
+
+        public Review UpdateReview(string id, ReviewModel reviewModel) => ReviewRepository.UpdateReview(id, reviewModel);
         public async Task<List<Review>> GetReview(HelperResult.PageResult pageResult) => await ReviewRepository.GetReview(pageResult);
 
         public List<Review> GetReviewsByBranch(string id) => ReviewRepository.GetReviewsByBranch(id);

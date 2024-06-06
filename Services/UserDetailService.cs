@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using BusinessObjects.Models;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,8 @@ namespace Services
         //public void DeleteUserDetail(string id) => UserDetailRepository.DeleteUserDetail(id);
         public UserDetail GetUserDetail(string id) => UserDetailRepository.GetUserDetail(id);
         public List<UserDetail> GetUserDetails() => UserDetailRepository.GetUserDetails();
-        public UserDetail UpdateUserDetail(string id, UserDetail UserDetail) => UserDetailRepository.UpdateUserDetail(id, UserDetail);
+        public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel) => UserDetailRepository.UpdateUserDetail(id, userDetailsModel);
+        public List<UserDetail> SearchUserByEmail(string searchValue) => UserDetailRepository.SearchUserByEmail(searchValue);
 
     }
 }

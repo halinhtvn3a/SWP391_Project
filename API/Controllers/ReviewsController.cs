@@ -9,6 +9,7 @@ using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Identity;
 using DAOs.Helper;
+using BusinessObjects.Models;
 
 namespace API.Controllers
 {
@@ -55,24 +56,25 @@ namespace API.Controllers
         // PUT: api/Reviews/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutReview(string id, Review review)
+        public async Task<IActionResult> PutReview(string id, ReviewModel reviewModel)
         {
+            var review = reviewService.GetReview(id);
             if (id != review.ReviewId)
             {
                 return BadRequest();
             }
 
-            reviewService.UpdateReview(id, review);
+            reviewService.UpdateReview(id, reviewModel);
 
-            return NoContent();
+            return CreatedAtAction("GetReview", new { id = review.ReviewId }, review);
         }
 
         // POST: api/Reviews
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Review>> PostReview(Review review)
+        public async Task<ActionResult<Review>> PostReview(ReviewModel reviewModel)
         {
-            reviewService.AddReview(review);
+            var review = reviewService.AddReview(reviewModel);
 
             return CreatedAtAction("GetReview", new { id = review.ReviewId }, review);
         }

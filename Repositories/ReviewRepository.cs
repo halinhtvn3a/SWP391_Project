@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
+using BusinessObjects.Models;
 
 namespace Repositories
 {
@@ -19,7 +20,7 @@ namespace Repositories
                 _reviewDao = new ReviewDAO();
             }
         }
-        public Review AddReview(Review Review) => _reviewDao.AddReview(Review);
+        public Review AddReview(ReviewModel reviewModel) => _reviewDao.AddReview(reviewModel);
 
         public void DeleteReview(string id) => _reviewDao.DeleteReview(id);
 
@@ -27,7 +28,7 @@ namespace Repositories
 
         public async Task<List<Review>> GetReview(PageResult pageResult) => await _reviewDao.GetReview(pageResult);
 
-        public Review UpdateReview(string id, Review Review) => _reviewDao.UpdateReview(id, Review);
+        public Review UpdateReview(string id, ReviewModel reviewModel) => _reviewDao.UpdateReview(id, reviewModel);
 
         public List<Review> GetReviewsByBranch(string id) => _reviewDao.GetReviewsByBranch(id);
         public List<Review> SearchByUser(string id) => _reviewDao.SearchByUser(id);

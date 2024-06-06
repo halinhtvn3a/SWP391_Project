@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using BusinessObjects.Models;
 
 namespace DAOs
 {
@@ -62,17 +63,17 @@ namespace DAOs
             return UserDetail;
         }
 
-        public UserDetail UpdateUserDetail(string id, UserDetail UserDetail)
+        public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel)
         {
             UserDetail oUserDetail = GetUserDetail(id);
             if (oUserDetail != null)
             {
-                oUserDetail.Balance = UserDetail.Balance;
-                oUserDetail.FullName = UserDetail.FullName;
-                oUserDetail.Address = UserDetail.Address;
-                oUserDetail.ProfilePicture = UserDetail.ProfilePicture;
-                oUserDetail.YearOfBirth = UserDetail.YearOfBirth;
-                
+                oUserDetail.Balance = userDetailsModel.Balance;
+                oUserDetail.FullName = userDetailsModel.FullName;
+                oUserDetail.Address = userDetailsModel.Address;
+                oUserDetail.ProfilePicture = userDetailsModel.ProfilePicture;
+                oUserDetail.YearOfBirth = userDetailsModel.YearOfBirth;
+
                 _dbContext.Update(oUserDetail);
                 _dbContext.SaveChanges();
             }
@@ -89,5 +90,7 @@ namespace DAOs
         //        _dbContext.SaveChanges();
         //    }
         //}
+
+        public List<UserDetail> SearchUserByEmail(string searchValue) => _dbContext.UserDetails.Where(m => m.User.Email.Contains(searchValue)).ToList();
     }
 }

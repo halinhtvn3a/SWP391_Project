@@ -9463,19 +9463,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\API\\API.csproj",
+      "projectUniqueName": "E:\\6-6\\V2\\SWP391_Project\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\API\\obj\\",
+      "projectPath": "E:\\6-6\\V2\\SWP391_Project\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "E:\\6-6\\V2\\SWP391_Project\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9490,8 +9490,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\FPTUNI\\5\\SWP391_Project\\Services\\Services.csproj": {
-              "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\Services.csproj"
+            "E:\\6-6\\V2\\SWP391_Project\\Services\\Services.csproj": {
+              "projectPath": "E:\\6-6\\V2\\SWP391_Project\\Services\\Services.csproj"
             }
           }
         }

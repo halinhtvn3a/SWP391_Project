@@ -23,10 +23,10 @@ namespace DAOs
 		}
 
 
-        public string GenerateUserId ()
-        {
-            return "U" + guid.ToString(); 
-        }
+        //public string GenerateUserId ()
+        //{
+        //    return "U" + guid.ToString(); 
+        //}
 
         public async Task<List<IdentityUser>> GetUsers(PageResult pageResult)
         {
@@ -129,6 +129,6 @@ namespace DAOs
             return oUser;
         }
 
-
+        public List<IdentityUser> SearchUserByEmail(string searchValue) => _dbContext.Users.Where(m => m.Email.Contains(searchValue)).ToList();
     }
 }
