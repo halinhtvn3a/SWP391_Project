@@ -20,6 +20,9 @@ Court Callerd is a web application designed to simplify the process of booking b
 * Styling: CSS, Bootstrap
 * HTTP Client: Axios
 
+### Screenshots
+![APIPage](https://github.com/halinhtvn3a/SWP391_Project/blob/main/screenshots/APIPage.jpeg)
+
 #### Connect us via: courtcallers@gmail.com
 
 ##### &#169; 2024 CourtCallers
