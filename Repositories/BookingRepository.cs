@@ -54,53 +54,52 @@ namespace Repositories
             return await _bookingDao.AddBookingTransaction(slotId);
         }
 
-        //public async Task<bool> ReserveSlotAsync(string slotId, string userId, decimal paymentAmount)
-        //{
-        //    await BookingDAO.BeginTransactionAsync();
+        public async Task<bool> ReserveSlotAsync(string slotId, string userId, decimal paymentAmount)
+        {
+            await _bookingDao.BeginTransactionAsync();
 
-        //    try
-        //    {
-        //        var slot = await AddBookingTransaction(slotId);
+            try
+            {
+                var slot = await AddBookingTransaction(slotId);
 
-        //        if (slot == null)
-        //        {
-        //            return false;
-        //        }
+                if (slot == null)
+                {
+                    return false;
+                }
 
-        //        // Cập nhật trạng thái slot
-        //        slot.IsAvailable = false;
-        //       TimeSlotDAO.UpdateSlot(slot);
-                
+                // Cập nhật trạng thái slot
+                slot.IsAvailable = false;
+               _timeSlotDao.UpdateSlot(slot);
 
-        //        // Tạo booking mới
-        //        var booking = new Booking
-        //        {
-        //            BookingId = Guid.NewGuid().ToString(),
-        //            Id = BookingDAO.GenerateID(),
-        //            SlotId = slotId,
-        //            BookingDate = DateTime.Now,
-        //            Check = false,
-        //            PaymentAmount = paymentAmount
-        //        };
 
-        //        BookingDAO.AddBooking(booking);
-        //        await BookingDAO.SaveChangesAsync();
-        //        await BookingDAO.CommitTransactionAsync();
+                // Tạo booking mới
+                var booking = new Booking
+                {
+                    BookingId = Guid.NewGuid().ToString(),
+                    Id = _bookingDao.GenerateID(),
+                    BookingDate = DateTime.Now,
+                    Status = "false",
+                    TotalPrice = paymentAmount
+                };
 
-        //        return true;
-        //    }
-        //    catch (DbUpdateException ex)
-        //    {
-                
-        //        await BookingDAO.RollbackTransactionAsync();
-        //        throw;
-        //    }
-        //    catch (Exception ex)
-        //    {
-                
-        //        await BookingDAO.RollbackTransactionAsync();
-        //        throw;
-        //    }
-        //}
+                _bookingDao.AddBooking(booking);
+                await _bookingDao.SaveChangesAsync();
+                await _bookingDao.CommitTransactionAsync();
+
+                return true;
+            }
+            catch (DbUpdateException ex)
+            {
+
+                await _bookingDao.RollbackTransactionAsync();
+                throw;
+            }
+            catch (Exception ex)
+            {
+
+                await _bookingDao.RollbackTransactionAsync();
+                throw;
+            }
+        }
     }
 }
