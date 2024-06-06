@@ -20,7 +20,7 @@ namespace BusinessObjects
         
         [ForeignKey("Booking")]
 		[StringLength(10)]
-		public string BookingId { get; set; }
+		public string BookingId { get; set; } = null;
 
 		[Required]
 		public DateTime SlotDate { get; set; }

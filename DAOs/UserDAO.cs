@@ -12,14 +12,21 @@ namespace DAOs
 	public class UserDAO
 	{
 		private readonly CourtCallerDbContext _dbContext = null;
+        Guid guid =Guid.NewGuid();
 
-		public UserDAO()
+        public UserDAO()
 		{
 			if (_dbContext == null)
 			{
 				_dbContext = new CourtCallerDbContext();
 			}
 		}
+
+
+        public string GenerateUserId ()
+        {
+            return "U" + guid.ToString(); 
+        }
 
         public async Task<List<IdentityUser>> GetUsers(PageResult pageResult)
         {

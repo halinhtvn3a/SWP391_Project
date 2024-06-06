@@ -97,6 +97,7 @@ namespace API.Controllers
 
             IdentityUser user = new IdentityUser()
             {
+                Id = _userService.GenerateUserId(),
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = model.Email

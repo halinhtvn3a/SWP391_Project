@@ -20,7 +20,10 @@ namespace Repositories
                 _userDao = new UserDAO();
 			}
 		}
-		public IdentityUser AddUser(IdentityUser IdentityUser) => _userDao.AddUser(IdentityUser);
+
+        public string GenerateUserId() => _userDao.GenerateUserId();
+
+        public IdentityUser AddUser(IdentityUser IdentityUser) => _userDao.AddUser(IdentityUser);
 
         //public void DeleteIdentityUser(string id) => UserDAO.DeleteIdentityUser(id);
 

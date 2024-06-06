@@ -50,9 +50,11 @@ namespace DAOs
 
         public async Task<TimeSlot> AddBookingTransaction(string slotId)
         {
-            return await DbContext.TimeSlots
-                .FromSqlRaw("SELECT * FROM TimeSlots WITH (UPDLOCK) WHERE SlotId = {0} AND IsAvailable = 1", slotId)
-                .FirstOrDefaultAsync();
+            var test = await DbContext.TimeSlots
+                 .FromSqlRaw($"SELECT * FROM TimeSlots WITH (UPDLOCK) WHERE SlotId = '{slotId}' AND IsAvailable = 1")
+                 .FirstOrDefaultAsync();
+
+            return test;
         }
 
 

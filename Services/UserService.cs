@@ -18,6 +18,8 @@ namespace Services
 				UserRepository = new UserRepository();
 			}
 		}
+
+		public string GenerateUserId() => UserRepository.GenerateUserId();
 		public IdentityUser AddUser(IdentityUser User) => UserRepository.AddUser(User);
 		//public void DeleteUser(string id) => UserRepository.DeleteUser(id);
 		public IdentityUser GetUser(string id) => UserRepository.GetUser(id);

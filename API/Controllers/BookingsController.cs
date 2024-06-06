@@ -118,7 +118,7 @@ namespace API.Controllers
             return bookingService.SearchBookingsByUser(userId).ToList();
         }
 
-        [HttpPost]
+        
         [HttpPost("reserve")]
         public async Task<IActionResult> ReserveSlot(string slotId, string userId, decimal paymentAmount)
         {
