@@ -48,6 +48,12 @@ namespace API.Controllers
             //var ip = Utils.GetIpAddress(HttpContext);
             var user = await _userManager.FindByNameAsync(model.Email);
 
+            if (user == null)
+            {
+                return
+                    StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User not found!" });
+            }
+
             //check if user is banned
             //if (BanList.BannedUsers.Contains(ip) || userDetail.Status == false)
             if (user.LockoutEnabled == false)

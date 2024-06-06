@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {}
+    "E:\\6-6\\V3\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {}
   },
   "projects": {
-    "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+    "E:\\6-6\\V3\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "E:\\6-6\\V3\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\obj\\",
+        "projectPath": "E:\\6-6\\V3\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+        "outputPath": "E:\\6-6\\V3\\SWP391_Project\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
