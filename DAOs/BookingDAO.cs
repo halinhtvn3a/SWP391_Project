@@ -13,7 +13,7 @@ namespace DAOs
 {
     public class BookingDAO
     {
-        private int counter = 3;
+        
         private readonly CourtCallerDbContext DbContext = null;
 
         public BookingDAO()
@@ -94,11 +94,7 @@ namespace DAOs
             }
         }
 
-        public string GenerateID()
-        {
-            return "B" + counter.ToString("D5");
-        }
-
+       
 
         //public Booking UpdateBooking(int id, Booking Booking)
         //{
