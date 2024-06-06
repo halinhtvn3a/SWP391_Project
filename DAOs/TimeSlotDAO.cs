@@ -64,5 +64,23 @@ namespace DAOs
         //        DbContext.SaveChanges();
         //    }
         //}
+
+        public void UpdateBookinginSlot(string slotId, string bookingId)
+        {
+            try
+            {
+                TimeSlot oTimeSlot = GetTimeSlot(slotId);
+                if (oTimeSlot != null)
+                {
+                    oTimeSlot.BookingId = bookingId;
+                    DbContext.Update(oTimeSlot);
+                    DbContext.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

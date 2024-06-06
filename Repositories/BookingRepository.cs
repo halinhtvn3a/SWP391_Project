@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
+using DAOs.Helper;
 
 namespace Repositories
 {
@@ -67,24 +68,29 @@ namespace Repositories
                     return false;
                 }
 
+                var generateBookingId = GenerateId.GenerateShortBookingId();
+
                 // Cập nhật trạng thái slot
                 slot.IsAvailable = false;
                _timeSlotDao.UpdateSlot(slot);
+                
 
+                
 
                 // Tạo booking mới
                 var booking = new Booking
                 {
-                    BookingId = Guid.NewGuid().ToString(),
-                    Id = _bookingDao.GenerateID(),
+                    BookingId = generateBookingId,
+                    Id = userId,
                     BookingDate = DateTime.Now,
-                    Status = "false",
+                    Status = "True",
                     TotalPrice = paymentAmount
                 };
 
                 _bookingDao.AddBooking(booking);
                 await _bookingDao.SaveChangesAsync();
                 await _bookingDao.CommitTransactionAsync();
+                _timeSlotDao.UpdateBookinginSlot(slotId, generateBookingId);
 
                 return true;
             }
