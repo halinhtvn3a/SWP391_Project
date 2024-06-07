@@ -34,8 +34,9 @@ namespace BusinessObjects
 		[Required]
 		public TimeOnly SlotEndTime { get; set; }
 
+        [StringLength(50)]
         [Required]
-        public bool? IsAvailable { get; set; }
+        public string? Status { get; set; }
 
 		// Navigation property
 		public virtual Court Court { get; set; }
