@@ -132,5 +132,17 @@ namespace API.Controllers
             return await bookingService.PessimistLockAsyncV2(slotModels, userId);
         }
 
+        [HttpDelete("delete/{bookingId}")]
+        public async Task<IActionResult> DeleteBookingAndSetTimeSlot(string bookingId)
+        {
+            if (string.IsNullOrEmpty(bookingId))
+            {
+                return BadRequest("Invalid booking id.");
+            }
+
+            await bookingService.DeleteBookingAndSetTimeSlotAsync(bookingId);
+
+            return Ok("Booking deleted successfully.");
+        }
     }
 }

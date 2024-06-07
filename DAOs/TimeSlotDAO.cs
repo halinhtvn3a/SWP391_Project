@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessObjects.Models;
 using DAOs.Helper;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
@@ -122,7 +123,7 @@ namespace DAOs
                 }
             }
 
-            
+
             return true;
         }
 
@@ -159,5 +160,42 @@ namespace DAOs
             return timeSlot;
         }
 
+
+        public async Task DeleteBookingAndSetTimeSlotAsync(string bookingId)
+        {
+            using (var transaction = await _dbContext.Database.BeginTransactionAsync())
+            {
+                try
+                {
+                    var timeSlots = await _dbContext.TimeSlots
+     .Where(ts => ts.BookingId == bookingId && ts.SlotDate != null) // Kiểm tra trường DateTimeColumn không null
+     .ToListAsync();
+                    foreach (var timeSlot in timeSlots)
+                    {
+                        timeSlot.BookingId = null;
+                        timeSlot.IsAvailable = true;
+                        _dbContext.TimeSlots.Update(timeSlot);
+                    }
+                    await _dbContext.SaveChangesAsync();
+
+
+                    var booking = await _dbContext.Bookings.FindAsync(bookingId);
+                    if (booking != null)
+                    {
+                        _dbContext.Bookings.Remove(booking);
+                        await _dbContext.SaveChangesAsync();
+                    }
+
+
+                    await transaction.CommitAsync();
+                }
+                catch (Exception ex)
+                {
+                    await transaction.RollbackAsync();
+                    throw;
+                }
+            }
+
+        }
     }
 }

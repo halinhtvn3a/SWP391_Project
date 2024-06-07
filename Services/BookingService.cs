@@ -9,6 +9,7 @@ using BusinessObjects.Models;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using DAOs;
 
 namespace Services
 {
@@ -70,6 +71,8 @@ namespace Services
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
         }
+
+        public async Task DeleteBookingAndSetTimeSlotAsync(string bookingId) => await BookingRepository.DeleteBookingAndSetTimeSlotAsync(bookingId);
 
     }
 }

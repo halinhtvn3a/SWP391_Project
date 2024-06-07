@@ -86,7 +86,7 @@ namespace Repositories
 
                 var generateBookingId = GenerateId.GenerateShortBookingId();
 
-                // Cập nhật trạng thái slot
+               
                 
 
                 // Tạo booking mới
@@ -211,5 +211,7 @@ namespace Repositories
                 throw;
             }
         }
+
+        public async Task DeleteBookingAndSetTimeSlotAsync(string bookingId) => await _timeSlotDao.DeleteBookingAndSetTimeSlotAsync(bookingId);
     }
 }
