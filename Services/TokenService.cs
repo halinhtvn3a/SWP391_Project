@@ -64,7 +64,6 @@ namespace Services
                     new Claim("Id", user.Id),
                     new Claim(ClaimTypes.Email, user.Email),
                     new Claim(ClaimTypes.Role, role),
-                    new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
                     new Claim(ClaimTypes.NameIdentifier, user.UserName)
                 }),
                 Expires = DateTime.UtcNow.AddHours(1),
