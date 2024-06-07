@@ -120,9 +120,9 @@ namespace API.Controllers
 
         
         [HttpPost("reserve")]
-        public async Task<IActionResult> ReserveSlot(string slotId, string userId, decimal paymentAmount)
+        public async Task<IActionResult> ReserveSlot(string[] slotId, string userId)
         {
-            return await bookingService.PessimistLockAsync(slotId, userId, paymentAmount);
+            return await bookingService.PessimistLockAsync(slotId, userId);
         }
 
     }

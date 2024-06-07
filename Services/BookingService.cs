@@ -32,11 +32,11 @@ namespace Services
         public List<Booking> SearchBookings(DateTime start, DateTime end) => BookingRepository.SearchBookings(start, end);
         public List<Booking> SearchBookingsByUser(string userId) => BookingRepository.SearchBookingsByUser(userId);
 
-        public async Task<IActionResult> PessimistLockAsync(string slotId, string userId, decimal paymentAmount)
+        public async Task<IActionResult> PessimistLockAsync(string[] slotId, string userId)
         {
             try
             {
-                var success = await BookingRepository.ReserveSlotAsync(slotId, userId, paymentAmount);
+                var success = await BookingRepository.ReserveSlotAsync(slotId, userId);
 
                 if (!success)
                 {

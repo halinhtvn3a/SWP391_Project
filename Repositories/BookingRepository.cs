@@ -26,7 +26,7 @@ namespace Repositories
                 _timeSlotDao = new TimeSlotDAO();
             }
         }
-       
+
 
         public BookingRepository(BookingDAO bookingDAO, TimeSlotDAO timeSlotDAO)
         {
@@ -55,26 +55,37 @@ namespace Repositories
             return await _bookingDao.AddBookingTransaction(slotId);
         }
 
-        public async Task<bool> ReserveSlotAsync(string slotId, string userId, decimal paymentAmount)
+        public async Task<bool> ReserveSlotAsync(string[] slotId, string userId)
         {
             await _bookingDao.BeginTransactionAsync();
 
             try
             {
-                var slot = await AddBookingTransaction(slotId);
-
-                if (slot == null)
+                foreach (var s in slotId)
                 {
-                    return false;
+                    var slot = await AddBookingTransaction(s);
+
+                    if (slot == null)
+                    {
+                        return false;
+                    }
+
+                    
+                }
+
+                decimal paymentAmount = 0;
+
+                foreach (var s in slotId)
+                {
+                    var slot = await AddBookingTransaction(s);
+                    slot.IsAvailable = false;
+                    _timeSlotDao.UpdateSlot(slot);
+                    paymentAmount += slot.Price;
                 }
 
                 var generateBookingId = GenerateId.GenerateShortBookingId();
 
                 // Cập nhật trạng thái slot
-                slot.IsAvailable = false;
-               _timeSlotDao.UpdateSlot(slot);
-                
-
                 
 
                 // Tạo booking mới
@@ -90,9 +101,45 @@ namespace Repositories
                 _bookingDao.AddBooking(booking);
                 await _bookingDao.SaveChangesAsync();
                 await _bookingDao.CommitTransactionAsync();
-                _timeSlotDao.UpdateBookinginSlot(slotId, generateBookingId);
+
+                foreach (var s in slotId)
+                {
+                    _timeSlotDao.UpdateBookinginSlot(s, generateBookingId);
+                }
 
                 return true;
+                // var slot = await AddBookingTransaction(slotId);
+
+                // if (slot == null)
+                // {
+                //     return false;
+                // }
+
+                // var generateBookingId = GenerateId.GenerateShortBookingId();
+
+                // // Cập nhật trạng thái slot
+                // slot.IsAvailable = false;
+                //_timeSlotDao.UpdateSlot(slot);
+
+
+
+
+                // // Tạo booking mới
+                // var booking = new Booking
+                // {
+                //     BookingId = generateBookingId,
+                //     Id = userId,
+                //     BookingDate = DateTime.Now,
+                //     Status = "True",
+                //     TotalPrice = paymentAmount
+                // };
+
+                // _bookingDao.AddBooking(booking);
+                // await _bookingDao.SaveChangesAsync();
+                // await _bookingDao.CommitTransactionAsync();
+                // _timeSlotDao.UpdateBookinginSlot(slotId, generateBookingId);
+
+                // return true;
             }
             catch (DbUpdateException ex)
             {

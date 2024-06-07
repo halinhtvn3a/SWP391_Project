@@ -2640,3 +2640,5 @@ E:\6-6\V2\SWP391_Project\API\obj\Debug\net8.0\refint\API.dll
 E:\6-6\V2\SWP391_Project\API\obj\Debug\net8.0\API.pdb
 E:\6-6\V2\SWP391_Project\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 E:\6-6\V2\SWP391_Project\API\obj\Debug\net8.0\ref\API.dll
+E:\6-6\V3\SWP391_Project\API\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+E:\6-6\V3\SWP391_Project\API\bin\Debug\net8.0\Services.dll
