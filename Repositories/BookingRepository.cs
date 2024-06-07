@@ -79,7 +79,7 @@ namespace Repositories
                 foreach (var s in slotId)
                 {
                     var slot = await AddBookingTransaction(s);
-                    slot.IsAvailable = false;
+                    slot.Status = "false";
                     _timeSlotDao.UpdateSlot(slot);
                     paymentAmount += slot.Price;
                 }

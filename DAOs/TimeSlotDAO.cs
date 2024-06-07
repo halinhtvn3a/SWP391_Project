@@ -45,7 +45,7 @@ namespace DAOs
             TimeSlot oTimeSlot = GetTimeSlot(id);
             if (oTimeSlot != null)
             {
-                oTimeSlot.IsAvailable = false;
+                oTimeSlot.Status = "false";
                 oTimeSlot.Price = TimeSlot.Price;
                 _dbContext.Update(oTimeSlot);
                 _dbContext.SaveChanges();
@@ -143,7 +143,7 @@ namespace DAOs
                 Price = (slotModel.SlotDate.DayOfWeek == DayOfWeek.Sunday || slotModel.SlotDate.DayOfWeek == DayOfWeek.Saturday) ? 100 : 50,
                 SlotStartTime = slotModel.SlotStartTime,
                 SlotEndTime = slotModel.SlotEndTime,
-                IsAvailable = false
+                Status = "false"
             };
 
             try
@@ -173,7 +173,7 @@ namespace DAOs
                     foreach (var timeSlot in timeSlots)
                     {
                         timeSlot.BookingId = null;
-                        timeSlot.IsAvailable = true;
+                        timeSlot.Status = "true";
                         _dbContext.TimeSlots.Update(timeSlot);
                     }
                     await _dbContext.SaveChangesAsync();
