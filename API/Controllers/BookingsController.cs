@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
+using BusinessObjects.Models;
 using Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -123,6 +124,12 @@ namespace API.Controllers
         public async Task<IActionResult> ReserveSlot(string[] slotId, string userId)
         {
             return await bookingService.PessimistLockAsync(slotId, userId);
+        }
+        
+        [HttpPost("reserveV2")]
+        public async Task<IActionResult> ReserveSlotV2(SlotModel[] slotModels, string userId)
+        {
+            return await bookingService.PessimistLockAsyncV2(slotModels, userId);
         }
 
     }

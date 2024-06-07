@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects.Models;
 using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
 using DAOs.Helper;
@@ -140,6 +141,62 @@ namespace Repositories
                 // _timeSlotDao.UpdateBookinginSlot(slotId, generateBookingId);
 
                 // return true;
+            }
+            catch (DbUpdateException ex)
+            {
+
+                await _bookingDao.RollbackTransactionAsync();
+                throw;
+            }
+            catch (Exception ex)
+            {
+
+                await _bookingDao.RollbackTransactionAsync();
+                throw;
+            }
+        }
+
+        public async Task<bool> ReserveSlotAsyncV2(SlotModel[] slotModels, string userId)
+        {
+            //await _bookingDao.BeginTransactionAsync();
+
+            try
+            {
+                foreach (var s in slotModels)
+                {
+                    if (!_timeSlotDao.IsSlotAvailable(s))
+                    {
+                        return false;
+                    }
+                }
+
+                decimal paymentAmount = 0;
+
+                var generateBookingId = GenerateId.GenerateShortBookingId();
+
+                var booking = new Booking
+                {
+                    BookingId = generateBookingId,
+                    Id = userId,
+                    BookingDate = DateTime.Now,
+                    Status = "True",
+                };
+                _bookingDao.AddBooking(booking);
+                await _bookingDao.SaveChangesAsync();
+
+
+                foreach (var s in slotModels)
+                {
+                    TimeSlot timeSlot = _timeSlotDao.AddSlotToBooking(s, generateBookingId);
+                    paymentAmount += timeSlot.Price;
+                }
+
+                _bookingDao.UpdateBooking(generateBookingId, paymentAmount);
+
+                
+                //await _bookingDao.CommitTransactionAsync();
+
+                return true;
             }
             catch (DbUpdateException ex)
             {

@@ -94,20 +94,19 @@ namespace DAOs
             }
         }
 
-       
 
-        //public Booking UpdateBooking(int id, Booking Booking)
-        //{
-        //    Booking oBooking = GetBooking(id);
-        //    if (oBooking != null)
-        //    {
-        //        oBooking.BookingName = Booking.BookingName;
-        //        oBooking.IsNatural = Booking.IsNatural;
-        //        DbContext.Update(oBooking);
-        //        DbContext.SaveChanges();
-        //    }
-        //    return oBooking;
-        //}
+
+        public Booking UpdateBooking(string id, decimal price)
+        {
+            Booking oBooking = GetBooking(id);
+            if (oBooking != null)
+            {
+                oBooking.TotalPrice = price;
+                DbContext.Update(oBooking);
+                DbContext.SaveChanges();
+            }
+            return oBooking;
+        }
 
         public void DeleteBooking(string id)
         {
@@ -149,5 +148,7 @@ namespace DAOs
             }
         }
 
+
+        
     }
 }

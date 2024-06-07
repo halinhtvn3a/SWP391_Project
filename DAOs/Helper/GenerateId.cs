@@ -14,7 +14,7 @@ namespace DAOs.Helper
             string base64Guid = Convert.ToBase64String(guid.ToByteArray());
 
             // Replace URL-unsafe characters and remove padding characters
-            base64Guid = "B" + base64Guid.Replace("/", "_").Replace("+", "-").Substring(0, 9);
+            base64Guid = base64Guid.Replace("/", "_").Replace("+", "-").Substring(0, 9);
 
             return base64Guid;
         }

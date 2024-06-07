@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects.Models;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -37,6 +38,25 @@ namespace Services
             try
             {
                 var success = await BookingRepository.ReserveSlotAsync(slotId, userId);
+
+                if (!success)
+                {
+                    return new ConflictObjectResult("Slot is already reserved.");
+                }
+
+                return new OkObjectResult("Slot reserved successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
+        
+        public async Task<IActionResult> PessimistLockAsyncV2(SlotModel[] slotModels, string userId)
+        {
+            try
+            {
+                var success = await BookingRepository.ReserveSlotAsyncV2(slotModels, userId);
 
                 if (!success)
                 {
