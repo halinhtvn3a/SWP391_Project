@@ -6,7 +6,7 @@ Court Callerd is a web application designed to simplify the process of booking b
 ## You will find in this repo the following stuff.
 
 #### Features
-* Easy Booking: Simple and intuitive court reservation system.
+* Easy Booking: Simple and intuitive court reservation system. There are three types of booking: Fixed Schedule Booking, One-Time Day Booking, Flexible Schedule Booking
 * Real-Time Updates: Get real-time availability of courts.
 * User Authentication: Secure sign-up and login for users.
 * Admin Dashboard: Manage bookings, courts, and users from an easy-to-use admin interface.
