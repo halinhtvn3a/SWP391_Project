@@ -23,7 +23,7 @@ namespace BusinessObjects
 		public string? BookingId { get; set; } = null;
 
 		[Required]
-		public DateTime SlotDate { get; set; }
+		public DateOnly SlotDate { get; set; }
         
         [Required]
         public decimal Price { get; set; }
