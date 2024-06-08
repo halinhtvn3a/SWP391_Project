@@ -1,14 +1,12 @@
-﻿
-using System.Text;
+﻿using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Repositories.Helper;
-using Services.Interface;
-using Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System.Security.Claims;
+using Repositories.Helper;
+using Services;
+using Services.Interface;
 
 namespace API
 {
@@ -18,27 +16,23 @@ namespace API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-
             ConfigurationManager configuration = builder.Configuration;
+
+            // Configure DbContext
             builder.Services.AddDbContext<DbContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("CourtCallerDb"));
             });
 
+            // Configure Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-               .AddEntityFrameworkStores<DbContext>()
-               .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<DbContext>()
+                .AddDefaultTokenProviders();
 
-
-
-
-            // Add services to the container.
-
+            // Add services to the container
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 
-
-
+            // Configure JWT authentication
             builder.Services.AddAuthentication(options =>
             {
                 options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -48,29 +42,25 @@ namespace API
             {
                 options.SaveToken = true;
                 options.RequireHttpsMetadata = false;
-                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = false,
                     ValidateAudience = false,
-                    //ValidAudience = builder.Configuration["JWT:ValidAudience"],
-                    //ValidIssuer = builder.Configuration["JWT:ValidIssuer"],
+                    ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Secret"])),
-                    RoleClaimType = ClaimTypes.Role,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
                 };
             });
 
 
-
             builder.Services.AddEndpointsApiExplorer();
+
             builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new() { Title = "My API", Version = "v1" });
-
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below.",
-                    Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = "Bearer"
@@ -92,25 +82,20 @@ namespace API
                 });
             });
 
+            // VNPay Service
+            builder.Services.AddScoped<VnpayService>();
 
-            //VNPay Service
-            builder.Services.AddScoped<Services.VnpayService>();
-
-
-            //Email Service
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            // Email Service
             builder.Services.AddTransient<IMailService, MailService>();
+            builder.Services.Configure<MailSettings>(configuration.GetSection("MailSettings"));
 
-            builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("MailSettings"));
-
-            //cors cho mấy thằng gà react
+            // CORS for React application
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
                     policy =>
                     {
-                        policy.WithOrigins("http://localhost:5000") // Địa chỉ của ứng dụng React
+                        policy.AllowAnyOrigin()
                               .AllowAnyHeader()
                               .AllowAnyMethod();
                     });
@@ -118,18 +103,24 @@ namespace API
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-
-            app.UseSwagger();
-            app.UseSwaggerUI();
-
+            // Configure the HTTP request pipeline
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
 
             app.UseHttpsRedirection();
 
             app.UseAuthentication();
-
             app.UseAuthorization();
+
             app.UseCors("AllowSpecificOrigin");
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
+            });
 
             app.MapControllers();
 

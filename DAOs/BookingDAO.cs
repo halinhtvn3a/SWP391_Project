@@ -1,87 +1,155 @@
 ﻿using BusinessObjects;
 using DAOs;
+using DAOs.Helper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualBasic;
-using WebApplication2.Data;
 
 namespace DAOs
 {
     public class BookingDAO
     {
-        private readonly CourtCallerDbContext dbContext = null;
+        
+        private readonly CourtCallerDbContext DbContext = null;
 
         public BookingDAO()
         {
-            if (dbContext == null)
+            if (DbContext == null)
             {
-                dbContext = new CourtCallerDbContext();
+                DbContext = new CourtCallerDbContext();
             }
         }
 
-        public List<Booking> GetBookings()
+
+        public async Task<List<Booking>> GetBookings(PageResult pageResult)
         {
-            return dbContext.Bookings.ToList();
+            var query = DbContext.Bookings.Include(b => b.User).Select(b => new Booking
+            {
+                BookingId = b.BookingId,
+                Id = b.User.Id,
+                BookingDate = b.BookingDate,
+                Status = b.Status,
+                TotalPrice = b.TotalPrice
+
+            });
+
+            Pagination pagination = new Pagination(DbContext);
+            List<Booking> bookings = await pagination.GetListAsync<Booking>(query, pageResult);
+            return bookings;
         }
+
 
         public Booking GetBooking(string id)
         {
-            return dbContext.Bookings.FirstOrDefault(m => m.BookingId.Equals(id));
+            return DbContext.Bookings.FirstOrDefault(m => m.BookingId.Equals(id));
         }
 
-        public Booking AddBooking(Booking Booking)
+        public async Task<TimeSlot> AddBookingTransaction(string slotId)
         {
-            dbContext.Bookings.Add(Booking);
-            dbContext.SaveChanges();
-            return Booking;
+            var test = await DbContext.TimeSlots
+                 .FromSqlRaw($"SELECT * FROM TimeSlots WITH (UPDLOCK) WHERE SlotId = '{slotId}' AND IsAvailable = 1")
+                 .FirstOrDefaultAsync();
+
+            return test;
         }
 
-        //public Booking UpdateBooking(int id, Booking Booking)
-        //{
-        //    Booking oBooking = GetBooking(id);
-        //    if (oBooking != null)
-        //    {
-        //        oBooking.BookingName = Booking.BookingName;
-        //        oBooking.IsNatural = Booking.IsNatural;
-        //        dbContext.Update(oBooking);
-        //        dbContext.SaveChanges();
-        //    }
-        //    return oBooking;
-        //}
+
+        public void AddBooking(Booking booking)
+        {
+            DbContext.Bookings.Add(booking);
+        }
+        public async Task SaveChangesAsync()
+        {
+            await DbContext.SaveChangesAsync();
+        }
+
+        public async Task CommitTransactionAsync()
+        {
+            try
+            {
+                await DbContext.Database.CommitTransactionAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+
+        public async Task RollbackTransactionAsync()
+        {
+            try
+            {
+                await DbContext.Database.RollbackTransactionAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+
+
+        public Booking UpdateBooking(string id, decimal price)
+        {
+            Booking oBooking = GetBooking(id);
+            if (oBooking != null)
+            {
+                oBooking.TotalPrice = price;
+                DbContext.Update(oBooking);
+                DbContext.SaveChanges();
+            }
+            return oBooking;
+        }
 
         public void DeleteBooking(string id)
         {
             Booking oBooking = GetBooking(id);
             if (oBooking != null)
             {
-                oBooking.Check = false;
-                dbContext.Update(oBooking);
-                dbContext.SaveChanges();
+                oBooking.Status = "Cancel";
+                DbContext.Update(oBooking);
+                DbContext.SaveChanges();
             }
         }
 
-        public List<Booking> GetBookingsByStatus(bool status)
+        public List<Booking> GetBookingsByStatus(string status)
         {
-            return dbContext.Bookings.Where(m => m.Check.Equals(status)).ToList();
+            return DbContext.Bookings.Where(m => m.Status.Equals(status)).ToList();
         }
 
         public List<Booking> SearchBookings(DateTime start, DateTime end)
         {
-            return dbContext.Bookings.Where(m => m.BookingDate >= start && m.BookingDate <= end).ToList();
+            return DbContext.Bookings.Where(m => m.BookingDate >= start && m.BookingDate <= end).ToList();
         }
 
         public List<Booking> SearchBookingsByUser(string userId)
         {
-            return dbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
+            return DbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
         }
 
-        public List<Booking> SortByPrice()
+
+        public async Task BeginTransactionAsync()
         {
-            
-            return dbContext.Bookings.OrderBy(m => m.PaymentAmount).ToList();
+            try
+            {
+                await DbContext.Database.BeginTransactionAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
+
+       
+
+
     }
 }

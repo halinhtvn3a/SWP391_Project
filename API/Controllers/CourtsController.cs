@@ -8,6 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Authorization;
+using DAOs.Helper;
+using BusinessObjects.Models;
+
+
+
 
 namespace API.Controllers
 {
@@ -24,10 +29,16 @@ namespace API.Controllers
 
         // GET: api/Courts
         [HttpGet]
-        [Authorize(Roles = "Customer")]
-        public async Task<ActionResult<IEnumerable<Court>>> GetCourts()
+        
+        public async Task<ActionResult<IEnumerable<Court>>> GetCourts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10) 
         {
-            return courtService.GetCourts();
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            var court = await courtService.GetCourts(pageResult);
+            return Ok(court);
         }
 
         // GET: api/Courts/5
@@ -47,25 +58,26 @@ namespace API.Controllers
         // PUT: api/Courts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCourt(string id, Court court)
+        public async Task<IActionResult> PutCourt(string id, CourtModel courtModel)
         {
+            var court = courtService.GetCourt(id);
             if (id != court.CourtId)
             {
                 return BadRequest();
             }
 
-            courtService.UpdateCourt(id, court);
+            courtService.UpdateCourt(id, courtModel);
 
-            return NoContent();
+            return CreatedAtAction("GetCourt", new { id = court.CourtId }, court);
         }
 
         // POST: api/Courts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Court>> PostCourt(Court court)
+        public async Task<ActionResult<Court>> PostCourt(CourtModel courtModel)
         {
 
-            courtService.AddCourt(court);
+            var court = courtService.AddCourt(courtModel);
 
             return CreatedAtAction("GetCourt", new { id = court.CourtId }, court);
         }
@@ -85,10 +97,10 @@ namespace API.Controllers
             return NoContent();
         }
 
-        private bool CourtExists(string id)
-        {
-            return courtService.GetCourts().Any(e => e.CourtId == id);
-        }
+        //private bool CourtExists(string id)
+        //{
+        //    return courtService.GetCourts().Any(e => e.CourtId == id);
+        //}
 
         [HttpGet("active")]
         public async Task<ActionResult<IEnumerable<Court>>> GetActiveCourts()
@@ -96,10 +108,5 @@ namespace API.Controllers
             return courtService.GetActiveCourts();
         }
 
-        [HttpGet("sort")]
-        public async Task<ActionResult<IEnumerable<Court>>> SortByName()
-        {
-            return courtService.SortByName();
-        }
     }
 }

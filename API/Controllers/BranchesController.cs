@@ -9,12 +9,14 @@ using BusinessObjects;
 using Repositories;
 using Services;
 using Microsoft.AspNetCore.Authorization;
+using DAOs.Helper;
+using BusinessObjects.Models;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+  
     public class BranchesController : ControllerBase
     {
         private readonly BranchService branchService;
@@ -26,9 +28,17 @@ namespace API.Controllers
 
         // GET: api/Branches
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Branch>>> GetBranches()
+        public async Task<ActionResult<IEnumerable<Branch>>> GetBranches([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            return branchService.GetBranches().ToList();
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            List<Branch> branches = await branchService.GetBranches(pageResult);
+
+            return Ok(branches);
         }
 
         // GET: api/Branches/5
@@ -48,24 +58,25 @@ namespace API.Controllers
         // PUT: api/Branches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBranch(string id, Branch branch)
+        public async Task<IActionResult> PutBranch(string id, BranchModel branchModel)
         {
+            var branch = branchService.GetBranch(id);
             if (id != branch.BranchId)
             {
                 return BadRequest();
             }
 
-            branchService.UpdateBranch(id, branch);
+            branchService.UpdateBranch(id, branchModel);
 
-            return NoContent();
+            return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
         }
 
         // POST: api/Branches
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Branch>> PostBranch(Branch branch)
+        public async Task<ActionResult<Branch>> PostBranch(BranchModel branchModel)
         {
-            branchService.AddBranch(branch);
+            var branch = branchService.AddBranch(branchModel);
 
             return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
         }
@@ -83,21 +94,16 @@ namespace API.Controllers
             return NoContent();
         }
 
-        private bool BranchExists(string id)
-        {
-            return branchService.GetBranches().Any(e => e.BranchId == id);
-        }
-
-        [HttpGet("search")]
-        public async Task<ActionResult<IEnumerable<Branch>>> SearchBranches(string search)
-        {
-            return branchService.SearchBranches(search).ToList();
-        }
+        //private bool BranchExists(string id)
+        //{
+        //    return branchService.GetBranches().Any(e => e.BranchId == id);
+        //}
 
         [HttpGet("status")]
-        public async Task<ActionResult<IEnumerable<Branch>>> GetBranchesByStatus(bool status)
+        public async Task<ActionResult<IEnumerable<Branch>>> GetBranchesByStatus(string status)
         {
             return branchService.GetBranchesByStatus(status).ToList();
         }
+
     }
 }

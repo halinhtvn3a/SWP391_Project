@@ -10,24 +10,24 @@ namespace Repositories
 {
     public class PaymentRepository
     {
-        private readonly PaymentDAO PaymentDAO = null;
+        private readonly PaymentDAO _paymentDao = null;
         public PaymentRepository()
         {
-            if (PaymentDAO == null)
+            if (_paymentDao == null)
             {
-                PaymentDAO = new PaymentDAO();
+                _paymentDao = new PaymentDAO();
             }
         }
-        public Payment AddPayment(Payment Payment) => PaymentDAO.AddPayment(Payment);
+        public Payment AddPayment(Payment Payment) => _paymentDao.AddPayment(Payment);
 
-        public void DeletePayment(string id) => PaymentDAO.DeletePayment(id);
+        public void DeletePayment(string id) => _paymentDao.DeletePayment(id);
 
-        public Payment GetPayment(string id) => PaymentDAO.GetPayment(id);
+        public Payment GetPayment(string id) => _paymentDao.GetPayment(id);
 
-        public List<Payment> GetPayments() => PaymentDAO.GetPayments();
+        public List<Payment> GetPayments() => _paymentDao.GetPayments();
 
         //public Payment UpdatePayment(string id, Payment Payment) => PaymentDAO.UpdatePayment(id, Payment);
 
-        public List<Payment> SearchByDate(DateTime start, DateTime end) => PaymentDAO.SearchByDate(start, end);
+        public List<Payment> SearchByDate(DateTime start, DateTime end) => _paymentDao.SearchByDate(start, end);
     }
 }

@@ -10,22 +10,22 @@ namespace Repositories
 {
     public class TimeSlotRepository
     {
-        private readonly TimeSlotDAO TimeSlotDAO = null;
+        private readonly TimeSlotDAO _timeSlotDao = null;
         public TimeSlotRepository()
         {
-            if (TimeSlotDAO == null)
+            if (_timeSlotDao == null)
             {
-                TimeSlotDAO = new TimeSlotDAO();
+                _timeSlotDao = new TimeSlotDAO();
             }
         }
-        public TimeSlot AddTimeSlot(TimeSlot TimeSlot) => TimeSlotDAO.AddTimeSlot(TimeSlot);
+        public TimeSlot AddTimeSlot(TimeSlot TimeSlot) => _timeSlotDao.AddTimeSlot(TimeSlot);
 
         //public void DeleteTimeSlot(string id) => TimeSlotDAO.DeleteTimeSlot(id);
 
-        public TimeSlot GetTimeSlot(string id) => TimeSlotDAO.GetTimeSlot(id);
+        public TimeSlot GetTimeSlot(string id) => _timeSlotDao.GetTimeSlot(id);
 
-        public List<TimeSlot> GetTimeSlots() => TimeSlotDAO.GetTimeSlots();
+        public List<TimeSlot> GetTimeSlots() => _timeSlotDao.GetTimeSlots();
 
-        public TimeSlot UpdateTimeSlot(string id, TimeSlot TimeSlot) => TimeSlotDAO.UpdateTimeSlot(id, TimeSlot);
+        public TimeSlot UpdateTimeSlot(string id, TimeSlot TimeSlot) => _timeSlotDao.UpdateTimeSlot(id, TimeSlot);
     }
 }

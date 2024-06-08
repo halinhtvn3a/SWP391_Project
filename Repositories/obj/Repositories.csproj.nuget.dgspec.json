@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\1-6\\SWP391_Project\\Repositories\\Repositories.csproj": {}
+    "E:\\7-6\\V1\\SWP391_Project\\Repositories\\Repositories.csproj": {}
   },
   "projects": {
-    "E:\\1-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+    "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\1-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "E:\\1-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\1-6\\SWP391_Project\\BusinessObjects\\obj\\",
+        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -85,6 +85,10 @@
             "Microsoft.Extensions.Configuration.Json": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             }
           },
           "imports": [
@@ -107,14 +111,14 @@
         }
       }
     },
-    "E:\\1-6\\SWP391_Project\\DAOs\\DAOs.csproj": {
+    "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\1-6\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj",
         "projectName": "DAOs",
-        "projectPath": "E:\\1-6\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\1-6\\SWP391_Project\\DAOs\\obj\\",
+        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -132,8 +136,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\1-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "E:\\1-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
+              "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
               }
             }
           }
@@ -172,14 +176,14 @@
         }
       }
     },
-    "E:\\1-6\\SWP391_Project\\Repositories\\Repositories.csproj": {
+    "E:\\7-6\\V1\\SWP391_Project\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\1-6\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "E:\\1-6\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\1-6\\SWP391_Project\\Repositories\\obj\\",
+        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -197,8 +201,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\1-6\\SWP391_Project\\DAOs\\DAOs.csproj": {
-                "projectPath": "E:\\1-6\\SWP391_Project\\DAOs\\DAOs.csproj"
+              "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj": {
+                "projectPath": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj"
               }
             }
           }

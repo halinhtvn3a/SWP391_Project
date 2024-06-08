@@ -11,23 +11,23 @@ namespace Repositories
 {
 	public class RoleRepository
 	{
-			private readonly RoleDAO RoleDAO = null;
+			private readonly RoleDAO _roleDao = null;
 			public RoleRepository()
 			{
-				if (RoleDAO == null)
+				if (_roleDao == null)
 				{
-					RoleDAO = new RoleDAO();
+                    _roleDao = new RoleDAO();
 				}
 			}
-			public IdentityRole AddRole(IdentityRole Role) => RoleDAO.AddRole(Role);
+			public IdentityRole AddRole(IdentityRole Role) => _roleDao.AddRole(Role);
 
-			public void DeleteRole(string id) => RoleDAO.DeleteRole(id);
+			public void DeleteRole(string id) => _roleDao.DeleteRole(id);
 
-			public IdentityRole GetRole(string id) => RoleDAO.GetRole(id);
+			public IdentityRole GetRole(string id) => _roleDao.GetRole(id);
 
-			public List<IdentityRole> GetRoles() => RoleDAO.GetRoles();
+			public List<IdentityRole> GetRoles() => _roleDao.GetRoles();
 
-			public IdentityRole UpdateRole(string id, IdentityRole Role) => RoleDAO.UpdateRole(id, Role);
+			public IdentityRole UpdateRole(string id, IdentityRole Role) => _roleDao.UpdateRole(id, Role);
 	}
 	
 }

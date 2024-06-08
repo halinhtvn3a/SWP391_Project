@@ -5,36 +5,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebApplication2.Data;
 
 namespace DAOs
 {
     public class PaymentDAO
     {
-        private readonly CourtCallerDbContext dbContext = null;
+        private readonly CourtCallerDbContext DbContext = null;
 
         public PaymentDAO()
         {
-            if (dbContext == null)
+            if (DbContext == null)
             {
-                dbContext = new CourtCallerDbContext();
+                DbContext = new CourtCallerDbContext();
             }
         }
 
         public List<Payment> GetPayments()
         {
-            return dbContext.Payments.ToList();
+            return DbContext.Payments.ToList();
         }
 
         public Payment GetPayment(string id)
         {
-            return dbContext.Payments.FirstOrDefault(m => m.PaymentId.Equals(id));
+            return DbContext.Payments.FirstOrDefault(m => m.PaymentId.Equals(id));
         }
 
         public Payment AddPayment(Payment Payment)
         {
-            dbContext.Payments.Add(Payment);
-            dbContext.SaveChanges();
+            DbContext.Payments.Add(Payment);
+            DbContext.SaveChanges();
             return Payment;
         }
 
@@ -45,8 +44,8 @@ namespace DAOs
         //    {
         //        oPayment.PaymentName = Payment.PaymentName;
         //        oPayment.IsNatural = Payment.IsNatural;
-        //        dbContext.Update(oPayment);
-        //        dbContext.SaveChanges();
+        //        DbContext.Update(oPayment);
+        //        DbContext.SaveChanges();
         //    }
         //    return oPayment;
         //}
@@ -57,12 +56,13 @@ namespace DAOs
             if (oPayment != null)
             {
                 oPayment.PaymentStatus = "Cancel";
-                dbContext.Update(oPayment);
-                dbContext.SaveChanges();
+                DbContext.Update(oPayment);
+                DbContext.SaveChanges();
             }
         }
 
-        public List<Payment> SearchByDate(DateTime start, DateTime end) => dbContext.Payments.Where(m => m.PaymentDate >= start && m.PaymentDate <= end).ToList();
-        
+        public List<Payment> SearchByDate(DateTime start, DateTime end) => DbContext.Payments.Where(m => m.PaymentDate >= start && m.PaymentDate <= end).ToList();
+
+
     }
 }

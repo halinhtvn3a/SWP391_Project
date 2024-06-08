@@ -5,49 +5,63 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebApplication2.Data;
+using DAOs.Helper;
+using Microsoft.AspNetCore.Identity;
+using BusinessObjects.Models;
 
 namespace DAOs
 {
     public class ReviewDAO
     {
-        private readonly CourtCallerDbContext dbContext = null;
+        private readonly CourtCallerDbContext DbContext = null;
 
         public ReviewDAO()
         {
-            if (dbContext == null)
+            if (DbContext == null)
             {
-                dbContext = new CourtCallerDbContext();
+                DbContext = new CourtCallerDbContext();
             }
         }
 
-        public List<Review> GetReviews()
+        public async Task<List<Review>> GetReview(PageResult pageResult)
         {
-            return dbContext.Reviews.ToList();
+            var query = DbContext.Reviews.AsQueryable();
+            Pagination pagination = new Pagination(DbContext);
+            List<Review> reviews = await pagination.GetListAsync<Review>(query, pageResult);
+            return reviews;
         }
 
         public Review GetReview(string id)
         {
-            return dbContext.Reviews.FirstOrDefault(m => m.ReviewId.Equals(id));
+            return DbContext.Reviews.FirstOrDefault(m => m.ReviewId.Equals(id));
         }
 
-        public Review AddReview(Review Review)
+        public Review AddReview(ReviewModel reviewModel)
         {
-            dbContext.Reviews.Add(Review);
-            dbContext.SaveChanges();
-            return Review;
+            Review review = new Review()
+            {
+                ReviewId = "R" + (DbContext.Reviews.Count() + 1).ToString("D5"),
+                ReviewText = reviewModel.ReviewText,
+                Rating = reviewModel.Rating,
+                ReviewDate = DateTime.Now,
+                BranchId = reviewModel.BranchId,
+                Id = reviewModel.UserId
+            };
+            DbContext.Reviews.Add(review);
+            DbContext.SaveChanges();
+            return review;
         }
 
-        public Review UpdateReview(string id, Review Review)
+        public Review UpdateReview(string id, ReviewModel reviewModel)
         {
             Review oReview = GetReview(id);
             if (oReview != null)
             {
-                oReview.ReviewText = Review.ReviewText;
-                oReview.Rating = Review.Rating;
+                oReview.ReviewText = reviewModel.ReviewText;
+                oReview.Rating = reviewModel.Rating;
                 oReview.ReviewDate = DateTime.Now;
-                dbContext.Update(oReview);
-                dbContext.SaveChanges();
+                DbContext.Update(oReview);
+                DbContext.SaveChanges();
             }
             return oReview;
         }
@@ -57,19 +71,21 @@ namespace DAOs
             Review oReview = GetReview(id);
             if (oReview != null)
             {
-                dbContext.Remove(oReview);
-                dbContext.SaveChanges();
+                DbContext.Remove(oReview);
+                DbContext.SaveChanges();
             }
         }
 
-        public List<Review> SearchByDate(DateTime start, DateTime end) => dbContext.Reviews.Where(m => m.ReviewDate >= start && m.ReviewDate <= end).ToList();
-        
+        public List<Review> SearchByDate(DateTime start, DateTime end) => DbContext.Reviews.Where(m => m.ReviewDate >= start && m.ReviewDate <= end).ToList();
 
-        public List<Review> SearchByRating(int rating)=> dbContext.Reviews.Where(m => m.Rating == rating).ToList();
-        
-        public List<Review> SearchByUser(string id) => dbContext.Reviews.Where(m => m.Id == id).ToList();
-        
 
-        public List<Review> GetReviewsByCourt(string id) => dbContext.Reviews.Where(m => m.CourtId == id).ToList();
+        public List<Review> SearchByRating(int rating) => DbContext.Reviews.Where(m => m.Rating == rating).ToList();
+
+        public List<Review> SearchByUser(string id) => DbContext.Reviews.Where(m => m.Id == id).ToList();
+
+
+        public List<Review> GetReviewsByBranch(string id) => DbContext.Reviews.Where(m => m.BranchId == id).ToList();
+
+
     }
 }

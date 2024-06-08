@@ -1,5 +1,7 @@
 ﻿using BusinessObjects;
+using BusinessObjects.Models;
 using DAOs;
+using DAOs.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +12,24 @@ namespace Repositories
 {
     public class BranchRepository
     {
-        private readonly BranchDAO BranchDAO = null;
+        private readonly BranchDAO _branchDao = null;
         public BranchRepository()
         {
-            if (BranchDAO == null)
+            if (_branchDao == null)
             {
-                BranchDAO = new BranchDAO();
+                _branchDao = new BranchDAO();
             }
         }
-        public Branch AddBranch(Branch Branch) => BranchDAO.AddBranch(Branch);
+        public Branch AddBranch(BranchModel branchModel) => _branchDao.AddBranch(branchModel);
 
-        public void DeleteBranch(string id) => BranchDAO.DeleteBranch(id);
+        public void DeleteBranch(string id) => _branchDao.DeleteBranch(id);
 
-        public Branch GetBranch(string id) => BranchDAO.GetBranch(id);
+        public Branch GetBranch(string id) => _branchDao.GetBranch(id);
 
-        public List<Branch> GetBranches() => BranchDAO.GetBranches();
+        public async Task<List<Branch>> GetBranches(PageResult pageResult) => await _branchDao.GetBranches(pageResult);
 
-        public Branch UpdateBranch(string id, Branch Branch) => BranchDAO.UpdateBranch(id, Branch);
+        public Branch UpdateBranch(string id, BranchModel branchModel) => _branchDao.UpdateBranch(id, branchModel);
 
-        public List<Branch> GetBranchesByStatus(bool status) => BranchDAO.GetBranchesByStatus(status);
-
-        public List<Branch> SearchBranches(string search) => BranchDAO.SearchBranches(search);
+        public List<Branch> GetBranchesByStatus(string status) => _branchDao.GetBranchesByStatus(status);
     }
 }

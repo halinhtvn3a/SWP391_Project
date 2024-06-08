@@ -9,11 +9,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Services;
-using LoginModel = BusinessObjects.Models.LoginModel;
-using RegisterModel = BusinessObjects.Models.RegisterModel;
 using Repositories.Helper;
 using Services.Interface;
-using System.Diagnostics;
+
+
+
+
+
+
 
 namespace API.Controllers
 {
@@ -24,8 +27,10 @@ namespace API.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly TokenService _tokenService;
+        private readonly UserService _userService = new UserService();
+        private readonly UserDetailService _userDetailService = new UserDetailService();
         private readonly IConfiguration _configuration;
-        private readonly Services.Interface.IMailService _mailService;
+        private readonly IMailService _mailService;
 
         public AuthenticationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IMailService mailService)
         {
@@ -34,29 +39,55 @@ namespace API.Controllers
             _configuration = configuration;
             _tokenService = new TokenService(_configuration, _roleManager);
             _mailService = mailService;
-           
         }
 
         [HttpPost]
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
-            try
+            //var ip = Utils.GetIpAddress(HttpContext);
+            var user = await _userManager.FindByNameAsync(model.Email);
+
+            if (user == null)
             {
-                var user = await _userManager.FindByNameAsync(model.Email);
-                if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
-                {
-                    var roles = await _userManager.GetRolesAsync(user);
-                    var userRole = roles.FirstOrDefault();
-                    return Ok(new
-                    {
-                        Token = _tokenService.GenerateToken(user, userRole)
-                    });
-                }
+                return
+                    StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User not found!" });
             }
-            catch (Exception ex)
+
+            //check if user is banned
+            //if (BanList.BannedUsers.Contains(ip) || userDetail.Status == false)
+            if (user.LockoutEnabled == false)
             {
-                return BadRequest();
+                return
+                    StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User is banned!" });
+            }
+            else
+            {
+                try
+                {
+                    if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+                    {
+                        var roles = await _userManager.GetRolesAsync(user);
+                        var userRole = roles.FirstOrDefault();
+                        return Ok(new
+                        {
+                            Token = _tokenService.GenerateToken(user, userRole)
+                        });
+                    }
+                    else
+                    {
+                        user.AccessFailedCount++;
+                        if (user.AccessFailedCount == 5)
+                        {
+                            //BanList.BannedUsers.Add(ip);
+                            user.LockoutEnabled = false;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest();
+                }
             }
 
             return Unauthorized();
@@ -75,17 +106,14 @@ namespace API.Controllers
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
                 UserName = model.Email
-
-
-
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-            //return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel() { Status = "Error", Message = "User creation failed! Please check user details and try again." });
             {
                 var errors = result.Errors.Select(e => e.Description);
                 return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = string.Join(" ", errors) });
             }
+
             if (!await _roleManager.RoleExistsAsync("Customer"))
             {
                 var role = new IdentityRole("Customer");
@@ -93,9 +121,20 @@ namespace API.Controllers
             }
 
             await _userManager.AddToRoleAsync(user, "Customer");
-
+            UserDetail userDetail = new UserDetail()
+            {
+                UserId = user.Id,
+                Balance = 0,
+                FullName = model.FullName,
+                
+            };
+            _userDetailService.AddUserDetail(userDetail);
             return Ok(new ResponseModel() { Status = "Success", Message = "User created successfully!" });
         }
+
+
+
+
 
         [HttpPost]
         [Route("register-admin")]
@@ -115,16 +154,27 @@ namespace API.Controllers
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+            if (!await _roleManager.RoleExistsAsync("Admin"))
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
 
-            if (await _roleManager.RoleExistsAsync(UserRoles.Admin))
+
+            await _userManager.AddToRoleAsync(user, "Admin");
+
+            UserDetail userDetail = new UserDetail()
             {
-                await _userManager.AddToRoleAsync(user, UserRoles.Admin);
-            }
+                UserId = user.Id,
+                Balance = 0,
+                FullName = model.FullName,
+
+            };
+            _userDetailService.AddUserDetail(userDetail);
 
             return Ok(new ResponseModel { Status = "Success", Message = "User created successfully!" });
         }
+
+
+
+
 
         [HttpPost]
         [Route("register-staff")]
@@ -144,42 +194,111 @@ namespace API.Controllers
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User creation failed! Please check user details and try again." });
 
-            if (!await _roleManager.RoleExistsAsync(UserRoles.Staff))
-                await _roleManager.CreateAsync(new IdentityRole(UserRoles.Staff));
+            if (!await _roleManager.RoleExistsAsync("Staff"))
+                await _roleManager.CreateAsync(new IdentityRole("Staff"));
 
-            if (await _roleManager.RoleExistsAsync(UserRoles.Staff))
+            await _userManager.AddToRoleAsync(user, "Staff");
+
+            UserDetail userDetail = new UserDetail()
             {
-                await _userManager.AddToRoleAsync(user, UserRoles.Staff);
-            }
+                UserId = user.Id,
+                Balance = 0,
+                FullName = model.FullName,
+
+            };
+            _userDetailService.AddUserDetail(userDetail);
 
             return Ok(new ResponseModel { Status = "Success", Message = "Staff created successfully!" });
         }
 
-        // externalLogin like google and facebook
-        //[HttpPost]
-        //[Route("external-login")]
-        //public async Task<IActionResult> ExternalLogin([FromBody] ExternalLoginModel model)
-        //{
-        //    var payload = new JwtPayload
-        //    {
-        //        { "sub", model.Email },
-        //        { "email", model.Email },
-        //        { "name", model.Name },
-        //        //{ "picture", model.Picture },
-        //        { "iss", "https://localhost:7104" },
-        //        { "aud", "https://localhost:7104" },
-        //        { "exp", DateTimeOffset.UtcNow.AddHours(3).ToUnixTimeSeconds() },
-        //        { ClaimTypes.Role, "Customer" } // Add the first role as a claim
-        //    };
 
-        //    var token = new JwtSecurityToken(new JwtHeader(new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])), SecurityAlgorithms.HmacSha256)), payload);
 
-        //    return Ok(new
-        //    {
-        //        token = new JwtSecurityTokenHandler().WriteToken(token),
-        //        expiration = token.ValidTo
-        //    });
-        //}
+        [HttpPost]
+        [Route("google-login")]
+        public async Task<IActionResult> GoogleLogin(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+            var email = jsonToken.Claims.First(claim => claim.Type == "email").Value;
+            var name = jsonToken.Claims.First(claim => claim.Type == "name").Value;
+            var picture = jsonToken.Claims.First(claim => claim.Type == "picture").Value;
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                user = new IdentityUser
+                {
+                    Email = email,
+                    UserName = email,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                };
+                await _userManager.CreateAsync(user);
+                UserDetail userDetail = new UserDetail()
+                {
+                    UserId = user.Id,
+                    Balance = 0,
+                    FullName = name,
+                    ProfilePicture = picture
+                    //Id = user.Id
+                };
+                _userDetailService.AddUserDetail(userDetail);
+                await _userManager.AddToRoleAsync(user, "Customer");
+
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var userRole = roles.FirstOrDefault();
+
+            return Ok(new
+            {
+                Token = _tokenService.GenerateToken(user, userRole)
+            });
+        }
+
+        //Facebook Login
+        [HttpPost]
+        [Route("facebook-login")]
+        public async Task<IActionResult> FacebookLogin(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token) as JwtSecurityToken;
+            var email = jsonToken.Claims.First(claim => claim.Type == "email").Value;
+            var name = jsonToken.Claims.First(claim => claim.Type == "name").Value;
+            var picture = jsonToken.Claims.First(claim => claim.Type == "picture").Value;
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                user = new IdentityUser
+                {
+                    Email = email,
+                    UserName = email,
+                    SecurityStamp = Guid.NewGuid().ToString()
+                };
+                await _userManager.CreateAsync(user);
+                UserDetail userDetail = new UserDetail()
+                {
+                    UserId = user.Id,
+                    Balance = 0,
+                    FullName = name,
+                    ProfilePicture = picture
+                };
+                _userDetailService.AddUserDetail(userDetail);
+                await _userManager.AddToRoleAsync(user, "Customer");
+
+            }
+
+            var roles = await _userManager.GetRolesAsync(user);
+            var userRole = roles.FirstOrDefault();
+
+            return Ok(new
+            {
+                Token = _tokenService.GenerateToken(user, userRole)
+            });
+        }
+
+
+
 
         //ForgetPassword
         [HttpPost]
@@ -204,6 +323,7 @@ namespace API.Controllers
             return Ok(new ResponseModel { Status = "Success", Message = "Reset password link has been sent to your email address." });
         }
 
+
         //ResetPassword
         [HttpPost]
         [Route("reset-password")]
@@ -225,5 +345,6 @@ namespace API.Controllers
 
             return Ok(new ResponseModel { Status = "Success", Message = "Password has been reset successfully!" });
         }
+
     }
 }

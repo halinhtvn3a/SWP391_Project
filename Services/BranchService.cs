@@ -1,4 +1,6 @@
 ﻿using BusinessObjects;
+using BusinessObjects.Models;
+using DAOs.Helper;
 using Repositories;
 using System;
 using System.Collections.Generic;
@@ -18,14 +20,13 @@ namespace Services
                 BranchRepository = new BranchRepository();
             }
         }
-        public Branch AddBranch(Branch Branch) => BranchRepository.AddBranch(Branch);
+        public Branch AddBranch(BranchModel branchModel) => BranchRepository.AddBranch(branchModel);
         public void DeleteBranch(string id) => BranchRepository.DeleteBranch(id);
         public Branch GetBranch(string id) => BranchRepository.GetBranch(id);
-        public List<Branch> GetBranches() => BranchRepository.GetBranches();
-        public Branch UpdateBranch(string id, Branch Branch) => BranchRepository.UpdateBranch(id, Branch);
+        public async Task<List<Branch>> GetBranches(PageResult pageResult) => await BranchRepository.GetBranches(pageResult);
+        public Branch UpdateBranch(string id, BranchModel branchModel) => BranchRepository.UpdateBranch(id, branchModel);
 
-        public List<Branch> GetBranchesByStatus(bool status) => BranchRepository.GetBranchesByStatus(status);
+        public List<Branch> GetBranchesByStatus(string status) => BranchRepository.GetBranchesByStatus(status);
 
-        public List<Branch> SearchBranches(string search) => BranchRepository.SearchBranches(search);
     }
 }

@@ -8,84 +8,124 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Identity;
+using BusinessObjects.Models;
 
 namespace API.Controllers
 {
-	[Route("api/[controller]")]
-	[ApiController]
-	public class UserDetailsController : ControllerBase
-	{
-		private readonly UserDetailService UserDetailservice;
+    [Route("api/[controller]")]
+    [ApiController]
+    public class UserDetailsController : ControllerBase
+    {
+        private readonly UserDetailService _userDetailService;
 
-		public UserDetailsController()
-		{
-			UserDetailservice = new UserDetailService();
-		}
+        public UserDetailsController()
+        {
+            _userDetailService = new UserDetailService();
+        }
 
-		// GET: api/UserDetails
-		[HttpGet]
-		public async Task<ActionResult<IEnumerable<UserDetail>>> GetUserDetails()
-		{
-			return UserDetailservice.GetUserDetails().ToList();
-		}
+        // GET: api/UserDetails
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<UserDetail>>> GetUserDetails()
+        {
+            return _userDetailService.GetUserDetails().ToList();
+        }
 
-		// GET: api/UserDetails/5
-		[HttpGet("{id}")]
-		public async Task<ActionResult<UserDetail>> GetUser(string id)
-		{
-			var user = UserDetailservice.GetUserDetail(id);
+        // GET: api/UserDetails/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<UserDetail>> GetUser(string id)
+        {
+            var user = _userDetailService.GetUserDetail(id);
 
-			if (user == null)
-			{
-				return NotFound();
-			}
+            if (user == null)
+            {
+                return NotFound();
+            }
 
-			return user;
-		}
+            return user;
+        }
 
-		//PUT: api/UserDetails/5
-		// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-		[HttpPut("{id}")]
-		public async Task<IActionResult> PutUser(string id, UserDetail user)
-		{
-			if (id != user.UserDetailId)
-			{
-				return BadRequest();
-			}
+        //PUT: api/UserDetails/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutUser(string id, UserDetailsModel userDetailsModel)
+        {
+            var user = _userDetailService.GetUserDetail(id);
+            if (id != user.UserId)
+            {
+                return BadRequest();
+            }
 
-			UserDetailservice.UpdateUserDetail(id, user);
+            _userDetailService.UpdateUserDetail(id, userDetailsModel);
 
-			return NoContent();
-		}
+            return CreatedAtAction("GetUserDetailByUserId", new { id = user.UserId }, user);
+        }
 
-		// POST: api/UserDetails
-		// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-		[HttpPost]
-		public async Task<ActionResult<UserDetail>> PostUser(UserDetail user)
-		{
-			UserDetailservice.AddUserDetail(user);
+        // POST: api/UserDetails
+        // To protect from overposting attacks, seek https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<UserDetail>> PostUser(UserDetail user)
+        //{
+        //    _userDetailService.AddUserDetail(user);
 
-			return CreatedAtAction("GetUser", new { id = user.UserDetailId }, user);
-		}
+        //    return CreatedAtAction("GetUser", new { id = user.UserId }, user);
+        //}
 
-		//DELETE: api/UserDetails/5
-		[HttpDelete("{id}")]
-		public async Task<IActionResult> DeleteUser(string id)
-		{
-			var user = UserDetailservice.GetUserDetail(id);
-			if (user == null)
-			{
-				return NotFound();
-			}
+        //DELETE: api/UserDetails/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteUser(string id)
+        //{
+        //	var user = UserDetailservice.GetUserDetail(id);
+        //	if (user == null)
+        //	{
+        //		return NotFound();
+        //	}
 
-			UserDetailservice.DeleteUserDetail(id);
+        //	UserDetailservice.DeleteUserDetail(id);
 
-			return NoContent();
-		}
+        //	return NoContent();
+        //}
 
-		private bool UserExists(string id)
-		{
-			return UserDetailservice.GetUserDetails().Any(e => e.UserDetailId == id);
-		}
-	}
+        private bool UserExists(string id)
+        {
+            return _userDetailService.GetUserDetails().Any(e => e.UserId == id);
+        }
+
+        [HttpGet("GetUserDetailByUserId/{userId}")]
+        public async Task<ActionResult<UserDetail>> GetUserDetailByUserId(string userId)
+        {
+            var user = _userDetailService.GetUserDetail(userId);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            return user;
+        }
+
+        [HttpGet("GetUserDetailByUserEmail/{userEmail}")]
+        public async Task<ActionResult<IEnumerable<UserDetail>>> GetUserByEmail(string userEmail)
+        {
+            if (string.IsNullOrEmpty(userEmail))
+            {
+                return BadRequest("User email cannot be null or empty.");
+            }
+
+            try
+            {
+                List<UserDetail> user = _userDetailService.SearchUserByEmail(userEmail);
+                if (user == null)
+                {
+                    return NotFound($"User with email {userEmail} not found.");
+                }
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception here
+                return StatusCode(500, $"Internal server error: {ex}");
+            }
+        }
+    }
 }

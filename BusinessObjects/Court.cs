@@ -11,22 +11,25 @@ namespace BusinessObjects
 	public class Court
 	{
 		[Key]
-		[StringLength(5)]
+		[StringLength(10)]
 		public string CourtId { get; set; }
 
 		[ForeignKey("Branch")]
-		[StringLength(5)]
+		[StringLength(10)]
 		public string BranchId { get; set; }
 
 		[StringLength(100)]
 		public string CourtName { get; set; }
+        
+        [StringLength(450)]
+		public string CourtPicture { get; set; }
 
 		[Required]
-		public bool Status { get; set; }
+        [StringLength(100)]
+        public string Status { get; set; }
 
 		// Navigation properties
-		public Branch Branch { get; set; }
-		public ICollection<TimeSlot> TimeSlots { get; set; }
-		public ICollection<Review> Reviews { get; set; }
+		public virtual Branch Branch { get; set; }
+		public virtual ICollection<TimeSlot> TimeSlots { get; set; }
 	}
 }

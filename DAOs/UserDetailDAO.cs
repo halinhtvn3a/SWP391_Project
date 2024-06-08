@@ -6,85 +6,91 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using WebApplication2.Data;
-using Microsoft.AspNetCore.Identity;
+using BusinessObjects.Models;
 
 namespace DAOs
 {
     public class UserDetailDAO
 	{
-        private readonly CourtCallerDbContext dbContext = null;
+        private readonly CourtCallerDbContext _dbContext = null;
 
         public UserDetailDAO()
         {
-            if (dbContext == null)
+            if (_dbContext == null)
             {
-                dbContext = new CourtCallerDbContext();
+                _dbContext = new CourtCallerDbContext();
             }
         }
 
         public List<UserDetail> GetUserDetails()
         {
-            //    return dbContext.UserDetails.ToList();
-            //}
-            //public List<UserDetail> GetUserDetails()
-            //{
-            var UserDetails = dbContext.UserDetails
-          .Include(u => u.User)
-          .ToList();
-
-            return UserDetails.Select(u => new UserDetail
-            {
-                UserDetailId = u.UserDetailId,
-                Balance = u.Balance,
-                FullName = u.FullName,
-                Status = u.Status,
-                User = dbContext.Users.FirstOrDefault(m => m.Id.Equals(u.User.Id))
-            }).ToList();
+            return _dbContext.UserDetails.ToList();
         }
+        //public List<UserDetail> GetUserDetails()
+        //{
+        //    var UserDetails = _dbContext.UserDetails
+        //  .Include(u => u.User)
+        //  .ToList();
 
+        //    return UserDetails.Select(u => new UserDetail
+        //    {
+        //        UserDetailId = u.UserDetailId,
+        //        Balance = u.Balance,
+        //        FullName = u.FullName,
+        //        Status = u.Status,
+        //        //only BookingId
+        //        Users = u.Users.Select(b => new Booking
+        //        {
+        //            BookingId = b.BookingId
+        //        }).ToList(),
+        //        //only ReviewId
+        //        Reviews = u.Reviews.Select(r => new Review
+        //        {
+        //            ReviewId = r.ReviewId
+        //        }).ToList()
+        //    }).ToList();
+        //}
 
         public UserDetail GetUserDetail(string id)
         {
-            return dbContext.UserDetails.FirstOrDefault(m => m.UserDetailId.Equals(id));
+            return _dbContext.UserDetails.FirstOrDefault(m => m.UserId.Equals(id));
         }
 
         public UserDetail AddUserDetail(UserDetail UserDetail)
         {
-            dbContext.UserDetails.Add(UserDetail);
-            dbContext.SaveChanges();
+            _dbContext.UserDetails.Add(UserDetail);
+            _dbContext.SaveChanges();
             return UserDetail;
         }
 
-        public UserDetail UpdateUserDetail(string id, UserDetail UserDetail)
+        public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel)
         {
             UserDetail oUserDetail = GetUserDetail(id);
             if (oUserDetail != null)
             {
-                oUserDetail.Balance = UserDetail.Balance;
-                oUserDetail.FullName = UserDetail.FullName;
-                oUserDetail.Status = UserDetail.Status;
-                dbContext.Update(oUserDetail);
-                dbContext.SaveChanges();
+                oUserDetail.Balance = userDetailsModel.Balance;
+                oUserDetail.FullName = userDetailsModel.FullName;
+                oUserDetail.Address = userDetailsModel.Address;
+                oUserDetail.ProfilePicture = userDetailsModel.ProfilePicture;
+                oUserDetail.YearOfBirth = userDetailsModel.YearOfBirth;
+
+                _dbContext.Update(oUserDetail);
+                _dbContext.SaveChanges();
             }
             return oUserDetail;
         }
 
-        public void DeleteUserDetail(string id)
-        {
-            UserDetail oUserDetail = GetUserDetail(id);
-            if (oUserDetail != null)
-            {
-                oUserDetail.Status = false;
-                dbContext.Update(oUserDetail);
-                dbContext.SaveChanges();
-            }
-        }
+        //public void DeleteUserDetail(string id)
+        //{
+        //    UserDetail oUserDetail = GetUserDetail(id);
+        //    if (oUserDetail != null)
+        //    {
+        //        oUserDetail.Status = false;
+        //        _dbContext.Update(oUserDetail);
+        //        _dbContext.SaveChanges();
+        //    }
+        //}
 
-        //public List<IdentityUser> GetSortList(string field) => GetUsers().OrderBy(u => GetPropertyValue(u, field)).ToList();
-
-        //private object GetPropertyValue(object obj, string propertyName) => obj.GetType().GetProperty(propertyName)?.GetValue(obj, null);
-
-        //public List<IdentityUser> SearchUser(string search) => GetUsers().Where(u => u.Email.Contains(search) || u.Id.Contains(search)).ToList();
+        public List<UserDetail> SearchUserByEmail(string searchValue) => _dbContext.UserDetails.Where(m => m.User.Email.Contains(searchValue)).ToList();
     }
 }

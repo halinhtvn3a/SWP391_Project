@@ -1,5 +1,7 @@
 ﻿using BusinessObjects;
+using BusinessObjects.Models;
 using DAOs;
+using DAOs.Helper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,26 +12,25 @@ namespace Repositories
 {
     public class CourtRepository
     {
-        private readonly CourtDAO CourtDAO = null;
+        private readonly CourtDAO _courtDao = null;
         public CourtRepository()
         {
-            if (CourtDAO == null)
+            if (_courtDao == null)
             {
-                CourtDAO = new CourtDAO();
+                _courtDao = new CourtDAO();
             }
         }
-        public Court AddCourt(Court Court) => CourtDAO.AddCourt(Court);
+        public Court AddCourt(CourtModel courtModel) => _courtDao.AddCourt(courtModel);
 
-        public void DeleteCourt(string id) => CourtDAO.DeleteCourt(id);
+        public void DeleteCourt(string id) => _courtDao.DeleteCourt(id);
 
-        public Court GetCourt(string id) => CourtDAO.GetCourt(id);
+        public Court GetCourt(string id) => _courtDao.GetCourt(id);
 
-        public List<Court> GetCourts() => CourtDAO.GetCourts();
+        public async Task<List<Court>> GetCourts(PageResult pageResult) => await _courtDao.GetCourts(pageResult);
 
-        public Court UpdateCourt(string id, Court Court) => CourtDAO.UpdateCourt(id, Court);
+        public Court UpdateCourt(string id, CourtModel courtModel) => _courtDao.UpdateCourt(id, courtModel);
 
-        public List<Court> GetActiveCourts() => CourtDAO.GetActiveCourts();
+        public List<Court> GetActiveCourts() => _courtDao.GetActiveCourts();
 
-        public List<Court> SortByName() => CourtDAO.SortByName();
     }
 }

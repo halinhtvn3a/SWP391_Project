@@ -11,28 +11,30 @@ namespace BusinessObjects
 	public class Payment
 	{
 		[Key]
-		[StringLength(5)]
+		[StringLength(10)]
 		public string PaymentId { get; set; }
 
 		[ForeignKey("Booking")]
-		[StringLength(5)]
+		[StringLength(10)]
 		public string BookingId { get; set; }
 
-		
+        [Required]
+        public decimal PaymentAmount { get; set; }
 
-		[Required]
+        [Required]
 		public DateTime PaymentDate { get; set; }
 
-		[StringLength(200)]
+		[StringLength(500)]
 		public string PaymentMessage { get; set; }
 
 		[StringLength(50)]
-		public string PaymentStatus { get; set; }
+        [Required]
+        public string PaymentStatus { get; set; }
 
 		[StringLength(50)]
 		public string PaymentSignature { get; set; }
 
 		// Navigation property
-		public Booking Booking { get; set; }
+		public virtual Booking Booking { get; set; }
 	}
 }

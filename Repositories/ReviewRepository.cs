@@ -5,27 +5,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
+using BusinessObjects.Models;
 
 namespace Repositories
 {
     public class ReviewRepository
     {
-        private readonly ReviewDAO ReviewDAO = null;
+        private readonly ReviewDAO _reviewDao = null;
         public ReviewRepository()
         {
-            if (ReviewDAO == null)
+            if (_reviewDao == null)
             {
-                ReviewDAO = new ReviewDAO();
+                _reviewDao = new ReviewDAO();
             }
         }
-        public Review AddReview(Review Review) => ReviewDAO.AddReview(Review);
+        public Review AddReview(ReviewModel reviewModel) => _reviewDao.AddReview(reviewModel);
 
-        public void DeleteReview(string id) => ReviewDAO.DeleteReview(id);
+        public void DeleteReview(string id) => _reviewDao.DeleteReview(id);
 
-        public Review GetReview(string id) => ReviewDAO.GetReview(id);
+        public Review GetReview(string id) => _reviewDao.GetReview(id);
 
-        public List<Review> GetReviews() => ReviewDAO.GetReviews();
+        public async Task<List<Review>> GetReview(PageResult pageResult) => await _reviewDao.GetReview(pageResult);
 
-        public Review UpdateReview(string id, Review Review) => ReviewDAO.UpdateReview(id, Review);
+        public Review UpdateReview(string id, ReviewModel reviewModel) => _reviewDao.UpdateReview(id, reviewModel);
+
+        public List<Review> GetReviewsByBranch(string id) => _reviewDao.GetReviewsByBranch(id);
+        public List<Review> SearchByUser(string id) => _reviewDao.SearchByUser(id);
+
+        public List<Review> SearchByDate(DateTime start, DateTime end) => _reviewDao.SearchByDate(start, end);
+
+        public List<Review> SearchByRating(int rating) => _reviewDao.SearchByRating(rating);
+
     }
 }

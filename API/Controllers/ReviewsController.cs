@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
+using Microsoft.AspNetCore.Identity;
+using DAOs.Helper;
+using BusinessObjects.Models;
 
 namespace API.Controllers
 {
@@ -23,9 +26,17 @@ namespace API.Controllers
 
         // GET: api/Reviews
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Review>>> GetReviews()
+        public async Task<IActionResult> GetReviews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            return reviewService.GetReviews();
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            List<Review> review = await reviewService.GetReview(pageResult);
+
+            return Ok(review);
         }
 
         // GET: api/Reviews/5
@@ -45,24 +56,25 @@ namespace API.Controllers
         // PUT: api/Reviews/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutReview(string id, Review review)
+        public async Task<IActionResult> PutReview(string id, ReviewModel reviewModel)
         {
+            var review = reviewService.GetReview(id);
             if (id != review.ReviewId)
             {
                 return BadRequest();
             }
 
-            reviewService.UpdateReview(id, review);
+            reviewService.UpdateReview(id, reviewModel);
 
-            return NoContent();
+            return CreatedAtAction("GetReview", new { id = review.ReviewId }, review);
         }
 
         // POST: api/Reviews
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Review>> PostReview(Review review)
+        public async Task<ActionResult<Review>> PostReview(ReviewModel reviewModel)
         {
-            reviewService.AddReview(review);
+            var review = reviewService.AddReview(reviewModel);
 
             return CreatedAtAction("GetReview", new { id = review.ReviewId }, review);
         }
@@ -78,15 +90,16 @@ namespace API.Controllers
             return NoContent();
         }
 
-        private bool ReviewExists(string id)
-        {
-            return reviewService.GetReviews().Any(e => e.ReviewId == id);
-        }
+        //private bool ReviewExists(string id)
+        //{
+        //    return reviewService.GetReviews().Any(e => e.ReviewId == id);
+        //}
+
 
         [HttpGet("GetReviewsByCourt/{id}")]
-        public async Task<ActionResult<IEnumerable<Review>>> GetReviewsByCourt(string id)
+        public async Task<ActionResult<IEnumerable<Review>>> GetReviewsByBranch(string id)
         {
-            return reviewService.GetReviewsByCourt(id);
+            return reviewService.GetReviewsByBranch(id);
         }
 
         [HttpGet("SearchByUser/{id}")]
