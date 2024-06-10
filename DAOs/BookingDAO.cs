@@ -14,30 +14,31 @@ namespace DAOs
     public class BookingDAO
     {
         
-        private readonly CourtCallerDbContext DbContext = null;
+        private readonly CourtCallerDbContext _courtCallerDbContext = null;
 
         public BookingDAO()
         {
-            if (DbContext == null)
+            if (_courtCallerDbContext == null)
             {
-                DbContext = new CourtCallerDbContext();
+                _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
 
 
         public async Task<List<Booking>> GetBookings(PageResult pageResult)
         {
-            var query = DbContext.Bookings.Include(b => b.User).Select(b => new Booking
+            var query = _courtCallerDbContext.Bookings.Include(b => b.User).Select(b => new Booking
             {
                 BookingId = b.BookingId,
                 Id = b.User.Id,
                 BookingDate = b.BookingDate,
                 Status = b.Status,
-                TotalPrice = b.TotalPrice
-
+                TotalPrice = b.TotalPrice,
+                BookingType = b.BookingType,
+                NumberOfSlot = b.NumberOfSlot
             });
 
-            Pagination pagination = new Pagination(DbContext);
+            Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Booking> bookings = await pagination.GetListAsync<Booking>(query, pageResult);
             return bookings;
         }
@@ -45,12 +46,12 @@ namespace DAOs
 
         public Booking GetBooking(string id)
         {
-            return DbContext.Bookings.FirstOrDefault(m => m.BookingId.Equals(id));
+            return _courtCallerDbContext.Bookings.FirstOrDefault(m => m.BookingId.Equals(id));
         }
 
         public async Task<TimeSlot> AddBookingTransaction(string slotId)
         {
-            var test = await DbContext.TimeSlots
+            var test = await _courtCallerDbContext.TimeSlots
                  .FromSqlRaw($"SELECT * FROM TimeSlots WITH (UPDLOCK) WHERE SlotId = '{slotId}' AND IsAvailable = 1")
                  .FirstOrDefaultAsync();
 
@@ -60,18 +61,18 @@ namespace DAOs
 
         public void AddBooking(Booking booking)
         {
-            DbContext.Bookings.Add(booking);
+            _courtCallerDbContext.Bookings.Add(booking);
         }
         public async Task SaveChangesAsync()
         {
-            await DbContext.SaveChangesAsync();
+            await _courtCallerDbContext.SaveChangesAsync();
         }
 
         public async Task CommitTransactionAsync()
         {
             try
             {
-                await DbContext.Database.CommitTransactionAsync();
+                await _courtCallerDbContext.Database.CommitTransactionAsync();
             }
             catch (Exception ex)
             {
@@ -85,7 +86,7 @@ namespace DAOs
         {
             try
             {
-                await DbContext.Database.RollbackTransactionAsync();
+                await _courtCallerDbContext.Database.RollbackTransactionAsync();
             }
             catch (Exception ex)
             {
@@ -102,8 +103,8 @@ namespace DAOs
             if (oBooking != null)
             {
                 oBooking.TotalPrice = price;
-                DbContext.Update(oBooking);
-                DbContext.SaveChanges();
+                _courtCallerDbContext.Update(oBooking);
+                _courtCallerDbContext.SaveChanges();
             }
             return oBooking;
         }
@@ -114,24 +115,24 @@ namespace DAOs
             if (oBooking != null)
             {
                 oBooking.Status = "Cancel";
-                DbContext.Update(oBooking);
-                DbContext.SaveChanges();
+                _courtCallerDbContext.Update(oBooking);
+                _courtCallerDbContext.SaveChanges();
             }
         }
 
         public List<Booking> GetBookingsByStatus(string status)
         {
-            return DbContext.Bookings.Where(m => m.Status.Equals(status)).ToList();
+            return _courtCallerDbContext.Bookings.Where(m => m.Status.Equals(status)).ToList();
         }
 
         public List<Booking> SearchBookings(DateTime start, DateTime end)
         {
-            return DbContext.Bookings.Where(m => m.BookingDate >= start && m.BookingDate <= end).ToList();
+            return _courtCallerDbContext.Bookings.Where(m => m.BookingDate >= start && m.BookingDate <= end).ToList();
         }
 
         public List<Booking> SearchBookingsByUser(string userId)
         {
-            return DbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
+            return _courtCallerDbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
         }
 
 
@@ -139,7 +140,7 @@ namespace DAOs
         {
             try
             {
-                await DbContext.Database.BeginTransactionAsync();
+                await _courtCallerDbContext.Database.BeginTransactionAsync();
             }
             catch (Exception ex)
             {
@@ -148,21 +149,10 @@ namespace DAOs
             }
         }
 
-        public ICollection<TimeSlot> CheckBookingTypeFlex()
+        public List<Booking> CheckBookingTypeFlex()
         {
-            var bookings = DbContext.Bookings
+            return _courtCallerDbContext.Bookings
                 .FromSqlRaw($"SELECT * FROM Bookings WITH (UPDLOCK) WHERE BookingType='Flex'").ToList();
-            foreach (var booking in bookings)
-            {
-                for (int i = 0; i < booking.TimeSlots.Count; i++)
-                {
-                    if (((TimeSlot[])booking.TimeSlots)[i] == null)
-                    {
-                        return booking.TimeSlots;
-                    }
-                }
-            }
-            return null;
         }
 
 

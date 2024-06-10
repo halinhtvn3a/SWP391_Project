@@ -11,16 +11,15 @@ namespace BusinessObjects.Models
     public class SlotModel
     {
         [StringLength(10)]
-        [Required]
-        public string CourtId { get; set; }
+        public string CourtId { get; set; } 
+        
+        [StringLength(10)]
+        public string BranchId { get; set; }
 
-        [Required]
+
         public DateOnly SlotDate { get; set; }
 
         [Required]
-        public TimeOnly SlotStartTime { get; set; }
-
-        [Required]
-        public TimeOnly SlotEndTime { get; set; }
+        public TimeSlotModel TimeSlot { get; set; }
     }
 }

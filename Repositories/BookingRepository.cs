@@ -16,12 +16,14 @@ namespace Repositories
     {
         private readonly BookingDAO _bookingDao = null;
         private readonly TimeSlotDAO _timeSlotDao = null;
+
         public BookingRepository()
         {
             if (_bookingDao == null)
             {
                 _bookingDao = new BookingDAO();
             }
+
             if (_timeSlotDao == null)
             {
                 _timeSlotDao = new TimeSlotDAO();
@@ -42,7 +44,8 @@ namespace Repositories
         public Booking GetBooking(string id) => _bookingDao.GetBooking(id);
 
 
-        public async Task<List<Booking>> GetBookings(PageResult pageResult) => await _bookingDao.GetBookings(pageResult);
+        public async Task<List<Booking>> GetBookings(PageResult pageResult) =>
+            await _bookingDao.GetBookings(pageResult);
 
         public List<Booking> GetBookingsByStatus(string status) => _bookingDao.GetBookingsByStatus(status);
 
@@ -71,7 +74,7 @@ namespace Repositories
                         return false;
                     }
 
-                    
+
                 }
 
                 decimal paymentAmount = 0;
@@ -86,8 +89,8 @@ namespace Repositories
 
                 var generateBookingId = GenerateId.GenerateShortBookingId();
 
-               
-                
+
+
 
                 // Tạo booking mới
                 var booking = new Booking
@@ -164,36 +167,52 @@ namespace Repositories
             {
                 foreach (var s in slotModels)
                 {
-                    if (!_timeSlotDao.IsSlotAvailable(s))
+                    if (_timeSlotDao.IsSlotAvailableInABranch(s))
                     {
                         return false;
                     }
                 }
 
-                decimal paymentAmount = 0;
 
-                var generateBookingId = GenerateId.GenerateShortBookingId();
-
-                var booking = new Booking
+                if (CheckAvaiableSlotsFromBookingTypeFlex() != null)
                 {
-                    BookingId = generateBookingId,
-                    Id = userId,
-                    BookingDate = DateTime.Now,
-                    Status = "True",
-                };
-                _bookingDao.AddBooking(booking);
-                await _bookingDao.SaveChangesAsync();
-
-
-                foreach (var s in slotModels)
+                    Booking booking = CheckAvaiableSlotsFromBookingTypeFlex();
+                    foreach (var s in slotModels)
+                    {
+                        TimeSlot timeSlot = _timeSlotDao.AddSlotToBooking(s, booking.BookingId);
+                    }
+                }
+                else
                 {
-                    TimeSlot timeSlot = _timeSlotDao.AddSlotToBooking(s, generateBookingId);
-                    paymentAmount += timeSlot.Price;
+                    decimal paymentAmount = 0;
+
+                    var generateBookingId = GenerateId.GenerateShortBookingId();
+
+                    var booking = new Booking
+                    {
+                        BookingId = generateBookingId,
+                        Id = userId,
+                        BookingDate = DateTime.Now,
+                        Status = "True",
+                        TotalPrice = 0,
+                        BookingType = "Normal",
+                        NumberOfSlot = slotModels.Length
+                    };
+                    _bookingDao.AddBooking(booking);
+                    await _bookingDao.SaveChangesAsync();
+                    foreach (var s in slotModels)
+                    {
+                        TimeSlot timeSlot = _timeSlotDao.AddSlotToBooking(s, generateBookingId);
+                        paymentAmount += timeSlot.Price;
+                    }
+
+                    _bookingDao.UpdateBooking(generateBookingId, paymentAmount);
                 }
 
-                _bookingDao.UpdateBooking(generateBookingId, paymentAmount);
 
-                
+
+
+
                 //await _bookingDao.CommitTransactionAsync();
 
                 return true;
@@ -212,7 +231,8 @@ namespace Repositories
             }
         }
 
-        public async Task DeleteBookingAndSetTimeSlotAsync(string bookingId) => await _timeSlotDao.DeleteBookingAndSetTimeSlotAsync(bookingId);
+        public async Task DeleteBookingAndSetTimeSlotAsync(string bookingId) =>
+            await _timeSlotDao.DeleteBookingAndSetTimeSlotAsync(bookingId);
 
         public async Task<bool> FlexibleBooking(string userId, int numberOfSlot)
         {
@@ -227,6 +247,89 @@ namespace Repositories
                 BookingType = "Flex",
                 TimeSlots = new TimeSlot[numberOfSlot],
             };
+            return true;
+        }
 
+        public Booking CheckAvaiableSlotsFromBookingTypeFlex()
+        {
+            var bookings = _bookingDao.CheckBookingTypeFlex();
+            foreach (var booking in bookings)
+            {
+                if (booking.NumberOfSlot < _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId))
+                {
+                    return booking;
+                }
+            }
+            return null;
+        }
+
+        public Booking AddBookingTypeFlex(string userId, int numberOfSlot)
+        {
+            Booking booking = new Booking
+            {
+                BookingId = GenerateId.GenerateShortBookingId(),
+                Id = userId,
+                BookingDate = DateTime.Now,
+                Status = "True",
+                TotalPrice = 50 * numberOfSlot,
+                BookingType = "Flex",
+                NumberOfSlot = numberOfSlot,
+            };
+            _bookingDao.AddBooking(booking);
+
+            return booking;
+        }
+
+        public async Task<bool> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, SlotModel slotModel, string userId)
+        {
+            DateOnly endDate = startDate.AddMonths(numberOfMonths);
+
+            for (var date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                foreach (var day in dayOfWeek)
+                {
+                    if (date.DayOfWeek.ToString().Equals(day))
+                    {
+                        if (_timeSlotDao.IsSlotAvailableInABranch(slotModel))
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            string bookingId = GenerateId.GenerateShortBookingId();
+            int numberOfslots = 0;
+
+            Booking booking = new Booking
+            {
+                BookingId = bookingId,
+                Id = userId,
+                BookingDate = DateTime.Now,
+                Status = "True",
+                TotalPrice = 500 * numberOfMonths,
+                BookingType = "Fix"
+                
+            };
+            _bookingDao.AddBooking(booking);
+            for (var date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                foreach (var day in dayOfWeek)
+                {
+                    if (date.DayOfWeek.ToString().Equals(day))
+                    {
+                        TimeSlot timeSlot = new TimeSlot()
+                        {
+                            SlotDate = date,
+                            SlotStartTime = slotModel.TimeSlot.SlotStartTime,
+                            SlotEndTime = slotModel.TimeSlot.SlotEndTime,
+                            BookingId = bookingId,
+                        };
+                    }
+                }
+            }
+
+            return true;
         }
     }
+}

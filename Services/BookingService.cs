@@ -23,7 +23,7 @@ namespace Services
                 BookingRepository = new BookingRepository();
             }
         }
-        //public Booking AddBooking(Booking Booking) => BookingRepository.AddBooking(Booking);
+        public Booking AddBookingTypeFlex(string userId, int numberOfSlot) => BookingRepository.AddBookingTypeFlex(userId, numberOfSlot);
         public void DeleteBooking(string id) => BookingRepository.DeleteBooking(id);
         public Booking GetBooking(string id) => BookingRepository.GetBooking(id);
         //public List<Booking> GetBookings() => BookingRepository.GetBookings();
@@ -58,6 +58,26 @@ namespace Services
             try
             {
                 var success = await BookingRepository.ReserveSlotAsyncV2(slotModels, userId);
+
+                if (!success)
+                {
+                    return new ConflictObjectResult("Slot is already reserved.");
+                }
+
+                return new OkObjectResult("Slot reserved successfully.");
+            }
+            catch (Exception ex)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
+        
+        public async Task<IActionResult> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, SlotModel slotModel, string userId)
+        {
+            try
+            {
+                var success =
+                    await BookingRepository.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, slotModel, userId);
 
                 if (!success)
                 {

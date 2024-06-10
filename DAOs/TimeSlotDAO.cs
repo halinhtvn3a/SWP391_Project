@@ -86,18 +86,18 @@ namespace DAOs
             }
         }
 
-        public string GetDayOfWeek(string date)
-        {
-            if (DateTime.TryParse(date, out DateTime parsedDate))
-            {
-                var dayOfWeek = parsedDate.DayOfWeek;
-                return dayOfWeek.ToString();
-            }
-            else
-            {
-                return null;
-            }
-        }
+        //public string GetDayOfWeek(string date)
+        //{
+        //    if (DateTime.TryParse(date, out DateTime parsedDate))
+        //    {
+        //        var dayOfWeek = parsedDate.DayOfWeek;
+        //        return dayOfWeek.ToString();
+        //    }
+        //    else
+        //    {
+        //        return null;
+        //    }
+        //}
 
 
         //V2
@@ -117,7 +117,7 @@ namespace DAOs
 
             foreach (var slot in timeSlots)
             {
-                if (slot.SlotStartTime.Equals(slotModel.SlotStartTime) && slot.SlotEndTime.Equals(slotModel.SlotEndTime))
+                if (slot.SlotStartTime.Equals(slotModel.TimeSlot.SlotStartTime) && slot.SlotEndTime.Equals(slotModel.TimeSlot.SlotEndTime))
                 {
                     return false;
                 }
@@ -137,12 +137,12 @@ namespace DAOs
             TimeSlot timeSlot = new TimeSlot
             {
                 SlotId = "S" + GenerateId.GenerateShortBookingId(),
-                CourtId = slotModel.CourtId,
+                CourtId = slotModel.CourtId != null ? "slotModel.CourtId" : "",
                 BookingId = bookingId,
                 SlotDate = slotModel.SlotDate,
                 Price = (slotModel.SlotDate.DayOfWeek == DayOfWeek.Sunday || slotModel.SlotDate.DayOfWeek == DayOfWeek.Saturday) ? 100 : 50,
-                SlotStartTime = slotModel.SlotStartTime,
-                SlotEndTime = slotModel.SlotEndTime,
+                SlotStartTime = slotModel.TimeSlot.SlotStartTime,
+                SlotEndTime = slotModel.TimeSlot.SlotEndTime,
                 Status = "false"
             };
 
@@ -196,6 +196,37 @@ namespace DAOs
                 }
             }
 
+        }
+
+        public int NumberOfSlotsInBooking(string bookingId)
+        {
+            return _dbContext.TimeSlots.Count(ts => ts.BookingId == bookingId);
+        }
+        
+        public TimeSlot CheckSlotByDateAndTime(SlotModel slotModel, string branchId)
+        {
+            return _dbContext.TimeSlots.FirstOrDefault(ts => 
+                //ts.CourtId == slotModel.CourtId && 
+                ts.SlotDate == slotModel.SlotDate && 
+                ts.SlotStartTime == slotModel.TimeSlot.SlotStartTime && 
+                ts.SlotEndTime == slotModel.TimeSlot.SlotEndTime);
+        }
+
+        public bool IsSlotAvailableInABranch(SlotModel slotModel)
+        {
+            var timeSlots = _dbContext.TimeSlots
+                .FromSqlRaw($"SELECT * FROM TimeSlots t JOIN Courts c ON t.CourtId = c.CourtId JOIN Branches b on c.BranchId = b.BranchId WHERE b.BranchId = '{slotModel.BranchId}' AND t.SlotDate = '{slotModel.SlotDate}' AND t.SlotStartTime = '{slotModel.TimeSlot.SlotStartTime}' AND t.SlotEndTime = '{slotModel.TimeSlot.SlotEndTime}'").ToList();
+            if (!timeSlots.Any())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public decimal GetSlotPrice(SlotModel slotModel)
+        {
+            return _dbContext.Prices
+                .FromSqlRaw($"SELECT * FROM Prices p JOIN Branches b ON p.BranchId = b.BranchId JOIN Courts c ON c.BranchId = b.BranchId JOIN TimeSlots t on t.CourtId = c.CourtId WHERE p.IsWeekend = 'True'").First().SlotPrice;
         }
     }
 }

@@ -144,5 +144,12 @@ namespace API.Controllers
 
             return Ok("Booking deleted successfully.");
         }
+
+        //post booking type flex
+        [HttpPost]
+        public async Task<ActionResult<Booking>> PostBookingTypeFlex(string userId, int numberOfSlot)
+        {
+            return bookingService.AddBookingTypeFlex(userId, numberOfSlot);
+        }
     }
 }

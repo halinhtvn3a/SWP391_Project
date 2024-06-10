@@ -57,7 +57,7 @@ namespace API.Controllers
 
             _userDetailService.UpdateUserDetail(id, userDetailsModel);
 
-            return CreatedAtAction("GetUserDetailByUserId", new { id = user.UserId }, user);
+            return CreatedAtAction("GetUserDetailByUserId", new { userId = user.UserId }, user);
         }
 
         // POST: api/UserDetails
