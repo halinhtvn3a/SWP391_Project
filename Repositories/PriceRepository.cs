@@ -19,7 +19,7 @@ namespace Repositories
                 _priceDao = new PriceDAO();
             }
         }
-        public Price AddPrice(Price Price) => _priceDao.AddPrice(Price);
+        public decimal ShowPrice(string branchId , DateOnly slotDate) => _priceDao.ShowPrice(branchId, slotDate);
 
         public void DeletePrice(string id) => _priceDao.DeletePrice(id);
 

@@ -26,11 +26,15 @@ namespace DAOs
             return _dbContext.Prices.FirstOrDefault(m => m.PriceId.Equals(id));
         }
 
-        public Price AddPrice(Price price)
+        public decimal ShowPrice( string branchId, DateOnly slotDate)
         {
-            _dbContext.Prices.Add(price);
-            _dbContext.SaveChanges();
-            return price;
+            bool isWeekend = slotDate.DayOfWeek == DayOfWeek.Saturday || slotDate.DayOfWeek == DayOfWeek.Sunday;
+
+
+            var pricing = _dbContext.Prices
+                .FirstOrDefault(p => p.BranchId == branchId && p.IsWeekend == isWeekend);
+
+            return pricing?.SlotPrice ?? 0;
         }
 
         public Price UpdatePrice(string id, Price price)

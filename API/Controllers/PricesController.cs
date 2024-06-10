@@ -57,12 +57,12 @@ namespace API.Controllers
         // POST: api/Prices
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Price>> PostPrice(Price price)
+        public IActionResult ShowPrice(string branchId, DateOnly slotDate)
         {
 
-            var Price = _priceService.AddPrice(price);
+            var price = _priceService.ShowPrice(branchId, slotDate);
 
-            return CreatedAtAction("GetPrice", new { id = Price.PriceId }, Price);
+            return Ok(price);
         }
 
         // DELETE: api/Prices/5

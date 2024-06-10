@@ -223,10 +223,10 @@ namespace DAOs
             return false;
         }
 
-        public decimal GetSlotPrice(SlotModel slotModel)
-        {
-            return _dbContext.Prices
-                .FromSqlRaw($"SELECT * FROM Prices p JOIN Branches b ON p.BranchId = b.BranchId JOIN Courts c ON c.BranchId = b.BranchId JOIN TimeSlots t on t.CourtId = c.CourtId WHERE p.IsWeekend = 'True'").First().SlotPrice;
-        }
+        //public decimal GetSlotPrice(SlotModel slotModel)
+        //{
+        //    return _dbContext.Prices
+        //        .FromSqlRaw($"SELECT * FROM Prices p JOIN Branches b ON p.BranchId = b.BranchId JOIN Courts c ON c.BranchId = b.BranchId JOIN TimeSlots t on t.CourtId = c.CourtId WHERE p.IsWeekend = 'True'").First().SlotPrice;
+        //}
     }
 }
