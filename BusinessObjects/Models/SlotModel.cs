@@ -11,11 +11,10 @@ namespace BusinessObjects.Models
     public class SlotModel
     {
         [StringLength(10)]
-        public string CourtId { get; set; } 
+        public string? CourtId { get; set; } 
         
         [StringLength(10)]
-        public string BranchId { get; set; }
-
+        public string? BranchId { get; set; }
 
         public DateOnly SlotDate { get; set; }
 

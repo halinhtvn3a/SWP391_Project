@@ -126,7 +126,7 @@ namespace API.Controllers
             return await bookingService.PessimistLockAsync(slotId, userId);
         }
         
-        [HttpPost("reserveV2")]
+        [HttpPost("reserve-slot")]
         public async Task<IActionResult> ReserveSlotV2(SlotModel[] slotModels, string userId)
         {
             return await bookingService.PessimistLockAsyncV2(slotModels, userId);
@@ -146,10 +146,12 @@ namespace API.Controllers
         }
 
         //post booking type flex
-        [HttpPost]
+        [HttpPost("flex")]
         public async Task<ActionResult<Booking>> PostBookingTypeFlex(string userId, int numberOfSlot)
         {
-            return bookingService.AddBookingTypeFlex(userId, numberOfSlot);
+
+            var booking = bookingService.AddBookingTypeFlex(userId, numberOfSlot);
+            return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
         }
     }
 }

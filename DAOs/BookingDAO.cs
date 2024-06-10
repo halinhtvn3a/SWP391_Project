@@ -62,6 +62,7 @@ namespace DAOs
         public void AddBooking(Booking booking)
         {
             _courtCallerDbContext.Bookings.Add(booking);
+            _courtCallerDbContext.SaveChanges();
         }
         public async Task SaveChangesAsync()
         {

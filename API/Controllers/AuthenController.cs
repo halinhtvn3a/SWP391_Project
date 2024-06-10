@@ -152,7 +152,10 @@ namespace API.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+            {
+                var errors = result.Errors.Select(e => e.Description);
+                return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = string.Join(" ", errors) });
+            }
 
             if (!await _roleManager.RoleExistsAsync("Admin"))
                 await _roleManager.CreateAsync(new IdentityRole("Admin"));
@@ -192,7 +195,10 @@ namespace API.Controllers
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+            {
+                var errors = result.Errors.Select(e => e.Description);
+                return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = string.Join(" ", errors) });
+            }
 
             if (!await _roleManager.RoleExistsAsync("Staff"))
                 await _roleManager.CreateAsync(new IdentityRole("Staff"));

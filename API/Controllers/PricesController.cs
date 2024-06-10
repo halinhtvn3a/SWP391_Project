@@ -37,7 +37,14 @@ namespace API.Controllers
 
             return Price;
         }
+        [HttpPost]
+        public async Task<ActionResult<Price>> PostPrice(Price price)
+        {
 
+            var Price = _priceService.AddPrice(price);
+
+            return CreatedAtAction("GetPrice", new { id = Price.PriceId }, Price);
+        }
         // PUT: api/Prices/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -56,7 +63,7 @@ namespace API.Controllers
 
         // POST: api/Prices
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
+        [HttpGet]
         public IActionResult ShowPrice(string branchId, DateOnly slotDate)
         {
 

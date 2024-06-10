@@ -20,7 +20,7 @@ namespace Repositories
             }
         }
         public decimal ShowPrice(string branchId , DateOnly slotDate) => _priceDao.ShowPrice(branchId, slotDate);
-
+        public Price AddPrice(Price Price) => _priceDao.AddPrice(Price);
         public void DeletePrice(string id) => _priceDao.DeletePrice(id);
 
         public Price GetPrice(string id) => _priceDao.GetPrice(id);
