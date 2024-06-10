@@ -35,10 +35,16 @@ namespace DAOs
 		public DbSet<TimeSlot> TimeSlots { get; set; }
 		public DbSet<Booking> Bookings { get; set; }
 		public DbSet<Payment> Payments { get; set; }
+        public DbSet<Price> Prices { get; set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Price>()
+                .HasIndex(p => new { p.BranchId, p.IsWeekend })
+                .IsUnique();
+            base.OnModelCreating(modelBuilder);
 
 			// Seed roles
 			modelBuilder.Entity<IdentityRole>().HasData(

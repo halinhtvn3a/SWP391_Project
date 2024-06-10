@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\7-6\\V1\\SWP391_Project\\API\\API.csproj": {}
+    "E:\\10-6\\SWP391_Project\\API\\API.csproj": {}
   },
   "projects": {
-    "E:\\7-6\\V1\\SWP391_Project\\API\\API.csproj": {
+    "E:\\10-6\\SWP391_Project\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\API\\API.csproj",
+        "projectUniqueName": "E:\\10-6\\SWP391_Project\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\API\\API.csproj",
+        "projectPath": "E:\\10-6\\SWP391_Project\\API\\API.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\API\\obj\\",
+        "outputPath": "E:\\10-6\\SWP391_Project\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -29,8 +29,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\7-6\\V1\\SWP391_Project\\Services\\Services.csproj": {
-                "projectPath": "E:\\7-6\\V1\\SWP391_Project\\Services\\Services.csproj"
+              "E:\\10-6\\SWP391_Project\\Services\\Services.csproj": {
+                "projectPath": "E:\\10-6\\SWP391_Project\\Services\\Services.csproj"
               }
             }
           }
@@ -96,14 +96,14 @@
         }
       }
     },
-    "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+    "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectPath": "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\obj\\",
+        "outputPath": "E:\\10-6\\SWP391_Project\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -203,14 +203,14 @@
         }
       }
     },
-    "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj": {
+    "E:\\10-6\\SWP391_Project\\DAOs\\DAOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectUniqueName": "E:\\10-6\\SWP391_Project\\DAOs\\DAOs.csproj",
         "projectName": "DAOs",
-        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectPath": "E:\\10-6\\SWP391_Project\\DAOs\\DAOs.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\obj\\",
+        "outputPath": "E:\\10-6\\SWP391_Project\\DAOs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -228,8 +228,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
+              "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
               }
             }
           }
@@ -268,14 +268,14 @@
         }
       }
     },
-    "E:\\7-6\\V1\\SWP391_Project\\Repositories\\Repositories.csproj": {
+    "E:\\10-6\\SWP391_Project\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "E:\\10-6\\SWP391_Project\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "projectPath": "E:\\10-6\\SWP391_Project\\Repositories\\Repositories.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\Repositories\\obj\\",
+        "outputPath": "E:\\10-6\\SWP391_Project\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -293,8 +293,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj": {
-                "projectPath": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj"
+              "E:\\10-6\\SWP391_Project\\DAOs\\DAOs.csproj": {
+                "projectPath": "E:\\10-6\\SWP391_Project\\DAOs\\DAOs.csproj"
               }
             }
           }
@@ -333,14 +333,14 @@
         }
       }
     },
-    "E:\\7-6\\V1\\SWP391_Project\\Services\\Services.csproj": {
+    "E:\\10-6\\SWP391_Project\\Services\\Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\Services\\Services.csproj",
+        "projectUniqueName": "E:\\10-6\\SWP391_Project\\Services\\Services.csproj",
         "projectName": "Services",
-        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\Services\\Services.csproj",
+        "projectPath": "E:\\10-6\\SWP391_Project\\Services\\Services.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\Services\\obj\\",
+        "outputPath": "E:\\10-6\\SWP391_Project\\Services\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -358,8 +358,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\7-6\\V1\\SWP391_Project\\Repositories\\Repositories.csproj": {
-                "projectPath": "E:\\7-6\\V1\\SWP391_Project\\Repositories\\Repositories.csproj"
+              "E:\\10-6\\SWP391_Project\\Repositories\\Repositories.csproj": {
+                "projectPath": "E:\\10-6\\SWP391_Project\\Repositories\\Repositories.csproj"
               }
             }
           }

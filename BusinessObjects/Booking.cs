@@ -22,7 +22,14 @@ namespace BusinessObjects
 		[Required]
 		public DateTime BookingDate { get; set; }
 
-		[Required]
+        [Required]
+        [StringLength(50)]
+        public string BookingType { get; set; }
+
+        [Required]
+        public int NumberOfSlot { get; set; }
+
+        [Required]
 		public string Status { get; set; }
 
 		[Required]

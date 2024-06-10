@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj": {}
+    "E:\\10-6\\SWP391_Project\\DAOs\\DAOs.csproj": {}
   },
   "projects": {
-    "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+    "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectPath": "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\obj\\",
+        "outputPath": "E:\\10-6\\SWP391_Project\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -111,14 +111,14 @@
         }
       }
     },
-    "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj": {
+    "E:\\10-6\\SWP391_Project\\DAOs\\DAOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectUniqueName": "E:\\10-6\\SWP391_Project\\DAOs\\DAOs.csproj",
         "projectName": "DAOs",
-        "projectPath": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectPath": "E:\\10-6\\SWP391_Project\\DAOs\\DAOs.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\7-6\\V1\\SWP391_Project\\DAOs\\obj\\",
+        "outputPath": "E:\\10-6\\SWP391_Project\\DAOs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -136,8 +136,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "E:\\7-6\\V1\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
+              "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "E:\\10-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
               }
             }
           }

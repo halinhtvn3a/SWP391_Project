@@ -148,7 +148,22 @@ namespace DAOs
             }
         }
 
-       
+        public ICollection<TimeSlot> CheckBookingTypeFlex()
+        {
+            var bookings = DbContext.Bookings
+                .FromSqlRaw($"SELECT * FROM Bookings WITH (UPDLOCK) WHERE BookingType='Flex'").ToList();
+            foreach (var booking in bookings)
+            {
+                for (int i = 0; i < booking.TimeSlots.Count; i++)
+                {
+                    if (((TimeSlot[])booking.TimeSlots)[i] == null)
+                    {
+                        return booking.TimeSlots;
+                    }
+                }
+            }
+            return null;
+        }
 
 
     }

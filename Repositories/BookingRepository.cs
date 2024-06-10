@@ -213,5 +213,20 @@ namespace Repositories
         }
 
         public async Task DeleteBookingAndSetTimeSlotAsync(string bookingId) => await _timeSlotDao.DeleteBookingAndSetTimeSlotAsync(bookingId);
+
+        public async Task<bool> FlexibleBooking(string userId, int numberOfSlot)
+        {
+            await _bookingDao.BeginTransactionAsync();
+            Booking booking = new Booking
+            {
+                BookingId = GenerateId.GenerateShortBookingId(),
+                Id = userId,
+                BookingDate = DateTime.Now,
+                Status = "True",
+                TotalPrice = 50 * numberOfSlot,
+                BookingType = "Flex",
+                TimeSlots = new TimeSlot[numberOfSlot],
+            };
+
+        }
     }
-}
