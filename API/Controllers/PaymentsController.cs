@@ -15,11 +15,13 @@ namespace API.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
-        private readonly PaymentService paymentService;
+        private readonly PaymentService paymentService = new PaymentService();
+        private readonly TokenForPayment _tokenForPayment;
 
-        public PaymentsController()
+        public PaymentsController( TokenForPayment tokenForPayment)
         {
-            paymentService = new PaymentService();
+          
+            _tokenForPayment = tokenForPayment;
         }
 
         // GET: api/Payments
@@ -110,8 +112,16 @@ namespace API.Controllers
             return paymentService.SearchByDate(start, end);
         }
 
+
+        [HttpGet("GeneratePaymentToken/{bookingId}")]
+        public IActionResult GeneratePaymentToken(string bookingId)
+        {
+            var token = _tokenForPayment.GenerateToken(bookingId);
+            return Ok(new { token });
+        }
+
         [HttpPost("ProcessPayment")]
-        public async Task<ActionResult> ProcessPayment( string bookingId)
+        public async Task<ActionResult> ProcessPayment( string token)
         {
             //if (bookingId == null)
             //{
@@ -121,7 +131,7 @@ namespace API.Controllers
             //        Message = "Booking information is required."
             //    });
             //}
-
+            var bookingId = _tokenForPayment.ValidateToken(token);
             var response = await paymentService.ProcessBookingPayment(bookingId);
             return Ok(response);
         }

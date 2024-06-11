@@ -82,6 +82,10 @@ namespace API
                 });
             });
 
+            builder.Services.Configure<TokenSettings>(configuration.GetSection("TokenSettings"));
+            builder.Services.AddScoped<PaymentService>();
+            builder.Services.AddScoped<TokenForPayment>();
+
             // VNPay Service
             builder.Services.AddScoped<VnpayService>();
 
