@@ -51,7 +51,7 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            return booking;
+            return await booking;
         }
 
         // PUT: api/Bookings/5

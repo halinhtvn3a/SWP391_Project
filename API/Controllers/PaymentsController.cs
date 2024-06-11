@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
+using BusinessObjects.Models;
 
 namespace API.Controllers
 {
@@ -109,6 +110,21 @@ namespace API.Controllers
             return paymentService.SearchByDate(start, end);
         }
 
+        [HttpPost("ProcessPayment")]
+        public async Task<ActionResult> ProcessPayment( string bookingId)
+        {
+            //if (bookingId == null)
+            //{
+            //    return BadRequest(new ResponseModel
+            //    {
+            //        Status = "Error",
+            //        Message = "Booking information is required."
+            //    });
+            //}
+
+            var response = await paymentService.ProcessBookingPayment(bookingId);
+            return Ok(response);
+        }
 
     }
 }

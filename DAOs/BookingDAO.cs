@@ -44,9 +44,10 @@ namespace DAOs
         }
 
 
-        public Booking GetBooking(string id)
+        public async Task<Booking>  GetBooking(string id)
         {
-            return _courtCallerDbContext.Bookings.FirstOrDefault(m => m.BookingId.Equals(id));
+            var booking = await _courtCallerDbContext.Bookings.FirstOrDefaultAsync(m => m.BookingId.Equals(id));
+            return booking;
         }
 
         public async Task<TimeSlot> AddBookingTransaction(string slotId)
@@ -98,9 +99,9 @@ namespace DAOs
 
 
 
-        public Booking UpdateBooking(string id, decimal price)
+        public async Task<Booking> UpdateBooking(string id, decimal price)
         {
-            Booking oBooking = GetBooking(id);
+            Booking oBooking = await GetBooking(id);
             if (oBooking != null)
             {
                 oBooking.TotalPrice = price;
@@ -110,9 +111,9 @@ namespace DAOs
             return oBooking;
         }
 
-        public void DeleteBooking(string id)
+        public async void DeleteBooking(string id)
         {
-            Booking oBooking = GetBooking(id);
+            Booking oBooking = await GetBooking(id);
             if (oBooking != null)
             {
                 oBooking.Status = "Cancel";

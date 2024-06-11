@@ -17,6 +17,8 @@ namespace Repositories
             {
                 _paymentDao = new PaymentDAO();
             }
+
+            
         }
         public Payment AddPayment(Payment Payment) => _paymentDao.AddPayment(Payment);
 
@@ -25,6 +27,8 @@ namespace Repositories
         public Payment GetPayment(string id) => _paymentDao.GetPayment(id);
 
         public List<Payment> GetPayments() => _paymentDao.GetPayments();
+
+       
 
         //public Payment UpdatePayment(string id, Payment Payment) => PaymentDAO.UpdatePayment(id, Payment);
 

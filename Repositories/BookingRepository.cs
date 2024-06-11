@@ -53,7 +53,7 @@ namespace Repositories
 
         public void DeleteBooking(string id) => _bookingDao.DeleteBooking(id);
 
-        public Booking GetBooking(string id) => _bookingDao.GetBooking(id);
+        public async Task<Booking> GetBooking(string id) => await _bookingDao.GetBooking(id);
 
 
         public async Task<List<Booking>> GetBookings(PageResult pageResult) =>
@@ -111,7 +111,7 @@ namespace Repositories
                     BookingId = generateBookingId,
                     Id = userId,
                     BookingDate = DateTime.Now,
-                    Status = "True",
+                    Status = "False",
                     TotalPrice = paymentAmount
                 };
 
@@ -206,7 +206,7 @@ namespace Repositories
                         BookingId = generateBookingId,
                         Id = userId,
                         BookingDate = DateTime.Now,
-                        Status = "True",
+                        Status = "False",
                         TotalPrice = 0,
                         BookingType = "Normal",
                         NumberOfSlot = slotModels.Length
@@ -283,7 +283,7 @@ namespace Repositories
                 BookingId = "B" + GenerateId.GenerateShortBookingId(),
                 Id = userId,
                 BookingDate = DateTime.Now,
-                Status = "True",
+                Status = "False",
                 TotalPrice = _priceDao.GetPriceByBranchAndWeekend(branchId, false).SlotPrice * numberOfSlot * 9 / 10,
                 BookingType = "Flex",
                 NumberOfSlot = numberOfSlot,

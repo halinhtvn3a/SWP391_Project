@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessObjects;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services;
 
@@ -23,7 +24,7 @@ namespace VNPAYAPI.Areas.VNPayAPI.Controllers
 
         [HttpGet]
         [Route("/VNPayAPI/{amount}&{infor}&{orderinfor}")]
-        public ActionResult Payment(string amount, string infor, string orderinfor)
+        public ActionResult Payment(decimal amount, string infor, string orderinfor)
         {
             try
             {

@@ -64,5 +64,7 @@ namespace DAOs
         public List<Payment> SearchByDate(DateTime start, DateTime end) => DbContext.Payments.Where(m => m.PaymentDate >= start && m.PaymentDate <= end).ToList();
 
 
+       
+
     }
 }

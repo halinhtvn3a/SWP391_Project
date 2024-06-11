@@ -3,6 +3,7 @@ using Repositories.Helper;
 using System;
 using System.Net;
 using System.Web;
+using BusinessObjects;
 
 
 
@@ -21,18 +22,18 @@ namespace Services
             _logger = logger;
         }
 
-        public string CreatePaymentUrl(string amount, string infor, string? orderinfor)
+        public string CreatePaymentUrl( decimal amount, string infor, string? orderinfor)
         {
             try
             {
                 string hostName = Dns.GetHostName();
                 string clientIPAddress = Dns.GetHostAddresses(hostName).GetValue(0).ToString();
                 PayLib pay = new PayLib();
-                long vnp_Amount = long.Parse(amount) * 100;
+                var vnp_Amount = amount * 100000;
                 pay.AddRequestData("vnp_Version", PayLib.VERSION);
                 pay.AddRequestData("vnp_Command", "pay");
                 pay.AddRequestData("vnp_TmnCode", tmnCode);
-                pay.AddRequestData("vnp_Amount", vnp_Amount.ToString());
+                pay.AddRequestData("vnp_Amount", vnp_Amount.ToString("0"));
                 pay.AddRequestData("vnp_BankCode", "");
                 pay.AddRequestData("vnp_CreateDate", DateTime.Now.ToString("yyyyMMddHHmmss"));
                 pay.AddRequestData("vnp_CurrCode", "VND");
