@@ -16,6 +16,8 @@ namespace Repositories
     {
         private readonly BookingDAO _bookingDao = null;
         private readonly TimeSlotDAO _timeSlotDao = null;
+        private readonly PriceDAO _priceDao = null;
+        private readonly TimeSlotRepository _timeSlotRepository = null;
 
         public BookingRepository()
         {
@@ -27,6 +29,16 @@ namespace Repositories
             if (_timeSlotDao == null)
             {
                 _timeSlotDao = new TimeSlotDAO();
+            }
+
+            if (_priceDao == null)
+            {
+                _priceDao = new PriceDAO();
+            }
+
+            if (_timeSlotRepository == null)
+            {
+                _timeSlotRepository = new TimeSlotRepository();
             }
         }
 
@@ -52,6 +64,7 @@ namespace Repositories
         public List<Booking> SearchBookings(DateTime start, DateTime end) => _bookingDao.SearchBookings(start, end);
 
         public List<Booking> SearchBookingsByUser(string userId) => _bookingDao.SearchBookingsByUser(userId);
+
 
 
         public async Task<TimeSlot> AddBookingTransaction(string slotId)
@@ -167,16 +180,16 @@ namespace Repositories
             {
                 foreach (var s in slotModels)
                 {
-                    if (_timeSlotDao.IsSlotAvailableInABranch(s))
+                    if (_timeSlotRepository.IsSlotBookedInBranch(s))
                     {
                         return false;
                     }
                 }
 
 
-                if (CheckAvaiableSlotsFromBookingTypeFlex() != null)
+                if (CheckAvaiableSlotsFromBookingTypeFlex(userId) != null)
                 {
-                    Booking booking = CheckAvaiableSlotsFromBookingTypeFlex();
+                    Booking booking = CheckAvaiableSlotsFromBookingTypeFlex(userId);
                     foreach (var s in slotModels)
                     {
                         TimeSlot timeSlot = _timeSlotDao.AddSlotToBooking(s, booking.BookingId);
@@ -250,12 +263,12 @@ namespace Repositories
         //    return true;
         //}
 
-        public Booking CheckAvaiableSlotsFromBookingTypeFlex()
+        public Booking CheckAvaiableSlotsFromBookingTypeFlex(string userId)
         {
-            var bookings = _bookingDao.CheckBookingTypeFlex();
+            var bookings = _bookingDao.GetBookingTypeFlex(userId);
             foreach (var booking in bookings)
             {
-                if (booking.NumberOfSlot < _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId))
+                if (booking.NumberOfSlot > _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId))
                 {
                     return booking;
                 }
@@ -263,15 +276,15 @@ namespace Repositories
             return null;
         }
 
-        public Booking AddBookingTypeFlex(string userId, int numberOfSlot)
+        public Booking AddBookingTypeFlex(string userId, int numberOfSlot, string branchId)
         {
             Booking booking = new Booking
             {
-                BookingId = GenerateId.GenerateShortBookingId(),
+                BookingId = "B" + GenerateId.GenerateShortBookingId(),
                 Id = userId,
                 BookingDate = DateTime.Now,
                 Status = "True",
-                TotalPrice = 50 * numberOfSlot,
+                TotalPrice = _priceDao.GetPriceByBranchAndWeekend(branchId, false).SlotPrice * numberOfSlot,
                 BookingType = "Flex",
                 NumberOfSlot = numberOfSlot,
             };
@@ -290,7 +303,7 @@ namespace Repositories
                 {
                     if (date.DayOfWeek.ToString().Equals(day))
                     {
-                        if (_timeSlotDao.IsSlotAvailableInABranch(slotModel))
+                        if (_timeSlotRepository.IsSlotBookedInBranch(slotModel))
                         {
                             return false;
                         }

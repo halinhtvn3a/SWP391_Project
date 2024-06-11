@@ -67,6 +67,10 @@ namespace DAOs
         //        _dbContext.SaveChanges();
         //    }
         //}
+        public List<TimeSlot> GetTimeSlotsByCourtId(string courtId)
+        {
+            return _dbContext.TimeSlots.Where(t => t.CourtId.Equals(courtId)).ToList();
+        }
 
         public void UpdateBookinginSlot(string slotId, string bookingId)
         {
@@ -137,10 +141,13 @@ namespace DAOs
             TimeSlot timeSlot = new TimeSlot
             {
                 SlotId = "S" + GenerateId.GenerateShortBookingId(),
-                CourtId = slotModel.CourtId != null ? "slotModel.CourtId" : "",
+                CourtId = slotModel.CourtId ?? _dbContext.Courts
+                    .Where(c => c.BranchId == slotModel.BranchId && !_dbContext.TimeSlots.Any(ts => ts.CourtId == c.CourtId && ts.SlotDate == slotModel.SlotDate && ((ts.SlotStartTime <= slotModel.TimeSlot.SlotStartTime && ts.SlotEndTime > slotModel.TimeSlot.SlotStartTime) || (ts.SlotStartTime < slotModel.TimeSlot.SlotEndTime && ts.SlotEndTime >= slotModel.TimeSlot.SlotEndTime))))
+                    .Select(c => c.CourtId)
+                    .FirstOrDefault(),
                 BookingId = bookingId,
                 SlotDate = slotModel.SlotDate,
-                Price = (slotModel.SlotDate.DayOfWeek == DayOfWeek.Sunday || slotModel.SlotDate.DayOfWeek == DayOfWeek.Saturday) ? 100 : 50,
+                Price = GetSlotPrice(slotModel),
                 SlotStartTime = slotModel.TimeSlot.SlotStartTime,
                 SlotEndTime = slotModel.TimeSlot.SlotEndTime,
                 Status = "false"
@@ -168,8 +175,8 @@ namespace DAOs
                 try
                 {
                     var timeSlots = await _dbContext.TimeSlots
-     .Where(ts => ts.BookingId == bookingId && ts.SlotDate != null) // Kiểm tra trường DateTimeColumn không null
-     .ToListAsync();
+        .Where(ts => ts.BookingId == bookingId && ts.SlotDate != null) // Kiểm tra trường DateTimeColumn không null
+        .ToListAsync();
                     foreach (var timeSlot in timeSlots)
                     {
                         timeSlot.BookingId = null;
@@ -202,31 +209,52 @@ namespace DAOs
         {
             return _dbContext.TimeSlots.Count(ts => ts.BookingId == bookingId);
         }
-        
+
         public TimeSlot CheckSlotByDateAndTime(SlotModel slotModel, string branchId)
         {
-            return _dbContext.TimeSlots.FirstOrDefault(ts => 
+            return _dbContext.TimeSlots.FirstOrDefault(ts =>
                 //ts.CourtId == slotModel.CourtId && 
-                ts.SlotDate == slotModel.SlotDate && 
-                ts.SlotStartTime == slotModel.TimeSlot.SlotStartTime && 
+                ts.SlotDate == slotModel.SlotDate &&
+                ts.SlotStartTime == slotModel.TimeSlot.SlotStartTime &&
                 ts.SlotEndTime == slotModel.TimeSlot.SlotEndTime);
         }
 
-        public bool IsSlotAvailableInABranch(SlotModel slotModel)
-        {
-            var timeSlots = _dbContext.TimeSlots
-                .FromSqlRaw($"SELECT * FROM TimeSlots t JOIN Courts c ON t.CourtId = c.CourtId JOIN Branches b on c.BranchId = b.BranchId WHERE b.BranchId = '{slotModel.BranchId}' AND t.SlotDate = '{slotModel.SlotDate}' AND t.SlotStartTime = '{slotModel.TimeSlot.SlotStartTime}' AND t.SlotEndTime = '{slotModel.TimeSlot.SlotEndTime}'").ToList();
-            if (!timeSlots.Any())
-            {
-                return true;
-            }
-            return false;
-        }
+        
+
 
         //public decimal GetSlotPrice(SlotModel slotModel)
         //{
         //    return _dbContext.Prices
         //        .FromSqlRaw($"SELECT * FROM Prices p JOIN Branches b ON p.BranchId = b.BranchId JOIN Courts c ON c.BranchId = b.BranchId JOIN TimeSlots t on t.CourtId = c.CourtId WHERE p.IsWeekend = 'True'").First().SlotPrice;
         //}
+
+        public decimal GetSlotPrice(SlotModel slotModel)
+        {
+            bool isWeekend = slotModel.SlotDate.DayOfWeek == DayOfWeek.Saturday || slotModel.SlotDate.DayOfWeek == DayOfWeek.Sunday;
+
+            Price pricing = null;
+            if (slotModel.BranchId != null)
+            {
+                pricing = _dbContext.Prices
+                    .FirstOrDefault(p => p.BranchId == slotModel.BranchId && p.IsWeekend == isWeekend);
+            }
+            else
+            {
+                var court = _dbContext.Courts.FirstOrDefault(c => c.CourtId == slotModel.CourtId);
+                if (court != null)
+                {
+                    var branch = _dbContext.Branches.FirstOrDefault(b => b.BranchId == court.BranchId);
+                    if (branch != null)
+                    {
+                        pricing = _dbContext.Prices
+                            .FirstOrDefault(p => p.BranchId == branch.BranchId && p.IsWeekend == isWeekend);
+                    }
+                }
+            }
+
+            return pricing?.SlotPrice ?? 0;
+        }
+
+        
     }
 }

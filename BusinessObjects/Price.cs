@@ -22,9 +22,9 @@ namespace BusinessObjects
         public bool IsWeekend { get; set; }
         
         [Required]
-        public decimal? SlotPrice { get; set; }
+        public decimal SlotPrice { get; set; }
 
-        public virtual Branch Branch { get; set; }
+        public virtual Branch? Branch { get; set; }
 
     }
 }

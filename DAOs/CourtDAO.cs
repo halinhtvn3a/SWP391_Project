@@ -79,6 +79,7 @@ namespace DAOs
             }
         }
 
+        public List<Court> GetCourtsByBranchId(string branchId) => DbContext.Courts.Where(m => m.BranchId.Equals(branchId)).ToList();
         public List<Court> GetActiveCourts() => DbContext.Courts.Where(m => m.Status.Equals("Active")).ToList();
     }
 }

@@ -150,10 +150,9 @@ namespace DAOs
             }
         }
 
-        public List<Booking> CheckBookingTypeFlex()
+        public List<Booking> GetBookingTypeFlex(string userId)
         {
-            return _courtCallerDbContext.Bookings
-                .FromSqlRaw($"SELECT * FROM Bookings WITH (UPDLOCK) WHERE BookingType='Flex'").ToList();
+            return _courtCallerDbContext.Bookings.Where(m => m.BookingType.Equals("Flex") && m.Id.Equals(userId)).ToList();
         }
 
 

@@ -31,7 +31,7 @@ namespace DAOs
             _dbContext.SaveChanges();
             return price;
         }
-        public decimal ShowPrice( string branchId, DateOnly slotDate)
+        public decimal ShowPrice(string branchId, DateOnly slotDate)
         {
             bool isWeekend = slotDate.DayOfWeek == DayOfWeek.Saturday || slotDate.DayOfWeek == DayOfWeek.Sunday;
 
@@ -64,11 +64,15 @@ namespace DAOs
                 _dbContext.SaveChanges();
             }
         }
-        
+
         public List<Price> GetPriceByBranch(string branchId)
         {
             return _dbContext.Prices.Where(m => m.BranchId.Equals(branchId)).ToList();
         }
 
+        public Price GetPriceByBranchAndWeekend(string branchId, bool isWeekend)
+        {
+            return _dbContext.Prices.FirstOrDefault(m => m.BranchId.Equals(branchId) && m.IsWeekend == isWeekend);
+        }
     }
 }
