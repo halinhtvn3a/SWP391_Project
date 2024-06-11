@@ -23,7 +23,7 @@ namespace VNPAYAPI.Areas.VNPayAPI.Controllers
         }
 
         [HttpGet]
-        [Route("/VNPayAPI/{amount}&{infor}&{orderinfor}")]
+        [Route("/VNPayAPI/")]
         public ActionResult Payment(decimal amount, string infor, string orderinfor)
         {
             try
@@ -40,24 +40,26 @@ namespace VNPAYAPI.Areas.VNPayAPI.Controllers
 
         [HttpGet]
         [Route("/VNpayAPI/paymentconfirm")]
-        public IActionResult PaymentConfirm()
+        public async Task<IActionResult> PaymentConfirm()
         {
             try
             {
                 if (Request.QueryString.HasValue)
                 {
                     string queryString = Request.QueryString.Value;
-                    if (_vnpayService.ValidatePaymentResponse(queryString, out string redirectUrl))
+                    var validationResult = await _vnpayService.ValidatePaymentResponse(queryString);
+
+                    if (validationResult.IsSuccessful)
                     {
-                        return Redirect(redirectUrl);
+                        return Redirect(validationResult.RedirectUrl); 
                     }
                     else
                     {
-                        return Redirect(redirectUrl);
+                        return Redirect(validationResult.RedirectUrl);
                     }
                 }
                 _logger.LogWarning("Invalid query string in PaymentConfirm");
-                return Redirect("LINK_INVALID");
+                return Redirect("success");
             }
             catch (Exception ex)
             {
@@ -65,5 +67,6 @@ namespace VNPAYAPI.Areas.VNPayAPI.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
     }
 }

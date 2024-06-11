@@ -27,7 +27,7 @@ namespace Services
             if (bookingRepository == null)
                 bookingRepository = new BookingRepository();
             if (vnpayService == null)
-                vnpayService = new VnpayService(_logger);
+                vnpayService = new VnpayService(_logger, bookingRepository, PaymentRepository);
 
         }
         public Payment AddPayment(Payment Payment) => PaymentRepository.AddPayment(Payment);

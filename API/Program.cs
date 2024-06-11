@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Repositories;
 using Repositories.Helper;
 using Services;
 using Services.Interface;
@@ -85,6 +86,8 @@ namespace API
             builder.Services.Configure<TokenSettings>(configuration.GetSection("TokenSettings"));
             builder.Services.AddScoped<PaymentService>();
             builder.Services.AddScoped<TokenForPayment>();
+            builder.Services.AddScoped<BookingRepository>();
+            builder.Services.AddScoped<PaymentRepository>();
 
             // VNPay Service
             builder.Services.AddScoped<VnpayService>();

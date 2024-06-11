@@ -61,6 +61,7 @@ namespace Repositories
 
         public List<Booking> GetBookingsByStatus(string status) => _bookingDao.GetBookingsByStatus(status);
 
+        public async Task SaveChangesAsync() => await _bookingDao.SaveChangesAsync();
         public List<Booking> SearchBookings(DateTime start, DateTime end) => _bookingDao.SearchBookings(start, end);
 
         public List<Booking> SearchBookingsByUser(string userId) => _bookingDao.SearchBookingsByUser(userId);

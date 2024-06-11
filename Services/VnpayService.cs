@@ -4,6 +4,11 @@ using System;
 using System.Net;
 using System.Web;
 using BusinessObjects;
+using Repositories;
+using DAOs.Helper;
+using BusinessObjects.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Session;
 
 
 
@@ -14,12 +19,15 @@ namespace Services
         private readonly ILogger<VnpayService> _logger;
         public string url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"; // HTTPS
         public string returnUrl = $"https://localhost:7104/vnpayAPI/PaymentConfirm";
-        public string tmnCode = "B4VPCIZO";
-        public string hashSecret = "TKD4EZR2LKIZPJ809OL1I8WJYDDFGAXE";
-
-        public VnpayService(ILogger<VnpayService> logger)
+        public string tmnCode = "FKUXJX95";
+        public string hashSecret = "0D3EAMNJYSY9INENB5JYP8XW2U8MD8WE";
+        private readonly BookingRepository _bookingRepository;
+        private readonly PaymentRepository _paymentRepository;
+        public VnpayService(ILogger<VnpayService> logger,BookingRepository bookingRepository,PaymentRepository payment)
         {
             _logger = logger;
+            _bookingRepository = bookingRepository;
+            _paymentRepository = payment;
         }
 
         public string CreatePaymentUrl( decimal amount, string infor, string? orderinfor)
@@ -54,48 +62,87 @@ namespace Services
             }
         }
 
-        public bool ValidatePaymentResponse(string queryString, out string redirectUrl)
+       
+
+        public async Task<PaymentStatusModel> ValidatePaymentResponse(string queryString)
         {
-            redirectUrl = "LINK";
             try
             {
                 var json = HttpUtility.ParseQueryString(queryString);
-
-                string orderId = (json["vnp_TxnRef"]).ToString();
-                string orderInfor = json["vnp_OrderInfo"].ToString();
-                long vnpayTranId = Convert.ToInt64(json["vnp_TransactionNo"]);
+                var booking = await _bookingRepository.GetBooking((json["vnp_TxnRef"]).ToString());
                 string vnp_ResponseCode = json["vnp_ResponseCode"].ToString();
                 string vnp_SecureHash = json["vnp_SecureHash"].ToString();
                 var pos = queryString.IndexOf("&vnp_SecureHash");
-
                 bool checkSignature = ValidateSignature(queryString.Substring(1, pos - 1), vnp_SecureHash, hashSecret);
+
+                if (booking.Status == "true" && booking != null)
+                {
+                    return new PaymentStatusModel
+                    {
+                        IsSuccessful = false,
+                        RedirectUrl = "LINK_INVALID"
+                    };
+                }
+
+
+                
+
                 if (checkSignature && tmnCode == json["vnp_TmnCode"].ToString())
                 {
-                    if (vnp_ResponseCode == "00")
+                    if (vnp_ResponseCode == "00" && json["vnp_TransactionStatus"] == "00")
                     {
-                        redirectUrl = "hEHE"; // Để link lúc mã vnpay thành công
-                        return true;
+                        var payment = new Payment
+                        {
+                            PaymentId = "P" + GenerateId.GenerateShortBookingId(),
+                            BookingId = (json["vnp_TxnRef"]).ToString(),
+                            PaymentAmount = decimal.Parse(json["vnp_Amount"])/100000,
+                            PaymentDate = DateTime.Now,
+                            PaymentMessage = "Complete",
+                            PaymentStatus = "True",
+                            PaymentSignature = json["vnp_BankTranNo"].ToString()
+                        };
+                        _paymentRepository.AddPayment(payment);
+
+                        await _bookingRepository.SaveChangesAsync();
+
+                       
+
+                        return new PaymentStatusModel
+                        {
+                            IsSuccessful = true,
+                            RedirectUrl = $"http://localhost:3002/success?vnp_TxnRef={json["vnp_TxnRef"].ToString()}"
+                        };
                     }
                     else
                     {
-                        redirectUrl = "LINK_FAIL"; // link đến trang lỗi giao dịch
-                        return false;
+                        return new PaymentStatusModel
+                        {
+                            IsSuccessful = false,
+                            RedirectUrl = "LINK_FAIL"
+                        };
                     }
                 }
                 else
                 {
                     _logger.LogWarning("Signature validation failed or tmnCode mismatch");
-                    redirectUrl = "LINK_INVALID"; // link đến trang lỗi giao dịch (không khớp)
-                    return false;
+                    return new PaymentStatusModel
+                    {
+                        IsSuccessful = false,
+                        RedirectUrl = "LINK_INVALID" 
+                    };
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error in ValidatePaymentResponse method");
-                redirectUrl = "LINK_ERROR";
-                return false;
+                return new PaymentStatusModel
+                {
+                    IsSuccessful = false,
+                    RedirectUrl = "LINK_ERROR" 
+                };
             }
         }
+
 
         private bool ValidateSignature(string rspraw, string inputHash, string secretKey)
         {

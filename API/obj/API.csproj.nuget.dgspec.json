@@ -383,6 +383,10 @@
               "target": "Package",
               "version": "[4.6.0, )"
             },
+            "Microsoft.AspNetCore.Session": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "MimeKit": {
               "target": "Package",
               "version": "[4.6.0, )"
