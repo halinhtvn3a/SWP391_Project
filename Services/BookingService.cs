@@ -78,12 +78,12 @@ namespace Services
             }
         }
         
-        public async Task<IActionResult> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, SlotModel slotModel, string userId)
+        public async Task<IActionResult> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel timeSlotModel, string userId, string branchId)
         {
             try
             {
                 var success =
-                    await _bookingRepository.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, slotModel, userId);
+                    await _bookingRepository.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId, branchId);
 
                 if (!success)
                 {

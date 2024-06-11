@@ -284,7 +284,7 @@ namespace Repositories
                 Id = userId,
                 BookingDate = DateTime.Now,
                 Status = "True",
-                TotalPrice = _priceDao.GetPriceByBranchAndWeekend(branchId, false).SlotPrice * numberOfSlot,
+                TotalPrice = _priceDao.GetPriceByBranchAndWeekend(branchId, false).SlotPrice * numberOfSlot * 9 / 10,
                 BookingType = "Flex",
                 NumberOfSlot = numberOfSlot,
             };
@@ -293,26 +293,82 @@ namespace Repositories
             return booking;
         }
 
-        public async Task<bool> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, SlotModel slotModel, string userId)
+        //public async Task<bool> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, SlotModel slotModel, string userId)
+        //{
+        //    DateOnly endDate = startDate.AddMonths(numberOfMonths);
+
+        //    for (var date = startDate; date <= endDate; date = date.AddDays(1))
+        //    {
+        //        foreach (var day in dayOfWeek)
+        //        {
+        //            if (date.DayOfWeek.ToString().Equals(day))
+        //            {
+        //                if (_timeSlotRepository.IsSlotBookedInBranch(slotModel))
+        //                {
+        //                    return false;
+        //                }
+        //            }
+        //        }
+        //    }
+
+        //    string bookingId = GenerateId.GenerateShortBookingId();
+        //    int numberOfslots = 0;
+
+        //    Booking booking = new Booking
+        //    {
+        //        BookingId = bookingId,
+        //        Id = userId,
+        //        BookingDate = DateTime.Now,
+        //        Status = "True",
+        //        TotalPrice = _priceDao.GetPriceByBranchAndWeekend(slotModel.BranchId, false).SlotPrice * numberOfMonths * 9 / 10,
+        //        BookingType = "Fix"
+
+        //    };
+        //    _bookingDao.AddBooking(booking);
+        //    for (var date = startDate; date <= endDate; date = date.AddDays(1))
+        //    {
+        //        foreach (var day in dayOfWeek)
+        //        {
+        //            if (date.DayOfWeek.ToString().Equals(day))
+        //            {
+        //                TimeSlot timeSlot = _timeSlotDao.AddSlotToBooking(slotModel, booking.BookingId);
+        //                numberOfslots++;
+        //            }
+        //        }
+        //    }
+        //    booking.NumberOfSlot = numberOfslots;
+        //    _bookingDao.UpdateBooking(bookingId, booking.TotalPrice);
+
+        //    return true;
+        //}
+        public async Task<bool> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel timeSlotModel, string userId, string branchId)
         {
             DateOnly endDate = startDate.AddMonths(numberOfMonths);
+            List<DateOnly> validDates = new List<DateOnly>();
 
+            // Collect all valid dates first
             for (var date = startDate; date <= endDate; date = date.AddDays(1))
             {
-                foreach (var day in dayOfWeek)
+                if (dayOfWeek.Contains(date.DayOfWeek.ToString()))
                 {
-                    if (date.DayOfWeek.ToString().Equals(day))
-                    {
-                        if (_timeSlotRepository.IsSlotBookedInBranch(slotModel))
-                        {
-                            return false;
-                        }
-                    }
+                    validDates.Add(date);
                 }
             }
 
+            // Check if any slot is already booked
+            if (validDates.Any(date => _timeSlotRepository.IsSlotBookedInBranch(new SlotModel()
+                {
+                    BranchId = branchId,
+                    TimeSlot = timeSlotModel
+                })))
+            {
+                return false;
+            }
+
             string bookingId = GenerateId.GenerateShortBookingId();
-            int numberOfslots = 0;
+            int numberOfSlots = validDates.Count; // Assuming one slot per valid date
+
+            decimal totalPrice = _priceDao.GetPriceByBranchAndWeekend(branchId, false).SlotPrice * numberOfSlots * 9 / 10;
 
             Booking booking = new Booking
             {
@@ -320,29 +376,28 @@ namespace Repositories
                 Id = userId,
                 BookingDate = DateTime.Now,
                 Status = "True",
-                TotalPrice = 500 * numberOfMonths,
-                BookingType = "Fix"
-                
+                TotalPrice = totalPrice,
+                BookingType = "Fix",
+                NumberOfSlot = numberOfSlots
             };
+
             _bookingDao.AddBooking(booking);
-            for (var date = startDate; date <= endDate; date = date.AddDays(1))
+
+            // Add slots to booking for each valid date
+            foreach (var date in validDates)
             {
-                foreach (var day in dayOfWeek)
+                _timeSlotDao.AddSlotToBooking(new SlotModel()
                 {
-                    if (date.DayOfWeek.ToString().Equals(day))
-                    {
-                        TimeSlot timeSlot = new TimeSlot()
-                        {
-                            SlotDate = date,
-                            SlotStartTime = slotModel.TimeSlot.SlotStartTime,
-                            SlotEndTime = slotModel.TimeSlot.SlotEndTime,
-                            BookingId = bookingId,
-                        };
-                    }
-                }
+                    BranchId = branchId,
+                    SlotDate = date,
+                    TimeSlot = timeSlotModel
+                }, booking.BookingId);
             }
+
+            await _bookingDao.SaveChangesAsync();
 
             return true;
         }
+
     }
 }

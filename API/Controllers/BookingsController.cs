@@ -153,5 +153,11 @@ namespace API.Controllers
             var booking = bookingService.AddBookingTypeFlex(userId, numberOfSlot, branchId);
             return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
         }
+
+        [HttpPost("fix-slot")]
+        public async Task<IActionResult> PostBookingTypeFix([FromQuery] int numberOfMonths, [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel timeSlotModel, [FromQuery] string userId, string branchId)
+        {
+            return await bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId, branchId);
+        }
     }
 }
