@@ -37,10 +37,10 @@ namespace Repositories
 
         public bool IsSlotBookedInBranch(SlotModel slotModel)
         {
-            bool isAvailable;
+            bool isBooked;
             if (slotModel.BranchId == null)
             {
-                isAvailable = _timeSlotDao.GetTimeSlots().Any(t =>
+                isBooked = _timeSlotDao.GetTimeSlots().Any(t =>
                     t.CourtId == slotModel.CourtId &&
                     t.SlotDate == slotModel.SlotDate &&
                     t.SlotStartTime == slotModel.TimeSlot.SlotStartTime &&
@@ -48,14 +48,14 @@ namespace Repositories
             }
             else
             {
-                isAvailable = !_timeSlotDao.GetTimeSlots()
+                isBooked = _timeSlotDao.GetTimeSlots()
                                   .Any(t => _courtDao.GetCourt(t.CourtId).BranchId == slotModel.BranchId &&
                               t.SlotDate == slotModel.SlotDate &&
                               t.SlotStartTime == slotModel.TimeSlot.SlotStartTime &&
                               t.SlotEndTime == slotModel.TimeSlot.SlotEndTime);
 
             }
-            return isAvailable;
+            return isBooked;
         }
     }
 }
