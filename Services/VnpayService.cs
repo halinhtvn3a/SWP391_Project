@@ -103,14 +103,17 @@ namespace Services
                         };
                         _paymentRepository.AddPayment(payment);
 
+                        
+                        booking.Status = "complete";
                         await _bookingRepository.SaveChangesAsync();
+
 
                        
 
                         return new PaymentStatusModel
                         {
                             IsSuccessful = true,
-                            RedirectUrl = $"http://localhost:3002/success?vnp_TxnRef={json["vnp_TxnRef"].ToString()}"
+                            RedirectUrl = $"http://localhost:3000/success?vnp_TxnRef={json["vnp_TxnRef"].ToString()}"
                         };
                     }
                     else
