@@ -35,6 +35,19 @@ namespace API.Controllers
 			return Role;
 		}
 
+		[HttpGet("{userId}")]
+        
+		public async Task<ActionResult<string[]>> GetRoleNameByUserId(string userId)
+        {
+            var Role = RoleService.GetRoleNameByUserId(userId);
+
+            if (Role == null)
+            {
+                return NotFound();
+            }
+
+            return Role;
+        }
 		// PUT: api/Roles/5
 		// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 		//[HttpPut("{id}")]

@@ -60,5 +60,15 @@ namespace DAOs
 				DbContext.SaveChanges();
 			}
 		}
-	}
+
+        public string[] GetRoleNameByUserId(string userId) {
+			var user = DbContext.Users.FirstOrDefault(m => m.Id.Equals(userId));
+            var roles = DbContext.UserRoles.Where(m => m.UserId.Equals(userId)).ToList();
+            string[] roleNames = new string[roles.Count];
+            for (int i = 0; i < roles.Count; i++)
+            {
+                roleNames[i] = DbContext.Roles.FirstOrDefault(m => m.Id.Equals(roles[i].RoleId)).Name;
+            }
+            return roleNames;
+        }
 }

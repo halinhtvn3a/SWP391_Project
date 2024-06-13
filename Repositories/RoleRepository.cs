@@ -28,6 +28,8 @@ namespace Repositories
 			public List<IdentityRole> GetRoles() => _roleDao.GetRoles();
 
 			public IdentityRole UpdateRole(string id, IdentityRole Role) => _roleDao.UpdateRole(id, Role);
+
+			public string[] GetRoleNameByUserId(string userId) => _roleDao.GetRoleNameByUserId(userId);
 	}
 	
 }

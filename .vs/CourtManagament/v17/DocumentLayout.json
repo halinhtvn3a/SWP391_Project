@@ -1,9 +1,45 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\FPTUNI\\5\\SWP391_Project\\",
+  "WorkspaceRootPath": "E:\\13-6\\SWP391_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\13-6\\swp391_project\\daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\13-6\\swp391_project\\api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\13-6\\swp391_project\\api\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\rolescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\13-6\\swp391_project\\services\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\roleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\13-6\\swp391_project\\repositories\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\rolerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\13-6\\swp391_project\\daos\\roledao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\roledao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\13-6\\swp391_project\\daos\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\13-6\\swp391_project\\businessobjects\\models\\reviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\models\\reviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\13-6\\swp391_project\\api\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\13-6\\swp391_project\\api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -19,10 +55,127 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "BookingDAO.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\BookingDAO.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
+              "RelativeToolTip": "DAOs\\BookingDAO.cs",
+              "ViewState": "AQIAAH8AAAAAAAAAAAAswJYAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T06:56:47.284Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RoleService.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\Services\\RoleService.cs",
+              "RelativeDocumentMoniker": "Services\\RoleService.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\Services\\RoleService.cs",
+              "RelativeToolTip": "Services\\RoleService.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAAABsAAABjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T06:55:22.986Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RoleRepository.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\Repositories\\RoleRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\RoleRepository.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\Repositories\\RoleRepository.cs",
+              "RelativeToolTip": "Repositories\\RoleRepository.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAhwB8AAABcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T06:54:26.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CourtCallerDbContext.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\DAOs\\CourtCallerDbContext.cs",
+              "RelativeDocumentMoniker": "DAOs\\CourtCallerDbContext.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\DAOs\\CourtCallerDbContext.cs",
+              "RelativeToolTip": "DAOs\\CourtCallerDbContext.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T06:52:29.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "RoleDAO.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\DAOs\\RoleDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\RoleDAO.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\DAOs\\RoleDAO.cs",
+              "RelativeToolTip": "DAOs\\RoleDAO.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAcwD8AAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T06:51:17.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RolesController.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\API\\Controllers\\RolesController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\RolesController.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\API\\Controllers\\RolesController.cs",
+              "RelativeToolTip": "API\\Controllers\\RolesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADEAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T06:51:05.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookingsController.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\BookingsController.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
+              "RelativeToolTip": "API\\Controllers\\BookingsController.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAABcAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T06:50:43.351Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ReviewModel.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\BusinessObjects\\Models\\ReviewModel.cs",
+              "RelativeDocumentMoniker": "BusinessObjects\\Models\\ReviewModel.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\BusinessObjects\\Models\\ReviewModel.cs",
+              "RelativeToolTip": "BusinessObjects\\Models\\ReviewModel.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T06:47:59.404Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ReviewsController.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\API\\Controllers\\ReviewsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\ReviewsController.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\API\\Controllers\\ReviewsController.cs",
+              "RelativeToolTip": "API\\Controllers\\ReviewsController.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAADwvwAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-13T06:44:11.759Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "AuthenController.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
+              "DocumentMoniker": "E:\\13-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\AuthenController.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
+              "ToolTip": "E:\\13-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
               "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
               "ViewState": "AQIAAG4AAAAAAAAAAAAwwHoAAAAmAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
