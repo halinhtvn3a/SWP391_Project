@@ -1,4 +1,4 @@
-﻿using BusinessObjects.Models;
+﻿using DAOs.Models;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Mvc;
 

@@ -5,7 +5,9 @@ using Services;
 
 namespace API.Controllers
 {
-	public class RolesController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    public class RolesController : ControllerBase
 	{
 		private readonly RoleService RoleService;
 
@@ -21,23 +23,22 @@ namespace API.Controllers
 			return RoleService.GetRoles();
 		}
 
-		// GET: api/Roles/5
-		[HttpGet("{id}")]
-		public async Task<ActionResult<IdentityRole>> GetRole(string id)
-		{
-			var Role = RoleService.GetRole(id);
+        // GET: api/Roles/5
+        [HttpGet("roleId/{id}")]
+        public async Task<ActionResult<IdentityRole>> GetRole(string id)
+        {
+            var Role = RoleService.GetRole(id);
 
-			if (Role == null)
-			{
-				return NotFound();
-			}
+            if (Role == null)
+            {
+                return NotFound();
+            }
 
-			return Role;
-		}
+            return Role;
+        }
 
-		[HttpGet("{userId}")]
-        
-		public async Task<ActionResult<string[]>> GetRoleNameByUserId(string userId)
+        [HttpGet("userId/{userId}")]
+        public async Task<ActionResult<string[]>> GetRoleNameByUserId(string userId)
         {
             var Role = RoleService.GetRoleNameByUserId(userId);
 
@@ -48,45 +49,46 @@ namespace API.Controllers
 
             return Role;
         }
-		// PUT: api/Roles/5
-		// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-		//[HttpPut("{id}")]
-		//public async Task<IActionResult> PutRole(string id, IdentityRole Role)
-		//{
-		//	if (id != Role.Id)
-		//	{
-		//		return BadRequest();
-		//	}
 
-		//	RoleService.UpdateRole(id, Role);
+        // PUT: api/Roles/5
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutRole(string id, IdentityRole Role)
+        //{
+        //	if (id != Role.Id)
+        //	{
+        //		return BadRequest();
+        //	}
 
-		//	return NoContent();
-		//}
+        //	RoleService.UpdateRole(id, Role);
 
-		// POST: api/Roles
-		// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-		//[HttpPost]
-		//public async Task<ActionResult<IdentityRole>> PostRole(IdentityRole Role)
-		//{
-		//	RoleService.AddRole(Role);
+        //	return NoContent();
+        //}
 
-		//	return CreatedAtAction("GetRole", new { id = Role.Id }, Role);
-		//}
+        // POST: api/Roles
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<IdentityRole>> PostRole(IdentityRole Role)
+        //{
+        //	RoleService.AddRole(Role);
 
-		// DELETE: api/Roles/5
-		//[HttpDelete("{id}")]
-		//public async Task<IActionResult> DeleteRole(string id)
-		//{
-		//	var Role = RoleService.GetRole(id);
+        //	return CreatedAtAction("GetRole", new { id = Role.Id }, Role);
+        //}
 
-		//	RoleService.DeleteRole(id);
+        // DELETE: api/Roles/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeleteRole(string id)
+        //{
+        //	var Role = RoleService.GetRole(id);
 
-		//	return NoContent();
-		//}
+        //	RoleService.DeleteRole(id);
 
-		//private bool RoleExists(string id)
-		//{
-		//	return RoleService.GetRoles().Any(e => e.Id == id);
-		//}
-	}
+        //	return NoContent();
+        //}
+
+        //private bool RoleExists(string id)
+        //{
+        //	return RoleService.GetRoles().Any(e => e.Id == id);
+        //}
+    }
 }

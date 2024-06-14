@@ -1,5 +1,5 @@
 ﻿using BusinessObjects;
-using BusinessObjects.Models;
+using DAOs.Models;
 using DAOs;
 using DAOs.Helper;
 using System;

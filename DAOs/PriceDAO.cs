@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BusinessObjects.Models;
+using DAOs.Models;
 using BusinessObjects;
 using Microsoft.EntityFrameworkCore;
 

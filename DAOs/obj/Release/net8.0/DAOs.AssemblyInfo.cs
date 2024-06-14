@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DAOs")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8389485d78cf7648e49e36f9bc52e1432949d70")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+635be8c37a653ae0b46b9d34b53a07c0960e0d71")]
 [assembly: System.Reflection.AssemblyProductAttribute("DAOs")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DAOs")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

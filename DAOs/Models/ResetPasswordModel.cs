@@ -5,22 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessObjects.Models
+namespace DAOs.Models
 {
-    public class RegisterModel
+    public class ResetPasswordModel
     {
-        [Required(ErrorMessage = "Full Name is required")]
-        public string FullName { get; set; }
-
-
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
-
-        [Required(ErrorMessage = "Password is required")]
+        public string Token { get; set; }
         public string Password { get; set; }
-
-        [Required(ErrorMessage = "Confirm Password is required")]
-        public string ConfirmPassword { get; set; }
     }
+
 }

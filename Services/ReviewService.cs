@@ -1,5 +1,5 @@
 ﻿using BusinessObjects;
-using BusinessObjects.Models;
+using DAOs.Models;
 using Repositories;
 
 using HelperResult = DAOs.Helper;

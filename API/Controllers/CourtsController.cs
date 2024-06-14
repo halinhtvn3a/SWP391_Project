@@ -9,7 +9,7 @@ using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Authorization;
 using DAOs.Helper;
-using BusinessObjects.Models;
+using DAOs.Models;
 
 
 

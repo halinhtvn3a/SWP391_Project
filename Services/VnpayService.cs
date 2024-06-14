@@ -6,7 +6,7 @@ using System.Web;
 using BusinessObjects;
 using Repositories;
 using DAOs.Helper;
-using BusinessObjects.Models;
+using DAOs.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Session;
 

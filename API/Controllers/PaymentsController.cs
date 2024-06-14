@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
-using BusinessObjects.Models;
 
 namespace API.Controllers
 {

@@ -1,4 +1,4 @@
-﻿using BusinessObjects.Models;
+﻿using DAOs.Models;
 using BusinessObjects;
 using DAOs;
 using System;

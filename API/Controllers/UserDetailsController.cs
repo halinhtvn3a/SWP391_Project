@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Identity;
-using BusinessObjects.Models;
+using DAOs.Models;
 
 namespace API.Controllers
 {

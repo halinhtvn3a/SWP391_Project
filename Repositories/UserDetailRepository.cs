@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessObjects;
-using BusinessObjects.Models;
+using DAOs.Models;
 using DAOs;
 
 namespace Repositories

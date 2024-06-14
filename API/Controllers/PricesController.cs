@@ -1,5 +1,4 @@
-﻿using BusinessObjects.Models;
-using BusinessObjects;
+﻿using BusinessObjects;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 

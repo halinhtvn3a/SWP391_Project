@@ -5,15 +5,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessObjects.Models
+namespace DAOs.Models
 {
-    public class ResetPasswordModel
+    public class ExternalLoginModel
     {
         [Required(ErrorMessage = "Email is required")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
-        public string Token { get; set; }
-        public string Password { get; set; }
+        public string Name { get; set; }
+        public string Provider { get; set; }
+        public string ProviderKey { get; set; }
+        // Other properties as needed...
     }
-
 }

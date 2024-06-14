@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
-using BusinessObjects.Models;
+using DAOs.Models;
 
 namespace Repositories
 {

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Identity;
-using BusinessObjects.Models;
+using DAOs.Models;
 
 namespace DAOs
 {

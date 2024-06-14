@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using BusinessObjects.Models;
+using DAOs.Models;
 
 namespace DAOs
 {

@@ -1,5 +1,5 @@
 ﻿using BusinessObjects;
-using BusinessObjects.Models;
+using DAOs.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

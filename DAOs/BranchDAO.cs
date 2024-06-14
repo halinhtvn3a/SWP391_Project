@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
-using BusinessObjects.Models;
+using DAOs.Models;
 
 namespace DAOs
 {
@@ -92,5 +92,15 @@ namespace DAOs
             return DbContext.Branches.Where(m => m.Status == status).ToList();
         }
 
+        public List<Branch> GetBranchesByCourtId(string courtId)
+        {
+            return DbContext.Branches.Where(m => m.Courts.Any(c => c.CourtId == courtId)).ToList();
+        }
+
+        public List<Branch> SortBranchByPrice(decimal minPrice, decimal maxPrice)
+        {
+
+            return DbContext.Branches.Where(m => m.Prices.Any(c => c.SlotPrice >= minPrice && c.SlotPrice <= maxPrice)).ToList();
+        }
     }
 }

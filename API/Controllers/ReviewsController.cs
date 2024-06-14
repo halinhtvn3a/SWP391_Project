@@ -9,7 +9,7 @@ using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Identity;
 using DAOs.Helper;
-using BusinessObjects.Models;
+using DAOs.Models;
 
 namespace API.Controllers
 {
