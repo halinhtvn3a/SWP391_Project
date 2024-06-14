@@ -19,7 +19,7 @@ namespace Repositories
                 _priceDao = new PriceDAO();
             }
         }
-        public decimal ShowPrice(string branchId , DateOnly slotDate) => _priceDao.ShowPrice(branchId, slotDate);
+        public List<decimal> ShowPrice(string branchId) => _priceDao.ShowPrice(branchId);
         public Price AddPrice(Price price) => _priceDao.AddPrice(price);
         public void DeletePrice(string id) => _priceDao.DeletePrice(id);
 
@@ -28,5 +28,6 @@ namespace Repositories
         public Price UpdatePrice(string id, Price price) => _priceDao.UpdatePrice(id, price);
 
         public List<Price> GetPriceByBranch(string branchId) => _priceDao.GetPriceByBranch(branchId);
+        
     }
 }

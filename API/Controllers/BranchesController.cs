@@ -27,7 +27,7 @@ namespace API.Controllers
         }
 
         // GET: api/Branches
-        [Authorize(Roles = "Customer")]
+      
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Branch>>> GetBranches([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {

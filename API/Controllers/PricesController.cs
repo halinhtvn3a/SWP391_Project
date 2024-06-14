@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 
@@ -62,13 +63,17 @@ namespace API.Controllers
 
         // POST: api/Prices
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpGet]
-        public IActionResult ShowPrice(string branchId, DateOnly slotDate)
+        [HttpPost("showprice")]
+        public IActionResult GetPricesForWeek(string branchId)
         {
-
-            var price = _priceService.ShowPrice(branchId, slotDate);
-
-            return Ok(price);
+            var price = _priceService.ShowPrice(branchId);
+            var weekdayPrice = price[0];
+            var weekendPrice = price[1];
+            return Ok(new
+            {
+                WeekdayPrice = weekdayPrice,
+                WeekendPrice = weekendPrice
+            });
         }
 
         // DELETE: api/Prices/5
@@ -86,4 +91,5 @@ namespace API.Controllers
             return NoContent();
         }
     }
+    
 }

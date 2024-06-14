@@ -21,11 +21,12 @@ namespace Services
             }
         }
         public Price AddPrice(Price Price) => _priceRepository.AddPrice(Price);
-        public decimal ShowPrice(string branchId, DateOnly slotDate) => _priceRepository.ShowPrice(branchId, slotDate);
+        public List<decimal> ShowPrice(string branchId) => _priceRepository.ShowPrice(branchId);
         public void DeletePrice(string id) => _priceRepository.DeletePrice(id);
         public Price GetPrice(string id) => _priceRepository.GetPrice(id);
         public Price UpdatePrice(string id, Price price) => _priceRepository.UpdatePrice(id, price);
         public List<Price> GetPriceByBranch(string branchId) => _priceRepository.GetPriceByBranch(branchId);
 
+       
     }
 }

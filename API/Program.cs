@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using DAOs;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -82,7 +83,8 @@ namespace API
                     }
                 });
             });
-
+            builder.Services.AddScoped<PriceDAO>();
+            builder.Services.AddScoped<PriceService>();
             builder.Services.Configure<TokenSettings>(configuration.GetSection("TokenSettings"));
             builder.Services.AddScoped<PaymentService>();
             builder.Services.AddScoped<TokenForPayment>();
