@@ -135,19 +135,19 @@ namespace API.Controllers
         }
 
         [HttpGet("GetUserDetailByUserEmail/{userEmail}")]
-        public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUserByEmail(string searchValue)
+        public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUserByEmail(string userEmail)
         {
-            if (string.IsNullOrEmpty(searchValue))
+            if (string.IsNullOrEmpty(userEmail))
             {
                 return BadRequest("User email cannot be null or empty.");
             }
 
             try
             {
-                List<IdentityUser> user = _userService.SearchUserByEmail(searchValue);
+                List<IdentityUser> user = _userService.SearchUserByEmail(userEmail);
                 if (user == null)
                 {
-                    return NotFound($"User with email {searchValue} not found.");
+                    return NotFound($"User with email {userEmail} not found.");
                 }
 
                 return user;
