@@ -30,6 +30,8 @@ namespace Services
             }
         }
         public Booking AddBookingTypeFlex(string userId, int numberOfSlot, string branchId) => _bookingRepository.AddBookingTypeFlex(userId, numberOfSlot, branchId);
+
+        public List<Booking> GetBookingsByUserId(string userId) => _bookingRepository.GetBookingsByUserId(userId);
         public void DeleteBooking(string id) => _bookingRepository.DeleteBooking(id);
         public async Task<Booking> GetBooking(string id) => await _bookingRepository.GetBooking(id);
         //public List<Booking> GetBookings() => BookingRepository.GetBookings();

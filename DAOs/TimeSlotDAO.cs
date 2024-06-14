@@ -255,6 +255,9 @@ namespace DAOs
             return pricing?.SlotPrice ?? 0;
         }
 
-        
+        public List<TimeSlot> GetTimeSlotsByBookingId(string bookingId)
+        {
+            return _dbContext.TimeSlots.Where(ts => ts.BookingId == bookingId).ToList();
+        }
     }
 }

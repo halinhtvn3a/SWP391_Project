@@ -12,21 +12,27 @@ namespace Services
 {
     public class BranchService
     {
-        private readonly BranchRepository BranchRepository = null;
+        private readonly BranchRepository _branchRepository = null;
         public BranchService()
         {
-            if (BranchRepository == null)
+            if (_branchRepository == null)
             {
-                BranchRepository = new BranchRepository();
+                _branchRepository = new BranchRepository();
             }
         }
-        public Branch AddBranch(BranchModel branchModel) => BranchRepository.AddBranch(branchModel);
-        public void DeleteBranch(string id) => BranchRepository.DeleteBranch(id);
-        public Branch GetBranch(string id) => BranchRepository.GetBranch(id);
-        public async Task<List<Branch>> GetBranches(PageResult pageResult) => await BranchRepository.GetBranches(pageResult);
-        public Branch UpdateBranch(string id, BranchModel branchModel) => BranchRepository.UpdateBranch(id, branchModel);
+        public Branch AddBranch(BranchModel branchModel) => _branchRepository.AddBranch(branchModel);
+        public void DeleteBranch(string id) => _branchRepository.DeleteBranch(id);
+        public Branch GetBranch(string id) => _branchRepository.GetBranch(id);
+        public async Task<List<Branch>> GetBranches(PageResult pageResult) => await _branchRepository.GetBranches(pageResult);
+        public Branch UpdateBranch(string id, BranchModel branchModel) => _branchRepository.UpdateBranch(id, branchModel);
 
-        public List<Branch> GetBranchesByStatus(string status) => BranchRepository.GetBranchesByStatus(status);
+        public List<Branch> GetBranchesByStatus(string status) => _branchRepository.GetBranchesByStatus(status);
 
+        public List<Branch> SortBranchByPrice(decimal minPrice, decimal maxPrice) =>
+            _branchRepository.SortBranchByPrice(minPrice, maxPrice);
+
+        public List<Branch> GetBranchesByCourtId(string courtId) => _branchRepository.GetBranchesByCourtId(courtId);
+
+        public Branch GetLastBranch(string userId) => _branchRepository.GetLastBranch(userId);
     }
 }

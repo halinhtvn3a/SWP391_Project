@@ -10,18 +10,22 @@ namespace Services
 {
     public class TimeSlotService
     {
-        private readonly TimeSlotRepository TimeSlotRepository = null;
+        private readonly TimeSlotRepository _timeSlotRepository = null;
         public TimeSlotService()
         {
-            if (TimeSlotRepository == null)
+            if (_timeSlotRepository == null)
             {
-                TimeSlotRepository = new TimeSlotRepository();
+                _timeSlotRepository = new TimeSlotRepository();
             }
         }
-        public TimeSlot AddTimeSlot(TimeSlot TimeSlot) => TimeSlotRepository.AddTimeSlot(TimeSlot);
+        public TimeSlot AddTimeSlot(TimeSlot timeSlot) => _timeSlotRepository.AddTimeSlot(timeSlot);
         //public void DeleteTimeSlot(string id) => TimeSlotRepository.DeleteTimeSlot(id);
-        public TimeSlot GetTimeSlot(string id) => TimeSlotRepository.GetTimeSlot(id);
-        public List<TimeSlot> GetTimeSlots() => TimeSlotRepository.GetTimeSlots();
-        public TimeSlot UpdateTimeSlot(string id, TimeSlot TimeSlot) => TimeSlotRepository.UpdateTimeSlot(id, TimeSlot);
+        public TimeSlot GetTimeSlot(string id) => _timeSlotRepository.GetTimeSlot(id);
+        public List<TimeSlot> GetTimeSlots() => _timeSlotRepository.GetTimeSlots();
+        public TimeSlot UpdateTimeSlot(string id, TimeSlot TimeSlot) => _timeSlotRepository.UpdateTimeSlot(id, TimeSlot);
+
+        public List<TimeSlot> GetTimeSlotsByBookingId(string bookingId) => _timeSlotRepository.GetTimeSlotsByBookingId(bookingId);
+
+
     }
 }

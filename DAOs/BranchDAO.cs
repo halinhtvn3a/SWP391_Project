@@ -12,34 +12,37 @@ namespace DAOs
 {
     public class BranchDAO
     {
-        private readonly CourtCallerDbContext DbContext = null;
+        private readonly CourtCallerDbContext _courtCallerDbContext = null;
 
         public BranchDAO()
         {
-            if (DbContext == null)
+            if (_courtCallerDbContext == null)
             {
-                DbContext = new CourtCallerDbContext();
+                _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
 
+        public List<Branch> GetBranches() => _courtCallerDbContext.Branches.ToList();
+        
+
         public async Task<List<Branch>> GetBranches(PageResult pageResult)
         {
-            var query = DbContext.Branches.AsQueryable();
-            Pagination pagination = new Pagination(DbContext);
+            var query = _courtCallerDbContext.Branches.AsQueryable();
+            Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Branch> Branches = await pagination.GetListAsync<Branch>(query, pageResult);
             return Branches;
         }
 
         public Branch GetBranch(string id)
         {
-            return DbContext.Branches.FirstOrDefault(m => m.BranchId.Equals(id));
+            return _courtCallerDbContext.Branches.FirstOrDefault(m => m.BranchId.Equals(id));
         }
 
         public Branch AddBranch(BranchModel branchModel)
         {
             Branch branch = new Branch()
             {
-                BranchId = "B" + (DbContext.Branches.Count() + 1).ToString("D5"),
+                BranchId = "B" + (_courtCallerDbContext.Branches.Count() + 1).ToString("D5"),
                 BranchAddress = branchModel.BranchAddress,
                 BranchName = branchModel.BranchName,
                 BranchPhone = branchModel.BranchPhone,
@@ -50,8 +53,8 @@ namespace DAOs
                 OpenDay = branchModel.OpenDay,
                 Status = branchModel.Status
             };
-            DbContext.Branches.Add(branch);
-            DbContext.SaveChanges();
+            _courtCallerDbContext.Branches.Add(branch);
+            _courtCallerDbContext.SaveChanges();
             return branch;
         }
 
@@ -69,8 +72,8 @@ namespace DAOs
                 oBranch.CloseTime = branchModel.CloseTime;
                 oBranch.OpenDay = branchModel.OpenDay;
                 oBranch.Status = branchModel.Status;
-                DbContext.Update(oBranch);
-                DbContext.SaveChanges();
+                _courtCallerDbContext.Update(oBranch);
+                _courtCallerDbContext.SaveChanges();
             }
             return oBranch;
         }
@@ -82,25 +85,28 @@ namespace DAOs
             if (oBranch != null)
             {
                 oBranch.Status = "Inactive";
-                DbContext.Update(oBranch);
-                DbContext.SaveChanges();
+                _courtCallerDbContext.Update(oBranch);
+                _courtCallerDbContext.SaveChanges();
             }
         }
 
         public List<Branch> GetBranchesByStatus(string status)
         {
-            return DbContext.Branches.Where(m => m.Status == status).ToList();
+            return _courtCallerDbContext.Branches.Where(m => m.Status == status).ToList();
         }
 
         public List<Branch> GetBranchesByCourtId(string courtId)
         {
-            return DbContext.Branches.Where(m => m.Courts.Any(c => c.CourtId == courtId)).ToList();
+            return _courtCallerDbContext.Branches.Where(m => m.Courts.Any(c => c.CourtId == courtId)).ToList();
         }
 
         public List<Branch> SortBranchByPrice(decimal minPrice, decimal maxPrice)
         {
-
-            return DbContext.Branches.Where(m => m.Prices.Any(c => c.SlotPrice >= minPrice && c.SlotPrice <= maxPrice)).ToList();
+            return _courtCallerDbContext.Branches.Where(m => m.Prices.Any(c =>
+                c.SlotPrice >= minPrice && c.SlotPrice <= maxPrice
+            )).ToList();
         }
+
+
     }
 }

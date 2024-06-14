@@ -53,6 +53,19 @@ namespace API.Controllers
 
             return await booking;
         }
+        
+        [HttpGet("userId/{userId}")]
+        public async Task<ActionResult<Booking>> GetBookingByUserId(string userId)
+        {
+            var bookings =  bookingService.GetBookingsByUserId(userId);
+
+            if (bookings == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(bookings);
+        }
 
         // PUT: api/Bookings/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

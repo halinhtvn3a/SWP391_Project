@@ -57,5 +57,7 @@ namespace Repositories
             }
             return isBooked;
         }
+
+        public List<TimeSlot> GetTimeSlotsByBookingId(string bookingId) => _timeSlotDao.GetTimeSlotsByBookingId(bookingId);
     }
 }

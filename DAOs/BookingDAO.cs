@@ -156,10 +156,10 @@ namespace DAOs
             return _courtCallerDbContext.Bookings.Where(m => m.BookingType.Equals("Flex") && m.Id.Equals(userId)).ToList();
         }
 
-        //public async List<Booking> GetBookingByUserId(string id)
-        //{
-            
-        //}
+        public List<Booking> GetBookingsByUserId(string userId)
+        {
+            return _courtCallerDbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
+        }
 
     }
 }

@@ -50,6 +50,7 @@ namespace Repositories
         }
 
         //public Booking AddBooking(Booking Booking) => BookingDAO.AddBooking(Booking);
+        public List<Booking> GetBookingsByUserId(string userId) => _bookingDao.GetBookingsByUserId(userId);
 
         public void DeleteBooking(string id) => _bookingDao.DeleteBooking(id);
 

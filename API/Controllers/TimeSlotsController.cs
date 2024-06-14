@@ -41,6 +41,19 @@ namespace API.Controllers
 
             return timeSlot;
         }
+        
+        [HttpGet("bookingId/{bookingId}")]
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotByBookingId(string bookingId)
+        {
+            var timeSlot = timeSlotService.GetTimeSlotsByBookingId(bookingId);
+
+            if (timeSlot == null)
+            {
+                return NotFound();
+            }
+
+            return timeSlot;
+        }
 
         // PUT: api/TimeSlots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -81,6 +94,7 @@ namespace API.Controllers
 
         //    return NoContent();
         //}
+
 
         private bool TimeSlotExists(string id)
         {

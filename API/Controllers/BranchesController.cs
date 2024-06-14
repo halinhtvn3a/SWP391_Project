@@ -19,11 +19,11 @@ namespace API.Controllers
   
     public class BranchesController : ControllerBase
     {
-        private readonly BranchService branchService;
+        private readonly BranchService _branchService;
 
         public BranchesController()
         {
-            branchService = new BranchService();
+            _branchService = new BranchService();
         }
 
         // GET: api/Branches
@@ -36,7 +36,7 @@ namespace API.Controllers
                 PageSize = pageSize
             };
 
-            List<Branch> branches = await branchService.GetBranches(pageResult);
+            List<Branch> branches = await _branchService.GetBranches(pageResult);
 
             return Ok(branches);
         }
@@ -45,7 +45,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Branch>> GetBranch(string id)
         {
-            var branch = branchService.GetBranch(id);
+            var branch = _branchService.GetBranch(id);
 
             if (branch == null)
             {
@@ -60,13 +60,13 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutBranch(string id, BranchModel branchModel)
         {
-            var branch = branchService.GetBranch(id);
+            var branch = _branchService.GetBranch(id);
             if (id != branch.BranchId)
             {
                 return BadRequest();
             }
 
-            branchService.UpdateBranch(id, branchModel);
+            _branchService.UpdateBranch(id, branchModel);
 
             return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
         }
@@ -76,7 +76,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Branch>> PostBranch(BranchModel branchModel)
         {
-            var branch = branchService.AddBranch(branchModel);
+            var branch = _branchService.AddBranch(branchModel);
 
             return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
         }
@@ -85,25 +85,42 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBranch(string id)
         {
-            var branch = branchService.GetBranch(id);
+            var branch = _branchService.GetBranch(id);
             if (branch == null)
             {
                 return NotFound();
             }
-            branchService.DeleteBranch(id);
+            _branchService.DeleteBranch(id);
             return NoContent();
         }
 
         //private bool BranchExists(string id)
         //{
-        //    return branchService.GetBranches().Any(e => e.BranchId == id);
+        //    return _branchService.GetBranches().Any(e => e.BranchId == id);
         //}
 
         [HttpGet("status")]
         public async Task<ActionResult<IEnumerable<Branch>>> GetBranchesByStatus(string status)
         {
-            return branchService.GetBranchesByStatus(status).ToList();
+            return _branchService.GetBranchesByStatus(status).ToList();
         }
 
+        [HttpGet("SortByPrice")]
+        public async Task<ActionResult<IEnumerable<Branch>>> SortBranchByPrice(decimal minPrice, decimal maxPrice)
+        {
+            return _branchService.SortBranchByPrice(minPrice, maxPrice).ToList();
+        }
+
+        [HttpGet("courtId/{courtId}")]
+        public async Task<ActionResult<IEnumerable<Branch>>> GetBranchesByCourtId(string courtId)
+        {
+            return _branchService.GetBranchesByCourtId(courtId).ToList();
+        }
+
+        [HttpGet("lastBranch/{userId}")]
+        public async Task<ActionResult<Branch>> GetLastBranch(string userId)
+        {
+            return _branchService.GetLastBranch(userId);
+        }
     }
 }
