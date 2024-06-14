@@ -12,20 +12,20 @@ namespace Services
 {
     public class CourtService
     {
-        private readonly CourtRepository CourtRepository = null;
+        private readonly CourtRepository _courtRepository = null;
         public CourtService()
         {
-            if (CourtRepository == null)
+            if (_courtRepository == null)
             {
-                CourtRepository = new CourtRepository();
+                _courtRepository = new CourtRepository();
             }
         }
-        public Court AddCourt(CourtModel courtModel) => CourtRepository.AddCourt(courtModel);
-        public void DeleteCourt(string id) => CourtRepository.DeleteCourt(id);
-        public Court GetCourt(string id) => CourtRepository.GetCourt(id);
-        public async Task<List<Court>> GetCourts(PageResult pageResult) => await CourtRepository.GetCourts(pageResult);
-        public Court UpdateCourt(string id, CourtModel courtModel) => CourtRepository.UpdateCourt(id, courtModel);
-        public List<Court> GetActiveCourts() => CourtRepository.GetActiveCourts();
+        public Court AddCourt(CourtModel courtModel) => _courtRepository.AddCourt(courtModel);
+        public void DeleteCourt(string id) => _courtRepository.DeleteCourt(id);
+        public Court GetCourt(string id) => _courtRepository.GetCourt(id);
+        public async Task<List<Court>> GetCourts(PageResult pageResult) => await _courtRepository.GetCourts(pageResult);
+        public Court UpdateCourt(string id, CourtModel courtModel) => _courtRepository.UpdateCourt(id, courtModel);
+        public List<Court> GetActiveCourts() => _courtRepository.GetActiveCourts();
 
     }
 }

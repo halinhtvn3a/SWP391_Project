@@ -12,20 +12,20 @@ namespace DAOs
 {
     public class CourtDAO
     {
-        private readonly CourtCallerDbContext DbContext = null;
+        private readonly CourtCallerDbContext _courtCallerDbContext = null;
 
         public CourtDAO()
         {
-            if (DbContext == null)
+            if (_courtCallerDbContext == null)
             {
-                DbContext = new CourtCallerDbContext();
+                _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
 
        public async Task<List<Court>> GetCourts (PageResult pageResult)
         {
-            var query = DbContext.Courts.AsQueryable();
-            Pagination pagination = new Pagination(DbContext);
+            var query = _courtCallerDbContext.Courts.AsQueryable();
+            Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Court> courts = await pagination.GetListAsync<Court>(query, pageResult);
             return courts;
 
@@ -34,22 +34,22 @@ namespace DAOs
 
         public Court GetCourt(string id)
         {
-            return DbContext.Courts.FirstOrDefault(m => m.CourtId.Equals(id));
+            return _courtCallerDbContext.Courts.FirstOrDefault(m => m.CourtId.Equals(id));
         }
 
         public Court AddCourt(CourtModel courtModel)
         {
             Court Court = new Court()
             {
-                CourtId = "C" + (DbContext.Courts.Count() + 1).ToString("D5"),
+                CourtId = "C" + (_courtCallerDbContext.Courts.Count() + 1).ToString("D5"),
                 CourtName = courtModel.CourtName,
                 BranchId = courtModel.BranchId,
                 CourtPicture = courtModel.CourtPicture,
                 Status = courtModel.Status
             };
 
-            DbContext.Courts.Add(Court);
-            DbContext.SaveChanges();
+            _courtCallerDbContext.Courts.Add(Court);
+            _courtCallerDbContext.SaveChanges();
             return Court;
         }
 
@@ -62,8 +62,8 @@ namespace DAOs
                 oCourt.BranchId = courtModel.BranchId;
                 oCourt.CourtPicture = courtModel.CourtPicture;
                 oCourt.Status = courtModel.Status;
-                DbContext.Update(oCourt);
-                DbContext.SaveChanges();
+                _courtCallerDbContext.Update(oCourt);
+                _courtCallerDbContext.SaveChanges();
             }
             return oCourt;
         }
@@ -74,12 +74,12 @@ namespace DAOs
             if (oCourt != null)
             {
                 oCourt.Status = "Inactive";
-                DbContext.Update(oCourt);
-                DbContext.SaveChanges();
+                _courtCallerDbContext.Update(oCourt);
+                _courtCallerDbContext.SaveChanges();
             }
         }
 
-        public List<Court> GetCourtsByBranchId(string branchId) => DbContext.Courts.Where(m => m.BranchId.Equals(branchId)).ToList();
-        public List<Court> GetActiveCourts() => DbContext.Courts.Where(m => m.Status.Equals("Active")).ToList();
+        public List<Court> GetCourtsByBranchId(string branchId) => _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(branchId)).ToList();
+        public List<Court> GetActiveCourts() => _courtCallerDbContext.Courts.Where(m => m.Status.Equals("Active")).ToList();
     }
 }

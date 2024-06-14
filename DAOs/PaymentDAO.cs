@@ -10,30 +10,30 @@ namespace DAOs
 {
     public class PaymentDAO
     {
-        private readonly CourtCallerDbContext DbContext = null;
+        private readonly CourtCallerDbContext _courtCallerDbContext = null;
 
         public PaymentDAO()
         {
-            if (DbContext == null)
+            if (_courtCallerDbContext == null)
             {
-                DbContext = new CourtCallerDbContext();
+                _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
 
         public List<Payment> GetPayments()
         {
-            return DbContext.Payments.ToList();
+            return _courtCallerDbContext.Payments.ToList();
         }
 
         public Payment GetPayment(string id)
         {
-            return DbContext.Payments.FirstOrDefault(m => m.PaymentId.Equals(id));
+            return _courtCallerDbContext.Payments.FirstOrDefault(m => m.PaymentId.Equals(id));
         }
 
         public Payment AddPayment(Payment Payment)
         {
-            DbContext.Payments.Add(Payment);
-            DbContext.SaveChanges();
+            _courtCallerDbContext.Payments.Add(Payment);
+            _courtCallerDbContext.SaveChanges();
             return Payment;
         }
 
@@ -56,12 +56,12 @@ namespace DAOs
             if (oPayment != null)
             {
                 oPayment.PaymentStatus = "Cancel";
-                DbContext.Update(oPayment);
-                DbContext.SaveChanges();
+                _courtCallerDbContext.Update(oPayment);
+                _courtCallerDbContext.SaveChanges();
             }
         }
 
-        public List<Payment> SearchByDate(DateTime start, DateTime end) => DbContext.Payments.Where(m => m.PaymentDate >= start && m.PaymentDate <= end).ToList();
+        public List<Payment> SearchByDate(DateTime start, DateTime end) => _courtCallerDbContext.Payments.Where(m => m.PaymentDate >= start && m.PaymentDate <= end).ToList();
 
 
        

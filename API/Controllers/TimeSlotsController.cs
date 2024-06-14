@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
+using DAOs.Models;
 using Services;
 
 namespace API.Controllers
@@ -14,25 +15,25 @@ namespace API.Controllers
     [ApiController]
     public class TimeSlotsController : ControllerBase
     {
-        private readonly TimeSlotService timeSlotService;
+        private readonly TimeSlotService _timeSlotService;
 
         public TimeSlotsController()
         {
-            timeSlotService = new TimeSlotService();
+            _timeSlotService = new TimeSlotService();
         }
 
         // GET: api/TimeSlots
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlots()
         {
-            return timeSlotService.GetTimeSlots();
+            return _timeSlotService.GetTimeSlots();
         }
 
         // GET: api/TimeSlots/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TimeSlot>> GetTimeSlot(string id)
         {
-            var timeSlot = timeSlotService.GetTimeSlot(id);
+            var timeSlot = _timeSlotService.GetTimeSlot(id);
 
             if (timeSlot == null)
             {
@@ -45,7 +46,7 @@ namespace API.Controllers
         [HttpGet("bookingId/{bookingId}")]
         public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotByBookingId(string bookingId)
         {
-            var timeSlot = timeSlotService.GetTimeSlotsByBookingId(bookingId);
+            var timeSlot = _timeSlotService.GetTimeSlotsByBookingId(bookingId);
 
             if (timeSlot == null)
             {
@@ -65,7 +66,7 @@ namespace API.Controllers
                 return BadRequest();
             }
 
-            timeSlotService.UpdateTimeSlot(id, timeSlot);
+            _timeSlotService.UpdateTimeSlot(id, timeSlot);
 
             return NoContent();
         }
@@ -75,7 +76,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<TimeSlot>> PostTimeSlot(TimeSlot timeSlot)
         {
-            timeSlotService.AddTimeSlot(timeSlot);
+            _timeSlotService.AddTimeSlot(timeSlot);
 
             return CreatedAtAction("GetTimeSlot", new { id = timeSlot.SlotId }, timeSlot);
         }
@@ -95,10 +96,15 @@ namespace API.Controllers
         //    return NoContent();
         //}
 
+        [HttpGet("isBooked")]
+        public async Task<ActionResult<bool>> IsSlotBookedInBranch(SlotModel slotModel)
+        {
+            return _timeSlotService.IsSlotBookedInBranch(slotModel);
+        }
 
         private bool TimeSlotExists(string id)
         {
-            return timeSlotService.GetTimeSlots().Any(e => e.SlotId == id);
+            return _timeSlotService.GetTimeSlots().Any(e => e.SlotId == id);
         }
     }
 }

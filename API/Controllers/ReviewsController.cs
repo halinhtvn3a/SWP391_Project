@@ -17,11 +17,11 @@ namespace API.Controllers
     [ApiController]
     public class ReviewsController : ControllerBase
     {
-        private readonly ReviewService reviewService;
+        private readonly ReviewService _reviewService;
 
         public ReviewsController()
         {
-            reviewService = new ReviewService();
+            _reviewService = new ReviewService();
         }
 
         // GET: api/Reviews
@@ -34,7 +34,7 @@ namespace API.Controllers
                 PageSize = pageSize
             };
 
-            List<Review> review = await reviewService.GetReview(pageResult);
+            List<Review> review = await _reviewService.GetReview(pageResult);
 
             return Ok(review);
         }
@@ -43,7 +43,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Review>> GetReview(string id)
         {
-            var review = reviewService.GetReview(id);
+            var review = _reviewService.GetReview(id);
 
             if (review == null)
             {
@@ -58,13 +58,13 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutReview(string id, ReviewModel reviewModel)
         {
-            var review = reviewService.GetReview(id);
+            var review = _reviewService.GetReview(id);
             if (id != review.ReviewId)
             {
                 return BadRequest();
             }
 
-            reviewService.UpdateReview(id, reviewModel);
+            _reviewService.UpdateReview(id, reviewModel);
 
             return CreatedAtAction("GetReview", new { id = review.ReviewId }, review);
         }
@@ -74,7 +74,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Review>> PostReview(ReviewModel reviewModel)
         {
-            var review = reviewService.AddReview(reviewModel);
+            var review = _reviewService.AddReview(reviewModel);
 
             return CreatedAtAction("GetReview", new { id = review.ReviewId }, review);
         }
@@ -83,9 +83,9 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteReview(string id)
         {
-            var review = reviewService.GetReview(id);
-            
-            reviewService.DeleteReview(id);
+            var review = _reviewService.GetReview(id);
+
+            _reviewService.DeleteReview(id);
 
             return NoContent();
         }
@@ -99,25 +99,25 @@ namespace API.Controllers
         [HttpGet("GetReviewsByCourt/{id}")]
         public async Task<ActionResult<IEnumerable<Review>>> GetReviewsByBranch(string id)
         {
-            return reviewService.GetReviewsByBranch(id);
+            return _reviewService.GetReviewsByBranch(id);
         }
 
         [HttpGet("SearchByUser/{id}")]
         public async Task<ActionResult<IEnumerable<Review>>> SearchByUser(string id)
         {
-            return reviewService.SearchByUser(id);
+            return _reviewService.SearchByUser(id);
         }
 
         [HttpGet("SearchByDate/{start}/{end}")]
         public async Task<ActionResult<IEnumerable<Review>>> SearchByDate(DateTime start, DateTime end)
         {
-            return reviewService.SearchByDate(start, end);
+            return _reviewService.SearchByDate(start, end);
         }
 
         [HttpGet("SearchByRating/{rating}")]
         public async Task<ActionResult<IEnumerable<Review>>> SearchByRating(int rating)
         {
-            return reviewService.SearchByRating(rating);
+            return _reviewService.SearchByRating(rating);
         }
 
 

@@ -20,7 +20,7 @@ namespace Repositories
 
             
         }
-        public Payment AddPayment(Payment Payment) => _paymentDao.AddPayment(Payment);
+        public Payment AddPayment(Payment payment) => _paymentDao.AddPayment(payment);
 
         public void DeletePayment(string id) => _paymentDao.DeletePayment(id);
 

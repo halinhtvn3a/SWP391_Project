@@ -14,7 +14,7 @@ namespace API.Controllers
     [ApiController]
     public class PaymentsController : ControllerBase
     {
-        private readonly PaymentService paymentService = new PaymentService();
+        private readonly PaymentService _paymentService = new PaymentService();
         private readonly TokenForPayment _tokenForPayment;
 
         public PaymentsController( TokenForPayment tokenForPayment)
@@ -27,14 +27,14 @@ namespace API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Payment>>> GetPayments()
         {
-            return paymentService.GetPayments();
+            return _paymentService.GetPayments();
         }
 
         // GET: api/Payments/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Payment>> GetPayment(string id)
         {
-            var payment = paymentService.GetPayment(id);
+            var payment = _paymentService.GetPayment(id);
 
             if (payment == null)
             {
@@ -80,7 +80,7 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
-            paymentService.AddPayment(payment);
+            _paymentService.AddPayment(payment);
 
             return CreatedAtAction("GetPayment", new { id = payment.PaymentId }, payment);
         }
@@ -89,13 +89,13 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeletePayment(string id)
         {
-            var payment = paymentService.GetPayment(id);
+            var payment = _paymentService.GetPayment(id);
             if (payment == null)
             {
                 return NotFound();
             }
 
-            paymentService.DeletePayment(id);
+            _paymentService.DeletePayment(id);
 
             return NoContent();
         }
@@ -108,7 +108,7 @@ namespace API.Controllers
         [HttpGet("SearchByDate")]
         public async Task<ActionResult<IEnumerable<Payment>>> SearchByDate(DateTime start, DateTime end)
         {
-            return paymentService.SearchByDate(start, end);
+            return _paymentService.SearchByDate(start, end);
         }
 
 
@@ -131,7 +131,7 @@ namespace API.Controllers
             //    });
             //}
             var bookingId = _tokenForPayment.ValidateToken(token);
-            var response = await paymentService.ProcessBookingPayment(bookingId);
+            var response = await _paymentService.ProcessBookingPayment(bookingId);
             return Ok(response);
         }
 

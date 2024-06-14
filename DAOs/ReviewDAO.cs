@@ -13,42 +13,42 @@ namespace DAOs
 {
     public class ReviewDAO
     {
-        private readonly CourtCallerDbContext DbContext = null;
+        private readonly CourtCallerDbContext _courtCallerDbContext = null;
 
         public ReviewDAO()
         {
-            if (DbContext == null)
+            if (_courtCallerDbContext == null)
             {
-                DbContext = new CourtCallerDbContext();
+                _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
 
         public async Task<List<Review>> GetReview(PageResult pageResult)
         {
-            var query = DbContext.Reviews.AsQueryable();
-            Pagination pagination = new Pagination(DbContext);
+            var query = _courtCallerDbContext.Reviews.AsQueryable();
+            Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Review> reviews = await pagination.GetListAsync<Review>(query, pageResult);
             return reviews;
         }
 
         public Review GetReview(string id)
         {
-            return DbContext.Reviews.FirstOrDefault(m => m.ReviewId.Equals(id));
+            return _courtCallerDbContext.Reviews.FirstOrDefault(m => m.ReviewId.Equals(id));
         }
 
         public Review AddReview(ReviewModel reviewModel)
         {
             Review review = new Review()
             {
-                ReviewId = "R" + (DbContext.Reviews.Count() + 1).ToString("D5"),
+                ReviewId = "R" + (_courtCallerDbContext.Reviews.Count() + 1).ToString("D5"),
                 ReviewText = reviewModel.ReviewText,
                 Rating = reviewModel.Rating,
                 ReviewDate = DateTime.Now,
                 BranchId = reviewModel.BranchId,
                 Id = reviewModel.UserId
             };
-            DbContext.Reviews.Add(review);
-            DbContext.SaveChanges();
+            _courtCallerDbContext.Reviews.Add(review);
+            _courtCallerDbContext.SaveChanges();
             return review;
         }
 
@@ -60,8 +60,8 @@ namespace DAOs
                 oReview.ReviewText = reviewModel.ReviewText;
                 oReview.Rating = reviewModel.Rating;
                 oReview.ReviewDate = DateTime.Now;
-                DbContext.Update(oReview);
-                DbContext.SaveChanges();
+                _courtCallerDbContext.Update(oReview);
+                _courtCallerDbContext.SaveChanges();
             }
             return oReview;
         }
@@ -71,20 +71,20 @@ namespace DAOs
             Review oReview = GetReview(id);
             if (oReview != null)
             {
-                DbContext.Remove(oReview);
-                DbContext.SaveChanges();
+                _courtCallerDbContext.Remove(oReview);
+                _courtCallerDbContext.SaveChanges();
             }
         }
 
-        public List<Review> SearchByDate(DateTime start, DateTime end) => DbContext.Reviews.Where(m => m.ReviewDate >= start && m.ReviewDate <= end).ToList();
+        public List<Review> SearchByDate(DateTime start, DateTime end) => _courtCallerDbContext.Reviews.Where(m => m.ReviewDate >= start && m.ReviewDate <= end).ToList();
 
 
-        public List<Review> SearchByRating(int rating) => DbContext.Reviews.Where(m => m.Rating == rating).ToList();
+        public List<Review> SearchByRating(int rating) => _courtCallerDbContext.Reviews.Where(m => m.Rating == rating).ToList();
 
-        public List<Review> SearchByUser(string id) => DbContext.Reviews.Where(m => m.Id == id).ToList();
+        public List<Review> SearchByUser(string id) => _courtCallerDbContext.Reviews.Where(m => m.Id == id).ToList();
 
 
-        public List<Review> GetReviewsByBranch(string id) => DbContext.Reviews.Where(m => m.BranchId == id).ToList();
+        public List<Review> GetReviewsByBranch(string id) => _courtCallerDbContext.Reviews.Where(m => m.BranchId == id).ToList();
 
 
     }

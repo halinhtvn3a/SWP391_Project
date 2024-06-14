@@ -20,11 +20,11 @@ namespace API.Controllers
     
     public class BookingsController : ControllerBase
     {
-        private readonly BookingService bookingService;
+        private readonly BookingService _bookingService;
 
         public BookingsController()
         {
-            bookingService = new BookingService();
+            _bookingService = new BookingService();
         }
 
         // GET: api/Bookings
@@ -36,7 +36,7 @@ namespace API.Controllers
                 PageSize = pageSize,
                 PageNumber = pageNumber,
             };
-            List<Booking> bookings = await bookingService.GetBookings(pageResult);
+            List<Booking> bookings = await _bookingService.GetBookings(pageResult);
             return Ok(bookings);
         }
 
@@ -44,7 +44,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Booking>> GetBooking(string id)
         {
-            var booking =  bookingService.GetBooking(id);
+            var booking = _bookingService.GetBooking(id);
 
             if (booking == null)
             {
@@ -57,7 +57,7 @@ namespace API.Controllers
         [HttpGet("userId/{userId}")]
         public async Task<ActionResult<Booking>> GetBookingByUserId(string userId)
         {
-            var bookings =  bookingService.GetBookingsByUserId(userId);
+            var bookings = _bookingService.GetBookingsByUserId(userId);
 
             if (bookings == null)
             {
@@ -98,13 +98,13 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteBooking(string id)
         {
-            var booking = bookingService.GetBooking(id);
+            var booking = _bookingService.GetBooking(id);
             if (booking == null)
             {
                 return NotFound();
             }
 
-            bookingService.DeleteBooking(id);
+            _bookingService.DeleteBooking(id);
 
             return NoContent();
         }
@@ -117,19 +117,19 @@ namespace API.Controllers
         [HttpGet("status/{status}")]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByStatus(string status)
         {
-            return bookingService.GetBookingsByStatus(status).ToList();
+            return _bookingService.GetBookingsByStatus(status).ToList();
         }
 
         [HttpGet("search/{start}/{end}")]
         public async Task<ActionResult<IEnumerable<Booking>>> SearchBookings(DateTime start, DateTime end)
         {
-            return bookingService.SearchBookings(start, end).ToList();
+            return _bookingService.SearchBookings(start, end).ToList();
         }
 
         [HttpGet("search/{userId}")]
         public async Task<ActionResult<IEnumerable<Booking>>> SearchBookingsByUser(string userId)
         {
-            return bookingService.SearchBookingsByUser(userId).ToList();
+            return _bookingService.SearchBookingsByUser(userId).ToList();
         }
 
         
@@ -142,7 +142,7 @@ namespace API.Controllers
         [HttpPost("reserve-slot")]
         public async Task<IActionResult> ReserveSlotV2(SlotModel[] slotModels, string userId)
         {
-            return await bookingService.PessimistLockAsyncV2(slotModels, userId);
+            return await _bookingService.PessimistLockAsyncV2(slotModels, userId);
         }
 
         [HttpDelete("delete/{bookingId}")]
@@ -153,7 +153,7 @@ namespace API.Controllers
                 return BadRequest("Invalid booking id.");
             }
 
-            await bookingService.DeleteBookingAndSetTimeSlotAsync(bookingId);
+            await _bookingService.DeleteBookingAndSetTimeSlotAsync(bookingId);
 
             return Ok("Booking deleted successfully.");
         }
@@ -163,14 +163,14 @@ namespace API.Controllers
         public async Task<ActionResult<Booking>> PostBookingTypeFlex(string userId, int numberOfSlot, string branchId)
         {
 
-            var booking = bookingService.AddBookingTypeFlex(userId, numberOfSlot, branchId);
+            var booking = _bookingService.AddBookingTypeFlex(userId, numberOfSlot, branchId);
             return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
         }
 
         [HttpPost("fix-slot")]
         public async Task<IActionResult> PostBookingTypeFix([FromQuery] int numberOfMonths, [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel timeSlotModel, [FromQuery] string userId, string branchId)
         {
-            return await bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId, branchId);
+            return await _bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId, branchId);
         }
     }
 }

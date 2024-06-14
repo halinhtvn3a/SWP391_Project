@@ -25,7 +25,7 @@ namespace Repositories
                 _courtDao = new CourtDAO();
             }
         }
-        public TimeSlot AddTimeSlot(TimeSlot TimeSlot) => _timeSlotDao.AddTimeSlot(TimeSlot);
+        public TimeSlot AddTimeSlot(TimeSlot timeSlot) => _timeSlotDao.AddTimeSlot(timeSlot);
 
         //public void DeleteTimeSlot(string id) => TimeSlotDAO.DeleteTimeSlot(id);
 
@@ -33,7 +33,7 @@ namespace Repositories
 
         public List<TimeSlot> GetTimeSlots() => _timeSlotDao.GetTimeSlots();
 
-        public TimeSlot UpdateTimeSlot(string id, TimeSlot TimeSlot) => _timeSlotDao.UpdateTimeSlot(id, TimeSlot);
+        public TimeSlot UpdateTimeSlot(string id, TimeSlot timeSlot) => _timeSlotDao.UpdateTimeSlot(id, timeSlot);
 
         public bool IsSlotBookedInBranch(SlotModel slotModel)
         {

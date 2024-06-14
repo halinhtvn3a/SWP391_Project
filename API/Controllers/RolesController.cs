@@ -9,25 +9,25 @@ namespace API.Controllers
     [ApiController]
     public class RolesController : ControllerBase
 	{
-		private readonly RoleService RoleService;
+		private readonly RoleService _roleService;
 
 		public RolesController()
 		{
-			RoleService = new RoleService();
+            _roleService = new RoleService();
 		}
 
 		// GET: api/Roles
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<IdentityRole>>> GetRoles()
 		{
-			return RoleService.GetRoles();
+			return _roleService.GetRoles();
 		}
 
         // GET: api/Roles/5
         [HttpGet("roleId/{id}")]
         public async Task<ActionResult<IdentityRole>> GetRole(string id)
         {
-            var Role = RoleService.GetRole(id);
+            var Role = _roleService.GetRole(id);
 
             if (Role == null)
             {
@@ -40,7 +40,7 @@ namespace API.Controllers
         [HttpGet("userId/{userId}")]
         public async Task<ActionResult<string[]>> GetRoleNameByUserId(string userId)
         {
-            var Role = RoleService.GetRoleNameByUserId(userId);
+            var Role = _roleService.GetRoleNameByUserId(userId);
 
             if (Role == null)
             {

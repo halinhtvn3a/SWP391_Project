@@ -9,10 +9,10 @@ namespace API.Controllers
     [ApiController]
     public class MailController : ControllerBase
     {
-        private readonly IMailService mailService;
+        private readonly IMailService _mailService;
         public MailController(IMailService mailService)
         {
-            this.mailService = mailService;
+            _mailService = mailService;
         }
 
         [HttpPost("send")]
@@ -20,7 +20,7 @@ namespace API.Controllers
         {
             try
             {
-                await mailService.SendEmailAsync(request);
+                await _mailService.SendEmailAsync(request);
                 return Ok();
             }
             catch

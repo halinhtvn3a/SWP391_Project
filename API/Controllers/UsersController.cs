@@ -82,13 +82,13 @@ namespace API.Controllers
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<IdentityUser>> PostUser(IdentityUser user)
-        {
-            _userService.AddUser(user);
+        //[HttpPost]
+        //public async Task<ActionResult<IdentityUser>> PostUser(IdentityUser user)
+        //{
+        //    _userService.AddUser(user);
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
-        }
+        //    return CreatedAtAction("GetUser", new { id = user.Id }, user);
+        //}
 
         // DELETE: api/Users/5
         //[HttpDelete("{id}")]

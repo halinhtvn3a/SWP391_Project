@@ -10,29 +10,29 @@ namespace Services
 {
 	public class UserService
 	{
-		private readonly UserRepository UserRepository = null;
+		private readonly UserRepository _userRepository = null;
 		public UserService()
 		{
-			if (UserRepository == null)
+			if (_userRepository == null)
 			{
-				UserRepository = new UserRepository();
+                _userRepository = new UserRepository();
 			}
 		}
 
-		public IdentityUser AddUser(IdentityUser User) => UserRepository.AddUser(User);
+		public IdentityUser AddUser(IdentityUser User) => _userRepository.AddUser(User);
 		//public void DeleteUser(string id) => UserRepository.DeleteUser(id);
-		public IdentityUser GetUser(string id) => UserRepository.GetUser(id);
+		public IdentityUser GetUser(string id) => _userRepository.GetUser(id);
 		//public List<IdentityUser> GetUsers() => UserRepository.GetUsers();
         //public IdentityUser UpdateUser(string id, IdentityUser User) => UserRepository.UpdateUser(id, User);
 
-        public async Task<List<IdentityUser>> GetUsers(DAOs.Helper.PageResult page) => await UserRepository.GetUsers(page);
+        public async Task<List<IdentityUser>> GetUsers(DAOs.Helper.PageResult page) => await _userRepository.GetUsers(page);
 
 
-        public void BanUser(string id) => UserRepository.BanUser(id);
+        public void BanUser(string id) => _userRepository.BanUser(id);
 		
-		public void UnBanUser(string id) => UserRepository.UnBanUser(id);
+		public void UnBanUser(string id) => _userRepository.UnBanUser(id);
 
-        public List<IdentityUser> SearchUserByEmail(string searchValue) => UserRepository.SearchUserByEmail(searchValue);
+        public List<IdentityUser> SearchUserByEmail(string searchValue) => _userRepository.SearchUserByEmail(searchValue);
 
     }
 }

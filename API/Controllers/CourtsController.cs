@@ -20,11 +20,11 @@ namespace API.Controllers
     [ApiController]
     public class CourtsController : ControllerBase
     {
-        private readonly CourtService courtService;
+        private readonly CourtService _courtService;
 
         public CourtsController()
         {
-            courtService = new CourtService();
+            _courtService = new CourtService();
         }
 
         // GET: api/Courts
@@ -37,7 +37,7 @@ namespace API.Controllers
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-            var court = await courtService.GetCourts(pageResult);
+            var court = await _courtService.GetCourts(pageResult);
             return Ok(court);
         }
 
@@ -45,7 +45,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Court>> GetCourt(string id)
         {
-            var court = courtService.GetCourt(id);
+            var court = _courtService.GetCourt(id);
 
             if (court == null)
             {
@@ -60,13 +60,13 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCourt(string id, CourtModel courtModel)
         {
-            var court = courtService.GetCourt(id);
+            var court = _courtService.GetCourt(id);
             if (id != court.CourtId)
             {
                 return BadRequest();
             }
 
-            courtService.UpdateCourt(id, courtModel);
+            _courtService.UpdateCourt(id, courtModel);
 
             return CreatedAtAction("GetCourt", new { id = court.CourtId }, court);
         }
@@ -77,7 +77,7 @@ namespace API.Controllers
         public async Task<ActionResult<Court>> PostCourt(CourtModel courtModel)
         {
 
-            var court = courtService.AddCourt(courtModel);
+            var court = _courtService.AddCourt(courtModel);
 
             return CreatedAtAction("GetCourt", new { id = court.CourtId }, court);
         }
@@ -86,13 +86,13 @@ namespace API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCourt(string id)
         {
-            var court = courtService.GetCourt(id);
+            var court = _courtService.GetCourt(id);
             if (court == null)
             {
                 return NotFound();
             }
 
-            courtService.DeleteCourt(id);
+            _courtService.DeleteCourt(id);
 
             return NoContent();
         }
@@ -105,7 +105,7 @@ namespace API.Controllers
         [HttpGet("active")]
         public async Task<ActionResult<IEnumerable<Court>>> GetActiveCourts()
         {
-            return courtService.GetActiveCourts();
+            return _courtService.GetActiveCourts();
         }
 
     }

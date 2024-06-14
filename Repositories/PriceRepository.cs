@@ -20,12 +20,12 @@ namespace Repositories
             }
         }
         public decimal ShowPrice(string branchId , DateOnly slotDate) => _priceDao.ShowPrice(branchId, slotDate);
-        public Price AddPrice(Price Price) => _priceDao.AddPrice(Price);
+        public Price AddPrice(Price price) => _priceDao.AddPrice(price);
         public void DeletePrice(string id) => _priceDao.DeletePrice(id);
 
         public Price GetPrice(string id) => _priceDao.GetPrice(id);
 
-        public Price UpdatePrice(string id, Price Price) => _priceDao.UpdatePrice(id, Price);
+        public Price UpdatePrice(string id, Price price) => _priceDao.UpdatePrice(id, price);
 
         public List<Price> GetPriceByBranch(string branchId) => _priceDao.GetPriceByBranch(branchId);
     }

@@ -11,20 +11,20 @@ namespace Services
 {
     public class UserDetailService
     {
-        private readonly UserDetailRepository UserDetailRepository = null;
+        private readonly UserDetailRepository _userDetailRepository = null;
         public UserDetailService()
         {
-            if (UserDetailRepository == null)
+            if (_userDetailRepository == null)
             {
-                UserDetailRepository = new UserDetailRepository();
+                _userDetailRepository = new UserDetailRepository();
             }
         }
-        public UserDetail AddUserDetail(UserDetail UserDetail) => UserDetailRepository.AddUserDetail(UserDetail);
+        public UserDetail AddUserDetail(UserDetail userDetail) => _userDetailRepository.AddUserDetail(userDetail);
         //public void DeleteUserDetail(string id) => UserDetailRepository.DeleteUserDetail(id);
-        public UserDetail GetUserDetail(string id) => UserDetailRepository.GetUserDetail(id);
-        public List<UserDetail> GetUserDetails() => UserDetailRepository.GetUserDetails();
-        public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel) => UserDetailRepository.UpdateUserDetail(id, userDetailsModel);
-        public List<UserDetail> SearchUserByEmail(string searchValue) => UserDetailRepository.SearchUserByEmail(searchValue);
+        public UserDetail GetUserDetail(string id) => _userDetailRepository.GetUserDetail(id);
+        public List<UserDetail> GetUserDetails() => _userDetailRepository.GetUserDetails();
+        public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel) => _userDetailRepository.UpdateUserDetail(id, userDetailsModel);
+        public List<UserDetail> SearchUserByEmail(string searchValue) => _userDetailRepository.SearchUserByEmail(searchValue);
 
     }
 }

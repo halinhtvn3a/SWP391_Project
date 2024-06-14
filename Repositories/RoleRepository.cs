@@ -19,7 +19,7 @@ namespace Repositories
                     _roleDao = new RoleDAO();
 				}
 			}
-			public IdentityRole AddRole(IdentityRole Role) => _roleDao.AddRole(Role);
+			public IdentityRole AddRole(IdentityRole role) => _roleDao.AddRole(role);
 
 			public void DeleteRole(string id) => _roleDao.DeleteRole(id);
 
@@ -27,7 +27,7 @@ namespace Repositories
 
 			public List<IdentityRole> GetRoles() => _roleDao.GetRoles();
 
-			public IdentityRole UpdateRole(string id, IdentityRole Role) => _roleDao.UpdateRole(id, Role);
+			public IdentityRole UpdateRole(string id, IdentityRole role) => _roleDao.UpdateRole(id, role);
 
 			public string[] GetRoleNameByUserId(string userId) => _roleDao.GetRoleNameByUserId(userId);
 	}

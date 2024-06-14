@@ -11,20 +11,20 @@ namespace Services
 {
 	public class RoleService
 	{
-		private readonly RoleRepository RoleRepository = null;
+		private readonly RoleRepository _roleRepository = null;
 		public RoleService()
 		{
-			if (RoleRepository == null)
+			if (_roleRepository == null)
 			{
-				RoleRepository = new RoleRepository();
+                _roleRepository = new RoleRepository();
 			}
 		}
-		public IdentityRole AddRole(IdentityRole Role) => RoleRepository.AddRole(Role);
-		public void DeleteRole(string id) => RoleRepository.DeleteRole(id);
-		public IdentityRole GetRole(string id) => RoleRepository.GetRole(id);
-		public List<IdentityRole> GetRoles() => RoleRepository.GetRoles();
-		public IdentityRole UpdateRole(string id, IdentityRole Role) => RoleRepository.UpdateRole(id, Role);
+		public IdentityRole AddRole(IdentityRole Role) => _roleRepository.AddRole(Role);
+		public void DeleteRole(string id) => _roleRepository.DeleteRole(id);
+		public IdentityRole GetRole(string id) => _roleRepository.GetRole(id);
+		public List<IdentityRole> GetRoles() => _roleRepository.GetRoles();
+		public IdentityRole UpdateRole(string id, IdentityRole Role) => _roleRepository.UpdateRole(id, Role);
 
-		public string[] GetRoleNameByUserId(string userId) => RoleRepository.GetRoleNameByUserId(userId);
+		public string[] GetRoleNameByUserId(string userId) => _roleRepository.GetRoleNameByUserId(userId);
 	}
 }

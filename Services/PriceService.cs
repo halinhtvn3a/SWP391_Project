@@ -24,7 +24,7 @@ namespace Services
         public decimal ShowPrice(string branchId, DateOnly slotDate) => _priceRepository.ShowPrice(branchId, slotDate);
         public void DeletePrice(string id) => _priceRepository.DeletePrice(id);
         public Price GetPrice(string id) => _priceRepository.GetPrice(id);
-        public Price UpdatePrice(string id, Price Price) => _priceRepository.UpdatePrice(id, Price);
+        public Price UpdatePrice(string id, Price price) => _priceRepository.UpdatePrice(id, price);
         public List<Price> GetPriceByBranch(string branchId) => _priceRepository.GetPriceByBranch(branchId);
 
     }

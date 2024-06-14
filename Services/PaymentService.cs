@@ -14,39 +14,43 @@ namespace Services
 {
     public class PaymentService
     {
-        private readonly PaymentRepository PaymentRepository = null;
-        private readonly BookingRepository bookingRepository = null;
-        private readonly VnpayService vnpayService = null;
+        private readonly PaymentRepository _paymentRepository = null;
+        private readonly BookingRepository _bookingRepository = null;
+        private readonly VnpayService _vnpayService = null;
         private readonly ILogger<VnpayService> _logger;
         public PaymentService()
         {
-            if (PaymentRepository == null)
+            if (_paymentRepository == null)
             {
-                PaymentRepository = new PaymentRepository();
+                _paymentRepository = new PaymentRepository();
             }
-            if (bookingRepository == null)
-                bookingRepository = new BookingRepository();
-            if (vnpayService == null)
-                vnpayService = new VnpayService(_logger, bookingRepository, PaymentRepository);
+            if (_bookingRepository == null)
+            {
+                _bookingRepository = new BookingRepository();
+            }
+            if (_vnpayService == null)
+            {
+                _vnpayService = new VnpayService(_logger, _bookingRepository, _paymentRepository);
+            }
 
         }
-        public Payment AddPayment(Payment Payment) => PaymentRepository.AddPayment(Payment);
-        public void DeletePayment(string id) => PaymentRepository.DeletePayment(id);
-        public Payment GetPayment(string id) => PaymentRepository.GetPayment(id);
-        public List<Payment> GetPayments() => PaymentRepository.GetPayments();
+        public Payment AddPayment(Payment Payment) => _paymentRepository.AddPayment(Payment);
+        public void DeletePayment(string id) => _paymentRepository.DeletePayment(id);
+        public Payment GetPayment(string id) => _paymentRepository.GetPayment(id);
+        public List<Payment> GetPayments() => _paymentRepository.GetPayments();
         //public Payment UpdatePayment(string id, Payment Payment) => PaymentRepository.UpdatePayment(id, Payment);
 
-        public List<Payment> SearchByDate(DateTime start, DateTime end) => PaymentRepository.SearchByDate(start, end);
+        public List<Payment> SearchByDate(DateTime start, DateTime end) => _paymentRepository.SearchByDate(start, end);
 
         public async Task<string> ProcessBookingPayment(string bookingId)
         {
-            var bookings = await bookingRepository.GetBooking(bookingId);
+            var bookings = await _bookingRepository.GetBooking(bookingId);
             if (bookings == null)
             {
                 return null;
             }
 
-            var paymentURL = vnpayService.CreatePaymentUrl(bookings.TotalPrice,"ok",bookings.BookingId);
+            var paymentURL = _vnpayService.CreatePaymentUrl(bookings.TotalPrice,"ok",bookings.BookingId);
 
 
             return paymentURL;
