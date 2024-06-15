@@ -43,7 +43,7 @@ namespace API.Controllers
         }
 
         // GET: api/Branches/5
-        [Authorize]
+       
         [HttpGet("{id}")]
         public async Task<ActionResult<Branch>> GetBranch(string id)
         {
