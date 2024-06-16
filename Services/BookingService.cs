@@ -61,22 +61,17 @@ namespace Services
             }
         }
 
-        public async Task<IActionResult> PessimistLockAsyncV2(SlotModel[] slotModels, string userId)
+        public Booking PessimistLockAsyncV2(SlotModel[] slotModels, string userId)
         {
             try
             {
-                var success = await _bookingRepository.ReserveSlotAsyncV2(slotModels, userId);
+                var booking = _bookingRepository.ReserveSlotAsyncV2(slotModels, userId);
 
-                if (!success)
-                {
-                    return new ConflictObjectResult("Slot is already reserved.");
-                }
-
-                return new OkObjectResult("Slot reserved successfully.");
+                return booking;
             }
             catch (Exception ex)
             {
-                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+                throw ex;
             }
         }
         

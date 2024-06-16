@@ -174,7 +174,7 @@ namespace Repositories
             }
         }
 
-        public async Task<bool> ReserveSlotAsyncV2(SlotModel[] slotModels, string userId)
+        public Booking ReserveSlotAsyncV2(SlotModel[] slotModels, string userId)
         {
             //await _bookingDao.BeginTransactionAsync();
 
@@ -184,7 +184,7 @@ namespace Repositories
                 {
                     if (_timeSlotRepository.IsSlotBookedInBranch(s))
                     {
-                        return false;
+                        return null;
                     }
                 }
 
@@ -214,7 +214,7 @@ namespace Repositories
                         NumberOfSlot = slotModels.Length
                     };
                     _bookingDao.AddBooking(booking);
-                    await _bookingDao.SaveChangesAsync();
+
                     foreach (var s in slotModels)
                     {
                         TimeSlot timeSlot = _timeSlotDao.AddSlotToBooking(s, generateBookingId);
@@ -222,6 +222,8 @@ namespace Repositories
                     }
 
                     _bookingDao.UpdateBooking(generateBookingId, paymentAmount);
+
+                    return booking;
                 }
 
 
@@ -230,19 +232,11 @@ namespace Repositories
 
                 //await _bookingDao.CommitTransactionAsync();
 
-                return true;
-            }
-            catch (DbUpdateException ex)
-            {
-
-                await _bookingDao.RollbackTransactionAsync();
-                throw;
+                return null;
             }
             catch (Exception ex)
             {
-
-                await _bookingDao.RollbackTransactionAsync();
-                throw;
+                throw ex;
             }
         }
 
