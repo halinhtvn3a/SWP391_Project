@@ -18,7 +18,7 @@ namespace DAOs.Models
         [StringLength(100)]
         public string CourtName { get; set; }
 
-        [Required(ErrorMessage = "Court picture is required")]
+       
         [StringLength(450)]
         public string CourtPicture { get; set; }
 
