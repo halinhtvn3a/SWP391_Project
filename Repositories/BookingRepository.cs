@@ -9,6 +9,7 @@ using DAOs.Models;
 using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
 using DAOs.Helper;
+using Microsoft.AspNetCore.Identity;
 
 namespace Repositories
 {
@@ -17,6 +18,8 @@ namespace Repositories
         private readonly BookingDAO _bookingDao = null;
         private readonly TimeSlotDAO _timeSlotDao = null;
         private readonly PriceDAO _priceDao = null;
+        private readonly UserDAO _userDao = null;
+        private readonly UserDetailDAO _userDetailDao = null;
         private readonly TimeSlotRepository _timeSlotRepository = null;
 
         public BookingRepository()
@@ -39,6 +42,16 @@ namespace Repositories
             if (_timeSlotRepository == null)
             {
                 _timeSlotRepository = new TimeSlotRepository();
+            }
+
+            if (_userDao == null)
+            {
+                _userDao = new UserDAO();
+            }
+
+            if (_userDetailDao == null)
+            {
+                _userDetailDao = new UserDetailDAO();
             }
         }
 
@@ -395,5 +408,36 @@ namespace Repositories
             return true;
         }
 
+        public async void CancelBooking(string bookingId)
+        {
+            List<TimeSlot> timeSlots = _timeSlotDao.GetTimeSlotsByBookingId(bookingId);
+            bool isExpired = timeSlots.Any(timeSlot =>
+                timeSlot.SlotDate.CompareTo(DateOnly.FromDateTime(DateTime.Now)) < 0 ||
+                (timeSlot.SlotDate.Equals(DateOnly.FromDateTime(DateTime.Now)) &&
+                 timeSlot.SlotStartTime.CompareTo(TimeOnly.FromDateTime(DateTime.Now)) < 0));
+            if (!isExpired)
+            {
+                foreach (var timeSlot in timeSlots)
+                {
+                    _timeSlotDao.DeleteTimeSlot(timeSlot.SlotId);
+                }
+            }
+
+            IdentityUser user = _userDao.GetUserByBookingId(bookingId);
+            Booking booking = await GetBooking(bookingId);
+            UserDetail userDetail = _userDetailDao.GetUserDetail(user.Id);
+            userDetail.Balance += booking.TotalPrice;
+            UserDetailsModel userDetailsModel = new UserDetailsModel()
+            {
+                Balance = userDetail.Balance,
+                FullName = userDetail.FullName,
+                Address = userDetail.Address,
+                ProfilePicture = userDetail.ProfilePicture,
+                YearOfBirth = userDetail.YearOfBirth
+
+            };
+            _userDetailDao.UpdateUserDetail(user.Id, userDetailsModel);
+            _bookingDao.DeleteBooking(bookingId);
+        }
     }
 }

@@ -147,6 +147,19 @@ namespace API.Controllers
             return booking != null ? Ok(booking) : BadRequest("Failed to reserve slot.");
         }
 
+        [HttpDelete("cancelBooking/{bookingId}")]
+        public async Task<IActionResult> CancelBooking(string bookingId)
+        {
+            if (string.IsNullOrEmpty(bookingId))
+            {
+                return BadRequest("Invalid booking id.");
+            }
+
+            _bookingService.CancelBooking(bookingId);
+
+            return Ok("Booking cancelled successfully.");
+        }
+
         [HttpDelete("delete/{bookingId}")]
         public async Task<IActionResult> DeleteBookingAndSetTimeSlot(string bookingId)
         {

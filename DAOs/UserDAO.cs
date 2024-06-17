@@ -130,5 +130,10 @@ namespace DAOs
         }
 
         public List<IdentityUser> SearchUserByEmail(string searchValue) => _dbContext.Users.Where(m => m.Email.Contains(searchValue)).ToList();
+
+        public IdentityUser GetUserByBookingId(string bookingId)
+        {
+            return _dbContext.Users.FirstOrDefault(m => m.Id.Equals(bookingId));
+        }
     }
 }

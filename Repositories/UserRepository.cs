@@ -41,5 +41,6 @@ namespace Repositories
 
         public List<IdentityUser> SearchUserByEmail(string searchValue) => _userDao.SearchUserByEmail(searchValue);
 
+		public IdentityUser GetUserByBookingId(string bookingId) => _userDao.GetUserByBookingId(bookingId);
     }
 }

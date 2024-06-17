@@ -97,5 +97,7 @@ namespace Services
 
         public async Task DeleteBookingAndSetTimeSlotAsync(string bookingId) => await _bookingRepository.DeleteBookingAndSetTimeSlotAsync(bookingId);
 
+        public void CancelBooking(string bookingId) => _bookingRepository.CancelBooking(bookingId);
+
     }
 }

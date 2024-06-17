@@ -205,6 +205,16 @@ namespace DAOs
 
         }
 
+        public void DeleteTimeSlot(string timeSlotId)
+        {
+            TimeSlot timeSlot = GetTimeSlot(timeSlotId);
+            if (timeSlot != null)
+            {
+                _dbContext.TimeSlots.Remove(timeSlot);
+                _dbContext.SaveChanges();
+            }
+        }
+
         public int NumberOfSlotsInBooking(string bookingId)
         {
             return _dbContext.TimeSlots.Count(ts => ts.BookingId == bookingId);
