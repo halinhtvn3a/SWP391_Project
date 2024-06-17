@@ -208,7 +208,7 @@ namespace Repositories
                         BookingId = generateBookingId,
                         Id = userId,
                         BookingDate = DateTime.Now,
-                        Status = "False",
+                        Status = "Reserved",
                         TotalPrice = 0,
                         BookingType = "Normal",
                         NumberOfSlot = slotModels.Length
@@ -279,7 +279,7 @@ namespace Repositories
                 BookingId = "B" + GenerateId.GenerateShortBookingId(),
                 Id = userId,
                 BookingDate = DateTime.Now,
-                Status = "False",
+                Status = "In Use",
                 TotalPrice = _priceDao.GetPriceByBranchAndWeekend(branchId, false).SlotPrice * numberOfSlot * 9 / 10,
                 BookingType = "Flex",
                 NumberOfSlot = numberOfSlot,
@@ -371,7 +371,7 @@ namespace Repositories
                 BookingId = bookingId,
                 Id = userId,
                 BookingDate = DateTime.Now,
-                Status = "True",
+                Status = "In Use",
                 TotalPrice = totalPrice,
                 BookingType = "Fix",
                 NumberOfSlot = numberOfSlots
