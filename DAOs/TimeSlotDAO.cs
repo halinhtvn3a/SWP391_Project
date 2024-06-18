@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using DAOs.Models;
 using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using PageResult = DAOs.Helper.PageResult;
 
 namespace DAOs
 {
@@ -286,5 +288,28 @@ namespace DAOs
         {
             return _dbContext.TimeSlots.Where(ts => ts.BookingId == bookingId).ToList();
         }
+
+        public async Task<List<TimeSlot>> GetTimeSlotsByUserId(string userId, PageResult pageResult)
+        {
+            var query = _dbContext.TimeSlots
+                .Where(ts => _dbContext.Bookings.Any(b => b.BookingId == ts.BookingId && b.Id == userId))
+                .Select(ts => new TimeSlot
+                {
+                    SlotId = ts.SlotId,
+                    CourtId = ts.CourtId,
+                    BookingId = ts.BookingId,
+                    SlotDate = ts.SlotDate,
+                    SlotStartTime = ts.SlotStartTime,
+                    SlotEndTime = ts.SlotEndTime,
+                    Price = ts.Price,
+                    Status = ts.Status
+                });
+
+            Pagination pagination = new Pagination(_dbContext);
+            List<TimeSlot> timeSlots = await pagination.GetListAsync<TimeSlot>(query, pageResult);
+            return timeSlots;
+        }
+
+
     }
 }

@@ -134,6 +134,18 @@ namespace API.Controllers
             });
         }
 
+        [HttpGet("userId/{userId}")]
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsByUserId(string userId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new Page.PageResult
+            {
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+            };
+            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlotsByUserId(userId, pageResult);
+            return Ok(timeSlots);
+        }
+
         private bool TimeSlotExists(string id)
         {
             return _timeSlotService.GetTimeSlots().Any(e => e.SlotId == id);

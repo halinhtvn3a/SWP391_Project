@@ -29,8 +29,9 @@ namespace Repositories
         public TimeSlot AddTimeSlot(TimeSlot timeSlot) => _timeSlotDao.AddTimeSlot(timeSlot);
 
         public async Task<List<TimeSlot>> GetTimeSlots(PageResult pageResult) => await _timeSlotDao.GetTimeSlots(pageResult);
+        public async Task<List<TimeSlot>> GetTimeSlotsByUserId(string userId, PageResult pageResult) => await _timeSlotDao.GetTimeSlotsByUserId(userId, pageResult);
 
-
+        
         public void DeleteTimeSlot(string id) => _timeSlotDao.DeleteTimeSlot(id);
 
         public TimeSlot GetTimeSlot(string id) => _timeSlotDao.GetTimeSlot(id);
