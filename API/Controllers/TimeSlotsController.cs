@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using DAOs.Models;
 using Services;
+using Page = DAOs.Helper;
 
 namespace API.Controllers
 {
@@ -27,6 +28,18 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlots()
         {
             return _timeSlotService.GetTimeSlots();
+        }
+        
+        [HttpGet("page/")]
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsPage([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new Page.PageResult
+            {
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+            };
+            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlots(pageResult);
+            return Ok(timeSlots);
         }
 
         // GET: api/TimeSlots/5

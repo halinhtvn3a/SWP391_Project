@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "E:\\17-6\\SWP391_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
@@ -11,12 +15,80 @@
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\17-6\\swp391_project\\services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\17-6\\swp391_project\\repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\17-6\\swp391_project\\services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\17-6\\swp391_project\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\helper\\pageresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\helper\\pageresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\17-6\\swp391_project\\repositories\\repositories.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\repositories.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\daos.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\daos.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\17-6\\swp391_project\\businessobjects\\businessobjects.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\businessobjects.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\17-6\\swp391_project\\businessobjects\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\booking.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\branchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\branchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\courtscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\courtscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\locationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\locationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\pricescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\pricescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.TimeSlots.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
@@ -30,23 +102,11 @@
       "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\court.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.Courts.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\17-6\\swp391_project\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\17-6\\swp391_project\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.Bookings.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
@@ -56,22 +116,6 @@
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.AspNetUsers.sql||{0058A1F7-65F3-4DB9-B3D0-CA7E64DD73CD}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\branchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\branchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\courtscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\courtscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -98,10 +142,6 @@
       "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\models\\userdetailsmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\17-6\\swp391_project\\daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\17-6\\swp391_project\\repositories\\branchrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\branchrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -126,24 +166,12 @@
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\reviewscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\pricescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\pricescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\mailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\mailcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\locationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\locationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\17-6\\swp391_project\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -169,11 +197,122 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 6,
+              "Title": "TimeSlotService.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Services\\TimeSlotService.cs",
+              "RelativeDocumentMoniker": "Services\\TimeSlotService.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\Services\\TimeSlotService.cs",
+              "RelativeToolTip": "Services\\TimeSlotService.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAABoAAABuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T00:39:16.513Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "TimeSlotsController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\TimeSlotsController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "RelativeToolTip": "API\\Controllers\\TimeSlotsController.cs",
+              "ViewState": "AQIAADsAAAAAAAAAAAA3wCgAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:49:38.105Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookingsController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\BookingsController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
+              "RelativeToolTip": "API\\Controllers\\BookingsController.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T12:16:36.421Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AuthenController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\AuthenController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
+              "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:48:40.196Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookingDAO.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\BookingDAO.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
+              "RelativeToolTip": "DAOs\\BookingDAO.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAAAwAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-16T17:33:00.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TimeSlotRepository.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\TimeSlotRepository.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
+              "RelativeToolTip": "Repositories\\TimeSlotRepository.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAD4vx4AAABpAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T00:23:14.432Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TimeSlotDAO.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\TimeSlotDAO.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
+              "RelativeToolTip": "DAOs\\TimeSlotDAO.cs",
+              "ViewState": "AQIAADAAAAAAAAAAAAAcwDUAAAAkAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T03:16:52.049Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\appsettings.json",
+              "RelativeDocumentMoniker": "API\\appsettings.json",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\appsettings.json",
+              "RelativeToolTip": "API\\appsettings.json",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABAAAAA2AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-16T17:38:56.135Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "BookingRepository.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
+              "RelativeToolTip": "Repositories\\BookingRepository.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAAgwEUAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-16T16:02:25.898Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
               "Title": "PriceRepository.cs",
               "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\PriceRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\PriceRepository.cs",
@@ -181,203 +320,143 @@
               "RelativeToolTip": "Repositories\\PriceRepository.cs",
               "ViewState": "AQIAAAsAAAAAAAAAAAA6wBYAAABIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T09:47:18.313Z",
-              "IsPinned": true
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TimeSlot.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\BusinessObjects\\TimeSlot.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\TimeSlot.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\BusinessObjects\\TimeSlot.cs",
-              "RelativeToolTip": "BusinessObjects\\TimeSlot.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T01:33:49.029Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TimeSlotRepository.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\TimeSlotRepository.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
-              "RelativeToolTip": "Repositories\\TimeSlotRepository.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAASwE0AAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T00:23:14.432Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "TimeSlotService.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Services\\TimeSlotService.cs",
-              "RelativeDocumentMoniker": "Services\\TimeSlotService.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\Services\\TimeSlotService.cs",
-              "RelativeToolTip": "Services\\TimeSlotService.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAADwvx8AAABKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T00:39:16.513Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TimeSlotsController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\TimeSlotsController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
-              "RelativeToolTip": "API\\Controllers\\TimeSlotsController.cs",
-              "ViewState": "AQIAAFwAAAAAAAAAAAAAAGwAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:38.105Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TimeSlotDAO.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\TimeSlotDAO.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
-              "RelativeToolTip": "DAOs\\TimeSlotDAO.cs",
-              "ViewState": "AQIAAH8AAAAAAAAAAAAAAI4AAAAYAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T03:16:52.049Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Court.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\BusinessObjects\\Court.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\Court.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\BusinessObjects\\Court.cs",
-              "RelativeToolTip": "BusinessObjects\\Court.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T12:25:22.208Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "dbo.Courts [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.Courts.sql",
-              "ToolTip": "dbo.Courts [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-06-16T17:40:17.029Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\appsettings.json",
-              "RelativeDocumentMoniker": "API\\appsettings.json",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\appsettings.json",
-              "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAoAAAAfAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-16T17:38:56.135Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "dbo.TimeSlots [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.TimeSlots.sql",
-              "ToolTip": "dbo.TimeSlots [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-06-18T01:34:09.68Z"
+              "WhenOpened": "2024-06-14T09:47:18.313Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "BookingsController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\BookingsController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
-              "RelativeToolTip": "API\\Controllers\\BookingsController.cs",
-              "ViewState": "AQIAAHsAAAAAAAAAAAAmwJAAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T12:16:36.421Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "BookingService.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Services\\BookingService.cs",
-              "RelativeDocumentMoniker": "Services\\BookingService.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\Services\\BookingService.cs",
-              "RelativeToolTip": "Services\\BookingService.cs",
-              "ViewState": "AQIAADEAAAAAAAAAAAAUwEsAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-16T17:36:30.375Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "BookingRepository.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
-              "RelativeToolTip": "Repositories\\BookingRepository.cs",
-              "ViewState": "AQIAAO4AAAAAAAAAAAAtwP8AAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-16T16:02:25.898Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "dbo.Bookings [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.Bookings.sql",
-              "ToolTip": "dbo.Bookings [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-06-18T00:53:59.428Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "dbo.Branches [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.Branches.sql",
-              "ToolTip": "dbo.Branches [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-06-18T00:44:31.7Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "dbo.AspNetUsers [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.AspNetUsers.sql",
-              "ToolTip": "dbo.AspNetUsers [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-06-16T17:40:59.237Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
               "Title": "BranchDAO.cs",
               "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\BranchDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\BranchDAO.cs",
               "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\BranchDAO.cs",
               "RelativeToolTip": "DAOs\\BranchDAO.cs",
-              "ViewState": "AQIAADwAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAYwBsAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-17T06:41:28.422Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 15,
+              "Title": "CourtCallerDbContext.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\CourtCallerDbContext.cs",
+              "RelativeDocumentMoniker": "DAOs\\CourtCallerDbContext.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\CourtCallerDbContext.cs",
+              "RelativeToolTip": "DAOs\\CourtCallerDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T02:06:54.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PageResult.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\Helper\\PageResult.cs",
+              "RelativeDocumentMoniker": "DAOs\\Helper\\PageResult.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\Helper\\PageResult.cs",
+              "RelativeToolTip": "DAOs\\Helper\\PageResult.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAAAsAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T02:29:09.245Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "API.csproj",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\API.csproj",
+              "RelativeDocumentMoniker": "API\\API.csproj",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\API.csproj",
+              "RelativeToolTip": "API\\API.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-18T02:07:24.439Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Booking.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\BusinessObjects\\Booking.cs",
+              "RelativeDocumentMoniker": "BusinessObjects\\Booking.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\BusinessObjects\\Booking.cs",
+              "RelativeToolTip": "BusinessObjects\\Booking.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T02:02:12.561Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "DAOs.csproj",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\DAOs.csproj",
+              "RelativeDocumentMoniker": "DAOs\\DAOs.csproj",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\DAOs.csproj",
+              "RelativeToolTip": "DAOs\\DAOs.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-18T02:07:02.236Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BusinessObjects.csproj",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+              "RelativeDocumentMoniker": "BusinessObjects\\BusinessObjects.csproj",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+              "RelativeToolTip": "BusinessObjects\\BusinessObjects.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-18T02:07:03.862Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Repositories.csproj",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\Repositories.csproj",
+              "RelativeDocumentMoniker": "Repositories\\Repositories.csproj",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\Repositories\\Repositories.csproj",
+              "RelativeToolTip": "Repositories\\Repositories.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-06-18T02:07:20.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "CourtsController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\CourtsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\CourtsController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\CourtsController.cs",
+              "RelativeToolTip": "API\\Controllers\\CourtsController.cs",
+              "ViewState": "AQIAADwAAAAAAAAAAAAAAEgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:49:01.745Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "BranchesController.cs",
               "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BranchesController.cs",
               "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
               "RelativeToolTip": "API\\Controllers\\BranchesController.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAAAD4AAAA+AAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAAAD4AAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-14T16:47:36.868Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
+              "Title": "PricesController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\PricesController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\PricesController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\PricesController.cs",
+              "RelativeToolTip": "API\\Controllers\\PricesController.cs",
+              "ViewState": "AQIAAEIAAAAAAAAAAAAAADAAAABRAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T09:30:59.936Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "CourtDAO.cs",
               "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\CourtDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\CourtDAO.cs",
@@ -389,187 +468,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "CourtsController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\CourtsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\CourtsController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\CourtsController.cs",
-              "RelativeToolTip": "API\\Controllers\\CourtsController.cs",
-              "ViewState": "AQIAAEAAAAAAAAAAAAAIwE8AAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:01.745Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 27,
-              "Title": "UserDetailDAO.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\UserDetailDAO.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
-              "RelativeToolTip": "DAOs\\UserDetailDAO.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAowAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T06:33:57.158Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "UserDAO.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\UserDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\UserDAO.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\UserDAO.cs",
-              "RelativeToolTip": "DAOs\\UserDAO.cs",
-              "ViewState": "AQIAAGwAAAAAAAAAAAAiwIUAAAAuAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T06:26:57.105Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 20,
-              "Title": "UserRepository.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\UserRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\UserRepository.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\Repositories\\UserRepository.cs",
-              "RelativeToolTip": "Repositories\\UserRepository.cs",
-              "ViewState": "AQIAABgAAAAAAAAAAAAowCsAAABlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T06:27:58.535Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "VnpayService.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Services\\VnpayService.cs",
-              "RelativeDocumentMoniker": "Services\\VnpayService.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\Services\\VnpayService.cs",
-              "RelativeToolTip": "Services\\VnpayService.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAA1wBQAAABhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T12:13:33.864Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "CourtModel.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\Models\\CourtModel.cs",
-              "RelativeDocumentMoniker": "DAOs\\Models\\CourtModel.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\Models\\CourtModel.cs",
-              "RelativeToolTip": "DAOs\\Models\\CourtModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T12:27:20.857Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
-              "Title": "BookingDAO.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\BookingDAO.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
-              "RelativeToolTip": "DAOs\\BookingDAO.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAAmwGcAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-16T17:33:00.529Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "UserDetailsModel.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\Models\\UserDetailsModel.cs",
-              "RelativeDocumentMoniker": "DAOs\\Models\\UserDetailsModel.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\Models\\UserDetailsModel.cs",
-              "RelativeToolTip": "DAOs\\Models\\UserDetailsModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T07:00:29.637Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 26,
-              "Title": "BranchRepository.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\BranchRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\BranchRepository.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\Repositories\\BranchRepository.cs",
-              "RelativeToolTip": "Repositories\\BranchRepository.cs",
-              "ViewState": "AQIAACAAAAAAAAAAAAAAACoAAABLAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-16T17:30:47.393Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 31,
-              "Title": "ReviewsController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\ReviewsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\ReviewsController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\ReviewsController.cs",
-              "RelativeToolTip": "API\\Controllers\\ReviewsController.cs",
-              "ViewState": "AQIAAGsAAAAAAAAAAAAAwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:27.028Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 33,
-              "Title": "PaymentsController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\PaymentsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\PaymentsController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\PaymentsController.cs",
-              "RelativeToolTip": "API\\Controllers\\PaymentsController.cs",
-              "ViewState": "AQIAAGoAAAAAAAAAAAAcwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:12.543Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 30,
-              "Title": "RolesController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\RolesController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\RolesController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\RolesController.cs",
-              "RelativeToolTip": "API\\Controllers\\RolesController.cs",
-              "ViewState": "AQIAAE0AAAAAAAAAAAAIwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:32.54Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 29,
-              "Title": "UserDetailsController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\UserDetailsController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
-              "RelativeToolTip": "API\\Controllers\\UserDetailsController.cs",
-              "ViewState": "AQIAAFgAAAAAAAAAAAAcwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:42.731Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 28,
-              "Title": "UsersController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\UsersController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\UsersController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\UsersController.cs",
-              "RelativeToolTip": "API\\Controllers\\UsersController.cs",
-              "ViewState": "AQIAAHAAAAAAAAAAAAAUwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:47.382Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 34,
-              "Title": "MailController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\MailController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\MailController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\MailController.cs",
-              "RelativeToolTip": "API\\Controllers\\MailController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:10.948Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 35,
               "Title": "LocationController.cs",
               "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\LocationController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\LocationController.cs",
@@ -581,31 +480,244 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
-              "Title": "AuthenController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\AuthenController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
-              "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
-              "ViewState": "AQIAAEcBAAAAAAAAAAAAwAAAAAAAAAAA",
+              "DocumentIndex": 25,
+              "Title": "dbo.Courts [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.Courts.sql",
+              "ToolTip": "dbo.Courts [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-06-16T17:40:17.029Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Court.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\BusinessObjects\\Court.cs",
+              "RelativeDocumentMoniker": "BusinessObjects\\Court.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\BusinessObjects\\Court.cs",
+              "RelativeToolTip": "BusinessObjects\\Court.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:48:40.196Z"
+              "WhenOpened": "2024-06-17T12:25:22.208Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "TimeSlot.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\BusinessObjects\\TimeSlot.cs",
+              "RelativeDocumentMoniker": "BusinessObjects\\TimeSlot.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\BusinessObjects\\TimeSlot.cs",
+              "RelativeToolTip": "BusinessObjects\\TimeSlot.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T01:33:49.029Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "dbo.TimeSlots [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.TimeSlots.sql",
+              "ToolTip": "dbo.TimeSlots [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-06-18T01:34:09.68Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "BookingService.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Services\\BookingService.cs",
+              "RelativeDocumentMoniker": "Services\\BookingService.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\Services\\BookingService.cs",
+              "RelativeToolTip": "Services\\BookingService.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAUwEsAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-16T17:36:30.375Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "dbo.Bookings [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.Bookings.sql",
+              "ToolTip": "dbo.Bookings [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-06-18T00:53:59.428Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "dbo.Branches [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.Branches.sql",
+              "ToolTip": "dbo.Branches [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-06-18T00:44:31.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "dbo.AspNetUsers [Data]",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_localdb__MSSQLLocalDB/CourtCallerDb/True/SqlTable/dbo.AspNetUsers.sql",
+              "ToolTip": "dbo.AspNetUsers [Data]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2024-06-16T17:40:59.237Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "UserDetailDAO.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\UserDetailDAO.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
+              "RelativeToolTip": "DAOs\\UserDetailDAO.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T06:33:57.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\UserDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\UserDAO.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\UserDAO.cs",
+              "RelativeToolTip": "DAOs\\UserDAO.cs",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAiwIUAAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T06:26:57.105Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\UserRepository.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\Repositories\\UserRepository.cs",
+              "RelativeToolTip": "Repositories\\UserRepository.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowCsAAABlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T06:27:58.535Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 32,
-              "Title": "PricesController.cs",
-              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\PricesController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\PricesController.cs",
-              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\PricesController.cs",
-              "RelativeToolTip": "API\\Controllers\\PricesController.cs",
-              "ViewState": "AQIAAFcAAAAAAAAAAAArwDoAAAAuAAAA",
+              "Title": "VnpayService.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Services\\VnpayService.cs",
+              "RelativeDocumentMoniker": "Services\\VnpayService.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\Services\\VnpayService.cs",
+              "RelativeToolTip": "Services\\VnpayService.cs",
+              "ViewState": "AQIAABkAAAAAAAAAAAA1wBQAAABhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T09:30:59.936Z"
+              "WhenOpened": "2024-06-17T12:13:33.864Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "CourtModel.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\Models\\CourtModel.cs",
+              "RelativeDocumentMoniker": "DAOs\\Models\\CourtModel.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\Models\\CourtModel.cs",
+              "RelativeToolTip": "DAOs\\Models\\CourtModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T12:27:20.857Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "UserDetailsModel.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\Models\\UserDetailsModel.cs",
+              "RelativeDocumentMoniker": "DAOs\\Models\\UserDetailsModel.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\DAOs\\Models\\UserDetailsModel.cs",
+              "RelativeToolTip": "DAOs\\Models\\UserDetailsModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-17T07:00:29.637Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "BranchRepository.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Repositories\\BranchRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\BranchRepository.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\Repositories\\BranchRepository.cs",
+              "RelativeToolTip": "Repositories\\BranchRepository.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAACoAAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-16T17:30:47.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "ReviewsController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\ReviewsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\ReviewsController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\ReviewsController.cs",
+              "RelativeToolTip": "API\\Controllers\\ReviewsController.cs",
+              "ViewState": "AQIAAGsAAAAAAAAAAAAAwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:49:27.028Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "PaymentsController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\PaymentsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\PaymentsController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\PaymentsController.cs",
+              "RelativeToolTip": "API\\Controllers\\PaymentsController.cs",
+              "ViewState": "AQIAAGoAAAAAAAAAAAAcwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:49:12.543Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "RolesController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\RolesController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\RolesController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\RolesController.cs",
+              "RelativeToolTip": "API\\Controllers\\RolesController.cs",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:49:32.54Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "UserDetailsController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\UserDetailsController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
+              "RelativeToolTip": "API\\Controllers\\UserDetailsController.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAcwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:49:42.731Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 38,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\UsersController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "API\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAAHAAAAAAAAAAAAAUwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:49:47.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "MailController.cs",
+              "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Controllers\\MailController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\MailController.cs",
+              "ToolTip": "E:\\17-6\\SWP391_Project\\API\\Controllers\\MailController.cs",
+              "RelativeToolTip": "API\\Controllers\\MailController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-14T16:49:10.948Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 45,
               "Title": "PriceDAO.cs",
               "DocumentMoniker": "E:\\17-6\\SWP391_Project\\DAOs\\PriceDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\PriceDAO.cs",
@@ -617,7 +729,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 44,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\Program.cs",
               "RelativeDocumentMoniker": "API\\Program.cs",
@@ -629,7 +741,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 46,
               "Title": "WeatherForecast.cs",
               "DocumentMoniker": "E:\\17-6\\SWP391_Project\\API\\WeatherForecast.cs",
               "RelativeDocumentMoniker": "API\\WeatherForecast.cs",
@@ -641,7 +753,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 47,
               "Title": "PriceService.cs",
               "DocumentMoniker": "E:\\17-6\\SWP391_Project\\Services\\PriceService.cs",
               "RelativeDocumentMoniker": "Services\\PriceService.cs",

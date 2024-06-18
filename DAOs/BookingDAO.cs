@@ -13,7 +13,7 @@ namespace DAOs
 {
     public class BookingDAO
     {
-        
+
         private readonly CourtCallerDbContext _courtCallerDbContext = null;
 
         public BookingDAO()
@@ -44,7 +44,7 @@ namespace DAOs
         }
 
 
-        public async Task<Booking>  GetBooking(string id)
+        public async Task<Booking> GetBooking(string id)
         {
             var booking = await _courtCallerDbContext.Bookings.FirstOrDefaultAsync(m => m.BookingId.Equals(id));
             return booking;

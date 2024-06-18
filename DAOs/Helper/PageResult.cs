@@ -9,7 +9,7 @@ namespace DAOs.Helper
 {
     public class PageResult
     {
-        const int maxPageSize = 20;
+        const int MaxPageSize = 20;
         public int PageNumber { get; set; } = 1;
         private int _pageSize = 10;
         public int PageSize
@@ -20,7 +20,7 @@ namespace DAOs.Helper
             }
             set
             {
-                _pageSize = (value > maxPageSize) ? maxPageSize : value;
+                _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
             }
         }
 
@@ -28,11 +28,11 @@ namespace DAOs.Helper
 
     public class Pagination
     {
-        private readonly DbContext DbContext;
+        private readonly DbContext _dbContext;
 
-        public Pagination(DbContext DbContext)
+        public Pagination(DbContext dbContext)
         {
-            this.DbContext = DbContext;
+            _dbContext = dbContext;
         }
 
         public async Task<List<T>> GetListAsync<T>(IQueryable<T> query,PageResult pageResult) where T : class

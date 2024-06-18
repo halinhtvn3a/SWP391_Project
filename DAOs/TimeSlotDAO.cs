@@ -28,6 +28,14 @@ namespace DAOs
             return _dbContext.TimeSlots.ToList();
         }
 
+        public async Task<List<TimeSlot>> GetTimeSlots(PageResult pageResult)
+        {
+            var query = _dbContext.TimeSlots.AsQueryable();
+            Pagination pagination = new Pagination(_dbContext);
+            List<TimeSlot> timeSlots = await pagination.GetListAsync<TimeSlot>(query, pageResult);
+            return timeSlots;
+        }
+
         public TimeSlot GetTimeSlot(string id)
         {
             return _dbContext.TimeSlots.FirstOrDefault(m => m.SlotId.Equals(id));

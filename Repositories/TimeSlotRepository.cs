@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 using DAOs.Models;
 
 namespace Repositories
@@ -26,6 +27,9 @@ namespace Repositories
             }
         }
         public TimeSlot AddTimeSlot(TimeSlot timeSlot) => _timeSlotDao.AddTimeSlot(timeSlot);
+
+        public async Task<List<TimeSlot>> GetTimeSlots(PageResult pageResult) => await _timeSlotDao.GetTimeSlots(pageResult);
+
 
         public void DeleteTimeSlot(string id) => _timeSlotDao.DeleteTimeSlot(id);
 

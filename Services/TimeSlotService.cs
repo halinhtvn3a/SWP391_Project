@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using DAOs;
 using DAOs.Models;
 using Repositories;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 
 namespace Services
 {
@@ -21,6 +23,8 @@ namespace Services
         }
         public TimeSlot AddTimeSlot(TimeSlot timeSlot) => _timeSlotRepository.AddTimeSlot(timeSlot);
         //public void DeleteTimeSlot(string id) => TimeSlotRepository.DeleteTimeSlot(id);
+
+        public async Task<List<TimeSlot>> GetTimeSlots(PageResult pageResult) => await _timeSlotRepository.GetTimeSlots(pageResult);
         public TimeSlot GetTimeSlot(string id) => _timeSlotRepository.GetTimeSlot(id);
         public List<TimeSlot> GetTimeSlots() => _timeSlotRepository.GetTimeSlots();
         public TimeSlot UpdateTimeSlot(string id, SlotModel slotModel) => _timeSlotRepository.UpdateTimeSlot(id, slotModel);
