@@ -23,9 +23,22 @@ namespace DAOs
             }
         }
 
-        public async Task<List<Review>> GetReview(PageResult pageResult)
+        public async Task<List<Review>> GetReview(PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Reviews.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(review => review.User.Email.Contains(searchQuery) ||
+                                               review.Branch.BranchName.Contains(searchQuery) ||
+                                               review.ReviewId.Contains(searchQuery) ||
+                                               review.ReviewText.Contains(searchQuery) ||
+                                               (review.ReviewDate.HasValue && review.ReviewDate.Value.ToString().Contains(searchQuery)) ||
+                                               (review.Rating.HasValue && review.Rating.Value.ToString().Contains(searchQuery)));
+            }
+
+
+
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Review> reviews = await pagination.GetListAsync<Review>(query, pageResult);
             return reviews;

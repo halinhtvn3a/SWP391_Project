@@ -29,7 +29,7 @@ namespace API.Controllers
         // GET: api/Branches
       
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Branch>>> GetBranches([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Branch>>> GetBranches([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
@@ -37,7 +37,7 @@ namespace API.Controllers
                 PageSize = pageSize
             };
 
-            List<Branch> branches = await _branchService.GetBranches(pageResult);
+            List<Branch> branches = await _branchService.GetBranches(pageResult,searchQuery);
 
             return Ok(branches);
         }

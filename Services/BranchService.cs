@@ -23,7 +23,7 @@ namespace Services
         public Branch AddBranch(BranchModel branchModel) => _branchRepository.AddBranch(branchModel);
         public void DeleteBranch(string id) => _branchRepository.DeleteBranch(id);
         public Branch GetBranch(string id) => _branchRepository.GetBranch(id);
-        public async Task<List<Branch>> GetBranches(PageResult pageResult) => await _branchRepository.GetBranches(pageResult);
+        public async Task<List<Branch>> GetBranches(PageResult pageResult, string searchQuery = null) => await _branchRepository.GetBranches(pageResult, searchQuery);
         public Branch UpdateBranch(string id, BranchModel branchModel) => _branchRepository.UpdateBranch(id, branchModel);
 
         public List<Branch> GetBranchesByStatus(string status) => _branchRepository.GetBranchesByStatus(status);

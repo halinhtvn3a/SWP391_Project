@@ -70,8 +70,8 @@ namespace Repositories
         public async Task<Booking> GetBooking(string id) => await _bookingDao.GetBooking(id);
 
 
-        public async Task<List<Booking>> GetBookings(PageResult pageResult) =>
-            await _bookingDao.GetBookings(pageResult);
+        public async Task<List<Booking>> GetBookings(PageResult pageResult, string searchQuery = null) =>
+            await _bookingDao.GetBookings(pageResult, searchQuery);
 
         public List<Booking> GetBookingsByStatus(string status) => _bookingDao.GetBookingsByStatus(status);
 

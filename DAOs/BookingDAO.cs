@@ -28,23 +28,45 @@ namespace DAOs
         }
 
 
-        public async Task<List<Booking>> GetBookings(PageResult pageResult)
+        public async Task<List<Booking>> GetBookings(PageResult pageResult, string searchQuery = null)
         {
-            var query = _courtCallerDbContext.Bookings.Include(b => b.User).Select(b => new Booking
-            {
-                BookingId = b.BookingId,
-                Id = b.User.Id,
-                BookingDate = b.BookingDate,
-                Status = b.Status,
-                TotalPrice = b.TotalPrice,
-                BookingType = b.BookingType,
-                NumberOfSlot = b.NumberOfSlot
-            });
+            var query = _courtCallerDbContext.Bookings
+                .Include(b => b.User)
+                .Select(b => new Booking
+                {
+                    BookingId = b.BookingId,
+                    Id = b.User.Id,
+                    BookingDate = b.BookingDate,
+                    Status = b.Status,
+                    TotalPrice = b.TotalPrice,
+                    BookingType = b.BookingType,
+                    NumberOfSlot = b.NumberOfSlot
+                });
 
-            Pagination pagination = new Pagination(_courtCallerDbContext);
-            List<Booking> bookings = await pagination.GetListAsync<Booking>(query, pageResult);
+            var pagedQuery = query
+                .Skip((pageResult.PageNumber - 1) * pageResult.PageSize)
+                .Take(pageResult.PageSize);
+
+            var bookings = await pagedQuery.ToListAsync();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                bookings = bookings.Where(b =>
+                    b.BookingId.ToString().Contains(searchQuery) ||
+                    b.Id.ToString().Contains(searchQuery) ||
+                    b.BookingDate.ToString().Contains(searchQuery) ||
+                    b.Status.Contains(searchQuery) ||
+                    b.TotalPrice.ToString().Contains(searchQuery) ||
+                    b.BookingType.Contains(searchQuery) ||
+                    b.NumberOfSlot.ToString().Contains(searchQuery)
+                ).ToList();
+            }
+
             return bookings;
         }
+
+
+
 
 
         public async Task<Booking> GetBooking(string id)

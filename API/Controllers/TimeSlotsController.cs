@@ -31,14 +31,14 @@ namespace API.Controllers
         }
         
         [HttpGet("page/")]
-        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsPage([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsPage([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new Page.PageResult
             {
                 PageSize = pageSize,
                 PageNumber = pageNumber,
             };
-            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlots(pageResult);
+            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlots(pageResult,searchQuery);
             return Ok(timeSlots);
         }
 

@@ -22,9 +22,20 @@ namespace DAOs
             }
         }
 
-       public async Task<List<Court>> GetCourts (PageResult pageResult)
+       public async Task<List<Court>> GetCourts (PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Courts.AsQueryable();
+
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(court => court.CourtId.Contains(searchQuery) ||
+                                              court.BranchId.Contains(searchQuery) ||
+                                              court.CourtName.Contains(searchQuery) ||
+                                              court.Status.Contains(searchQuery));
+                                              
+            }
+
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Court> courts = await pagination.GetListAsync<Court>(query, pageResult);
             return courts;

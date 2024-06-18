@@ -25,7 +25,7 @@ namespace Services
 		//public List<IdentityUser> GetUsers() => UserRepository.GetUsers();
         //public IdentityUser UpdateUser(string id, IdentityUser User) => UserRepository.UpdateUser(id, User);
 
-        public async Task<List<IdentityUser>> GetUsers(DAOs.Helper.PageResult page) => await _userRepository.GetUsers(page);
+        public async Task<List<IdentityUser>> GetUsers(DAOs.Helper.PageResult page, string searchQuery = null) => await _userRepository.GetUsers(page,searchQuery);
 
 
         public void BanUser(string id) => _userRepository.BanUser(id);

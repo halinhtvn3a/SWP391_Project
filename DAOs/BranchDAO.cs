@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
 using DAOs.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
@@ -23,15 +24,29 @@ namespace DAOs
         }
 
         public List<Branch> GetBranches() => _courtCallerDbContext.Branches.ToList();
-        
 
-        public async Task<List<Branch>> GetBranches(PageResult pageResult)
+
+
+        public async Task<List<Branch>> GetBranches(PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Branches.AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(branch => branch.BranchId.Contains(searchQuery) ||
+                                              branch.BranchName.Contains(searchQuery) ||
+                                              branch.BranchAddress.Contains(searchQuery) ||
+                                              branch.BranchPhone.Contains(searchQuery) ||
+                                              branch.Description.Contains(searchQuery) ||
+                                              branch.Status.Contains(searchQuery));
+            }
+
             Pagination pagination = new Pagination(_courtCallerDbContext);
-            List<Branch> Branches = await pagination.GetListAsync<Branch>(query, pageResult);
-            return Branches;
+            List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
+            return branches;
         }
+
+
 
         public Branch GetBranch(string id)
         {

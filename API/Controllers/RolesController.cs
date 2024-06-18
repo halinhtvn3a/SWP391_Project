@@ -52,12 +52,12 @@ namespace API.Controllers
 
         
         [HttpPut("{id}")]
-        public IActionResult PutRole(string id,[FromBody] string Role)
+        public IActionResult PutRole(string id,[FromBody] string role)
         {
-            var role =  _roleService.GetRoleNameByUserId(id);
+            var roleUser =  _roleService.GetRoleNameByUserId(id);
             try
             {
-                     _roleService.UpdateRole(id, Role);
+                     _roleService.UpdateRole(id, role);
 
                     return Ok();
                 

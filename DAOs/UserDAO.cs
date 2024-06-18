@@ -28,9 +28,23 @@ namespace DAOs
         //    return "U" + guid.ToString(); 
         //}
 
-        public async Task<List<IdentityUser>> GetUsers(PageResult pageResult)
+        public async Task<List<IdentityUser>> GetUsers(PageResult pageResult, string searchQuery = null)
         {
             var query = _dbContext.Users.AsQueryable();
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = from user in query
+                        join userRole in _dbContext.UserRoles on user.Id equals userRole.UserId
+                        join role in _dbContext.Roles on userRole.RoleId equals role.Id
+                        where user.Id.Contains(searchQuery) ||
+                              user.Email.Contains(searchQuery) ||
+                              user.UserName.Contains(searchQuery) ||
+                              user.PhoneNumber.Contains(searchQuery) ||
+                              role.Name.Contains(searchQuery)
+                        select user;
+            }
+
+
             Pagination pagination = new Pagination(_dbContext);
             List<IdentityUser> identityUsers = await pagination.GetListAsync<IdentityUser>(query, pageResult);
             return identityUsers;

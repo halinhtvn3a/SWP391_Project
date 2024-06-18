@@ -24,7 +24,7 @@ namespace Services
         public TimeSlot AddTimeSlot(TimeSlot timeSlot) => _timeSlotRepository.AddTimeSlot(timeSlot);
         //public void DeleteTimeSlot(string id) => TimeSlotRepository.DeleteTimeSlot(id);
         
-        public async Task<List<TimeSlot>> GetTimeSlots(PageResult pageResult) => await _timeSlotRepository.GetTimeSlots(pageResult);
+        public async Task<List<TimeSlot>> GetTimeSlots(PageResult pageResult, string searchQuery = null) => await _timeSlotRepository.GetTimeSlots(pageResult,searchQuery);
         public async Task<List<TimeSlot>> GetTimeSlotsByUserId(string userId, PageResult pageResult) => await _timeSlotRepository.GetTimeSlotsByUserId(userId, pageResult);
         public TimeSlot GetTimeSlot(string id) => _timeSlotRepository.GetTimeSlot(id);
         public List<TimeSlot> GetTimeSlots() => _timeSlotRepository.GetTimeSlots();

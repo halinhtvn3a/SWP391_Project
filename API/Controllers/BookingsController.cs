@@ -30,14 +30,15 @@ namespace API.Controllers
         // GET: api/Bookings
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookings([FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
+            [FromQuery] int pageSize = 10,
+           [FromQuery] string searchQuery = null)
         {
             var pageResult = new Page.PageResult
             {
                 PageSize = pageSize,
                 PageNumber = pageNumber,
             };
-            List<Booking> bookings = await _bookingService.GetBookings(pageResult);
+            List<Booking> bookings = await _bookingService.GetBookings(pageResult,searchQuery);
             return Ok(bookings);
         }
 

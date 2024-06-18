@@ -21,7 +21,7 @@ namespace Services
         public Review GetReview(string id) => _reviewRepository.GetReview(id);
 
         public Review UpdateReview(string id, ReviewModel reviewModel) => _reviewRepository.UpdateReview(id, reviewModel);
-        public async Task<List<Review>> GetReview(HelperResult.PageResult pageResult) => await _reviewRepository.GetReview(pageResult);
+        public async Task<List<Review>> GetReview(HelperResult.PageResult pageResult, string searchQuery = null) => await _reviewRepository.GetReview(pageResult,searchQuery);
 
         public List<Review> GetReviewsByBranch(string id) => _reviewRepository.GetReviewsByBranch(id);
         public List<Review> SearchByUser(string id) => _reviewRepository.SearchByUser(id);

@@ -26,7 +26,7 @@ namespace Repositories
 
         public Court GetCourt(string id) => _courtDao.GetCourt(id);
 
-        public async Task<List<Court>> GetCourts(PageResult pageResult) => await _courtDao.GetCourts(pageResult);
+        public async Task<List<Court>> GetCourts(PageResult pageResult, string searchQuery = null) => await _courtDao.GetCourts(pageResult,searchQuery);
 
         public Court UpdateCourt(string id, CourtModel courtModel) => _courtDao.UpdateCourt(id, courtModel);
 
