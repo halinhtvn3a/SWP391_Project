@@ -21,7 +21,8 @@ Court Callerd is a web application designed to simplify the process of booking b
 * HTTP Client: Axios
 
 #### Screenshots
-https://courtcaller.azurewebsites.net/swagger/index.html
+Swagger link: https://courtcaller.azurewebsites.net/swagger/index.html
+
 ![APIPage](https://github.com/halinhtvn3a/SWP391_Project/blob/main/screenshots/APIPage.jpeg)
 
 #### Connect us via: courtcallers@gmail.com
