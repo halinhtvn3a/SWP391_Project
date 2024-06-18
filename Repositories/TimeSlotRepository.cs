@@ -27,13 +27,13 @@ namespace Repositories
         }
         public TimeSlot AddTimeSlot(TimeSlot timeSlot) => _timeSlotDao.AddTimeSlot(timeSlot);
 
-        //public void DeleteTimeSlot(string id) => TimeSlotDAO.DeleteTimeSlot(id);
+        public void DeleteTimeSlot(string id) => _timeSlotDao.DeleteTimeSlot(id);
 
         public TimeSlot GetTimeSlot(string id) => _timeSlotDao.GetTimeSlot(id);
 
         public List<TimeSlot> GetTimeSlots() => _timeSlotDao.GetTimeSlots();
 
-        public TimeSlot UpdateTimeSlot(string id, TimeSlot timeSlot) => _timeSlotDao.UpdateTimeSlot(id, timeSlot);
+        public TimeSlot UpdateTimeSlot(string id, SlotModel slotModel) => _timeSlotDao.UpdateTimeSlot(id, slotModel);
 
         public bool IsSlotBookedInBranch(SlotModel slotModel)
         {
@@ -48,7 +48,7 @@ namespace Repositories
             }
             else
             {
-                isBooked = _timeSlotDao.GetTimeSlots()
+                isBooked = !_timeSlotDao.GetTimeSlots()
                                   .Any(t => _courtDao.GetCourt(t.CourtId).BranchId == slotModel.BranchId &&
                               t.SlotDate == slotModel.SlotDate &&
                               t.SlotStartTime == slotModel.TimeSlot.SlotStartTime &&
@@ -59,5 +59,25 @@ namespace Repositories
         }
 
         public List<TimeSlot> GetTimeSlotsByBookingId(string bookingId) => _timeSlotDao.GetTimeSlotsByBookingId(bookingId);
+
+        public TimeSlot ChangeSlot(SlotModel slotModel, string slotId)
+        {
+
+            if (IsSlotBookedInBranch(slotModel))
+            {
+                return null;
+            }
+
+            var timeSlot = _timeSlotDao.GetTimeSlots().FirstOrDefault(t =>
+                t.SlotId == slotId);
+
+            if (timeSlot != null)
+            {
+                DeleteTimeSlot(slotId);
+                TimeSlot newTimeSlot = _timeSlotDao.AddSlotToBooking(slotModel, timeSlot.BookingId);
+                return newTimeSlot;
+            }
+            return null;
+        }
     }
 }

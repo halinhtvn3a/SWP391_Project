@@ -40,22 +40,31 @@ namespace DAOs
             return TimeSlot;
         }
 
-        public TimeSlot UpdateTimeSlot(string id, TimeSlot TimeSlot)
+        //public TimeSlot UpdateTimeSlot(string id, TimeSlot TimeSlot)
+        //{
+        //    TimeSlot oTimeSlot = GetTimeSlot(id);
+        //    if (oTimeSlot != null)
+        //    {
+        //        oTimeSlot.Status = "false";
+        //        oTimeSlot.Price = TimeSlot.Price;
+        //        _dbContext.Update(oTimeSlot);
+        //        _dbContext.SaveChanges();
+        //    }
+        //    return oTimeSlot;
+        //}
+
+        public TimeSlot UpdateTimeSlot(string slotId, SlotModel slotModel)
         {
-            TimeSlot oTimeSlot = GetTimeSlot(id);
-            if (oTimeSlot != null)
-            {
-                oTimeSlot.Status = "false";
-                oTimeSlot.Price = TimeSlot.Price;
-                _dbContext.Update(oTimeSlot);
+            TimeSlot timeSlot = GetTimeSlot(slotId);
+            if (timeSlot != null) {
+                timeSlot.CourtId = slotModel.CourtId;
+                timeSlot.SlotDate = slotModel.SlotDate;
+                timeSlot.SlotStartTime = slotModel.TimeSlot.SlotStartTime;
+                timeSlot.SlotEndTime = slotModel.TimeSlot.SlotEndTime;
+                _dbContext.TimeSlots.Update(timeSlot);
                 _dbContext.SaveChanges();
             }
-            return oTimeSlot;
-        }
-
-        public void UpdateSlot(TimeSlot slot)
-        {
-            _dbContext.TimeSlots.Update(slot);
+            return timeSlot;
         }
 
         //public void DeleteTimeSlot(int id)
@@ -150,7 +159,7 @@ namespace DAOs
                 Price = GetSlotPrice(slotModel),
                 SlotStartTime = slotModel.TimeSlot.SlotStartTime,
                 SlotEndTime = slotModel.TimeSlot.SlotEndTime,
-                Status = "false"
+                Status = "Reserved"
             };
 
             try

@@ -59,14 +59,15 @@ namespace API.Controllers
         // PUT: api/TimeSlots/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTimeSlot(string id, TimeSlot timeSlot)
+        public async Task<IActionResult> PutTimeSlot(string id, SlotModel slotModel)
         {
+            var timeSlot = _timeSlotService.GetTimeSlot(id);
             if (id != timeSlot.SlotId)
             {
                 return BadRequest();
             }
 
-            _timeSlotService.UpdateTimeSlot(id, timeSlot);
+            _timeSlotService.UpdateTimeSlot(id, slotModel);
 
             return NoContent();
         }
@@ -100,6 +101,24 @@ namespace API.Controllers
         public async Task<ActionResult<bool>> IsSlotBookedInBranch(SlotModel slotModel)
         {
             return _timeSlotService.IsSlotBookedInBranch(slotModel);
+        }
+
+        [HttpPut("changeSlot/{slotId}")]
+        public async Task<ActionResult<TimeSlot>> ChangeSlot(SlotModel slotModel, string slotId)
+        {
+            TimeSlot timeSlot = _timeSlotService.ChangeSlot(slotModel, slotId);
+
+            return Ok(new TimeSlot()
+            {
+                SlotId = timeSlot.SlotId,
+                CourtId = timeSlot.CourtId,
+                BookingId = timeSlot.BookingId,
+                SlotDate = timeSlot.SlotDate,
+                SlotStartTime = timeSlot.SlotStartTime,
+                SlotEndTime = timeSlot.SlotEndTime,
+                Price = timeSlot.Price,
+                Status = timeSlot.Status
+            });
         }
 
         private bool TimeSlotExists(string id)

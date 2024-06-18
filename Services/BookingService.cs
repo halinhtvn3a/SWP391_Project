@@ -42,24 +42,24 @@ namespace Services
         public List<Booking> SearchBookings(DateTime start, DateTime end) => _bookingRepository.SearchBookings(start, end);
         public List<Booking> SearchBookingsByUser(string userId) => _bookingRepository.SearchBookingsByUser(userId);
 
-        public async Task<IActionResult> PessimistLockAsync(string[] slotId, string userId)
-        {
-            try
-            {
-                var success = await _bookingRepository.ReserveSlotAsync(slotId, userId);
+        //public async Task<IActionResult> PessimistLockAsync(string[] slotId, string userId)
+        //{
+        //    try
+        //    {
+        //        var success = await _bookingRepository.ReserveSlotAsync(slotId, userId);
 
-                if (!success)
-                {
-                    return new ConflictObjectResult("Slot is already reserved.");
-                }
+        //        if (!success)
+        //        {
+        //            return new ConflictObjectResult("Slot is already reserved.");
+        //        }
 
-                return new OkObjectResult("Slot reserved successfully.");
-            }
-            catch (Exception ex)
-            {
-                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
-            }
-        }
+        //        return new OkObjectResult("Slot reserved successfully.");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+        //    }
+        //}
 
         public Booking PessimistLockAsyncV2(SlotModel[] slotModels, string userId)
         {

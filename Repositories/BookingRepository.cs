@@ -87,105 +87,106 @@ namespace Repositories
             return await _bookingDao.AddBookingTransaction(slotId);
         }
 
-        public async Task<bool> ReserveSlotAsync(string[] slotId, string userId)
-        {
-            await _bookingDao.BeginTransactionAsync();
+        //add timeslot first then add booking
+        //public async Task<bool> ReserveSlotAsync(string[] slotId, string userId)
+        //{
+        //    await _bookingDao.BeginTransactionAsync();
 
-            try
-            {
-                foreach (var s in slotId)
-                {
-                    var slot = await AddBookingTransaction(s);
+        //    try
+        //    {
+        //        foreach (var s in slotId)
+        //        {
+        //            var slot = await AddBookingTransaction(s);
 
-                    if (slot == null)
-                    {
-                        return false;
-                    }
-
-
-                }
-
-                decimal paymentAmount = 0;
-
-                foreach (var s in slotId)
-                {
-                    var slot = await AddBookingTransaction(s);
-                    slot.Status = "false";
-                    _timeSlotDao.UpdateSlot(slot);
-                    paymentAmount += slot.Price;
-                }
-
-                var generateBookingId = GenerateId.GenerateShortBookingId();
+        //            if (slot == null)
+        //            {
+        //                return false;
+        //            }
 
 
+        //        }
 
+        //        decimal paymentAmount = 0;
 
-                // Tạo booking mới
-                var booking = new Booking
-                {
-                    BookingId = generateBookingId,
-                    Id = userId,
-                    BookingDate = DateTime.Now,
-                    Status = "False",
-                    TotalPrice = paymentAmount
-                };
+        //        foreach (var s in slotId)
+        //        {
+        //            var slot = await AddBookingTransaction(s);
+        //            slot.Status = "false";
+        //            _timeSlotDao.UpdateSlot(slot);
+        //            paymentAmount += slot.Price;
+        //        }
 
-                _bookingDao.AddBooking(booking);
-                await _bookingDao.SaveChangesAsync();
-                await _bookingDao.CommitTransactionAsync();
-
-                foreach (var s in slotId)
-                {
-                    _timeSlotDao.UpdateBookinginSlot(s, generateBookingId);
-                }
-
-                return true;
-                // var slot = await AddBookingTransaction(slotId);
-
-                // if (slot == null)
-                // {
-                //     return false;
-                // }
-
-                // var generateBookingId = GenerateId.GenerateShortBookingId();
-
-                // // Cập nhật trạng thái slot
-                // slot.IsAvailable = false;
-                //_timeSlotDao.UpdateSlot(slot);
+        //        var generateBookingId = GenerateId.GenerateShortBookingId();
 
 
 
 
-                // // Tạo booking mới
-                // var booking = new Booking
-                // {
-                //     BookingId = generateBookingId,
-                //     Id = userId,
-                //     BookingDate = DateTime.Now,
-                //     Status = "True",
-                //     TotalPrice = paymentAmount
-                // };
+        //        // Tạo booking mới
+        //        var booking = new Booking
+        //        {
+        //            BookingId = generateBookingId,
+        //            Id = userId,
+        //            BookingDate = DateTime.Now,
+        //            Status = "False",
+        //            TotalPrice = paymentAmount
+        //        };
 
-                // _bookingDao.AddBooking(booking);
-                // await _bookingDao.SaveChangesAsync();
-                // await _bookingDao.CommitTransactionAsync();
-                // _timeSlotDao.UpdateBookinginSlot(slotId, generateBookingId);
+        //        _bookingDao.AddBooking(booking);
+        //        await _bookingDao.SaveChangesAsync();
+        //        await _bookingDao.CommitTransactionAsync();
 
-                // return true;
-            }
-            catch (DbUpdateException ex)
-            {
+        //        foreach (var s in slotId)
+        //        {
+        //            _timeSlotDao.UpdateBookinginSlot(s, generateBookingId);
+        //        }
 
-                await _bookingDao.RollbackTransactionAsync();
-                throw;
-            }
-            catch (Exception ex)
-            {
+        //        return true;
+        //        // var slot = await AddBookingTransaction(slotId);
 
-                await _bookingDao.RollbackTransactionAsync();
-                throw;
-            }
-        }
+        //        // if (slot == null)
+        //        // {
+        //        //     return false;
+        //        // }
+
+        //        // var generateBookingId = GenerateId.GenerateShortBookingId();
+
+        //        // // Cập nhật trạng thái slot
+        //        // slot.IsAvailable = false;
+        //        //_timeSlotDao.UpdateSlot(slot);
+
+
+
+
+        //        // // Tạo booking mới
+        //        // var booking = new Booking
+        //        // {
+        //        //     BookingId = generateBookingId,
+        //        //     Id = userId,
+        //        //     BookingDate = DateTime.Now,
+        //        //     Status = "True",
+        //        //     TotalPrice = paymentAmount
+        //        // };
+
+        //        // _bookingDao.AddBooking(booking);
+        //        // await _bookingDao.SaveChangesAsync();
+        //        // await _bookingDao.CommitTransactionAsync();
+        //        // _timeSlotDao.UpdateBookinginSlot(slotId, generateBookingId);
+
+        //        // return true;
+        //    }
+        //    catch (DbUpdateException ex)
+        //    {
+
+        //        await _bookingDao.RollbackTransactionAsync();
+        //        throw;
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        await _bookingDao.RollbackTransactionAsync();
+        //        throw;
+        //    }
+        //}
 
         public Booking ReserveSlotAsyncV2(SlotModel[] slotModels, string userId)
         {
@@ -209,6 +210,7 @@ namespace Repositories
                     {
                         TimeSlot timeSlot = _timeSlotDao.AddSlotToBooking(s, booking.BookingId);
                     }
+                    return booking;
                 }
                 else
                 {
