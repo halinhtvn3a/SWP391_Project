@@ -7,6 +7,8 @@ C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\API.pdb
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Azure.Core.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Azure.Identity.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\BouncyCastle.Cryptography.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Firebase.Auth.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Firebase.Storage.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Humanizer.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\MailKit.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -52,6 +54,7 @@ C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityM
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Microsoft.IdentityModel.Tokens.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Microsoft.NET.StringTools.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\System.ServiceModel.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Microsoft.OpenApi.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Microsoft.SqlServer.Server.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Microsoft.VisualStudio.Web.CodeGeneration.dll

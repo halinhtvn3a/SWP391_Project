@@ -11,6 +11,9 @@ using Services;
 using Microsoft.AspNetCore.Authorization;
 using DAOs.Helper;
 using DAOs.Models;
+using Firebase.Storage;
+using Firebase.Auth;
+using System.Text.Json;
 
 namespace API.Controllers
 {
@@ -74,10 +77,37 @@ namespace API.Controllers
         }
 
         // POST: api/Branches
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
+        //[HttpPost]
+        //public async Task<ActionResult<Branch>> PostBranch(BranchModel branchModel)
+        //{
+        //    var branch = _branchService.AddBranch(branchModel);
+
+        //    return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
+        //}
+
+
         [HttpPost]
-        public async Task<ActionResult<Branch>> PostBranch(BranchModel branchModel)
+        public async Task<ActionResult<Branch>> PostBranch([FromForm] BranchModel branchModel)
         {
+            var imageUrls = new List<string>();
+
+            foreach (var file in branchModel.BranchPictures)
+            {
+                var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                using (var stream = file.OpenReadStream())
+                {
+                    var task = new FirebaseStorage("YOUR_FIREBASE_STORAGE_BUCKET")
+                        .Child("BranchImage")
+                        .Child(fileName)
+                        .PutAsync(stream);
+
+                    var downloadUrl = await task;
+                    imageUrls.Add(downloadUrl);
+                }
+            }
+
+            branchModel.BranchPicture = JsonSerializer.Serialize(imageUrls);
             var branch = _branchService.AddBranch(branchModel);
 
             return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);

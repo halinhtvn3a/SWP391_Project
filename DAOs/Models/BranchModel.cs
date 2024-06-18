@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -40,5 +41,8 @@ namespace DAOs.Models
 		[Required(ErrorMessage = "Status is required")]
         [StringLength(50)]
         public string Status { get; set; }
+
+        [Required(ErrorMessage = "Branch pictures are required")]
+        public List<IFormFile> BranchPictures { get; set; }
     }
 }
