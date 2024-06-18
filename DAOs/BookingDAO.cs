@@ -8,6 +8,8 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using PageResult = DAOs.Helper.PageResult;
 
 namespace DAOs
 {
@@ -132,9 +134,13 @@ namespace DAOs
             return _courtCallerDbContext.Bookings.Where(m => m.BookingDate >= start && m.BookingDate <= end).ToList();
         }
 
-        public List<Booking> SearchBookingsByUser(string userId)
+        public async Task<List<Booking>> GetBookingsByUserId(string userId, PageResult pageResult)
         {
-            return _courtCallerDbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
+            var query = _courtCallerDbContext.Bookings.AsQueryable();
+
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Booking> bookings = await pagination.GetListAsync<Booking>(query, pageResult);
+            return bookings;
         }
 
 

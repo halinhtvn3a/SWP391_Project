@@ -40,7 +40,7 @@ namespace Services
 
         public List<Booking> GetBookingsByStatus(string status) => _bookingRepository.GetBookingsByStatus(status);
         public List<Booking> SearchBookings(DateTime start, DateTime end) => _bookingRepository.SearchBookings(start, end);
-        public List<Booking> SearchBookingsByUser(string userId) => _bookingRepository.SearchBookingsByUser(userId);
+        public async Task<List<Booking>> GetBookingsByUserId(string userId, PageResult pageResult) => await _bookingRepository.GetBookingsByUserId(userId, pageResult);
 
         //public async Task<IActionResult> PessimistLockAsync(string[] slotId, string userId)
         //{

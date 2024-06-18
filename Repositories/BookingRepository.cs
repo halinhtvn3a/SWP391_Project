@@ -78,7 +78,7 @@ namespace Repositories
         public async Task SaveChangesAsync() => await _bookingDao.SaveChangesAsync();
         public List<Booking> SearchBookings(DateTime start, DateTime end) => _bookingDao.SearchBookings(start, end);
 
-        public List<Booking> SearchBookingsByUser(string userId) => _bookingDao.SearchBookingsByUser(userId);
+        public async Task<List<Booking>> GetBookingsByUserId(string userId, PageResult pageResult) => await _bookingDao.GetBookingsByUserId(userId, pageResult);
 
 
 

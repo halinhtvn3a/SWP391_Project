@@ -9,7 +9,7 @@ using BusinessObjects;
 using DAOs.Models;
 using Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+
 using Page =  DAOs.Helper;
 
 namespace API.Controllers
@@ -127,18 +127,26 @@ namespace API.Controllers
         }
 
         [HttpGet("search/{userId}")]
-        public async Task<ActionResult<IEnumerable<Booking>>> SearchBookingsByUser(string userId)
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByUser(string userId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            return _bookingService.SearchBookingsByUser(userId).ToList();
+            var pageResult = new Page.PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            List<Booking> bookings = await _bookingService.GetBookingsByUserId(userId, pageResult);
+
+            return Ok(bookings);
         }
 
-        
+
         //[HttpPost("reserve")]
         //public async Task<IActionResult> ReserveSlot(string[] slotId, string userId)
         //{
         //    return await bookingService.PessimistLockAsync(slotId, userId);
         //}
-        
+
         [HttpPost("reserve-slot")]
         public async Task<IActionResult> ReserveSlotV2(SlotModel[] slotModels, string userId)
         {
