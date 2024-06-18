@@ -269,8 +269,7 @@
               "RelativeToolTip": "API\\Controllers\\PricesController.cs",
               "ViewState": "AQIAAEsAAAAAAAAAAAAAAGAAAABUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T09:30:59.936Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T09:30:59.936Z"
             },
             {
               "$type": "Document",
@@ -282,8 +281,7 @@
               "RelativeToolTip": "API\\Controllers\\ReviewsController.cs",
               "ViewState": "AQIAAGsAAAAAAAAAAAAAwHwAAABWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:27.028Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T16:49:27.028Z"
             },
             {
               "$type": "Document",
@@ -295,8 +293,7 @@
               "RelativeToolTip": "API\\Controllers\\TimeSlotsController.cs",
               "ViewState": "AQIAAIsAAAAAAAAAAAAQwJUAAABdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:38.105Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T16:49:38.105Z"
             },
             {
               "$type": "Document",
@@ -308,8 +305,7 @@
               "RelativeToolTip": "API\\Controllers\\UserDetailsController.cs",
               "ViewState": "AQIAAHAAAAAAAAAAAAAAAIQAAABaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:42.731Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T16:49:42.731Z"
             },
             {
               "$type": "Document",
@@ -321,8 +317,7 @@
               "RelativeToolTip": "API\\Controllers\\PaymentsController.cs",
               "ViewState": "AQIAAHsAAAAAAAAAAAAAAIsAAABZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:12.543Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T16:49:12.543Z"
             },
             {
               "$type": "Document",
@@ -347,8 +342,7 @@
               "RelativeToolTip": "API\\Controllers\\CourtsController.cs",
               "ViewState": "AQIAAGUAAAAAAAAAAAAAAG8AAACeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:49:01.745Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T16:49:01.745Z"
             },
             {
               "$type": "Document",
@@ -360,8 +354,7 @@
               "RelativeToolTip": "API\\Controllers\\BookingsController.cs",
               "ViewState": "AQIAALwAAAAAAAAAAAAAAMwAAACjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T12:16:36.421Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T12:16:36.421Z"
             },
             {
               "$type": "Document",
@@ -373,8 +366,7 @@
               "RelativeToolTip": "API\\Controllers\\BranchesController.cs",
               "ViewState": "AQIAAHAAAAAAAAAAAAAAAIAAAACgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:47:36.868Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T16:47:36.868Z"
             },
             {
               "$type": "Document",
@@ -386,8 +378,7 @@
               "RelativeToolTip": "Services\\UserDetailService.cs",
               "ViewState": "AQIAABQAAAAAAAAAAAAAAB4AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:16:08.865Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:16:08.865Z"
             },
             {
               "$type": "Document",
@@ -399,8 +390,7 @@
               "RelativeToolTip": "DAOs\\UserDetailDAO.cs",
               "ViewState": "AQIAAFEAAAAAAAAAAAAAAGAAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T06:33:57.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T06:33:57.158Z"
             },
             {
               "$type": "Document",
@@ -412,8 +402,7 @@
               "RelativeToolTip": "BusinessObjects\\UserDetail.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:14:31.723Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:14:31.723Z"
             },
             {
               "$type": "Document",
@@ -425,8 +414,7 @@
               "RelativeToolTip": "Repositories\\UserDetailRepository.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAUwCIAAACwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:15:42.611Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:15:42.611Z"
             },
             {
               "$type": "Document",
@@ -438,8 +426,7 @@
               "RelativeToolTip": "DAOs\\TimeSlotDAO.cs",
               "ViewState": "AQIAAEEBAAAAAAAAAAAAAFwBAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T03:16:52.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T03:16:52.049Z"
             },
             {
               "$type": "Document",
@@ -451,8 +438,7 @@
               "RelativeToolTip": "Repositories\\UserRepository.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAowCsAAABlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T06:27:58.535Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T06:27:58.535Z"
             },
             {
               "$type": "Document",
@@ -464,8 +450,7 @@
               "RelativeToolTip": "Services\\TimeSlotService.cs",
               "ViewState": "AQIAABsAAAAAAAAAAAAAACYAAACvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:11:20.776Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:11:20.776Z"
             },
             {
               "$type": "Document",
@@ -477,8 +462,7 @@
               "RelativeToolTip": "Repositories\\TimeSlotRepository.cs",
               "ViewState": "AQIAAEYAAAAAAAAAAAAAAFcAAACoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:11:02.712Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:11:02.712Z"
             },
             {
               "$type": "Document",
@@ -490,8 +474,7 @@
               "RelativeToolTip": "DAOs\\ReviewDAO.cs",
               "ViewState": "AQIAAFgAAAAAAAAAAAAAAHYAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:02:23.284Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:02:23.284Z"
             },
             {
               "$type": "Document",
@@ -503,8 +486,7 @@
               "RelativeToolTip": "Services\\ReviewService.cs",
               "ViewState": "AQIAABQAAAAAAAAAAAAAAB8AAAC0AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:05:50.466Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:05:50.466Z"
             },
             {
               "$type": "Document",
@@ -516,8 +498,7 @@
               "RelativeToolTip": "Repositories\\ReviewRepository.cs",
               "ViewState": "AQIAAB4AAAAAAAAAAAAAACcAAACgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:05:35.864Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:05:35.864Z"
             },
             {
               "$type": "Document",
@@ -529,8 +510,7 @@
               "RelativeToolTip": "BusinessObjects\\Review.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:03:25.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:03:25.695Z"
             },
             {
               "$type": "Document",
@@ -542,8 +522,7 @@
               "RelativeToolTip": "BusinessObjects\\TimeSlot.cs",
               "ViewState": "AQIAAAoAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T01:33:49.029Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T01:33:49.029Z"
             },
             {
               "$type": "Document",
@@ -555,8 +534,7 @@
               "RelativeToolTip": "DAOs\\CourtDAO.cs",
               "ViewState": "AQIAAFIAAAAAAAAAAAAgwFkAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T00:25:48.98Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T00:25:48.98Z"
             },
             {
               "$type": "Document",
@@ -568,8 +546,7 @@
               "RelativeToolTip": "DAOs\\PriceDAO.cs",
               "ViewState": "AQIAAFAAAAAAAAAAAAAAAFMAAAAHAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T10:37:27.036Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T10:37:27.036Z"
             },
             {
               "$type": "Document",
@@ -581,8 +558,7 @@
               "RelativeToolTip": "DAOs\\PaymentDAO.cs",
               "ViewState": "AQIAAC4AAAAAAAAAAAAAAEIAAABnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:45:49.875Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:45:49.875Z"
             },
             {
               "$type": "Document",
@@ -594,8 +570,7 @@
               "RelativeToolTip": "Services\\PriceService.cs",
               "ViewState": "AQIAABkAAAAAAAAAAAAAAB4AAACjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T10:01:09.656Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T10:01:09.656Z"
             },
             {
               "$type": "Document",
@@ -607,8 +582,7 @@
               "RelativeToolTip": "DAOs\\Helper\\PageResult.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T09:00:36.692Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T09:00:36.692Z"
             },
             {
               "$type": "Document",
@@ -620,8 +594,7 @@
               "RelativeToolTip": "Repositories\\PriceRepository.cs",
               "ViewState": "AQIAABQAAAAAAAAAAADwvyAAAABvAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T09:47:18.313Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T09:47:18.313Z"
             },
             {
               "$type": "Document",
@@ -633,8 +606,7 @@
               "RelativeToolTip": "BusinessObjects\\Price.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:57:42.13Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:57:42.13Z"
             },
             {
               "$type": "Document",
@@ -646,8 +618,7 @@
               "RelativeToolTip": "Services\\PaymentService.cs",
               "ViewState": "AQIAACcAAAAAAAAAAAAAADoAAACrAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:54:16.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:54:16.226Z"
             },
             {
               "$type": "Document",
@@ -659,8 +630,7 @@
               "RelativeToolTip": "Repositories\\PaymentRepository.cs",
               "ViewState": "AQIAABkAAAAAAAAAAAAAACUAAACkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:52:57.371Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:52:57.371Z"
             },
             {
               "$type": "Document",
@@ -672,8 +642,7 @@
               "RelativeToolTip": "BusinessObjects\\Payment.cs",
               "ViewState": "AQIAAA0AAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:49:44.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:49:44.606Z"
             },
             {
               "$type": "Document",
@@ -685,8 +654,7 @@
               "RelativeToolTip": "Services\\CourtService.cs",
               "ViewState": "AQIAABkAAAAAAAAAAAAAAB0AAACjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:43:29.719Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:43:29.719Z"
             },
             {
               "$type": "Document",
@@ -698,8 +666,7 @@
               "RelativeToolTip": "Repositories\\CourtRepository.cs",
               "ViewState": "AQIAABYAAAAAAAAAAAAAACIAAACcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:43:03.29Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:43:03.29Z"
             },
             {
               "$type": "Document",
@@ -711,8 +678,7 @@
               "RelativeToolTip": "DAOs\\BranchDAO.cs",
               "ViewState": "AQIAAHoAAAAAAAAAAAAAAJYAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:24:09.032Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:24:09.032Z"
             },
             {
               "$type": "Document",
@@ -724,8 +690,7 @@
               "RelativeToolTip": "BusinessObjects\\Court.cs",
               "ViewState": "AQIAAAkAAAAAAAAAAAAAAA4AAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T12:25:22.208Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T12:25:22.208Z"
             },
             {
               "$type": "Document",
@@ -737,8 +702,7 @@
               "RelativeToolTip": "Services\\BranchService.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAAAACUAAACnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:25:30.782Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:25:30.782Z"
             },
             {
               "$type": "Document",
@@ -750,8 +714,7 @@
               "RelativeToolTip": "Repositories\\BranchRepository.cs",
               "ViewState": "AQIAADQAAAAAAAAAAAAAAEUAAACgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-16T17:30:47.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-16T17:30:47.393Z"
             },
             {
               "$type": "Document",
@@ -763,8 +726,7 @@
               "RelativeToolTip": "Repositories\\BookingRepository.cs",
               "ViewState": "AQIAAKwBAAAAAAAAAAApwLwBAAByAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-16T16:02:25.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-16T16:02:25.898Z"
             },
             {
               "$type": "Document",
@@ -776,8 +738,7 @@
               "RelativeToolTip": "DAOs\\BookingDAO.cs",
               "ViewState": "AQIAAK8AAAAAAAAAAAAAAMsAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T07:47:36.905Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T07:47:36.905Z"
             },
             {
               "$type": "Document",
@@ -789,8 +750,7 @@
               "RelativeToolTip": "BusinessObjects\\Branch.cs",
               "ViewState": "AQIAAAQAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:31:32.633Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:31:32.633Z"
             },
             {
               "$type": "Document",
@@ -802,8 +762,7 @@
               "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
               "ViewState": "AQIAAD0AAAAAAAAAAIAwwE4AAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-14T16:48:40.196Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-14T16:48:40.196Z"
             },
             {
               "$type": "Document",
@@ -815,8 +774,7 @@
               "RelativeToolTip": "Services\\BookingService.cs",
               "ViewState": "AQIAAFMAAAAAAAAAAAAAAGUAAACtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T08:17:16.694Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T08:17:16.694Z"
             },
             {
               "$type": "Document",
@@ -828,8 +786,7 @@
               "RelativeToolTip": "BusinessObjects\\Booking.cs",
               "ViewState": "AQIAABgAAAAAAAAAAAAUwCsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T02:02:12.561Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T02:02:12.561Z"
             },
             {
               "$type": "Document",
@@ -958,8 +915,7 @@
               "RelativeToolTip": "Services\\VnpayService.cs",
               "ViewState": "AQIAABkAAAAAAAAAAAA1wBQAAABhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-17T12:13:33.864Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-17T12:13:33.864Z"
             },
             {
               "$type": "Document",
