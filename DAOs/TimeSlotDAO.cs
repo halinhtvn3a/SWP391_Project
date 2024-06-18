@@ -310,6 +310,42 @@ namespace DAOs
             return timeSlots;
         }
 
+        public async Task<List<TimeSlot>> SortTimeSlot(string? sortBy, bool isAsc, PageResult pageResult)
+        {
+            IQueryable<TimeSlot> query = _dbContext.TimeSlots;
 
+            switch (sortBy?.ToLower())
+            {
+                case "slotid":
+                    query = isAsc ? query.OrderBy(b => b.SlotId) : query.OrderByDescending(b => b.SlotId);
+                    break;
+                case "bookingid":
+                    query = isAsc ? query.OrderBy(b => b.BookingId) : query.OrderByDescending(b => b.BookingId);
+                    break;
+                case "courtid":
+                    query = isAsc ? query.OrderBy(b => b.CourtId) : query.OrderByDescending(b => b.CourtId);
+                    break;
+                case "slotdate":
+                    query = isAsc ? query.OrderBy(b => b.SlotDate) : query.OrderByDescending(b => b.SlotDate);
+                    break;
+                case "slotstarttime":
+                    query = isAsc ? query.OrderBy(b => b.SlotStartTime) : query.OrderByDescending(b => b.SlotStartTime);
+                    break;
+                case "slotendtime":
+                    query = isAsc ? query.OrderBy(b => b.SlotEndTime) : query.OrderByDescending(b => b.SlotEndTime);
+                    break;
+                case "price":
+                    query = isAsc ? query.OrderBy(b => b.Price) : query.OrderByDescending(b => b.Price);
+                    break;
+                case "status":
+                    query = isAsc ? query.OrderBy(b => b.Status) : query.OrderByDescending(b => b.Status);
+                    break;
+                default:
+                    break;
+            }
+            Pagination pagination = new Pagination(_dbContext);
+            List<TimeSlot> timeSlots = await pagination.GetListAsync<TimeSlot>(query, pageResult);
+            return timeSlots;
+        }
     }
 }

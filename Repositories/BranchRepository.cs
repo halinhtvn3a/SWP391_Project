@@ -52,7 +52,7 @@ namespace Repositories
 
         public List<Branch> GetBranchesByCourtId(string courtId) => _branchDao.GetBranchesByCourtId(courtId);
 
-        public List<Branch> SortBranchByPrice(decimal minPrice, decimal maxPrice) => _branchDao.SortBranchByPrice(minPrice, maxPrice);
+        public List<Branch> GetBranchByPrice(decimal minPrice, decimal maxPrice) => _branchDao.GetBranchByPrice(minPrice, maxPrice);
 
         public Branch GetLastBranch(string userId)
         {
@@ -67,6 +67,6 @@ namespace Repositories
             Court court = _courtDao.GetCourt(timeSlot.CourtId);
             return _branchDao.GetBranch(court.BranchId);
         }
-
+        public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult) => await _branchDao.SortBranch(sortBy, isAsc, pageResult);
     }
 }

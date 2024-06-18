@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BusinessObjects;
 using DAOs.Models;
 using DAOs;
+using DAOs.Helper;
 
 namespace Repositories
 {
@@ -31,5 +32,6 @@ namespace Repositories
 
         public List<UserDetail> SearchUserByEmail(string searchValue) => _userDetailDao.SearchUserByEmail(searchValue);
 
+        public async Task<List<UserDetail>> SortUserDetail(string? sortBy, bool isAsc, PageResult pageResult) => await _userDetailDao.SortUserDetail(sortBy, isAsc, pageResult);
     }
 }

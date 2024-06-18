@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PageResult = DAOs.Helper.PageResult;
+using System.ComponentModel.DataAnnotations;
 
 namespace DAOs
 {
@@ -165,6 +166,41 @@ namespace DAOs
         public List<Booking> GetBookingsByUserId(string userId)
         {
             return _courtCallerDbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
+        }
+
+        public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult)
+        {
+            IQueryable<Booking> query = _courtCallerDbContext.Bookings;
+
+            switch (sortBy?.ToLower())
+            {
+                case "bookingid":
+                    query = isAsc ? query.OrderBy(b => b.BookingId) : query.OrderByDescending(b => b.BookingId);
+                    break;
+                case "id":
+                    query = isAsc ? query.OrderBy(b => b.Id) : query.OrderByDescending(b => b.Id);
+                    break;
+                case "bookingdate":
+                    query = isAsc ? query.OrderBy(b => b.BookingDate) : query.OrderByDescending(b => b.BookingDate);
+                    break;
+                case "bookingtype":
+                    query = isAsc ? query.OrderBy(b => b.BookingType) : query.OrderByDescending(b => b.BookingType);
+                    break;
+                case "numberofslot":
+                    query = isAsc ? query.OrderBy(b => b.NumberOfSlot) : query.OrderByDescending(b => b.NumberOfSlot);
+                    break;
+                case "status":
+                    query = isAsc ? query.OrderBy(b => b.Status) : query.OrderByDescending(b => b.Status);
+                    break;
+                case "totalprice":
+                    query = isAsc ? query.OrderBy(b => b.TotalPrice) : query.OrderByDescending(b => b.TotalPrice);
+                    break;
+                default:
+                    break;
+            }
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Booking> bookings = await pagination.GetListAsync<Booking>(query, pageResult);
+            return bookings;
         }
 
     }

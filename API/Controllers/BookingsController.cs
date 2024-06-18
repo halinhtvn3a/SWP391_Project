@@ -10,14 +10,14 @@ using DAOs.Models;
 using Services;
 using Microsoft.AspNetCore.Authorization;
 
-using Page =  DAOs.Helper;
+using Page = DAOs.Helper;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
-    
+
+
     public class BookingsController : ControllerBase
     {
         private readonly BookingService _bookingService;
@@ -29,7 +29,8 @@ namespace API.Controllers
 
         // GET: api/Bookings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings([FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
         {
             var pageResult = new Page.PageResult
             {
@@ -53,7 +54,7 @@ namespace API.Controllers
 
             return await booking;
         }
-        
+
         [HttpGet("userId/{userId}")]
         public async Task<ActionResult<Booking>> GetBookingByUserId(string userId)
         {
@@ -127,7 +128,8 @@ namespace API.Controllers
         }
 
         [HttpGet("search/{userId}")]
-        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByUser(string userId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByUser(string userId,
+            [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var pageResult = new Page.PageResult
             {
@@ -191,9 +193,26 @@ namespace API.Controllers
         }
 
         [HttpPost("fix-slot")]
-        public async Task<IActionResult> PostBookingTypeFix([FromQuery] int numberOfMonths, [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel timeSlotModel, [FromQuery] string userId, string branchId)
+        public async Task<IActionResult> PostBookingTypeFix([FromQuery] int numberOfMonths,
+            [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel timeSlotModel,
+            [FromQuery] string userId, string branchId)
         {
-            return await _bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId, branchId);
+            return await _bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId,
+                branchId);
+        }
+
+        [HttpGet("sortBooking/{sortBy}")]
+        public async Task<ActionResult<IEnumerable<Booking>>> SortBookings(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new Page.PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            List<Booking> bookings = await _bookingService.SortBookings(sortBy, isAsc, pageResult);
+
+            return Ok(bookings);
         }
     }
 }

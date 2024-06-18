@@ -107,10 +107,10 @@ namespace API.Controllers
             return _branchService.GetBranchesByStatus(status).ToList();
         }
 
-        [HttpGet("SortByPrice")]
+        [HttpGet("GetBranchByPrice/{minPrice}&&{maxPrice}")]
         public async Task<ActionResult<IEnumerable<Branch>>> SortBranchByPrice(decimal minPrice, decimal maxPrice)
         {
-            return _branchService.SortBranchByPrice(minPrice, maxPrice).ToList();
+            return _branchService.GetBranchByPrice(minPrice, maxPrice).ToList();
         }
 
         [HttpGet("courtId/{courtId}")]
@@ -123,6 +123,18 @@ namespace API.Controllers
         public async Task<ActionResult<Branch>> GetLastBranch(string userId)
         {
             return _branchService.GetLastBranch(userId);
+        }
+
+        [HttpGet("sortBranch/{sortBy}")]
+        public async Task<ActionResult<IEnumerable<Branch>>> SortBranch(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            return await _branchService.SortBranch(sortBy, isAsc, pageResult);
         }
     }
 }

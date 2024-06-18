@@ -121,5 +121,16 @@ namespace API.Controllers
         }
 
 
+        [HttpGet("SortReview/{sortBy}")]
+        public async Task<ActionResult<IEnumerable<Review>>> SortReview(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            return await _reviewService.SortReview(sortBy, isAsc, pageResult);
+        }
     }
 }

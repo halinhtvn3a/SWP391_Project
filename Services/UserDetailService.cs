@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 
 namespace Services
 {
@@ -26,5 +27,6 @@ namespace Services
         public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel) => _userDetailRepository.UpdateUserDetail(id, userDetailsModel);
         public List<UserDetail> SearchUserByEmail(string searchValue) => _userDetailRepository.SearchUserByEmail(searchValue);
 
+        public async Task<List<UserDetail>> SortUserDetail(string? sortBy, bool isAsc, PageResult pageResult) => await _userDetailRepository.SortUserDetail(sortBy, isAsc, pageResult);
     }
 }

@@ -81,5 +81,34 @@ namespace DAOs
 
         public List<Court> GetCourtsByBranchId(string branchId) => _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(branchId)).ToList();
         public List<Court> GetActiveCourts() => _courtCallerDbContext.Courts.Where(m => m.Status.Equals("Active")).ToList();
+
+        public async Task<List<Court>> SortCourt(string? sortBy, bool isAsc, PageResult pageResult)
+        {
+            IQueryable<Court> query = _courtCallerDbContext.Courts;
+
+            switch (sortBy?.ToLower())
+            {
+                case "branchid":
+                    query = isAsc ? query.OrderBy(b => b.BranchId) : query.OrderByDescending(b => b.BranchId);
+                    break;
+                case "courtid":
+                    query = isAsc ? query.OrderBy(b => b.CourtId) : query.OrderByDescending(b => b.CourtId);
+                    break;
+                case "courtname":
+                    query = isAsc ? query.OrderBy(b => b.CourtName) : query.OrderByDescending(b => b.CourtName);
+                    break;
+                case "courtpicture":
+                    query = isAsc ? query.OrderBy(b => b.CourtPicture) : query.OrderByDescending(b => b.CourtPicture);
+                    break;
+                case "status":
+                    query = isAsc ? query.OrderBy(b => b.Status) : query.OrderByDescending(b => b.Status);
+                    break;
+                default:
+                    break;
+            }
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Court> courts = await pagination.GetListAsync<Court>(query, pageResult);
+            return courts;
+        }
     }
 }

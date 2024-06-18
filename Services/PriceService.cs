@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAOs;
+using DAOs.Helper;
 
 namespace Services
 {
@@ -27,6 +28,6 @@ namespace Services
         public Price UpdatePrice(string id, Price price) => _priceRepository.UpdatePrice(id, price);
         public List<Price> GetPriceByBranch(string branchId) => _priceRepository.GetPriceByBranch(branchId);
 
-       
+        public async Task<List<Price>> SortPrice(string? sortBy, bool isAsc, PageResult pageResult) => await _priceRepository.SortPrice(sortBy, isAsc, pageResult);
     }
 }

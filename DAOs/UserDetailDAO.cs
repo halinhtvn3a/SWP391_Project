@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DAOs.Models;
+using DAOs.Helper;
 
 namespace DAOs
 {
@@ -92,5 +93,34 @@ namespace DAOs
         //}
 
         public List<UserDetail> SearchUserByEmail(string searchValue) => _dbContext.UserDetails.Where(m => m.User.Email.Contains(searchValue)).ToList();
+
+        public async Task<List<UserDetail>> SortUserDetail(string? sortBy, bool isAsc, PageResult pageResult)
+        {
+            IQueryable<UserDetail> query = _dbContext.UserDetails;
+
+            switch (sortBy?.ToLower())
+            {
+                case "userid":
+                    query = isAsc ? query.OrderBy(b => b.UserId) : query.OrderByDescending(b => b.UserId);
+                    break;
+                case "address":
+                    query = isAsc ? query.OrderBy(b => b.Address) : query.OrderByDescending(b => b.Address);
+                    break;
+                case "balance":
+                    query = isAsc ? query.OrderBy(b => b.Balance) : query.OrderByDescending(b => b.Balance);
+                    break;
+                case "fullname":
+                    query = isAsc ? query.OrderBy(b => b.FullName) : query.OrderByDescending(b => b.FullName);
+                    break;
+                case "yearofbirth":
+                    query = isAsc ? query.OrderBy(b => b.YearOfBirth) : query.OrderByDescending(b => b.YearOfBirth);
+                    break;
+                default:
+                    break;
+            }
+            Pagination pagination = new Pagination(_dbContext);
+            List<UserDetail> userDetails = await pagination.GetListAsync<UserDetail>(query, pageResult);
+            return userDetails;
+        }
     }
 }

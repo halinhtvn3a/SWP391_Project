@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 
 namespace Repositories
 {
@@ -33,5 +34,7 @@ namespace Repositories
         //public Payment UpdatePayment(string id, Payment Payment) => PaymentDAO.UpdatePayment(id, Payment);
 
         public List<Payment> SearchByDate(DateTime start, DateTime end) => _paymentDao.SearchByDate(start, end);
+
+        public async Task<List<Payment>> SortPayment(string? sortBy, bool isAsc, PageResult pageResult) => await _paymentDao.SortPayment(sortBy, isAsc, pageResult);
     }
 }

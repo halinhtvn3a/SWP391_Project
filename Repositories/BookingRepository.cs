@@ -441,5 +441,7 @@ namespace Repositories
             _userDetailDao.UpdateUserDetail(user.Id, userDetailsModel);
             _bookingDao.DeleteBooking(bookingId);
         }
+
+        public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult) => await _bookingDao.SortBookings(sortBy, isAsc, pageResult);
     }
 }

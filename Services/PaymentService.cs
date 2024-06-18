@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 
 namespace Services
 {
@@ -55,6 +56,6 @@ namespace Services
 
             return paymentURL;
         }
-
+        public async Task<List<Payment>> SortPayment(string? sortBy, bool isAsc, PageResult pageResult) => await _paymentRepository.SortPayment(sortBy, isAsc, pageResult);
     }
 }

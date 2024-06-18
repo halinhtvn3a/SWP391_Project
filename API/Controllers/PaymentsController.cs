@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
+using DAOs.Helper;
 using Services;
 
 namespace API.Controllers
@@ -135,5 +136,15 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [HttpGet("SortPayment/{sortBy}")]
+        public async Task<ActionResult<IEnumerable<Payment>> > SortPayment(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            return await _paymentService.SortPayment(sortBy, isAsc, pageResult);
+        }
     }
 }

@@ -37,5 +37,6 @@ namespace Repositories
 
         public List<Review> SearchByRating(int rating) => _reviewDao.SearchByRating(rating);
 
+        public async Task<List<Review>> SortReview(string? sortBy, bool isAsc, PageResult pageResult) => await _reviewDao.SortReview(sortBy, isAsc, pageResult);
     }
 }

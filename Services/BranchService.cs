@@ -28,11 +28,13 @@ namespace Services
 
         public List<Branch> GetBranchesByStatus(string status) => _branchRepository.GetBranchesByStatus(status);
 
-        public List<Branch> SortBranchByPrice(decimal minPrice, decimal maxPrice) =>
-            _branchRepository.SortBranchByPrice(minPrice, maxPrice);
+        public List<Branch> GetBranchByPrice(decimal minPrice, decimal maxPrice) =>
+            _branchRepository.GetBranchByPrice(minPrice, maxPrice);
 
         public List<Branch> GetBranchesByCourtId(string courtId) => _branchRepository.GetBranchesByCourtId(courtId);
 
         public Branch GetLastBranch(string userId) => _branchRepository.GetLastBranch(userId);
+
+        public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult) => await _branchRepository.SortBranch(sortBy, isAsc, pageResult);
     }
 }

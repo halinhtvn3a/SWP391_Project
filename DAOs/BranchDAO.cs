@@ -100,13 +100,55 @@ namespace DAOs
             return _courtCallerDbContext.Branches.Where(m => m.Courts.Any(c => c.CourtId == courtId)).ToList();
         }
 
-        public List<Branch> SortBranchByPrice(decimal minPrice, decimal maxPrice)
+        public List<Branch> GetBranchByPrice(decimal minPrice, decimal maxPrice)
         {
             return _courtCallerDbContext.Branches.Where(m => m.Prices.Any(c =>
                 c.SlotPrice >= minPrice && c.SlotPrice <= maxPrice
             )).ToList();
         }
 
+        public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult)
+        {
+            IQueryable<Branch> query = _courtCallerDbContext.Branches;
 
+            switch (sortBy?.ToLower())
+            {
+                case "branchid":
+                    query = isAsc ? query.OrderBy(b => b.BranchId) : query.OrderByDescending(b => b.BranchId);
+                    break;
+                case "branchaddress":
+                    query = isAsc ? query.OrderBy(b => b.BranchAddress) : query.OrderByDescending(b => b.BranchAddress);
+                    break;
+                case "branchname":
+                    query = isAsc ? query.OrderBy(b => b.BranchName) : query.OrderByDescending(b => b.BranchName);
+                    break;
+                case "branchphone":
+                    query = isAsc ? query.OrderBy(b => b.BranchPhone) : query.OrderByDescending(b => b.BranchPhone);
+                    break;
+                case "branchpicture":
+                    query = isAsc ? query.OrderBy(b => b.BranchPicture) : query.OrderByDescending(b => b.BranchPicture);
+                    break;
+                case "status":
+                    query = isAsc ? query.OrderBy(b => b.Status) : query.OrderByDescending(b => b.Status);
+                    break;
+                case "closetime":
+                    query = isAsc ? query.OrderBy(b => b.CloseTime) : query.OrderByDescending(b => b.CloseTime);
+                    break;                
+                case "opentime":
+                    query = isAsc ? query.OrderBy(b => b.OpenTime) : query.OrderByDescending(b => b.OpenTime);
+                    break;                
+                case "openday":
+                    query = isAsc ? query.OrderBy(b => b.OpenDay) : query.OrderByDescending(b => b.OpenDay);
+                    break;                
+                case "description":
+                    query = isAsc ? query.OrderBy(b => b.Description) : query.OrderByDescending(b => b.Description);
+                    break;
+                default:
+                    break;
+            }
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
+            return branches;
+        }
     }
 }

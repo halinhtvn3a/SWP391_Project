@@ -146,6 +146,17 @@ namespace API.Controllers
             return Ok(timeSlots);
         }
 
+        [HttpGet("sortSlot/{sortBy}")]
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> SortTimeSlot(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new Page.PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            return await _timeSlotService.SortTimeSlot(sortBy, isAsc, pageResult);
+        }
         private bool TimeSlotExists(string id)
         {
             return _timeSlotService.GetTimeSlots().Any(e => e.SlotId == id);

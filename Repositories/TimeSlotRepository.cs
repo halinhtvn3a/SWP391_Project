@@ -84,5 +84,7 @@ namespace Repositories
             }
             return null;
         }
+
+        public async Task<List<TimeSlot>> SortTimeSlot(string? sortBy, bool isAsc, PageResult pageResult) => await _timeSlotDao.SortTimeSlot(sortBy, isAsc, pageResult);
     }
 }

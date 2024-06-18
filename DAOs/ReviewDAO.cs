@@ -86,6 +86,36 @@ namespace DAOs
 
         public List<Review> GetReviewsByBranch(string id) => _courtCallerDbContext.Reviews.Where(m => m.BranchId == id).ToList();
 
+        public async Task<List<Review>> SortReview(string? sortBy, bool isAsc, PageResult pageResult)
+        {
+            IQueryable<Review> query = _courtCallerDbContext.Reviews;
 
+            switch (sortBy?.ToLower())
+            {
+                case "branchid":
+                    query = isAsc ? query.OrderBy(b => b.BranchId) : query.OrderByDescending(b => b.BranchId);
+                    break;
+                case "userid":
+                    query = isAsc ? query.OrderBy(b => b.Id) : query.OrderByDescending(b => b.Id);
+                    break;
+                case "reviewid":
+                    query = isAsc ? query.OrderBy(b => b.ReviewId) : query.OrderByDescending(b => b.ReviewId);
+                    break;
+                case "rating":
+                    query = isAsc ? query.OrderBy(b => b.Rating) : query.OrderByDescending(b => b.Rating);
+                    break;
+                case "reviewdate":
+                    query = isAsc ? query.OrderBy(b => b.ReviewDate) : query.OrderByDescending(b => b.ReviewDate);
+                    break;
+                case "reviewtext":
+                    query = isAsc ? query.OrderBy(b => b.ReviewText) : query.OrderByDescending(b => b.ReviewText);
+                    break;
+                default:
+                    break;
+            }
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Review> reviews = await pagination.GetListAsync<Review>(query, pageResult);
+            return reviews;
+        }
     }
 }

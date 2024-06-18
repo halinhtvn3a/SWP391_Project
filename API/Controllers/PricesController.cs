@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using DAOs.Helper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Services;
@@ -89,6 +90,18 @@ namespace API.Controllers
             _priceService.DeletePrice(id);
 
             return NoContent();
+        }
+
+
+        [HttpGet("sortPrice/{sortBy}")]
+        public async Task<ActionResult<IEnumerable<Price>>> SortPrice(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            return await _priceService.SortPrice(sortBy, isAsc, pageResult);
         }
     }
     

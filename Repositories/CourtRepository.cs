@@ -32,5 +32,6 @@ namespace Repositories
 
         public List<Court> GetActiveCourts() => _courtDao.GetActiveCourts();
 
+        public async Task<List<Court>> SortCourt(string? sortBy, bool isAsc, PageResult pageResult) => await _courtDao.SortCourt(sortBy, isAsc, pageResult);
     }
 }

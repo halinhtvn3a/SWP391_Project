@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
+using DAOs.Helper;
 using Services;
 using Microsoft.AspNetCore.Identity;
 using DAOs.Models;
@@ -126,6 +127,18 @@ namespace API.Controllers
                 // Log the exception here
                 return StatusCode(500, $"Internal server error: {ex}");
             }
+        }
+
+        [HttpGet("SortUser/{sortBy}")]
+        public async Task<ActionResult<IEnumerable<UserDetail>>> SortReview(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+
+            return await _userDetailService.SortUserDetail(sortBy, isAsc, pageResult);
         }
     }
 }

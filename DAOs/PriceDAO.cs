@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAOs.Models;
 using BusinessObjects;
+using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
@@ -78,6 +79,33 @@ namespace DAOs
         public Price GetPriceByBranchAndWeekend(string branchId, bool isWeekend)
         {
             return _dbContext.Prices.FirstOrDefault(m => m.BranchId.Equals(branchId) && m.IsWeekend == isWeekend);
+        }
+
+        public async Task<List<Price>> SortPrice(string? sortBy, bool isAsc, PageResult pageResult)
+        {
+            IQueryable<Price> query = _dbContext.Prices;
+
+            switch (sortBy?.ToLower())
+            {
+                case "priceid":
+                    query = isAsc ? query.OrderBy(m => m.PriceId) : query.OrderByDescending(m => m.PriceId);
+                    break;
+                case "branchid":
+                    query = isAsc ? query.OrderBy(m => m.BranchId) : query.OrderByDescending(m => m.BranchId);
+                    break;
+                case "slotprice":
+                    query = isAsc ? query.OrderBy(m => m.SlotPrice) : query.OrderByDescending(m => m.SlotPrice);
+                    break;
+                case "isweekend":
+                    query = isAsc ? query.OrderBy(m => m.IsWeekend) : query.OrderByDescending(m => m.IsWeekend);
+                    break;
+                default:
+                    break;
+            }
+
+            Pagination pagination = new Pagination(_dbContext);
+            List<Price> prices = await pagination.GetListAsync<Price>(query, pageResult);
+            return prices;
         }
     }
 }

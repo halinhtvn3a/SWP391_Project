@@ -29,6 +29,6 @@ namespace Services
 
         public List<Review> SearchByRating(int rating) => _reviewRepository.SearchByRating(rating);
 
-
+        public async Task<List<Review>> SortReview(string? sortBy, bool isAsc, HelperResult.PageResult pageResult) => await _reviewRepository.SortReview(sortBy, isAsc, pageResult);
     }
 }

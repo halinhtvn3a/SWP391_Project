@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 
 namespace Repositories
 {
@@ -28,6 +29,7 @@ namespace Repositories
         public Price UpdatePrice(string id, Price price) => _priceDao.UpdatePrice(id, price);
 
         public List<Price> GetPriceByBranch(string branchId) => _priceDao.GetPriceByBranch(branchId);
-        
+
+        public async Task<List<Price>> SortPrice(string? sortBy, bool isAsc, PageResult pageResult) => await _priceDao.SortPrice(sortBy, isAsc, pageResult);
     }
 }

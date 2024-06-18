@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Helper;
 
 namespace DAOs
 {
@@ -63,8 +64,42 @@ namespace DAOs
 
         public List<Payment> SearchByDate(DateTime start, DateTime end) => _courtCallerDbContext.Payments.Where(m => m.PaymentDate >= start && m.PaymentDate <= end).ToList();
 
+        public async Task<List<Payment>> SortPayment(string? sortBy, bool isAsc, PageResult pageResult)
+        {
+            IQueryable<Payment> query = _courtCallerDbContext.Payments;
 
-       
+            switch (sortBy?.ToLower())
+            {
+                case "paymentid":
+                    query = isAsc ? query.OrderBy(b => b.PaymentId) : query.OrderByDescending(b => b.PaymentId);
+                    break;
+                case "bookingid":
+                    query = isAsc ? query.OrderBy(b => b.BookingId) : query.OrderByDescending(b => b.BookingId);
+                    break;
+                case "paymentamount":
+                    query = isAsc ? query.OrderBy(b => b.PaymentAmount) : query.OrderByDescending(b => b.PaymentAmount);
+                    break;
+                case "paymentdate":
+                    query = isAsc ? query.OrderBy(b => b.PaymentDate) : query.OrderByDescending(b => b.PaymentDate);
+                    break;
+                case "paymentmessage":
+                    query = isAsc ? query.OrderBy(b => b.PaymentMessage) : query.OrderByDescending(b => b.PaymentMessage);
+                    break;
+                case "paymentsignature":
+                    query = isAsc ? query.OrderBy(b => b.PaymentSignature) : query.OrderByDescending(b => b.PaymentSignature);
+                    break;
+                case "paymentstatus":
+                    query = isAsc ? query.OrderBy(b => b.PaymentStatus) : query.OrderByDescending(b => b.PaymentStatus);
+                    break;
+                default:
+                    break;
+            }
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Payment> payments = await pagination.GetListAsync<Payment>(query, pageResult);
+            return payments;
+        }
+
+
 
     }
 }

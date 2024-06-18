@@ -108,5 +108,15 @@ namespace API.Controllers
             return _courtService.GetActiveCourts();
         }
 
+        [HttpGet("sortCourt/{sortBy}")]
+        public async Task<ActionResult<IEnumerable<Court>>> SortCourt(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            return await _courtService.SortCourt(sortBy, isAsc, pageResult);
+        }
     }
 }
