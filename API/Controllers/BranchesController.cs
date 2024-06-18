@@ -97,7 +97,7 @@ namespace API.Controllers
                 var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
                 using (var stream = file.OpenReadStream())
                 {
-                    var task = new FirebaseStorage("YOUR_FIREBASE_STORAGE_BUCKET")
+                    var task = new FirebaseStorage("court-callers.appspot.com")
                         .Child("BranchImage")
                         .Child(fileName)
                         .PutAsync(stream);
