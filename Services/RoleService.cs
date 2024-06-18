@@ -23,7 +23,7 @@ namespace Services
 		public void DeleteRole(string id) => _roleRepository.DeleteRole(id);
 		public IdentityRole GetRole(string id) => _roleRepository.GetRole(id);
 		public List<IdentityRole> GetRoles() => _roleRepository.GetRoles();
-		public IdentityRole UpdateRole(string id, IdentityRole Role) => _roleRepository.UpdateRole(id, Role);
+		public void UpdateRole(string id, string Role) => _roleRepository.UpdateRole(id, Role);
 
 		public string[] GetRoleNameByUserId(string userId) => _roleRepository.GetRoleNameByUserId(userId);
 	}

@@ -27,7 +27,7 @@ namespace Repositories
 
 			public List<IdentityRole> GetRoles() => _roleDao.GetRoles();
 
-			public IdentityRole UpdateRole(string id, IdentityRole role) => _roleDao.UpdateRole(id, role);
+			public void UpdateRole(string id, string role) => _roleDao.UpdateRole(id, role);
 
 			public string[] GetRoleNameByUserId(string userId) => _roleDao.GetRoleNameByUserId(userId);
 	}

@@ -50,20 +50,22 @@ namespace API.Controllers
             return Role;
         }
 
-        // PUT: api/Roles/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutRole(string id, IdentityRole Role)
-        //{
-        //	if (id != Role.Id)
-        //	{
-        //		return BadRequest();
-        //	}
+        
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutRole(string id, string Role)
+        {
+            try
+            {
 
-        //	RoleService.UpdateRole(id, Role);
+                _roleService.UpdateRole(id, Role);
 
-        //	return NoContent();
-        //}
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         // POST: api/Roles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

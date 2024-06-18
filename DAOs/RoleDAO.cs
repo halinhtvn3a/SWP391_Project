@@ -30,6 +30,9 @@ namespace DAOs
             return _courtCallerDbContext.Roles.FirstOrDefault(m => m.Id.Equals(id));
         }
 
+        
+        
+
         public IdentityRole AddRole(IdentityRole IdentityRole)
         {
             _courtCallerDbContext.Roles.Add(IdentityRole);
@@ -37,20 +40,32 @@ namespace DAOs
             return IdentityRole;
         }
 
-        public IdentityRole UpdateRole(string id, IdentityRole IdentityRole)
-        {
-            IdentityRole oIdentityRole = GetRole(id);
-            if (oIdentityRole != null)
-            {
-                oIdentityRole.Name = IdentityRole.Name;
-                oIdentityRole.ConcurrencyStamp = IdentityRole.ConcurrencyStamp;
-                oIdentityRole.NormalizedName = IdentityRole.NormalizedName;
-                _courtCallerDbContext.Update(oIdentityRole);
-                _courtCallerDbContext.SaveChanges();
-            }
+        //public IdentityRole UpdateRole(string id, IdentityRole IdentityRole)
+        //{
+        //    IdentityRole oIdentityRole = GetRole(id);
+        //    if (oIdentityRole != null)
+        //    {
+        //        oIdentityRole.Name = IdentityRole.Name;
+        //        oIdentityRole.ConcurrencyStamp = IdentityRole.ConcurrencyStamp;
+        //        oIdentityRole.NormalizedName = IdentityRole.NormalizedName;
+        //        _courtCallerDbContext.Update(oIdentityRole);
+        //        _courtCallerDbContext.SaveChanges();
+        //    }
 
-            return oIdentityRole;
+        //    return oIdentityRole;
+        //}
+
+        public void  UpdateRole(string id,  string role)
+        {
+            var identityRole = _courtCallerDbContext.Roles.FirstOrDefault(m => m.Name.Equals(role));
+            var identityUserRole = _courtCallerDbContext.UserRoles.FirstOrDefault(m => m.UserId.Equals(id));
+            if (identityRole != null && identityUserRole != null)
+            {
+               identityUserRole.RoleId = identityRole.Id;
+            }
+            _courtCallerDbContext.SaveChanges();
         }
+
 
         public void DeleteRole(string id)
         {
