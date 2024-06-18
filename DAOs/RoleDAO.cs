@@ -55,14 +55,16 @@ namespace DAOs
         //    return oIdentityRole;
         //}
 
-        public void  UpdateRole(string id,  string role)
+        public void UpdateRole(string id,  string role)
         {
-            var identityRole = _courtCallerDbContext.Roles.FirstOrDefault(m => m.Name.Equals(role));
+            
+            var identityRole =  _courtCallerDbContext.Roles.FirstOrDefault(m => m.Name.Equals(role));
             var identityUserRole = _courtCallerDbContext.UserRoles.FirstOrDefault(m => m.UserId.Equals(id));
-            if (identityRole != null && identityUserRole != null)
+            if (identityRole is null && identityUserRole is null)
             {
-               identityUserRole.RoleId = identityRole.Id;
+                throw new Exception($"Id or Role '{role}' not found.");
             }
+            identityUserRole.RoleId = identityRole.Id;
             _courtCallerDbContext.SaveChanges();
         }
 
