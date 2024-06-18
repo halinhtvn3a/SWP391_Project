@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using System.Transactions;
 
 namespace DAOs
 {
@@ -55,21 +56,44 @@ namespace DAOs
         //    return oIdentityRole;
         //}
 
-        public void UpdateRole(string id,  string role)
+        public void UpdateRole(string id, string role)
         {
-            
-            var identityRole =  _courtCallerDbContext.Roles.FirstOrDefault(m => m.Name.Equals(role));
-            var identityUserRole = _courtCallerDbContext.UserRoles.FirstOrDefault(m => m.UserId.Equals(id));
-            if (identityRole is null && identityUserRole is null)
+            using (var transaction = _courtCallerDbContext.Database.BeginTransaction())
             {
-                throw new Exception($"Id or Role '{role}' not found.");
+                try
+                {
+                    var identityRole = _courtCallerDbContext.Roles.Where(m => m.Name.Equals(role)).FirstOrDefault();
+                var identityUserRole = _courtCallerDbContext.UserRoles.Where(m => m.UserId.Equals(id)).FirstOrDefault();
+
+                
+                    if (identityRole is null && identityUserRole is null)
+                    {
+                        throw new Exception($"Id or Role '{role}' not found.");
+                    }
+
+                    _courtCallerDbContext.UserRoles.Remove(identityUserRole);
+                    _courtCallerDbContext.SaveChanges();
+
+                    var newUserRole = new IdentityUserRole<string>()
+                    {
+                        UserId = id,
+                        RoleId = identityRole.Id,
+                    };
+                    _courtCallerDbContext.UserRoles.Add(newUserRole);
+                    
+                    _courtCallerDbContext.SaveChanges();
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+                    transaction.Rollback();
+                    throw new Exception("Error when update transaction of role huhu");
+                }
             }
-            identityUserRole.RoleId = identityRole.Id;
-            _courtCallerDbContext.SaveChanges();
         }
 
 
-        public void DeleteRole(string id)
+            public void DeleteRole(string id)
         {
             IdentityRole oIdentityRole = GetRole(id);
             if (oIdentityRole != null)

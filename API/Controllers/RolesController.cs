@@ -52,14 +52,14 @@ namespace API.Controllers
 
         
         [HttpPut("{id}")]
-        public IActionResult PutRole(string id, string Role)
+        public IActionResult PutRole(string id,[FromBody] string Role)
         {
             var role =  _roleService.GetRoleNameByUserId(id);
             try
             {
                      _roleService.UpdateRole(id, Role);
 
-                    return NoContent();
+                    return Ok();
                 
             }
             catch (Exception ex)
