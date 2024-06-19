@@ -23,7 +23,7 @@ Court Callerd is a web application designed to simplify the process of booking b
 #### Screenshots
 Swagger link: https://courtcaller.azurewebsites.net/swagger/index.html
 
-![APIPage](https://github.com/halinhtvn3a/SWP391_Project/blob/main/screenshots/APIPage.jpeg)
+![APIPage](https://github.com/halinhtvn3a/SWP391_Project/blob/main/screenshots/Swagger.jpeg)
 
 #### Connect us via: courtcallers@gmail.com
 
