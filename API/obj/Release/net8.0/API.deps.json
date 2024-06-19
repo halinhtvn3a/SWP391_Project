@@ -14,6 +14,7 @@
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.EntityFrameworkCore.Tools": "8.0.6",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.2",
+          "QRCoder": "1.4.2",
           "Services": "1.0.0",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
@@ -1988,6 +1989,17 @@
           }
         }
       },
+      "QRCoder/1.4.2": {
+        "dependencies": {
+          "System.Drawing.Common": "7.0.0"
+        },
+        "runtime": {
+          "lib/net5.0/QRCoder.dll": {
+            "assemblyVersion": "1.4.2.0",
+            "fileVersion": "1.4.2.0"
+          }
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.23-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
       "runtime.fedora.24-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {},
@@ -3032,6 +3044,7 @@
           "MailKit": "4.6.0",
           "Microsoft.AspNetCore.Session": "2.2.0",
           "MimeKit": "4.6.0",
+          "QRCoder": "1.4.2",
           "Repositories": "1.0.0"
         },
         "runtime": {
@@ -4179,6 +4192,13 @@
       "sha512": "sha512-ypnSvEtpNGo48bAWn95J1oHChycCXcevFSbn53fqzLxlXFSZP7dawu8p/7mHAfGufZQSV2sBpW80XQGIfXO8kQ==",
       "path": "nuget.versioning/6.9.1",
       "hashPath": "nuget.versioning.6.9.1.nupkg.sha512"
+    },
+    "QRCoder/1.4.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-985OiJWb6Fft5r1AQ1NcpGgDDGZVKvWIF9ijV3N2lxJaTKpL2mAHAGvMXgcjRLMGSaldAcBiTFDGHCgDRpCW9A==",
+      "path": "qrcoder/1.4.2",
+      "hashPath": "qrcoder.1.4.2.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

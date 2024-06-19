@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\19-6\\SWP391_Project\\Repositories\\Repositories.csproj": {}
+    "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj": {}
   },
   "projects": {
-    "E:\\19-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+    "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\19-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
         "projectName": "BusinessObjects",
-        "projectPath": "E:\\19-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\19-6\\SWP391_Project\\BusinessObjects\\obj\\",
+        "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -107,21 +107,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\19-6\\SWP391_Project\\DAOs\\DAOs.csproj": {
+    "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\19-6\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj",
         "projectName": "DAOs",
-        "projectPath": "E:\\19-6\\SWP391_Project\\DAOs\\DAOs.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\19-6\\SWP391_Project\\DAOs\\obj\\",
+        "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -136,8 +136,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\19-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
-                "projectPath": "E:\\19-6\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
+              "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj": {
+                "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\BusinessObjects.csproj"
               }
             }
           }
@@ -172,21 +172,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\19-6\\SWP391_Project\\Repositories\\Repositories.csproj": {
+    "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\19-6\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj",
         "projectName": "Repositories",
-        "projectPath": "E:\\19-6\\SWP391_Project\\Repositories\\Repositories.csproj",
-        "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "E:\\19-6\\SWP391_Project\\Repositories\\obj\\",
+        "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj",
+        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+        "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -201,8 +201,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "E:\\19-6\\SWP391_Project\\DAOs\\DAOs.csproj": {
-                "projectPath": "E:\\19-6\\SWP391_Project\\DAOs\\DAOs.csproj"
+              "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj": {
+                "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\DAOs.csproj"
               }
             }
           }
@@ -237,7 +237,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

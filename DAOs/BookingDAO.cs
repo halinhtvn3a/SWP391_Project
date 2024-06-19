@@ -122,7 +122,13 @@ namespace DAOs
             }
         }
 
-
+        public async Task UpdateBooking(Booking booking)
+        {
+            _courtCallerDbContext.Bookings.Update(booking);
+           await _courtCallerDbContext.SaveChangesAsync();
+            
+        
+        }
 
         public async Task<Booking> UpdateBooking(string id, decimal price)
         {

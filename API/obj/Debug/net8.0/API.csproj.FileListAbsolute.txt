@@ -4733,3 +4733,8 @@ E:\17-6\SWP391_Project\API\obj\Debug\net8.0\refint\API.dll
 E:\17-6\SWP391_Project\API\obj\Debug\net8.0\API.pdb
 E:\17-6\SWP391_Project\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 E:\17-6\SWP391_Project\API\obj\Debug\net8.0\ref\API.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\Helper\qrcodejs\bower.json
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\Firebase.Auth.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\Firebase.Storage.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\System.ServiceModel.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\QRCoder.dll

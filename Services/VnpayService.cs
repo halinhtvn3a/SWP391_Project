@@ -7,9 +7,6 @@ using BusinessObjects;
 using Repositories;
 using DAOs.Helper;
 using DAOs.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Session;
-
 
 
 namespace Services
@@ -108,7 +105,6 @@ namespace Services
                         await _bookingRepository.SaveChangesAsync();
 
 
-                       
 
                         return new PaymentStatusModel
                         {
@@ -146,6 +142,7 @@ namespace Services
             }
         }
 
+       
 
         private bool ValidateSignature(string rspraw, string inputHash, string secretKey)
         {

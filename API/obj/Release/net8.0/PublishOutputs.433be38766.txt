@@ -1,6 +1,7 @@
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\API.exe
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\appsettings.Development.json
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\appsettings.json
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Helper\qrcodejs\bower.json
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\API.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\API.runtimeconfig.json
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\API.pdb
@@ -77,6 +78,7 @@ C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\NuGet.Packaging.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\NuGet.ProjectModel.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\NuGet.Protocol.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\NuGet.Versioning.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\QRCoder.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\SQLitePCLRaw.batteries_v2.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\SQLitePCLRaw.core.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\SQLitePCLRaw.provider.e_sqlite3.dll

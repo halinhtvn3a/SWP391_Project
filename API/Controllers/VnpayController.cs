@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services;
 
+
 namespace VNPAYAPI.Areas.VNPayAPI.Controllers
 {
     [Area("VNPayAPI")]
@@ -51,6 +52,7 @@ namespace VNPAYAPI.Areas.VNPayAPI.Controllers
 
                     if (validationResult.IsSuccessful)
                     {
+
                         return Redirect(validationResult.RedirectUrl); 
                     }
                     else

@@ -65,6 +65,8 @@ namespace Repositories
         //public Booking AddBooking(Booking Booking) => BookingDAO.AddBooking(Booking);
         public List<Booking> GetBookingsByUserId(string userId) => _bookingDao.GetBookingsByUserId(userId);
 
+        public async Task UpdateBooking(Booking booking) => await _bookingDao.UpdateBooking(booking);
+
         public void DeleteBooking(string id) => _bookingDao.DeleteBooking(id);
 
         public async Task<Booking> GetBooking(string id) => await _bookingDao.GetBooking(id);
@@ -444,4 +446,6 @@ namespace Repositories
 
         public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult) => await _bookingDao.SortBookings(sortBy, isAsc, pageResult);
     }
+
+    
 }
