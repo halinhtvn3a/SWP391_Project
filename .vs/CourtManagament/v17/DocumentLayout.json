@@ -51,8 +51,7 @@
               "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
               "ViewState": "AQIAAAgAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T09:04:28.954Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-19T09:04:28.954Z"
             },
             {
               "$type": "Document",
@@ -64,8 +63,7 @@
               "RelativeToolTip": "DAOs\\Models\\BranchModel.cs",
               "ViewState": "AQIAABsAAAAAAAAAAAAswC0AAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T20:38:40.879Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T20:38:40.879Z"
             },
             {
               "$type": "Document",
@@ -77,8 +75,7 @@
               "RelativeToolTip": "API\\Controllers\\BranchesController.cs",
               "ViewState": "AQIAAFgAAAAAAAAAAAAEwGEAAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-18T20:36:56.603Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-18T20:36:56.603Z"
             }
           ]
         }
