@@ -53,11 +53,13 @@ namespace Repositories
             }
             else
             {
-                isBooked = _timeSlotDao.GetTimeSlots()
-                                  .Any(t => _courtDao.GetCourt(t.CourtId).BranchId == slotModel.BranchId &&
-                              t.SlotDate == slotModel.SlotDate &&
-                              t.SlotStartTime == slotModel.TimeSlot.SlotStartTime &&
-                              t.SlotEndTime == slotModel.TimeSlot.SlotEndTime);
+                isBooked = _courtDao.GetCourts()
+    .Where(c => c.BranchId == slotModel.BranchId)
+    .All(court => _timeSlotDao.GetTimeSlots()
+        .Where(t => t.CourtId == court.CourtId)
+        .Any(timeSlot => slotModel.SlotDate == timeSlot.SlotDate &&
+                         slotModel.TimeSlot.SlotStartTime == timeSlot.SlotStartTime &&
+                         slotModel.TimeSlot.SlotEndTime == timeSlot.SlotEndTime));
 
             }
             return isBooked;
