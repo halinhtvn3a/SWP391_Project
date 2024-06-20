@@ -65,7 +65,7 @@ namespace DAOs
         //	return IdentityUsers.Select(u => new IdentityUser
         //	{
         //		IdentityUserId = u.IdentityUserId,
-        //		Balance = u.Balance,
+        //		Point = u.Point,
         //		FullName = u.FullName,
         //		Status = u.Status,
         //		//only BookingId
@@ -98,7 +98,7 @@ namespace DAOs
         //	IdentityUser oIdentityUser = GetIdentityUser(id);
         //	if (oIdentityUser != null)
         //	{
-        //		oIdentityUser.Balance = IdentityUser.Balance;
+        //		oIdentityUser.Point = IdentityUser.Point;
         //		oIdentityUser.FullName = IdentityUser.FullName;
         //		oIdentityUser.Status = IdentityUser.Status;
         //		_dbContext.Update(oIdentityUser);

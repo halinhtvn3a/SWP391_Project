@@ -35,7 +35,7 @@ namespace DAOs
         public List<decimal> ShowPrice(string branchId)
         {
             var weekdayPricing = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.IsWeekend == false);
-            var weekendPricing = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.IsWeekend);
+            var weekendPricing = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.IsWeekend == true);
             
             decimal weekdayPrice = weekdayPricing?.SlotPrice ?? 0;
             decimal weekendPrice = weekendPricing?.SlotPrice ?? 0;

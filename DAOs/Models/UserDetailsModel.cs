@@ -9,7 +9,7 @@ namespace DAOs.Models
 {
     public class UserDetailsModel
     {
-        public decimal? Balance { get; set; }
+        public decimal? Point { get; set; }
 
         [Required(ErrorMessage = "Full name is required")]
         [StringLength(50)]

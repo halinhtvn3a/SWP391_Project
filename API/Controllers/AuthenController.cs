@@ -124,7 +124,7 @@ namespace API.Controllers
             UserDetail userDetail = new UserDetail()
             {
                 UserId = user.Id,
-                Balance = 0,
+                Point = 0,
                 FullName = model.FullName,
                 ProfilePicture = $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/user.jpg?alt=media&token=3601d057-9503-4cc8-b203-2eb0b89f900d"
                 
@@ -167,7 +167,7 @@ namespace API.Controllers
             UserDetail userDetail = new UserDetail()
             {
                 UserId = user.Id,
-                Balance = 0,
+                Point = 0,
                 FullName = model.FullName,
 
             };
@@ -209,7 +209,7 @@ namespace API.Controllers
             UserDetail userDetail = new UserDetail()
             {
                 UserId = user.Id,
-                Balance = 0,
+                Point = 0,
                 FullName = model.FullName,
 
             };
@@ -243,7 +243,7 @@ namespace API.Controllers
                 UserDetail userDetail = new UserDetail()
                 {
                     UserId = user.Id,
-                    Balance = 0,
+                    Point = 0,
                     FullName = name,
                     ProfilePicture = picture
                     //Id = user.Id
@@ -286,7 +286,7 @@ namespace API.Controllers
                 UserDetail userDetail = new UserDetail()
                 {
                     UserId = user.Id,
-                    Balance = 0,
+                    Point = 0,
                     FullName = name,
                     ProfilePicture = picture
                 };

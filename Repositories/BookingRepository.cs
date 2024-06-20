@@ -430,10 +430,10 @@ namespace Repositories
             IdentityUser user = _userDao.GetUserByBookingId(bookingId);
             Booking booking = await GetBooking(bookingId);
             UserDetail userDetail = _userDetailDao.GetUserDetail(user.Id);
-            userDetail.Balance += booking.TotalPrice;
+            userDetail.Point += booking.TotalPrice;
             UserDetailsModel userDetailsModel = new UserDetailsModel()
             {
-                Balance = userDetail.Balance,
+                Point = userDetail.Point,
                 FullName = userDetail.FullName,
                 Address = userDetail.Address,
                 ProfilePicture = userDetail.ProfilePicture,

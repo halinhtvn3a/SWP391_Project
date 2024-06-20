@@ -36,7 +36,7 @@ namespace DAOs
         //    return UserDetails.Select(u => new UserDetail
         //    {
         //        UserDetailId = u.UserDetailId,
-        //        Balance = u.Balance,
+        //        Point = u.Point,
         //        FullName = u.FullName,
         //        Status = u.Status,
         //        //only BookingId
@@ -69,7 +69,7 @@ namespace DAOs
             UserDetail oUserDetail = GetUserDetail(id);
             if (oUserDetail != null)
             {
-                oUserDetail.Balance = userDetailsModel.Balance;
+                oUserDetail.Point = userDetailsModel.Point;
                 oUserDetail.FullName = userDetailsModel.FullName;
                 oUserDetail.Address = userDetailsModel.Address;
                 oUserDetail.ProfilePicture = userDetailsModel.ProfilePicture;
@@ -106,8 +106,8 @@ namespace DAOs
                 case "address":
                     query = isAsc ? query.OrderBy(b => b.Address) : query.OrderByDescending(b => b.Address);
                     break;
-                case "balance":
-                    query = isAsc ? query.OrderBy(b => b.Balance) : query.OrderByDescending(b => b.Balance);
+                case "Point":
+                    query = isAsc ? query.OrderBy(b => b.Point) : query.OrderByDescending(b => b.Point);
                     break;
                 case "fullname":
                     query = isAsc ? query.OrderBy(b => b.FullName) : query.OrderByDescending(b => b.FullName);

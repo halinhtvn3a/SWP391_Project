@@ -42,7 +42,10 @@ namespace DAOs
 
         }
 
-
+        public List<Court> GetCourts()
+        {
+            return _courtCallerDbContext.Courts.ToList();
+        }
         public Court GetCourt(string id)
         {
             return _courtCallerDbContext.Courts.FirstOrDefault(m => m.CourtId.Equals(id));

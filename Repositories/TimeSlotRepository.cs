@@ -31,7 +31,7 @@ namespace Repositories
         public async Task<List<TimeSlot>> GetTimeSlots(PageResult pageResult, string searchQuery = null) => await _timeSlotDao.GetTimeSlots(pageResult, searchQuery);
         public async Task<List<TimeSlot>> GetTimeSlotsByUserId(string userId, PageResult pageResult) => await _timeSlotDao.GetTimeSlotsByUserId(userId, pageResult);
 
-        
+
         public void DeleteTimeSlot(string id) => _timeSlotDao.DeleteTimeSlot(id);
 
         public TimeSlot GetTimeSlot(string id) => _timeSlotDao.GetTimeSlot(id);
@@ -53,6 +53,23 @@ namespace Repositories
             }
             else
             {
+                //List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId).ToList(); foreach (var court in courtsInBranch)
+                //{
+                //    isBooked = false;
+                //    List<TimeSlot> timeSlots = _timeSlotDao.GetTimeSlots().Where(t => t.CourtId == court.CourtId).ToList();
+                //    foreach (var timeSlot in timeSlots)
+                //    {
+                //        if (slotModel.SlotDate == timeSlot.SlotDate && slotModel.TimeSlot.SlotStartTime == timeSlot.SlotStartTime && slotModel.TimeSlot.SlotEndTime == timeSlot.SlotEndTime)
+                //        {
+                //            isBooked = true;
+                //            break;
+                //        }
+                //    }
+                //    if (!isBooked)
+                //    {
+                //        break;
+                //    }
+                //}
                 isBooked = _courtDao.GetCourts()
     .Where(c => c.BranchId == slotModel.BranchId)
     .All(court => _timeSlotDao.GetTimeSlots()

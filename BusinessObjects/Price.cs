@@ -18,8 +18,11 @@ namespace BusinessObjects
         [StringLength(10)]
         public string BranchId { get; set; }
 
+        [StringLength(50)]
+        public string Type { get; set; }
+
         [Required]
-        public bool IsWeekend { get; set; }
+        public bool? IsWeekend { get; set; }
         
         [Required]
         public decimal SlotPrice { get; set; }
