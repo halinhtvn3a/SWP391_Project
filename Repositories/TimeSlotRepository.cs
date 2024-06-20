@@ -53,7 +53,7 @@ namespace Repositories
             }
             else
             {
-                isBooked = !_timeSlotDao.GetTimeSlots()
+                isBooked = _timeSlotDao.GetTimeSlots()
                                   .Any(t => _courtDao.GetCourt(t.CourtId).BranchId == slotModel.BranchId &&
                               t.SlotDate == slotModel.SlotDate &&
                               t.SlotStartTime == slotModel.TimeSlot.SlotStartTime &&
