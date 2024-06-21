@@ -240,6 +240,8 @@ namespace Repositories
 
                     _bookingDao.UpdateBooking(generateBookingId, paymentAmount);
 
+                    _userDetailDao.GetUserDetail(userId).Point += paymentAmount;
+
                     return booking;
                 }
 
@@ -292,17 +294,19 @@ namespace Repositories
 
         public Booking AddBookingTypeFlex(string userId, int numberOfSlot, string branchId)
         {
+            Decimal totalPrice = _priceDao.GetSlotPriceOfBookingFlex(branchId) * numberOfSlot;
             Booking booking = new Booking
             {
                 BookingId = "B" + GenerateId.GenerateShortBookingId(),
                 Id = userId,
                 BookingDate = DateTime.Now,
                 Status = "In Use",
-                TotalPrice = _priceDao.GetPriceByBranchAndWeekend(branchId, false).SlotPrice * numberOfSlot * 9 / 10,
+                TotalPrice = totalPrice,
                 BookingType = "Flex",
                 NumberOfSlot = numberOfSlot,
             };
             _bookingDao.AddBooking(booking);
+            _userDetailDao.GetUserDetail(userId).Point += totalPrice;
 
             return booking;
         }
@@ -382,7 +386,7 @@ namespace Repositories
             string bookingId = GenerateId.GenerateShortBookingId();
             int numberOfSlots = validDates.Count; // Assuming one slot per valid date
 
-            decimal totalPrice = _priceDao.GetPriceByBranchAndWeekend(branchId, false).SlotPrice * numberOfSlots * 9 / 10;
+            decimal totalPrice = _priceDao.GetSlotPriceOfBookingFix(branchId) * numberOfSlots;
 
             Booking booking = new Booking
             {
@@ -409,6 +413,7 @@ namespace Repositories
             }
 
             await _bookingDao.SaveChangesAsync();
+            _userDetailDao.GetUserDetail(userId).Point += totalPrice;
 
             return true;
         }
@@ -431,7 +436,10 @@ namespace Repositories
             IdentityUser user = _userDao.GetUserByBookingId(bookingId);
             Booking booking = await GetBooking(bookingId);
             UserDetail userDetail = _userDetailDao.GetUserDetail(user.Id);
-            userDetail.Point += booking.TotalPrice;
+
+            userDetail.Balance += booking.TotalPrice;
+            userDetail.Point -= booking.TotalPrice;
+
             UserDetailsModel userDetailsModel = new UserDetailsModel()
             {
                 Point = userDetail.Point,

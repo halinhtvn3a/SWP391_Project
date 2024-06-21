@@ -11,6 +11,8 @@ namespace BusinessObjects
         [StringLength(450)]
         public string UserId { get; set; }
 
+		public decimal Balance { get; set; }
+
 		public decimal? Point { get; set; }
 
 		[StringLength(50)]

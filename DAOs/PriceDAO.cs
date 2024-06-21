@@ -115,5 +115,17 @@ namespace DAOs
             List<Price> prices = await pagination.GetListAsync<Price>(query, pageResult);
             return prices;
         }
+
+        public decimal GetSlotPriceOfBookingFlex(string branchId)
+        {
+            var price = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.Type == "Flex");
+            return price?.SlotPrice ?? 0;
+        }
+        
+        public decimal GetSlotPriceOfBookingFix(string branchId)
+        {
+            var price = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.Type == "Fix");
+            return price?.SlotPrice ?? 0;
+        }
     }
 }
