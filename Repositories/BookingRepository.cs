@@ -276,6 +276,7 @@ namespace Repositories
         //    return true;
         //}
 
+        //đã đảm bảo chỉ ra booking loại flex mà chưa đủ slot
         public Booking CheckAvaiableSlotsFromBookingTypeFlex(string userId)
         {
             var bookings = _bookingDao.GetBookingTypeFlex(userId);

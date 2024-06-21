@@ -235,62 +235,7 @@ namespace API.Controllers
         //    return BadRequest("Invalid QR code or booking.");
         //}
 
-        [Route("api/bookings/qrcode/{bookingId}")]
-        [HttpGet]
-        public async Task<IActionResult> GetQRCode(string bookingId)
-        {
-            var booking = await _bookingService.GetBooking(bookingId);
-            if (booking == null)
-            {
-                return NotFound("Booking not found.");
-            }
-
-            var qrData = new
-            {
-                BookingId = booking.BookingId,
-                UserId = booking.Id,
-                BookingDate = booking.BookingDate,
-                BookingType = booking.BookingType.ToString(),
-            };
-
-            string qrString = JsonConvert.SerializeObject(qrData);
-            string qrCodeBase64 = _bookingService.GenerateQRCode(qrString);
-
-            return Ok(new { qrCodeBase64 });
-        }
-
-        [HttpPost("checkin/qr")]
-        public async Task<IActionResult> CheckInWithQR([FromBody] QRCheckInModel request)
-        {
-            if (request == null || string.IsNullOrEmpty(request.QRCodeData))
-            {
-                return BadRequest("Invalid QR code data.");
-            }
-
-            var qrData = DecryptQRCode(request.QRCodeData);
-
-            var booking = await _bookingService.GetBooking(qrData.BookingId);
-            if (booking != null && booking.Status == "complete" && booking.Id == qrData.UserId)
-            {
-                booking.Status = "checked-in";
-                await _bookingService.UpdateBooking(booking);
-
-                return Ok("Check-in successful.");
-            }
-            return BadRequest("Invalid QR code or booking.");
-        }
-
-        private QRData DecryptQRCode(string qrCodeData)
-        {
-            // Implement logic to decrypt and parse the QR code data
-            return JsonConvert.DeserializeObject<QRData>(qrCodeData);
-        }
-
-        public class QRData
-        {
-            public string BookingId { get; set; }
-            public string UserId { get; set; }
-        }
+        
 
 
 

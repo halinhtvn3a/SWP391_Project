@@ -37,7 +37,7 @@ namespace Services
         public void DeleteBooking(string id) => _bookingRepository.DeleteBooking(id);
         public async Task<Booking> GetBooking(string id) => await _bookingRepository.GetBooking(id);
         //public List<Booking> GetBookings() => BookingRepository.GetBookings();
-        public async Task UpdateBooking(Booking booking) => await _bookingRepository.UpdateBooking( booking);
+        
         public async Task<List<Booking>> GetBookings(PageResult pageResult, string searchQuery = null) => await _bookingRepository.GetBookings(pageResult,searchQuery);
 
         public List<Booking> GetBookingsByStatus(string status) => _bookingRepository.GetBookingsByStatus(status);
@@ -68,7 +68,6 @@ namespace Services
             try
             {
                 var booking = _bookingRepository.ReserveSlotAsyncV2(slotModels, userId);
-
                 return booking;
             }
             catch (Exception ex)
@@ -103,19 +102,7 @@ namespace Services
 
         public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult) => await _bookingRepository.SortBookings(sortBy, isAsc, pageResult);
 
-        public string GenerateQRCode(string qrData)
-        {
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrData, QRCodeGenerator.ECCLevel.Q);
-            QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(20);
-
-            using (var ms = new MemoryStream())
-            {
-                qrCodeImage.Save(ms, ImageFormat.Png);
-                return Convert.ToBase64String(ms.ToArray());
-            }
-        }
+       
 
     }
 }

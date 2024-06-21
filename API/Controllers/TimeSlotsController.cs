@@ -9,6 +9,7 @@ using BusinessObjects;
 using DAOs.Models;
 using Services;
 using Page = DAOs.Helper;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
@@ -53,7 +54,7 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            return timeSlot;
+            return await timeSlot;
         }
         
         [HttpGet("bookingId/{bookingId}")]
@@ -74,7 +75,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTimeSlot(string id, SlotModel slotModel)
         {
-            var timeSlot = _timeSlotService.GetTimeSlot(id);
+            var timeSlot = await _timeSlotService.GetTimeSlot(id);
             if (id != timeSlot.SlotId)
             {
                 return BadRequest();
@@ -161,5 +162,64 @@ namespace API.Controllers
         {
             return _timeSlotService.GetTimeSlots().Any(e => e.SlotId == id);
         }
+
+        [Route("api/timeslots/qrcode/{timeslotid}")]
+        [HttpGet]
+        public async Task<IActionResult> GetQRCode(string timeslotid)
+        {
+            var timeslot = await _timeSlotService.GetTimeSlot(timeslotid);
+            if (timeslot == null)
+            {
+                return NotFound("Timeslot not found.");
+            }
+
+            var qrData = new
+            {
+                BookingId = timeslot.BookingId,
+                Status = timeslot.Status,
+                TimeslotId = timeslot.SlotId,
+                SlotDate = timeslot.SlotDate,
+                
+            };
+
+            string qrString = JsonConvert.SerializeObject(qrData);
+            string qrCodeBase64 = _timeSlotService.GenerateQRCode(qrString);
+
+            return Ok(new { qrCodeBase64 });
+        }
+
+        [HttpPost("checkin/qr")]
+        public async Task<IActionResult> CheckInWithQR([FromBody] QRCheckInModel request)
+        {
+            if (request == null || string.IsNullOrEmpty(request.QRCodeData))
+            {
+                return BadRequest("Invalid QR code data.");
+            }
+
+            var qrData = DecryptQRCode(request.QRCodeData);
+
+            var timeSlot = await _timeSlotService.GetTimeSlot(qrData.TimeslotId);
+            if (timeSlot != null && timeSlot.Status == "Reserved" && timeSlot.SlotId == qrData.TimeslotId)
+            {
+                timeSlot.Status = "checked-in";
+                await _timeSlotService.UpdateTimeSlotWithObject(timeSlot);
+
+                return Ok("Check-in successful.");
+            }
+            return BadRequest("Invalid QR code or booking.");
+        }
+
+        private QRData DecryptQRCode(string qrCodeData)
+        {
+            // Implement logic to decrypt and parse the QR code data
+            return JsonConvert.DeserializeObject<QRData>(qrCodeData);
+        }
+
+        public class QRData
+        {
+            public string TimeslotId { get; set; }
+            public string UserId { get; set; }
+        }
+
     }
 }

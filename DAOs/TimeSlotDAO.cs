@@ -48,9 +48,10 @@ namespace DAOs
             return timeSlots;
         }
 
-        public TimeSlot GetTimeSlot(string id)
+        public async Task<TimeSlot> GetTimeSlot(string id)
         {
-            return _dbContext.TimeSlots.FirstOrDefault(m => m.SlotId.Equals(id));
+            var timeslots = await _dbContext.TimeSlots.FirstOrDefaultAsync(m => m.SlotId.Equals(id));
+            return timeslots;
         }
 
         public TimeSlot AddTimeSlot(TimeSlot TimeSlot)
@@ -73,9 +74,16 @@ namespace DAOs
         //    return oTimeSlot;
         //}
 
-        public TimeSlot UpdateTimeSlot(string slotId, SlotModel slotModel)
+
+        public async Task<TimeSlot> UpdateTimeSlotWithObject(TimeSlot timeSlot)
         {
-            TimeSlot timeSlot = GetTimeSlot(slotId);
+            var timeslot = await _dbContext.TimeSlots.FirstOrDefaultAsync(m => m.SlotId.Equals(timeSlot));
+            return timeslot;
+        }
+
+        public async Task<TimeSlot> UpdateTimeSlot(string slotId, SlotModel slotModel)
+        {
+            TimeSlot timeSlot = await GetTimeSlot(slotId);
             if (timeSlot != null) {
                 timeSlot.CourtId = slotModel.CourtId;
                 timeSlot.SlotDate = slotModel.SlotDate;
@@ -101,11 +109,11 @@ namespace DAOs
             return _dbContext.TimeSlots.Where(t => t.CourtId.Equals(courtId)).ToList();
         }
 
-        public void UpdateBookinginSlot(string slotId, string bookingId)
+        public async void UpdateBookinginSlot(string slotId, string bookingId)
         {
             try
             {
-                TimeSlot oTimeSlot = GetTimeSlot(slotId);
+                TimeSlot oTimeSlot = await GetTimeSlot(slotId);
                 if (oTimeSlot != null)
                 {
                     oTimeSlot.BookingId = bookingId;
@@ -234,9 +242,9 @@ namespace DAOs
 
         }
 
-        public void DeleteTimeSlot(string timeSlotId)
+        public async void DeleteTimeSlot(string timeSlotId)
         {
-            TimeSlot timeSlot = GetTimeSlot(timeSlotId);
+            TimeSlot timeSlot = await GetTimeSlot(timeSlotId);
             if (timeSlot != null)
             {
                 _dbContext.TimeSlots.Remove(timeSlot);

@@ -34,11 +34,12 @@ namespace Repositories
 
         public void DeleteTimeSlot(string id) => _timeSlotDao.DeleteTimeSlot(id);
 
-        public TimeSlot GetTimeSlot(string id) => _timeSlotDao.GetTimeSlot(id);
+        public async Task<TimeSlot> GetTimeSlot(string id) => await _timeSlotDao.GetTimeSlot(id);
 
         public List<TimeSlot> GetTimeSlots() => _timeSlotDao.GetTimeSlots();
+        public async Task UpdateTimeSlotWithObject(TimeSlot timeSlot) => await _timeSlotDao.UpdateTimeSlotWithObject(timeSlot);
 
-        public TimeSlot UpdateTimeSlot(string id, SlotModel slotModel) => _timeSlotDao.UpdateTimeSlot(id, slotModel);
+        public async Task<TimeSlot> UpdateTimeSlot(string id, SlotModel slotModel) => await _timeSlotDao.UpdateTimeSlot(id, slotModel);
 
         public bool IsSlotBookedInBranch(SlotModel slotModel)
         {

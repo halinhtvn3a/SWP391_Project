@@ -4118,7 +4118,6 @@ C:\FPTUNI\5\SWP391_Project\API\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig
 C:\FPTUNI\5\SWP391_Project\API\obj\Debug\net8.0\API.AssemblyInfoInputs.cache
 C:\FPTUNI\5\SWP391_Project\API\obj\Debug\net8.0\API.AssemblyInfo.cs
 C:\FPTUNI\5\SWP391_Project\API\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
-C:\FPTUNI\5\SWP391_Project\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cs
 C:\FPTUNI\5\SWP391_Project\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
 C:\FPTUNI\5\SWP391_Project\API\obj\Debug\net8.0\API.sourcelink.json
 C:\FPTUNI\5\SWP391_Project\API\obj\Debug\net8.0\staticwebassets.build.json
