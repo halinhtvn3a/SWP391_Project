@@ -26,8 +26,16 @@ namespace DAOs
         {
             return _dbContext.Prices.FirstOrDefault(m => m.PriceId.Equals(id));
         }
-        public Price AddPrice(Price price)
+        public Price AddPrice(PriceModel priceModel)
         {
+            Price price = new Price()
+            {
+                PriceId = "P" + (_dbContext.Prices.Count() + 1).ToString("D5"), // "P00001
+                BranchId = priceModel.BranchId,
+                Type = priceModel.Type,
+                IsWeekend = priceModel.IsWeekend,
+                SlotPrice = priceModel.SlotPrice
+            };
             _dbContext.Prices.Add(price);
             _dbContext.SaveChanges();
             return price;

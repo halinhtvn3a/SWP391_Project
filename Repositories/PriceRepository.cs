@@ -21,7 +21,7 @@ namespace Repositories
             }
         }
         public List<decimal> ShowPrice(string branchId) => _priceDao.ShowPrice(branchId);
-        public Price AddPrice(Price price) => _priceDao.AddPrice(price);
+        public Price AddPrice(PriceModel priceModel) => _priceDao.AddPrice(priceModel);
         public void DeletePrice(string id) => _priceDao.DeletePrice(id);
 
         public Price GetPrice(string id) => _priceDao.GetPrice(id);

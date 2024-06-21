@@ -21,7 +21,7 @@ namespace Services
                 _priceRepository = new PriceRepository();
             }
         }
-        public Price AddPrice(Price Price) => _priceRepository.AddPrice(Price);
+        public Price AddPrice(PriceModel priceModel) => _priceRepository.AddPrice(priceModel);
         public List<decimal> ShowPrice(string branchId) => _priceRepository.ShowPrice(branchId);
         public void DeletePrice(string id) => _priceRepository.DeletePrice(id);
         public Price GetPrice(string id) => _priceRepository.GetPrice(id);

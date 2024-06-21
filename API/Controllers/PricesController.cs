@@ -1,5 +1,6 @@
 ﻿using BusinessObjects;
 using DAOs.Helper;
+using DAOs.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Services;
@@ -39,7 +40,7 @@ namespace API.Controllers
             return Price;
         }
         [HttpPost]
-        public async Task<ActionResult<Price>> PostPrice(Price price)
+        public async Task<ActionResult<Price>> PostPrice(PriceModel price)
         {
 
             var Price = _priceService.AddPrice(price);

@@ -5041,3 +5041,11 @@ E:\20-6\SWP391_Project\API\obj\Debug\net8.0\refint\API.dll
 E:\20-6\SWP391_Project\API\obj\Debug\net8.0\API.pdb
 E:\20-6\SWP391_Project\API\obj\Debug\net8.0\API.genruntimeconfig.cache
 E:\20-6\SWP391_Project\API\obj\Debug\net8.0\ref\API.dll
+E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.csproj.AssemblyReference.cache
+E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.GeneratedMSBuildEditorConfig.editorconfig
+E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.AssemblyInfoInputs.cache
+E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.AssemblyInfo.cs
+E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
+E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cs
+E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
+E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.sourcelink.json
