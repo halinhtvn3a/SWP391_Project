@@ -34,12 +34,11 @@
               "Title": "TimeSlotService.cs",
               "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\TimeSlotService.cs",
               "RelativeDocumentMoniker": "Services\\TimeSlotService.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\TimeSlotService.cs*",
-              "RelativeToolTip": "Services\\TimeSlotService.cs*",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\TimeSlotService.cs",
+              "RelativeToolTip": "Services\\TimeSlotService.cs",
               "ViewState": "AQIAACYAAAAAAAAAAADwvyoAAAB4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T06:08:56.765Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T06:08:56.765Z"
             },
             {
               "$type": "Document",
@@ -47,12 +46,11 @@
               "Title": "TimeSlotRepository.cs",
               "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\TimeSlotRepository.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\TimeSlotRepository.cs*",
-              "RelativeToolTip": "Repositories\\TimeSlotRepository.cs*",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
+              "RelativeToolTip": "Repositories\\TimeSlotRepository.cs",
               "ViewState": "AQIAABMAAAAAAAAAAAAgwB4AAAClAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T06:05:13.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T06:05:13.038Z"
             },
             {
               "$type": "Document",
@@ -64,8 +62,7 @@
               "RelativeToolTip": "DAOs\\TimeSlotDAO.cs",
               "ViewState": "AQIAAIgAAAAAAAAAAAAYwJAAAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T06:07:10.615Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T06:07:10.615Z"
             },
             {
               "$type": "Document",
