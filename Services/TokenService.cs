@@ -9,10 +9,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using Services.Interface;
 
 namespace Services
 {
-    public class TokenService
+    public class TokenService : ITokenService
     {
         private readonly IConfiguration _configuration;
         private readonly RoleManager<IdentityRole> _roleManager;

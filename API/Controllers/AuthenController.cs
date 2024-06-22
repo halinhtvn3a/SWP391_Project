@@ -26,18 +26,19 @@ namespace API.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly TokenService _tokenService;
+        private readonly ITokenService _tokenService;
         private readonly UserService _userService = new UserService();
         private readonly UserDetailService _userDetailService = new UserDetailService();
         private readonly IConfiguration _configuration;
         private readonly IMailService _mailService;
 
-        public AuthenticationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IMailService mailService)
+
+        public AuthenticationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IMailService mailService, ITokenService tokenService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
-            _tokenService = new TokenService(_configuration, _roleManager);
+            _tokenService = tokenService;
             _mailService = mailService;
         }
 

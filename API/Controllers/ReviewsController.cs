@@ -96,7 +96,7 @@ namespace API.Controllers
         //}
 
 
-        [HttpGet("GetReviewsByCourt/{id}")]
+        [HttpGet("GetReviewsByBranch/{id}")]
         public async Task<ActionResult<IEnumerable<Review>>> GetReviewsByBranch(string id)
         {
             return _reviewService.GetReviewsByBranch(id);

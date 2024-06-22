@@ -20,7 +20,8 @@ using BusinessObjects;
 using DAOs;
 using Microsoft.EntityFrameworkCore.Storage;
 using Xunit;
-using Services.Interface;
+
+
 using Microsoft.EntityFrameworkCore;
 
 
@@ -64,11 +65,13 @@ public class AuthServiceTests
 
 
 
+    //lock-out en
+
     [Fact]
         public async Task Login_ValidUser_ReturnsOkObjectResult()
         {
-            var loginModel = new LoginModel { Email = "testcase@example.com", Password = "Qwe@123" };
-            var user = new IdentityUser { UserName = loginModel.Email, Email = loginModel.Email };
+            var loginModel = new LoginModel { Email = "user@gmail.com", Password = "Qwe@123" };
+            var user = new IdentityUser { UserName = loginModel.Email, Email = loginModel.Email , LockoutEnabled = true};
 
             _userManagerMock.Setup(um => um.FindByNameAsync(loginModel.Email)).ReturnsAsync(user);
             _userManagerMock.Setup(um => um.CheckPasswordAsync(user, loginModel.Password)).ReturnsAsync(true);
@@ -106,7 +109,7 @@ public class AuthServiceTests
 
         var responseModel = Assert.IsType<ResponseModel>(statusCodeResult.Value);
         Assert.Equal("Error", responseModel.Status);
-        Assert.Equal("Invalid username or password", responseModel.Message);
+        Assert.Equal("User not found!", responseModel.Message);
     }
 
     //[Fact]

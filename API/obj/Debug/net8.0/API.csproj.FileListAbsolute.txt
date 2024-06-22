@@ -5049,3 +5049,4 @@ E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.csproj.CoreCompileInputs.cache
 E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cs
 E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cache
 E:\21-6\SWP391_Project\API\obj\Debug\net8.0\API.sourcelink.json
+C:\FPTUNI\5\SWP391_Project\API\obj\Debug\net8.0\API.MvcApplicationPartsAssemblyInfo.cs

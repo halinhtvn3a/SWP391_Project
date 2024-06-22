@@ -9,6 +9,9 @@ using Repositories;
 using Repositories.Helper;
 using Services;
 using Services.Interface;
+using Se = Services;
+
+
 
 namespace API
 {
@@ -83,6 +86,9 @@ namespace API
                     }
                 });
             });
+
+            builder.Services.AddScoped<ITokenService, TokenService>();
+
             builder.Services.AddScoped<PriceDAO>();
             builder.Services.AddScoped<PriceService>();
             builder.Services.Configure<TokenSettings>(configuration.GetSection("TokenSettings"));

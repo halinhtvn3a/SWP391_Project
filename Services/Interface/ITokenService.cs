@@ -10,6 +10,8 @@ namespace Services.Interface
     public interface ITokenService
     {
         string GenerateToken(IdentityUser user, string role);
+        
+
 
     }
 }
