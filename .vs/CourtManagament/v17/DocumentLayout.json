@@ -1,70 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\21-6\\SWP391_Project\\",
+  "WorkspaceRootPath": "C:\\FPTUNI\\5\\SWP391_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\21-6\\swp391_project\\daos\\pricedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\pricedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\21-6\\swp391_project\\services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\21-6\\swp391_project\\api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\21-6\\swp391_project\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|c:\\fptuni\\5\\swp391_project\\services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\21-6\\swp391_project\\daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\21-6\\swp391_project\\repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\21-6\\swp391_project\\daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\21-6\\swp391_project\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\21-6\\swp391_project\\businessobjects\\userdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\userdetail.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\21-6\\swp391_project\\businessobjects\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\courtcallerdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\21-6\\swp391_project\\businessobjects\\price.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\price.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\21-6\\swp391_project\\api\\controllers\\pricescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\pricescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\21-6\\swp391_project\\services\\priceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\priceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\21-6\\swp391_project\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\21-6\\swp391_project\\repositories\\pricerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\pricerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\21-6\\swp391_project\\services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -74,210 +26,59 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "BookingDAO.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\BookingDAO.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
-              "RelativeToolTip": "DAOs\\BookingDAO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEoAAAAbAAAA",
+              "DocumentIndex": 1,
+              "Title": "TimeSlotService.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\TimeSlotService.cs",
+              "RelativeDocumentMoniker": "Services\\TimeSlotService.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\TimeSlotService.cs*",
+              "RelativeToolTip": "Services\\TimeSlotService.cs*",
+              "ViewState": "AQIAACYAAAAAAAAAAADwvyoAAAB4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T11:54:44.884Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BookingRepository.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
-              "RelativeToolTip": "Repositories\\BookingRepository.cs",
-              "ViewState": "AQIAAJsBAAAAAAAAAAAAAIQBAABeAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T12:00:10.852Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PriceDAO.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\DAOs\\PriceDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\PriceDAO.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\DAOs\\PriceDAO.cs",
-              "RelativeToolTip": "DAOs\\PriceDAO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAH4AAABkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T16:42:07.225Z",
+              "WhenOpened": "2024-06-22T06:08:56.765Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "TimeSlotsController.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\TimeSlotsController.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
-              "RelativeToolTip": "API\\Controllers\\TimeSlotsController.cs",
-              "ViewState": "AQIAAMEAAAAAAAAAAAAAAMYAAAAWAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T11:50:41.214Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TimeSlotService.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\Services\\TimeSlotService.cs",
-              "RelativeDocumentMoniker": "Services\\TimeSlotService.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\Services\\TimeSlotService.cs",
-              "RelativeToolTip": "Services\\TimeSlotService.cs",
-              "ViewState": "AQIAACsAAAAAAAAAAAAAADgAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T12:04:59.557Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "TimeSlotRepository.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\TimeSlotRepository.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
-              "RelativeToolTip": "Repositories\\TimeSlotRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAB/AAAA",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\TimeSlotRepository.cs*",
+              "RelativeToolTip": "Repositories\\TimeSlotRepository.cs*",
+              "ViewState": "AQIAABMAAAAAAAAAAAAgwB4AAAClAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T12:05:47.887Z",
+              "WhenOpened": "2024-06-22T06:05:13.038Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "TimeSlotDAO.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\TimeSlotDAO.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
               "RelativeToolTip": "DAOs\\TimeSlotDAO.cs",
-              "ViewState": "AQIAACoBAAAAAAAAAAAAABUBAAAXAAAA",
+              "ViewState": "AQIAAIgAAAAAAAAAAAAYwJAAAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T12:02:49.993Z",
+              "WhenOpened": "2024-06-22T06:07:10.615Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\API\\appsettings.json",
-              "RelativeDocumentMoniker": "API\\appsettings.json",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\API\\appsettings.json",
-              "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABoAAABNAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-21T16:47:12.257Z",
+              "DocumentIndex": 0,
+              "Title": "TimeSlotsController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\TimeSlotsController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "RelativeToolTip": "API\\Controllers\\TimeSlotsController.cs",
+              "ViewState": "AQIAALQAAAAAAAAAAAAswL0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-22T06:01:58.795Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "UserDetail.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\BusinessObjects\\UserDetail.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\UserDetail.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\BusinessObjects\\UserDetail.cs",
-              "RelativeToolTip": "BusinessObjects\\UserDetail.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAlAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T16:41:35.243Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "CourtCallerDbContext.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\BusinessObjects\\CourtCallerDbContext.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\CourtCallerDbContext.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\BusinessObjects\\CourtCallerDbContext.cs",
-              "RelativeToolTip": "BusinessObjects\\CourtCallerDbContext.cs",
-              "ViewState": "AQIAACUAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T16:56:10.679Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "UserService.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\Services\\UserService.cs",
-              "RelativeDocumentMoniker": "Services\\UserService.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\Services\\UserService.cs",
-              "RelativeToolTip": "Services\\UserService.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T16:42:45.955Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "PriceRepository.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\Repositories\\PriceRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\PriceRepository.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\Repositories\\PriceRepository.cs",
-              "RelativeToolTip": "Repositories\\PriceRepository.cs",
-              "ViewState": "AQIAABYAAAAAAAAAAAAAABgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T16:42:25.874Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Price.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\BusinessObjects\\Price.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\Price.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\BusinessObjects\\Price.cs",
-              "RelativeToolTip": "BusinessObjects\\Price.cs",
-              "ViewState": "AQIAAA4AAAAAAAAAAAAqwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T16:41:22.913Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "PriceService.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\Services\\PriceService.cs",
-              "RelativeDocumentMoniker": "Services\\PriceService.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\Services\\PriceService.cs",
-              "RelativeToolTip": "Services\\PriceService.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAAABgAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T16:42:47.688Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "PricesController.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\API\\Controllers\\PricesController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\PricesController.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\API\\Controllers\\PricesController.cs",
-              "RelativeToolTip": "API\\Controllers\\PricesController.cs",
-              "ViewState": "AQIAACoAAAAAAAAAAAAAAC0AAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T16:43:07.313Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "BookingService.cs",
-              "DocumentMoniker": "E:\\21-6\\SWP391_Project\\Services\\BookingService.cs",
-              "RelativeDocumentMoniker": "Services\\BookingService.cs",
-              "ToolTip": "E:\\21-6\\SWP391_Project\\Services\\BookingService.cs",
-              "RelativeToolTip": "Services\\BookingService.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAA5wCcAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-21T12:02:09.282Z"
             }
           ]
         }

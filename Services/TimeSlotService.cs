@@ -40,6 +40,7 @@ namespace Services
 
         public TimeSlot ChangeSlot(SlotModel slotModel, string slotId) => _timeSlotRepository.ChangeSlot(slotModel, slotId);
 
+        public List<TimeSlot> GetTimeSlotsByDate(DateOnly dateOnly) => _timeSlotRepository.GetTimeSlotsByDate(dateOnly);
         public async Task<List<TimeSlot>> SortTimeSlot(string? sortBy, bool isAsc, PageResult pageResult) => await _timeSlotRepository.SortTimeSlot(sortBy, isAsc, pageResult);
 
         public string GenerateQRCode(string qrData)
