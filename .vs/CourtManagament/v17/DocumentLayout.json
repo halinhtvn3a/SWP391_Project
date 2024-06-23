@@ -158,7 +158,7 @@
               "RelativeDocumentMoniker": "API\\appsettings.json",
               "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\appsettings.json",
               "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABQAAAAPAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABUAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-06-23T11:18:52.007Z",
               "EditorCaption": ""
@@ -290,7 +290,8 @@
               "RelativeToolTip": "TestLoginAndAuthen\\RepositoryTests\\ReviewRepositoryTests.cs",
               "ViewState": "AQIAACkAAAAAAAAAAAAUwDYAAAAyAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T13:07:54.908Z"
+              "WhenOpened": "2024-06-23T13:07:54.908Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -371,7 +372,8 @@
               "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
               "ViewState": "AQIAACIAAAAAAAAAAAAiwC8AAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T11:19:12.52Z"
+              "WhenOpened": "2024-06-23T11:19:12.52Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
