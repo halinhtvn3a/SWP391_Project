@@ -286,5 +286,3 @@ E:\21-6\SWP391_Project\BusinessObjects\obj\Debug\net8.0\refint\BusinessObjects.d
 E:\21-6\SWP391_Project\BusinessObjects\obj\Debug\net8.0\BusinessObjects.pdb
 E:\21-6\SWP391_Project\BusinessObjects\obj\Debug\net8.0\BusinessObjects.genruntimeconfig.cache
 E:\21-6\SWP391_Project\BusinessObjects\obj\Debug\net8.0\ref\BusinessObjects.dll
-E:\21-6\SWP391_Project\BusinessObjects\bin\Debug\net8.0\appsettings.Development.json
-E:\21-6\SWP391_Project\BusinessObjects\bin\Debug\net8.0\appsettings.json

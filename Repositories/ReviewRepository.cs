@@ -20,6 +20,10 @@ namespace Repositories
                 _reviewDao = new ReviewDAO();
             }
         }
+        public ReviewRepository(ReviewDAO reviewDao)
+        {
+            _reviewDao = reviewDao;
+        }
         public Review AddReview(ReviewModel reviewModel) => _reviewDao.AddReview(reviewModel);
 
         public void DeleteReview(string id) => _reviewDao.DeleteReview(id);
@@ -38,5 +42,17 @@ namespace Repositories
         public List<Review> SearchByRating(int rating) => _reviewDao.SearchByRating(rating);
 
         public async Task<List<Review>> SortReview(string? sortBy, bool isAsc, PageResult pageResult) => await _reviewDao.SortReview(sortBy, isAsc, pageResult);
+
+        public decimal GetRatingPercentageOfABranch(int rating, string branchId)
+        {
+            List<Review> reviews = _reviewDao.GetReviewsByBranch(branchId).Where(m => m.Rating == rating).ToList();
+            decimal totalReviews = reviews.Count();
+            decimal percentOfRating = 0;
+            if (totalReviews > 0)
+            {
+                percentOfRating = (totalReviews / _reviewDao.GetReviewsByBranch(branchId).Count()) * 100;
+            }
+            return percentOfRating;
+        } 
     }
 }

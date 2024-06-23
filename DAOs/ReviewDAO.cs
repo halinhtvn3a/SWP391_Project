@@ -22,6 +22,10 @@ namespace DAOs
                 _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
+        public ReviewDAO(CourtCallerDbContext dbContext)
+        {
+            _courtCallerDbContext = dbContext;
+        }
 
         public async Task<List<Review>> GetReview(PageResult pageResult, string searchQuery = null)
         {
