@@ -9,7 +9,9 @@
 
   <ItemGroup>
   
-    <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj" />
+    <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
+      <Private>True</Private>
+    </ProjectReference>
   </ItemGroup>
 
 </Project>

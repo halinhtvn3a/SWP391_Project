@@ -8,7 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAOs\DAOs.csproj" />
+    <ProjectReference Include="..\DAOs\DAOs.csproj">
+      <Private>True</Private>
+    </ProjectReference>
     
 
   </ItemGroup>
