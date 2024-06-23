@@ -7,7 +7,7 @@ using DAOs.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
+
 using Services;
 using Repositories.Helper;
 using Services.Interface;

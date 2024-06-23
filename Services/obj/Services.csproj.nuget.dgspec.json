@@ -92,7 +92,7 @@
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[7.1.2, )"
+              "version": "[7.6.2, )"
             }
           },
           "imports": [
@@ -305,11 +305,11 @@
             },
             "QRCoder": {
               "target": "Package",
-              "version": "[1.3.6, )"
+              "version": "[1.5.1, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[7.1.2, )"
+              "version": "[7.6.2, )"
             }
           },
           "imports": [
