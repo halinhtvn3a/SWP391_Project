@@ -26,7 +26,10 @@ namespace DAOs
                 _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
-
+        public BookingDAO(CourtCallerDbContext context)
+        {
+            _courtCallerDbContext = context;
+        }
 
         public async Task<List<Booking>> GetBookings(PageResult pageResult, string searchQuery = null)
         {
@@ -64,10 +67,6 @@ namespace DAOs
 
             return bookings;
         }
-
-
-
-
 
         public async Task<Booking> GetBooking(string id)
         {

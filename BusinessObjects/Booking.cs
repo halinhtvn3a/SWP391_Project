@@ -19,6 +19,10 @@ namespace BusinessObjects
 		[StringLength(450)]
 		public string Id { get; set; }
 
+		[StringLength(10)]
+		[ForeignKey("Branch")]
+		public string? BranchId { get; set; }
+
 		[Required]
 		public DateTime BookingDate { get; set; }
 
@@ -37,6 +41,7 @@ namespace BusinessObjects
 
 		// Navigation properties
 		public virtual IdentityUser User { get; set; }
+		public virtual Branch Branch { get; set; }
 		public virtual ICollection<TimeSlot> TimeSlots { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
 	}

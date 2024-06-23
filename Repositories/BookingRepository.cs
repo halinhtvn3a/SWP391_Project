@@ -377,6 +377,7 @@ namespace Repositories
             if (validDates.Any(date => _timeSlotRepository.IsSlotBookedInBranch(new SlotModel()
                 {
                     BranchId = branchId,
+                    SlotDate = date,
                     TimeSlot = timeSlotModel
                 })))
             {

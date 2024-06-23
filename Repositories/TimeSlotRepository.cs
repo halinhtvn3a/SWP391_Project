@@ -43,7 +43,7 @@ namespace Repositories
 
         public bool IsSlotBookedInBranch(SlotModel slotModel)
         {
-            bool isBooked;
+            bool isBooked = true;
             if (slotModel.BranchId == null)
             {
                 isBooked = _timeSlotDao.GetTimeSlots().Any(t =>
@@ -54,30 +54,30 @@ namespace Repositories
             }
             else
             {
-                //List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId).ToList(); foreach (var court in courtsInBranch)
-                //{
-                //    isBooked = false;
-                //    List<TimeSlot> timeSlots = _timeSlotDao.GetTimeSlots().Where(t => t.CourtId == court.CourtId).ToList();
-                //    foreach (var timeSlot in timeSlots)
-                //    {
-                //        if (slotModel.SlotDate == timeSlot.SlotDate && slotModel.TimeSlot.SlotStartTime == timeSlot.SlotStartTime && slotModel.TimeSlot.SlotEndTime == timeSlot.SlotEndTime)
-                //        {
-                //            isBooked = true;
-                //            break;
-                //        }
-                //    }
-                //    if (!isBooked)
-                //    {
-                //        break;
-                //    }
-                //}
-                isBooked = _courtDao.GetCourts()
-    .Where(c => c.BranchId == slotModel.BranchId)
-    .All(court => _timeSlotDao.GetTimeSlots()
-        .Where(t => t.CourtId == court.CourtId)
-        .Any(timeSlot => slotModel.SlotDate == timeSlot.SlotDate &&
-                         slotModel.TimeSlot.SlotStartTime == timeSlot.SlotStartTime &&
-                         slotModel.TimeSlot.SlotEndTime == timeSlot.SlotEndTime));
+                List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId).ToList(); foreach (var court in courtsInBranch)
+                {
+                    isBooked = false;
+                    List<TimeSlot> timeSlots = _timeSlotDao.GetTimeSlots().Where(t => t.CourtId == court.CourtId).ToList();
+                    foreach (var timeSlot in timeSlots)
+                    {
+                        if (slotModel.SlotDate == timeSlot.SlotDate && slotModel.TimeSlot.SlotStartTime == timeSlot.SlotStartTime && slotModel.TimeSlot.SlotEndTime == timeSlot.SlotEndTime)
+                        {
+                            isBooked = true;
+                            break;
+                        }
+                    }
+                    if (!isBooked)
+                    {
+                        break;
+                    }
+                }
+    //            isBooked = _courtDao.GetCourts()
+    //.Where(c => c.BranchId == slotModel.BranchId)
+    //.All(court => _timeSlotDao.GetTimeSlots()
+    //    .Where(t => t.CourtId == court.CourtId)
+    //    .Any(timeSlot => slotModel.SlotDate == timeSlot.SlotDate &&
+    //                     slotModel.TimeSlot.SlotStartTime == timeSlot.SlotStartTime &&
+    //                     slotModel.TimeSlot.SlotEndTime == timeSlot.SlotEndTime));
 
             }
             return isBooked;

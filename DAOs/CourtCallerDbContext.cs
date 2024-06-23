@@ -28,14 +28,14 @@ namespace DAOs
 
 		}
 
-		public DbSet<Review> Reviews { get; set; }
-		public DbSet<UserDetail> UserDetails { get; set; }
+		public virtual DbSet<Review> Reviews { get; set; }
+		public virtual DbSet<UserDetail> UserDetails { get; set; }
 		public virtual DbSet<Branch> Branches { get; set; }
-		public DbSet<Court> Courts { get; set; }
-		public DbSet<TimeSlot> TimeSlots { get; set; }
-		public DbSet<Booking> Bookings { get; set; }
-		public DbSet<Payment> Payments { get; set; }
-        public DbSet<Price> Prices { get; set; }
+		public virtual DbSet<Court> Courts { get; set; }
+		public virtual DbSet<TimeSlot> TimeSlots { get; set; }
+		public virtual DbSet<Booking> Bookings { get; set; }
+		public virtual DbSet<Payment> Payments { get; set; }
+        public virtual DbSet<Price> Prices { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
