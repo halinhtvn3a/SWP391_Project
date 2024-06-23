@@ -14371,7 +14371,6 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.6",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.6",
-      "Microsoft.IdentityModel.Protocols >= 7.1.2",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.2",
       "QRCoder >= 1.5.1",
       "Services >= 1.0.0",
@@ -14449,10 +14448,6 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[8.0.6, )"
-          },
-          "Microsoft.IdentityModel.Protocols": {
-            "target": "Package",
-            "version": "[7.1.2, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
