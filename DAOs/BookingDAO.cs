@@ -40,6 +40,7 @@ namespace DAOs
                     BookingId = b.BookingId,
                     Id = b.User.Id,
                     BookingDate = b.BookingDate,
+                    BranchId = b.BranchId,
                     Status = b.Status,
                     TotalPrice = b.TotalPrice,
                     BookingType = b.BookingType,

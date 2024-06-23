@@ -102,13 +102,13 @@ namespace API.Controllers
         //    return courtService.GetCourts().Any(e => e.CourtId == id);
         //}
 
-        [HttpGet("active")]
-        public async Task<ActionResult<IEnumerable<Court>>> GetActiveCourts()
+        [HttpGet("{status}")]
+        public async Task<ActionResult<IEnumerable<Court>>> GetCourtsByStatus(string status)
         {
-            return _courtService.GetActiveCourts();
+            return _courtService.GetCourtsByStatus(status);
         }
 
-        [HttpGet("sortCourt/{sortBy}")]
+        [HttpGet("{sortBy}")]
         public async Task<ActionResult<IEnumerable<Court>>> SortCourt(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var pageResult = new PageResult

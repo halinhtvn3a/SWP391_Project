@@ -21,6 +21,8 @@ namespace Repositories
         private readonly UserDAO _userDao = null;
         private readonly UserDetailDAO _userDetailDao = null;
         private readonly TimeSlotRepository _timeSlotRepository = null;
+        private readonly BranchDAO _branchDAO = null;
+
 
         public BookingRepository()
         {
@@ -52,6 +54,11 @@ namespace Repositories
             if (_userDetailDao == null)
             {
                 _userDetailDao = new UserDetailDAO();
+            }
+
+            if (_branchDAO == null)
+            {
+                _branchDAO = new BranchDAO();
             }
         }
 
@@ -193,7 +200,7 @@ namespace Repositories
         public Booking ReserveSlotAsyncV2(SlotModel[] slotModels, string userId)
         {
             //await _bookingDao.BeginTransactionAsync();
-
+            string branchId;
             try
             {
                 foreach (var s in slotModels)
@@ -204,10 +211,19 @@ namespace Repositories
                     }
                 }
 
-
-                if (CheckAvaiableSlotsFromBookingTypeFlex(userId) != null)
+                if (slotModels[0].CourtId != null)
                 {
-                    Booking booking = CheckAvaiableSlotsFromBookingTypeFlex(userId);
+                    branchId = _branchDAO.GetBranchesByCourtId(slotModels[0].CourtId).FirstOrDefault().BranchId;
+                }
+                else
+                {
+                    branchId = slotModels[0].BranchId;
+                }
+
+                if (CheckAvaiableSlotsFromBookingTypeFlex(userId, branchId) != null)
+                {
+
+                    Booking booking = CheckAvaiableSlotsFromBookingTypeFlex(userId, branchId);
                     foreach (var s in slotModels)
                     {
                         TimeSlot timeSlot = _timeSlotDao.AddSlotToBooking(s, booking.BookingId);
@@ -225,6 +241,7 @@ namespace Repositories
                         BookingId = generateBookingId,
                         Id = userId,
                         BookingDate = DateTime.Now,
+                        BranchId = branchId,
                         Status = "Reserved",
                         TotalPrice = 0,
                         BookingType = "Normal",
@@ -279,12 +296,14 @@ namespace Repositories
         //}
 
         //đã đảm bảo chỉ ra booking loại flex mà chưa đủ slot
-        public Booking CheckAvaiableSlotsFromBookingTypeFlex(string userId)
+        public Booking CheckAvaiableSlotsFromBookingTypeFlex(string userId, string branchId)
         {
             var bookings = _bookingDao.GetBookingTypeFlex(userId);
             foreach (var booking in bookings)
             {
-                if (booking.NumberOfSlot > _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId))
+                if (booking.NumberOfSlot > _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId) &&
+                    booking.BranchId == branchId
+                    )
                 {
                     return booking;
                 }
@@ -300,6 +319,7 @@ namespace Repositories
                 BookingId = "B" + GenerateId.GenerateShortBookingId(),
                 Id = userId,
                 BookingDate = DateTime.Now,
+                BranchId = branchId,
                 Status = "In Use",
                 TotalPrice = totalPrice,
                 BookingType = "Flex",
@@ -395,6 +415,7 @@ namespace Repositories
                 Id = userId,
                 BookingDate = DateTime.Now,
                 Status = "In Use",
+                BranchId = branchId,
                 TotalPrice = totalPrice,
                 BookingType = "Fix",
                 NumberOfSlot = numberOfSlots

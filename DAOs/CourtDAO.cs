@@ -94,7 +94,9 @@ namespace DAOs
         }
 
         public List<Court> GetCourtsByBranchId(string branchId) => _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(branchId)).ToList();
-        public List<Court> GetActiveCourts() => _courtCallerDbContext.Courts.Where(m => m.Status.Equals("Active")).ToList();
+
+
+        public List<Court> GetCourtsByStatus(string status) => _courtCallerDbContext.Courts.Where(m => m.Status.Equals(status)).ToList();
 
         public async Task<List<Court>> SortCourt(string? sortBy, bool isAsc, PageResult pageResult)
         {

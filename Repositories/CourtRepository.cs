@@ -30,7 +30,7 @@ namespace Repositories
 
         public Court UpdateCourt(string id, CourtModel courtModel) => _courtDao.UpdateCourt(id, courtModel);
 
-        public List<Court> GetActiveCourts() => _courtDao.GetActiveCourts();
+        public List<Court> GetCourtsByStatus(string status) => _courtDao.GetCourtsByStatus(status);
 
         public async Task<List<Court>> SortCourt(string? sortBy, bool isAsc, PageResult pageResult) => await _courtDao.SortCourt(sortBy, isAsc, pageResult);
     }
