@@ -1,4 +1,4 @@
-[![Court Callers Project (CI applied)](https://github.com/halinhtvn3a/SWP391_Project/actions/workflows/ci-script.yml/badge.svg)](https://github.com/halinhtvn3a/SWP391_Project/actions/workflows/ci-script.yml)
+[![Court Callers Project (CI/CD applied)](https://github.com/halinhtvn3a/SWP391_Project/actions/workflows/ci-script.yml/badge.svg)](https://github.com/halinhtvn3a/SWP391_Project/actions/workflows/ci-script.yml)
 
 # SWP391_Project - Badminton Court Booking Management
 # Welcome to Court Callers
