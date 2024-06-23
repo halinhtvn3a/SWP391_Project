@@ -1096,13 +1096,16 @@
           }
         }
       },
-      "QRCoder/1.5.1": {
+      "QRCoder/1.4.2": {
         "type": "package",
+        "dependencies": {
+          "System.Drawing.Common": "4.7.0"
+        },
         "compile": {
-          "lib/net6.0/QRCoder.dll": {}
+          "lib/net5.0/QRCoder.dll": {}
         },
         "runtime": {
-          "lib/net6.0/QRCoder.dll": {}
+          "lib/net5.0/QRCoder.dll": {}
         }
       },
       "SQLitePCLRaw.bundle_e_sqlite3/2.1.6": {
@@ -3307,10 +3310,10 @@
         "packageIcon.png"
       ]
     },
-    "QRCoder/1.5.1": {
-      "sha512": "+v8VntytuDw4R1nCNJkSA7SWSizJoQfiByV1+nUjOwrDZEuaxefG73aKuuQjpaGtoZ7qlXpRbK70C23m1h3WLw==",
+    "QRCoder/1.4.2": {
+      "sha512": "985OiJWb6Fft5r1AQ1NcpGgDDGZVKvWIF9ijV3N2lxJaTKpL2mAHAGvMXgcjRLMGSaldAcBiTFDGHCgDRpCW9A==",
       "type": "package",
-      "path": "qrcoder/1.5.1",
+      "path": "qrcoder/1.4.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -3318,13 +3321,11 @@
         "lib/net40/QRCoder.dll",
         "lib/net5.0-windows7.0/QRCoder.dll",
         "lib/net5.0/QRCoder.dll",
-        "lib/net6.0-windows7.0/QRCoder.dll",
-        "lib/net6.0/QRCoder.dll",
         "lib/netstandard1.3/QRCoder.dll",
         "lib/netstandard2.0/QRCoder.dll",
         "nuget-icon.png",
         "nuget-readme.md",
-        "qrcoder.1.5.1.nupkg.sha512",
+        "qrcoder.1.4.2.nupkg.sha512",
         "qrcoder.nuspec"
       ]
     },
@@ -4267,7 +4268,7 @@
       "MailKit >= 4.6.0",
       "Microsoft.AspNetCore.Session >= 2.2.0",
       "MimeKit >= 4.6.0",
-      "QRCoder >= 1.5.1",
+      "QRCoder >= 1.4.2",
       "Repositories >= 1.0.0",
       "System.IdentityModel.Tokens.Jwt >= 7.6.2"
     ]
@@ -4335,7 +4336,7 @@
           },
           "QRCoder": {
             "target": "Package",
-            "version": "[1.5.1, )"
+            "version": "[1.4.2, )"
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",

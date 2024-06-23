@@ -305,7 +305,7 @@
             },
             "QRCoder": {
               "target": "Package",
-              "version": "[1.5.1, )"
+              "version": "[1.4.2, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

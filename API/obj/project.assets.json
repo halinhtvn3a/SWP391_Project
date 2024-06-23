@@ -4875,7 +4875,7 @@
           "MailKit": "4.6.0",
           "Microsoft.AspNetCore.Session": "2.2.0",
           "MimeKit": "4.6.0",
-          "QRCoder": "1.5.1",
+          "QRCoder": "1.4.2",
           "Repositories": "1.0.0",
           "System.IdentityModel.Tokens.Jwt": "7.6.2"
         },
