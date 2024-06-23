@@ -37,7 +37,11 @@ jobs:
       run: dotnet restore
     - name: Publish
       run: dotnet publish -c Release -o publish_output
-
+    - name: Archive Publish Directory
+      uses: actions/upload-artifact@v3
+      with:
+        name: publish_output
+        path: publish_output
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
@@ -45,3 +49,5 @@ jobs:
         slot-name: production
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
         package: publish_output
+    - name: Restart Azure Web App
+      run: az webapp restart --name CourtCaller --resource-group Badminton
