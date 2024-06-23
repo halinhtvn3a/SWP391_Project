@@ -2230,11 +2230,10 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Protocols/7.1.2": {
+      "Microsoft.IdentityModel.Protocols/7.6.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Logging": "7.1.2",
-          "Microsoft.IdentityModel.Tokens": "7.1.2"
+          "Microsoft.IdentityModel.Tokens": "7.6.2"
         },
         "compile": {
           "lib/net8.0/Microsoft.IdentityModel.Protocols.dll": {
@@ -2247,11 +2246,11 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Protocols.OpenIdConnect/7.1.2": {
+      "Microsoft.IdentityModel.Protocols.OpenIdConnect/7.6.2": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Protocols": "7.1.2",
-          "System.IdentityModel.Tokens.Jwt": "7.1.2"
+          "Microsoft.IdentityModel.Protocols": "7.6.2",
+          "System.IdentityModel.Tokens.Jwt": "7.6.2"
         },
         "compile": {
           "lib/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll": {
@@ -8484,10 +8483,10 @@
         "microsoft.identitymodel.logging.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Protocols/7.1.2": {
-      "sha512": "SydLwMRFx6EHPWJ+N6+MVaoArN1Htt92b935O3RUWPY1yUF63zEjvd3lBu79eWdZUwedP8TN2I5V9T3nackvIQ==",
+    "Microsoft.IdentityModel.Protocols/7.6.2": {
+      "sha512": "6rzn6ectaS8L4ZrNxJ6Vab//LFBzgq674b30oPasNL2uIfeUcP6qZGwgHukQNdUEaSKQaJdASa18BGi3zQ6+Kw==",
       "type": "package",
-      "path": "microsoft.identitymodel.protocols/7.1.2",
+      "path": "microsoft.identitymodel.protocols/7.6.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8503,14 +8502,14 @@
         "lib/net8.0/Microsoft.IdentityModel.Protocols.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.xml",
-        "microsoft.identitymodel.protocols.7.1.2.nupkg.sha512",
+        "microsoft.identitymodel.protocols.7.6.2.nupkg.sha512",
         "microsoft.identitymodel.protocols.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Protocols.OpenIdConnect/7.1.2": {
-      "sha512": "6lHQoLXhnMQ42mGrfDkzbIOR3rzKM1W1tgTeMPLgLCqwwGw0d96xFi/UiX/fYsu7d6cD5MJiL3+4HuI8VU+sVQ==",
+    "Microsoft.IdentityModel.Protocols.OpenIdConnect/7.6.2": {
+      "sha512": "9lGSwJ4b1HmbRoXzSVPxOG1JYJIj4j+EBmE+hF2fY3x7RBUCqiNilFnziejgWJJuxtrT3hn4S80cu6U4/E9GZg==",
       "type": "package",
-      "path": "microsoft.identitymodel.protocols.openidconnect/7.1.2",
+      "path": "microsoft.identitymodel.protocols.openidconnect/7.6.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8526,7 +8525,7 @@
         "lib/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.xml",
-        "microsoft.identitymodel.protocols.openidconnect.7.1.2.nupkg.sha512",
+        "microsoft.identitymodel.protocols.openidconnect.7.6.2.nupkg.sha512",
         "microsoft.identitymodel.protocols.openidconnect.nuspec"
       ]
     },
@@ -14371,6 +14370,8 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 8.0.6",
       "Microsoft.AspNetCore.Cors >= 2.2.0",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.6",
+      "Microsoft.IdentityModel.Protocols >= 7.6.2",
+      "Microsoft.IdentityModel.Protocols.OpenIdConnect >= 7.6.2",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.2",
       "QRCoder >= 1.5.1",
       "Services >= 1.0.0",
@@ -14448,6 +14449,14 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[8.0.6, )"
+          },
+          "Microsoft.IdentityModel.Protocols": {
+            "target": "Package",
+            "version": "[7.6.2, )"
+          },
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
+            "target": "Package",
+            "version": "[7.6.2, )"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
