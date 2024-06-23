@@ -1,3 +1,59 @@
+# name: Court Callers Project (CI/CD applied)
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v4
+#     - name: Setup .NET
+#       uses: actions/setup-dotnet@v4
+#       with:
+#         dotnet-version: 8.0.x
+#     - name: Restore dependencies
+#       run: dotnet restore
+#     - name: Build
+#       run: dotnet build --no-restore
+#     - name: Test
+#       run: dotnet test --no-build --verbosity normal
+
+#   deploy:
+#     needs: build
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v4
+#     - name: Setup .NET
+#       uses: actions/setup-dotnet@v4
+#       with:
+#         dotnet-version: 8.0.x
+#     - name: Publish
+#       run: dotnet publish -c Release -o publish_output
+#     - name: Archive Publish Directory
+#       uses: actions/upload-artifact@v3
+#       with:
+#         name: publish_output
+#         path: publish_output
+#     - name: Azure CLI Login and Set Subscription
+#       run: |
+#         az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+#         az account set --subscription ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+#     - name: Deploy to Azure Web App
+#       uses: azure/webapps-deploy@v2
+#       with:
+#         app-name: CourtCaller
+#         slot-name: production
+#         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+#         package: publish_output
+#     - name: Restart Azure Web App
+#       run: az webapp restart --name CourtCaller --resource-group Badminton
+
 name: Court Callers Project (CI/CD applied)
 
 on:
@@ -34,7 +90,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Publish
-      run: dotnet publish -c Release -o publish_output
+      run: dotnet publish -c Release -o publish_output /p:PublishProfile=YourPublishProfileName.pubxml
     - name: Archive Publish Directory
       uses: actions/upload-artifact@v3
       with:
@@ -53,3 +109,4 @@ jobs:
         package: publish_output
     - name: Restart Azure Web App
       run: az webapp restart --name CourtCaller --resource-group Badminton
+
