@@ -4835,7 +4835,8 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.6",
           "Microsoft.Extensions.Configuration": "8.0.0",
           "Microsoft.Extensions.Configuration.Json": "8.0.0",
-          "Newtonsoft.Json": "13.0.3"
+          "Newtonsoft.Json": "13.0.3",
+          "System.IdentityModel.Tokens.Jwt": "7.1.2"
         },
         "compile": {
           "bin/placeholder/BusinessObjects.dll": {}
@@ -4878,7 +4879,8 @@
           "Microsoft.AspNetCore.Session": "2.2.0",
           "MimeKit": "4.6.0",
           "QRCoder": "1.3.6",
-          "Repositories": "1.0.0"
+          "Repositories": "1.0.0",
+          "System.IdentityModel.Tokens.Jwt": "7.1.2"
         },
         "compile": {
           "bin/placeholder/Services.dll": {}

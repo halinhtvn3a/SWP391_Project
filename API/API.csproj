@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.1.2" />
+
     <PackageReference Include="Firebase.Auth" Version="1.0.0" />
     <PackageReference Include="FirebaseStorage.net" Version="1.0.3" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.6" />
