@@ -42,8 +42,7 @@
               "DocumentMoniker": "ViewDataWindow_MSSQL__/MSI_SQLEXPRESS/CourtCallerDb/sa/SqlTable/dbo.Branches.sql",
               "ToolTip": "dbo.Branches [Data]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2024-06-22T18:45:53.224Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T18:45:53.224Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "API\\appsettings.json",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-06-22T18:37:34.219Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T18:37:34.219Z"
             },
             {
               "$type": "Document",
@@ -80,8 +78,7 @@
               "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
               "ViewState": "AQIAACsAAAAAAAAAAAAjwDYAAACJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-22T18:05:58.1Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-22T18:05:58.1Z"
             },
             {
               "$type": "Document",

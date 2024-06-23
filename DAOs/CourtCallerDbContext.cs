@@ -30,7 +30,7 @@ namespace DAOs
 
 		public DbSet<Review> Reviews { get; set; }
 		public DbSet<UserDetail> UserDetails { get; set; }
-		public DbSet<Branch> Branches { get; set; }
+		public virtual DbSet<Branch> Branches { get; set; }
 		public DbSet<Court> Courts { get; set; }
 		public DbSet<TimeSlot> TimeSlots { get; set; }
 		public DbSet<Booking> Bookings { get; set; }

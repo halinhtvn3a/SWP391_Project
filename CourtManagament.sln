@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "API\API.csproj", "{9
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObjects", "BusinessObjects\BusinessObjects.csproj", "{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLoginAndAuthen", "TestLoginAndAuthen\TestLoginAndAuthen.csproj", "{8EA2F50E-1B7A-4722-A75D-612DC6470D35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "TestLoginAndAuthen\UnitTests.csproj", "{8EA2F50E-1B7A-4722-A75D-612DC6470D35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

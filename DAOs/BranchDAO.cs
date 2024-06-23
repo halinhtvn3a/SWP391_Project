@@ -23,6 +23,11 @@ namespace DAOs
             }
         }
 
+        public BranchDAO(CourtCallerDbContext context)
+        {
+            _courtCallerDbContext = context;
+        }
+
         public List<Branch> GetBranches() => _courtCallerDbContext.Branches.ToList();
 
 
