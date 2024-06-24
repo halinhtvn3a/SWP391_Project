@@ -133,10 +133,10 @@ namespace API.Controllers
             return await _reviewService.SortReview(sortBy, isAsc, pageResult);
         }
 
-        [HttpGet("GetPercentOfRatingOfABranch/{rating}/{branchId}")]
+        [HttpGet("{rating}/{branchId}")]
         public async Task<ActionResult<decimal>> GetRatingPercentageOfABranch(int rating, string branchId)
         {
-            return _reviewService.GetPercentOfRatingOfABranch(rating, branchId);
+            return _reviewService.GetRatingPercentageOfABranch(rating, branchId);
         }
     }
 }
