@@ -224,6 +224,7 @@ namespace API.Controllers
         [HttpPost("lock")]
         public async Task<IActionResult> LockSlot([FromBody] SlotModel slotInfo)
         {
+            
             if (slotInfo == null)
             {
                 return BadRequest("Invalid slot information.");
@@ -232,6 +233,13 @@ namespace API.Controllers
             await _hubContext.Clients.All.SendAsync("LockingSlot", slotInfo);
             return Ok();
         }
+
+        //[HttpGet("locked")]
+        //public async Task<IActionResult> GetLockedSlots()
+        //{
+        //    var lockedSlots = await _timeSlotService.GetLockedSlots();
+        //    return Ok(lockedSlots);
+        //}
 
         [HttpPost("release")]
         public async Task<IActionResult> ReleaseSlot([FromBody] SlotModel slotInfo)

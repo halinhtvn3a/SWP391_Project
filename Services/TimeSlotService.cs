@@ -38,6 +38,7 @@ namespace Services
 
         public bool IsSlotBookedInBranch(SlotModel slotModel) => _timeSlotRepository.IsSlotBookedInBranch(slotModel);
 
+        public bool IsSlotBookedInBranchV2(SlotModel slotModel) => _timeSlotRepository.IsSlotBookedInBranchV2(slotModel);
         public TimeSlot ChangeSlot(SlotModel slotModel, string slotId) => _timeSlotRepository.ChangeSlot(slotModel, slotId);
 
         public List<TimeSlot> GetTimeSlotsByDate(DateOnly dateOnly) => _timeSlotRepository.GetTimeSlotsByDate(dateOnly);

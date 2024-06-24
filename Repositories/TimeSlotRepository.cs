@@ -54,7 +54,8 @@ namespace Repositories
             }
             else
             {
-                List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId).ToList(); foreach (var court in courtsInBranch)
+                List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId).ToList(); 
+                foreach (var court in courtsInBranch)
                 {
                     isBooked = false;
                     List<TimeSlot> timeSlots = _timeSlotDao.GetTimeSlots().Where(t => t.CourtId == court.CourtId).ToList();
@@ -82,6 +83,38 @@ namespace Repositories
             }
             return isBooked;
         }
+
+        public bool IsSlotBookedInBranchV2(SlotModel slotModel)
+        {
+            if (slotModel.BranchId == null)
+            {
+                return _timeSlotDao.GetTimeSlots().Any(t =>
+                    t.CourtId == slotModel.CourtId &&
+                    t.SlotDate == slotModel.SlotDate &&
+                    t.SlotStartTime == slotModel.TimeSlot.SlotStartTime &&
+                    t.SlotEndTime == slotModel.TimeSlot.SlotEndTime);
+            }
+            else
+            {
+                List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId).ToList();
+                foreach (var court in courtsInBranch)
+                {
+                    bool isBooked = _timeSlotDao.GetTimeSlots().Any(t =>
+                        t.CourtId == court.CourtId &&
+                        t.SlotDate == slotModel.SlotDate &&
+                        t.SlotStartTime == slotModel.TimeSlot.SlotStartTime &&
+                        t.SlotEndTime == slotModel.TimeSlot.SlotEndTime &&
+                        t.Status == "Reserved");
+
+                    if (!isBooked)
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        }
+
 
         public List<TimeSlot> GetTimeSlotsByBookingId(string bookingId) => _timeSlotDao.GetTimeSlotsByBookingId(bookingId);
 
