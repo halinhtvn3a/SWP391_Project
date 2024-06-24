@@ -111,11 +111,12 @@ namespace API.Controllers
         //    return NoContent();
         //}
 
-        [HttpGet("isBooked")]
-        public async Task<ActionResult<bool>> IsSlotBookedInBranch(SlotModel slotModel)
+        [HttpPost("IsSlotBookedInBranch")]
+        public async Task<ActionResult<bool>> IsSlotBookedInBranch([FromBody] SlotModel slotModel)
         {
             return _timeSlotService.IsSlotBookedInBranch(slotModel);
         }
+
 
         [HttpPut("changeSlot/{slotId}")]
         public async Task<ActionResult<TimeSlot>> ChangeSlot(SlotModel slotModel, string slotId)
