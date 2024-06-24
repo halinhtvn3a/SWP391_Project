@@ -40,14 +40,9 @@ namespace DAOs
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-
-            modelBuilder.Entity<Price>()
-                .HasIndex(p => new { p.BranchId, p.IsWeekend })
-                .IsUnique();
             base.OnModelCreating(modelBuilder);
-
-			// Seed roles
-			modelBuilder.Entity<IdentityRole>().HasData(
+            // Seed roles
+            modelBuilder.Entity<IdentityRole>().HasData(
 				new IdentityRole
 				{
 					Id = "R001",

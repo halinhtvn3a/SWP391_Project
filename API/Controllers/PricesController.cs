@@ -20,8 +20,8 @@ namespace API.Controllers
         }
 
 
-        [HttpGet("branchId={branchId}")]
-        public async Task<ActionResult<IEnumerable<Price>>> GetPrices(string branchId)
+        [HttpGet("branchId/{branchId}")]
+        public ActionResult<IEnumerable<Price>> GetPrices(string branchId)
         {
             return _priceService.GetPriceByBranch(branchId).ToList();
         }
@@ -39,7 +39,7 @@ namespace API.Controllers
 
             return Price;
         }
-        [HttpPost]
+        [HttpPost("PostPrice")]
         public async Task<ActionResult<Price>> PostPrice(PriceModel price)
         {
 

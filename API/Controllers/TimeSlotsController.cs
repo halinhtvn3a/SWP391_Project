@@ -81,7 +81,7 @@ namespace API.Controllers
                 return BadRequest();
             }
 
-            _timeSlotService.UpdateTimeSlot(id, slotModel);
+            await _timeSlotService.UpdateTimeSlot(id, slotModel);
 
             return NoContent();
         }

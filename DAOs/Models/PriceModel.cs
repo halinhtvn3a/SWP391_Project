@@ -16,7 +16,6 @@ namespace DAOs.Models
         [StringLength(50)]
         public string? Type { get; set; }
 
-        [Required]
         public bool? IsWeekend { get; set; }
 
         [Required]
