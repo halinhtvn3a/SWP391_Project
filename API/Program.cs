@@ -9,8 +9,6 @@ using Repositories;
 using Repositories.Helper;
 using Services;
 using Services.Interface;
-using Se = Services;
-
 
 
 namespace API
@@ -28,6 +26,9 @@ namespace API
             {
                 options.UseSqlServer(configuration.GetConnectionString("CourtCallerDb"));
             });
+
+            // Configure SignalR
+            builder.Services.AddSignalR();
 
             // Configure Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
@@ -56,7 +57,6 @@ namespace API
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
                 };
             });
-
 
             builder.Services.AddEndpointsApiExplorer();
 
@@ -92,6 +92,7 @@ namespace API
             builder.Services.AddScoped<PriceDAO>();
             builder.Services.AddScoped<PriceService>();
             builder.Services.Configure<TokenSettings>(configuration.GetSection("TokenSettings"));
+            builder.Services.AddScoped<TimeSlotService>();
             builder.Services.AddScoped<PaymentService>();
             builder.Services.AddScoped<TokenForPayment>();
             builder.Services.AddScoped<BookingRepository>();
@@ -137,7 +138,13 @@ namespace API
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
             });
 
-            app.MapControllers();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<Services.SignalRHub.TimeSlotHub>("/timeslotHub");
+            });
 
             app.Run();
         }

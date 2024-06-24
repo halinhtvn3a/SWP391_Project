@@ -10,6 +10,8 @@ using DAOs.Models;
 using Services;
 using Page = DAOs.Helper;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.SignalR;
+using Services.SignalRHub;
 
 namespace API.Controllers
 {
@@ -18,10 +20,13 @@ namespace API.Controllers
     public class TimeSlotsController : ControllerBase
     {
         private readonly TimeSlotService _timeSlotService;
+        private readonly IHubContext<TimeSlotHub> _hubContext; 
 
-        public TimeSlotsController()
+
+        public TimeSlotsController(TimeSlotService timeSlotService , IHubContext<TimeSlotHub> hubContext)
         {
-            _timeSlotService = new TimeSlotService();
+            _timeSlotService = timeSlotService;
+            _hubContext = hubContext;
         }
 
         // GET: api/TimeSlots
@@ -215,6 +220,29 @@ namespace API.Controllers
             return BadRequest("Invalid QR code or timeslot.");
         }
 
+
+        [HttpPost("lock")]
+        public async Task<IActionResult> LockSlot([FromBody] SlotModel slotInfo)
+        {
+            if (slotInfo == null)
+            {
+                return BadRequest("Invalid slot information.");
+            }
+           
+            await _hubContext.Clients.All.SendAsync("LockingSlot", slotInfo);
+            return Ok();
+        }
+
+        [HttpPost("release")]
+        public async Task<IActionResult> ReleaseSlot([FromBody] SlotModel slotInfo)
+        {
+            if (slotInfo == null)
+            {
+                return BadRequest("Invalid slot information.");
+            }
+            await _hubContext.Clients.All.SendAsync("ReleaseSlot", slotInfo);
+            return Ok();
+        }
         private QRData DecryptQRCode(string qrCodeData)
         {
             // Implement logic to decrypt and parse the QR code data
