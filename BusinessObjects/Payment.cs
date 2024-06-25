@@ -32,7 +32,7 @@ namespace BusinessObjects
         public string PaymentStatus { get; set; }
 
 		[StringLength(50)]
-		public string PaymentSignature { get; set; }
+		public string? PaymentSignature { get; set; }
 
 		// Navigation property
 		public virtual Booking Booking { get; set; }

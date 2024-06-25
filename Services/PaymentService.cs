@@ -37,6 +37,9 @@ namespace Services
         }
         public Payment AddPayment(Payment Payment) => _paymentRepository.AddPayment(Payment);
         public void DeletePayment(string id) => _paymentRepository.DeletePayment(id);
+
+        public Payment GetPaymentByBookingId(string bookingId) => _paymentRepository.GetPaymentByBookingId(bookingId);
+
         public Payment GetPayment(string id) => _paymentRepository.GetPayment(id);
         public List<Payment> GetPayments() => _paymentRepository.GetPayments();
         //public Payment UpdatePayment(string id, Payment Payment) => PaymentRepository.UpdatePayment(id, Payment);

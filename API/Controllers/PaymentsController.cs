@@ -18,9 +18,9 @@ namespace API.Controllers
         private readonly PaymentService _paymentService = new PaymentService();
         private readonly TokenForPayment _tokenForPayment;
 
-        public PaymentsController( TokenForPayment tokenForPayment)
+        public PaymentsController(TokenForPayment tokenForPayment)
         {
-          
+
             _tokenForPayment = tokenForPayment;
         }
 
@@ -29,6 +29,19 @@ namespace API.Controllers
         public async Task<ActionResult<IEnumerable<Payment>>> GetPayments()
         {
             return _paymentService.GetPayments();
+        }
+
+        [HttpGet("bookingid/{bookingId}")]
+        public async Task<ActionResult<Payment>> GetPaymentByBookingId(string bookingId)
+        {
+            var payment = _paymentService.GetPaymentByBookingId(bookingId);
+
+            if (payment == null)
+            {
+                return NotFound();
+            }
+
+            return payment;
         }
 
         // GET: api/Payments/5

@@ -25,6 +25,8 @@ namespace Repositories
 
         public void DeletePayment(string id) => _paymentDao.DeletePayment(id);
 
+        public Payment GetPaymentByBookingId(string bookingId) => _paymentDao.GetPaymentByBookingId(bookingId);
+
         public Payment GetPayment(string id) => _paymentDao.GetPayment(id);
 
         public List<Payment> GetPayments() => _paymentDao.GetPayments();

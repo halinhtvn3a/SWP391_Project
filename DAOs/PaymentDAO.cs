@@ -25,6 +25,10 @@ namespace DAOs
         {
             return _courtCallerDbContext.Payments.ToList();
         }
+        
+        public Payment GetPaymentByBookingId(string bookingId) {
+            return _courtCallerDbContext.Payments.FirstOrDefault(m => m.BookingId.Equals(bookingId));
+        }
 
         public Payment GetPayment(string id)
         {
