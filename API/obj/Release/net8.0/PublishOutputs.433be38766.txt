@@ -10,6 +10,10 @@ C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Azure.Identity.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\BouncyCastle.Cryptography.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Firebase.Auth.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Firebase.Storage.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Hangfire.AspNetCore.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Hangfire.Core.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Hangfire.NetCore.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Hangfire.SqlServer.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Humanizer.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\MailKit.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\Microsoft.AspNetCore.Authentication.JwtBearer.dll
@@ -92,6 +96,7 @@ C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\System.Composition.
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\System.Composition.Runtime.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\System.Composition.TypedParts.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\System.Configuration.ConfigurationManager.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\System.Data.SqlClient.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\System.Drawing.Common.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\System.Memory.Data.dll
@@ -246,6 +251,9 @@ C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-arm64\
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win\lib\net7.0\Microsoft.Win32.SystemEvents.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-arm64\native\sni.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-x64\native\sni.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-x86\native\sni.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\browser-wasm\nativeassets\net8.0\e_sqlite3.a
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\linux-arm\native\libe_sqlite3.so
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\linux-arm64\native\libe_sqlite3.so
@@ -266,6 +274,8 @@ C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-arm\na
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-arm64\native\e_sqlite3.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-x64\native\e_sqlite3.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win-x86\native\e_sqlite3.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
 C:\FPTUNI\5\SWP391_Project\API\obj\Release\net8.0\PubTmp\Out\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll

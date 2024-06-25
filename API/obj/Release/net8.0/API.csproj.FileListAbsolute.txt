@@ -1796,3 +1796,13 @@ C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Firebase.Storage.dll
 C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\System.ServiceModel.dll
 C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Helper\qrcodejs\bower.json
 C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\QRCoder.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Hangfire.AspNetCore.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Hangfire.Core.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Hangfire.NetCore.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Hangfire.SqlServer.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\System.Data.SqlClient.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\runtimes\win-arm64\native\sni.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\runtimes\win-x64\native\sni.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\runtimes\win-x86\native\sni.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll

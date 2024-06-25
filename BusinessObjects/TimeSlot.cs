@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace BusinessObjects
 {
@@ -37,6 +38,9 @@ namespace BusinessObjects
         [StringLength(50)]
         [Required]
         public string? Status { get; set; }
+
+		
+		public DateTime? Created_at { get; set; } = DateTime.Now;
 
 		// Navigation property
 		public virtual Court Court { get; set; }

@@ -187,7 +187,8 @@ namespace DAOs
                 Price = GetSlotPrice(slotModel),
                 SlotStartTime = slotModel.TimeSlot.SlotStartTime,
                 SlotEndTime = slotModel.TimeSlot.SlotEndTime,
-                Status = "Reserved"
+                Status = "Reserved",
+                Created_at = DateTime.UtcNow,
             };
 
             try
