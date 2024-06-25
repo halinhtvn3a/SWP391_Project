@@ -25,7 +25,7 @@ namespace API.Helper
                     try
                     {
                         SqlCommand command = new SqlCommand(
-                            "DELETE FROM timeslots WHERE status = 'true' AND DATEDIFF(minute, created_at, GETDATE()) > 15",
+                            "DELETE FROM timeslots WHERE status = 'true'",
                             connection, transaction);
 
                         int rowsAffected = await command.ExecuteNonQueryAsync();

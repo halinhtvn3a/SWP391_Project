@@ -105,6 +105,7 @@ namespace API
             builder.Services.AddScoped<TokenForPayment>();
             builder.Services.AddScoped<BookingRepository>();
             builder.Services.AddScoped<PaymentRepository>();
+            builder.Services.AddScoped<TimeslotCleanupManager>();
 
             // VNPay Service
             builder.Services.AddScoped<VnpayService>();
