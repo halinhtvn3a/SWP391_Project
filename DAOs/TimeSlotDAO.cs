@@ -366,11 +366,6 @@ namespace DAOs
             return timeSlots;
         }
 
-        public async Task<List<TimeSlot>> GetLockedTimeSlots()
-        {
-            return await _dbContext.TimeSlots
-                .Where(t => t.Status == "Locked")
-                .ToListAsync();
-        }
+       
     }
 }

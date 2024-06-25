@@ -15,7 +15,7 @@ namespace Services
     {
         private readonly ILogger<VnpayService> _logger;
         public string url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"; // HTTPS
-        public string returnUrl = $"https://courtcaller.azurewebsites.net/VNpayAPI/paymentconfirm";
+        public string returnUrl = $"https://localhost:7104/VNpayAPI/paymentconfirm";
         public string tmnCode = "FKUXJX95";
         public string hashSecret = "0D3EAMNJYSY9INENB5JYP8XW2U8MD8WE";
         private readonly BookingRepository _bookingRepository;
@@ -85,18 +85,20 @@ namespace Services
                 
 
                 if (checkSignature && tmnCode == json["vnp_TmnCode"].ToString())
-                {
+                {   
+                    var bookingid = json["vnp_TxnRef"].ToString();
+                   
                     if (vnp_ResponseCode == "00" && json["vnp_TransactionStatus"] == "00")
                     {
                         var payment = new Payment
                         {
                             PaymentId = "P" + GenerateId.GenerateShortBookingId(),
-                            BookingId = (json["vnp_TxnRef"]).ToString(),
+                            BookingId = bookingid,
                             PaymentAmount = decimal.Parse(json["vnp_Amount"])/100000,
                             PaymentDate = DateTime.Now,
                             PaymentMessage = "Complete",
                             PaymentStatus = "True",
-                            PaymentSignature = json["vnp_BankTranNo"].ToString()
+                            PaymentSignature = json["vnp_BankTranNo"].ToString(),
                         };
                         _paymentRepository.AddPayment(payment);
 
@@ -114,6 +116,21 @@ namespace Services
                     }
                     else
                     {
+                        var amount = decimal.Parse(json["vnp_Amount"]);
+                        if (json["vnp_BankTranNo"]?.ToString() != null || json["vnp_TxnRef"]?.ToString() != null)
+                        {
+                        var payment = new Payment
+                        {
+                            PaymentId = "P" + GenerateId.GenerateShortBookingId(),
+                            BookingId = bookingid,
+                            PaymentAmount = amount / 100000,
+                            PaymentDate = DateTime.Now,
+                            PaymentMessage = "Fail",
+                            PaymentStatus = "False",
+                            
+                        };
+                        _paymentRepository.AddPayment(payment);
+                        }
                         return new PaymentStatusModel
                         {
                             IsSuccessful = false,

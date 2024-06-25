@@ -57,6 +57,22 @@ namespace Services
                 return Convert.ToBase64String(ms.ToArray());
             }
         }
+
+        //public async Task<List<SlotModel>> GetLockedSlots()
+        //{
+        //    var lockedTimeSlots = await _timeSlotRepository.GetLockedTimeSlots();
+        //    return lockedTimeSlots.Select(t => new SlotModel
+        //    {
+        //        CourtId = t.CourtId,
+        //        BranchId = t,
+        //        SlotDate = t.SlotDate,
+        //        TimeSlot = new TimeSlotModel
+        //        {
+        //            SlotStartTime = t.SlotStartTime,
+        //            SlotEndTime = t.SlotEndTime
+        //        }
+        //    }).ToList();
+        //}
     }
 
 }

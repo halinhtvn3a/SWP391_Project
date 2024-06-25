@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
 using DAOs.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Repositories
 {
@@ -139,5 +140,9 @@ namespace Repositories
         }
 
         public async Task<List<TimeSlot>> SortTimeSlot(string? sortBy, bool isAsc, PageResult pageResult) => await _timeSlotDao.SortTimeSlot(sortBy, isAsc, pageResult);
+
+       
     }
+
+    
 }
