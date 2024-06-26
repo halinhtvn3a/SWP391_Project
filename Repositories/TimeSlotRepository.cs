@@ -145,7 +145,7 @@ namespace Repositories
 
         public List<TimeSlot> UnavailableSlot(DateOnly date, string branchId) => _timeSlotDao.UnavailableSlot(date,  branchId);
 
-
+        public TimeSlot AddSlotToBooking(SlotModel slotModel, string bookingId) => _timeSlotDao.AddSlotToBooking(slotModel, bookingId);
 
     }
 

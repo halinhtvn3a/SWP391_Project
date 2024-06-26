@@ -20,10 +20,10 @@ namespace API.Controllers
     public class TimeSlotsController : ControllerBase
     {
         private readonly TimeSlotService _timeSlotService;
-        private readonly IHubContext<TimeSlotHub> _hubContext; 
+        private readonly IHubContext<TimeSlotHub> _hubContext;
 
 
-        public TimeSlotsController(TimeSlotService timeSlotService , IHubContext<TimeSlotHub> hubContext)
+        public TimeSlotsController(TimeSlotService timeSlotService, IHubContext<TimeSlotHub> hubContext)
         {
             _timeSlotService = timeSlotService;
             _hubContext = hubContext;
@@ -35,7 +35,7 @@ namespace API.Controllers
         {
             return _timeSlotService.GetTimeSlots();
         }
-        
+
         [HttpGet("page/")]
         public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsPage([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
@@ -44,7 +44,7 @@ namespace API.Controllers
                 PageSize = pageSize,
                 PageNumber = pageNumber,
             };
-            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlots(pageResult,searchQuery);
+            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlots(pageResult, searchQuery);
             return Ok(timeSlots);
         }
 
@@ -61,7 +61,7 @@ namespace API.Controllers
 
             return await timeSlot;
         }
-        
+
         [HttpGet("bookingId/{bookingId}")]
         public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotByBookingId(string bookingId)
         {
@@ -192,7 +192,7 @@ namespace API.Controllers
                 Status = timeslot.Status,
                 TimeslotId = timeslot.SlotId,
                 SlotDate = timeslot.SlotDate,
-                
+
             };
 
             string qrString = JsonConvert.SerializeObject(qrData);
@@ -216,7 +216,7 @@ namespace API.Controllers
             {
                 //cần phải checked-in tất cả time slot ngày hôm đó luôn chứ không phải chỉ 1 time slot
 
- 
+
                 _timeSlotService.GetTimeSlotsByDate(timeSlot.SlotDate).ForEach(async t =>
                 {
                     t.Status = "checked-in";
@@ -233,12 +233,12 @@ namespace API.Controllers
         [HttpPost("lock")]
         public async Task<IActionResult> LockSlot([FromBody] SlotModel slotInfo)
         {
-            
+
             if (slotInfo == null)
             {
                 return BadRequest("Invalid slot information.");
             }
-           
+
             await _hubContext.Clients.All.SendAsync("LockingSlot", slotInfo);
             return Ok();
         }
@@ -271,7 +271,7 @@ namespace API.Controllers
         [HttpGet("unavailable_slot")]
         public ActionResult<List<TimeSlot>> UnavailableSlot([FromQuery] DateOnly date, [FromQuery] string branchId)
         {
-            
+
             var result = _timeSlotService.UnavailableSlot(date, branchId);
             if (result == null)
             {
@@ -279,21 +279,34 @@ namespace API.Controllers
             }
             return Ok(result);
         }
-        [HttpPost("checkSlotAvailability")]
-        public async Task<IActionResult> CheckSlotAvailability([FromBody] List<SlotCheckModel> slotCheckModels)
-        {
-            foreach (var slotCheckModel in slotCheckModels)
-            {
-                var count = _timeSlotService.CountTimeSlot(slotCheckModel);
-                if (count == 0)
-                {
-                    // Phát sự kiện SignalR để thông báo cho tất cả các client về các slot không khả dụng
-                    await _hubContext.Clients.All.SendAsync("DisableSlot", slotCheckModel);
-                    return Ok(new { isAvailable = false });
-                }
-            }
+        //[HttpPost("checkSlotAvailability")]
+        //public async Task<IActionResult> CheckSlotAvailability([FromBody] List<SlotCheckModel> slotCheckModels)
+        //{
+        //    foreach (var slotCheckModel in slotCheckModels)
+        //    {
+        //        var count = _timeSlotService.CountTimeSlot(slotCheckModel);
+        //        if (count == 0)
+        //        {
+        //            // Phát sự kiện SignalR để thông báo cho tất cả các client về các slot không khả dụng
+        //            await _hubContext.Clients.All.SendAsync("DisableSlot", slotCheckModel);
+        //            return Ok(new { isAvailable = false });
+        //        }
+        //    }
 
-            return Ok(new { isAvailable = true });
+        //    return Ok(new { isAvailable = true });
+        //}
+
+        [HttpPost("add_timeslot_if_exist_booking")]
+        public ActionResult<TimeSlot> AddSlotToBooking(SlotModel slotModel, string bookingId)
+        {
+            try
+            {
+                return Ok(_timeSlotService.AddSlotToBooking(slotModel, bookingId));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
 
 
