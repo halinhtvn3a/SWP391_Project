@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using DAOs.Helper;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
@@ -28,9 +29,10 @@ namespace DAOs
         //    return "U" + guid.ToString(); 
         //}
 
-        public async Task<List<IdentityUser>> GetUsers(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<IdentityUser>,int total)> GetUsers(PageResult pageResult, string searchQuery = null)
         {
             var query = _dbContext.Users.AsQueryable();
+            int total = await _dbContext.Users.CountAsync();
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 query = from user in query
@@ -47,7 +49,7 @@ namespace DAOs
 
             Pagination pagination = new Pagination(_dbContext);
             List<IdentityUser> identityUsers = await pagination.GetListAsync<IdentityUser>(query, pageResult);
-            return identityUsers;
+            return (identityUsers,total);
         }
 
 

@@ -31,7 +31,7 @@ namespace DAOs
             _courtCallerDbContext = context;
         }
 
-        public async Task<List<Booking>> GetBookings(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<Booking>,int total)> GetBookings(PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Bookings
                 .Include(b => b.User)
@@ -52,6 +52,7 @@ namespace DAOs
                 .Take(pageResult.PageSize);
 
             var bookings = await pagedQuery.ToListAsync();
+            var total = await _courtCallerDbContext.Bookings.CountAsync();
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
@@ -66,7 +67,7 @@ namespace DAOs
                 ).ToList();
             }
 
-            return bookings;
+            return (bookings,total);
         }
 
         public async Task<Booking> GetBooking(string id)

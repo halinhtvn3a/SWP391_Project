@@ -32,7 +32,7 @@ namespace API.Controllers
 
         // GET: api/Bookings
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings([FromQuery] int pageNumber = 1,
+        public async Task<ActionResult<PagingResponse<Booking>>> GetBookings([FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10,
            [FromQuery] string searchQuery = null)
         {
@@ -41,8 +41,14 @@ namespace API.Controllers
                 PageSize = pageSize,
                 PageNumber = pageNumber,
             };
-            List<Booking> bookings = await _bookingService.GetBookings(pageResult,searchQuery);
-            return Ok(bookings);
+            var (bookings,total) = await _bookingService.GetBookings(pageResult,searchQuery);
+
+            var response = new PagingResponse<Booking>
+            {
+                Data = bookings,
+                Total = total
+            };
+            return Ok(response);
         }
 
         // GET: api/Bookings/5
