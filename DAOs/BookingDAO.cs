@@ -147,7 +147,7 @@ namespace DAOs
             Booking oBooking = await GetBooking(id);
             if (oBooking != null)
             {
-                oBooking.Status = "Cancel";
+                oBooking.Status = "Canceled";
                 _courtCallerDbContext.Update(oBooking);
                 _courtCallerDbContext.SaveChanges();
             }

@@ -461,7 +461,6 @@ namespace Repositories
 
             userDetail.Balance += booking.TotalPrice;
             userDetail.Point -= booking.TotalPrice;
-            booking.Status = "Canceled";
 
             UserDetailsModel userDetailsModel = new UserDetailsModel()
             {
