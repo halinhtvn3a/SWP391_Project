@@ -114,6 +114,17 @@ namespace UnitTests.DAOTests
             Assert.Equal(300, dao.GetSlotPriceOfBookingFix("B0001"));
         }
 
-
+        [Theory]
+        [InlineData("B0001", "Flex", null, 100)]
+        [InlineData("B0001", "By day", false, 200)]
+        [InlineData("B0001", "Fix", null, 300)]
+        [InlineData("B0001", "By day", true, 400)]
+        [InlineData("B0005", "By day", true, 500)]
+        public void GetPriceByBranchAndType_ReturnsSlotPrice(string branchId, string type, bool? isWeekend, decimal slotPrice)
+            {
+            var dao = new PriceDAO(mockContext.Object);
+            var price = dao.GetPriceByBranchAndType(branchId, type, isWeekend);
+            Assert.Equal(slotPrice, price);
+        }
     }
 }

@@ -29,5 +29,7 @@ namespace Services
         public List<Price> GetPriceByBranch(string branchId) => _priceRepository.GetPriceByBranch(branchId);
 
         public async Task<List<Price>> SortPrice(string? sortBy, bool isAsc, PageResult pageResult) => await _priceRepository.SortPrice(sortBy, isAsc, pageResult);
+
+        public decimal GetPriceByBranchAndType(string branchId, string type, bool? isWeekend) => _priceRepository.GetPriceByBranchAndType(branchId, type, isWeekend);
     }
 }

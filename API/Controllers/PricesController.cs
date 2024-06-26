@@ -19,6 +19,14 @@ namespace API.Controllers
             _priceService = new PriceService();
         }
 
+        //public decimal GetPriceByBranchAndType(string branchId, string type, bool? isWeekend) create api for this
+        [HttpGet("branchId/{branchId}/type/{type}")]
+        public IActionResult GetPriceByBranchAndType(string branchId, string type, bool? isWeekend)
+        {
+            var price = _priceService.GetPriceByBranchAndType(branchId, type, isWeekend);
+            return Ok(price);
+        }
+
 
         [HttpGet("branchId/{branchId}")]
         public ActionResult<IEnumerable<Price>> GetPrices(string branchId)
@@ -105,5 +113,5 @@ namespace API.Controllers
             return await _priceService.SortPrice(sortBy, isAsc, pageResult);
         }
     }
-    
+
 }

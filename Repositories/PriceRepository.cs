@@ -31,5 +31,7 @@ namespace Repositories
         public List<Price> GetPriceByBranch(string branchId) => _priceDao.GetPriceByBranch(branchId);
 
         public async Task<List<Price>> SortPrice(string? sortBy, bool isAsc, PageResult pageResult) => await _priceDao.SortPrice(sortBy, isAsc, pageResult);
+
+        public decimal GetPriceByBranchAndType(string branchId, string type, bool? isWeekend) => _priceDao.GetPriceByBranchAndType(branchId, type, isWeekend);
     }
 }

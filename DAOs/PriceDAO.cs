@@ -135,5 +135,21 @@ namespace DAOs
             var price = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.Type == "Fix");
             return price?.SlotPrice ?? 0;
         }
+
+        public decimal GetPriceByBranchAndType(string branchId, string type, bool? isWeekend)
+        {
+            if(type == "Flex")
+            {
+                return GetSlotPriceOfBookingFlex(branchId);
+            }
+            else if(type == "Fix")
+            {
+                return GetSlotPriceOfBookingFix(branchId);
+            }
+            else
+            {
+                return _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.Type == "By day" && p.IsWeekend == isWeekend).SlotPrice;
+            }
+        }
     }
 }
