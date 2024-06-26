@@ -89,7 +89,8 @@ namespace DAOs
         public async Task<TimeSlot> UpdateTimeSlot(string slotId, SlotModel slotModel)
         {
             TimeSlot timeSlot = await GetTimeSlot(slotId);
-            if (timeSlot != null) {
+            if (timeSlot != null)
+            {
                 timeSlot.CourtId = slotModel.CourtId;
                 timeSlot.SlotDate = slotModel.SlotDate;
                 timeSlot.SlotStartTime = slotModel.TimeSlot.SlotStartTime;
@@ -272,7 +273,7 @@ namespace DAOs
                 ts.SlotEndTime == slotModel.TimeSlot.SlotEndTime);
         }
 
-        
+
 
 
         //public decimal GetSlotPrice(SlotModel slotModel)

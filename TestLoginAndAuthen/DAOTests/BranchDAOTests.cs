@@ -25,9 +25,57 @@ namespace UnitTests.DAOsTests
             mockContext = new Mock<CourtCallerDbContext>();
             branchList = new List<Branch>
             {
-                new Branch { BranchId = "B00001", BranchName = "Test Branch 1", BranchAddress = "Test Address 1", Status = "Active" },
-                new Branch { BranchId = "B00002", BranchName = "Test Branch 2", BranchAddress = "Test Address 2", Status = "Active"  },
-                new Branch { BranchId = "B00003", BranchName = "Test Branch 3", BranchAddress = "Test Address 3", Status = "Inactive"  }
+                new Branch
+                {
+                    BranchId = "B00001",
+                    BranchName = "Test Branch 1",
+                    BranchAddress = "Test Address 1",
+                    Status = "Active",
+                    Courts = new List<Court>
+                    {
+                        new Court { CourtId = "C001", CourtName = "Court 1", BranchId = "B00001" },
+                        new Court { CourtId = "C002", CourtName = "Court 2", BranchId = "B00001" }
+                    },
+                    Prices = new List<Price>
+                    {
+                        new Price { PriceId = "P001", SlotPrice = 100, BranchId = "B00001", IsWeekend = false },
+                        new Price { PriceId = "P002", SlotPrice = 150, BranchId = "B00001", IsWeekend = true }
+                    }
+                },
+                new Branch
+                {
+                    BranchId = "B00002",
+                    BranchName = "Test Branch 2",
+                    BranchAddress = "Test Address 2",
+                    Status = "Active",
+                    Courts = new List<Court>
+                    {
+                        new Court { CourtId = "C003", CourtName = "Court 3", BranchId = "B00002" },
+                        new Court { CourtId = "C004", CourtName = "Court 4", BranchId = "B00002" }
+                    },
+                    Prices = new List<Price>
+                    {
+                        new Price { PriceId = "P003", SlotPrice = 120, BranchId = "B00002", IsWeekend = false },
+                        new Price { PriceId = "P004", SlotPrice = 180, BranchId = "B00002", IsWeekend = true }
+                    }
+                },
+                new Branch
+                {
+                    BranchId = "B00003",
+                    BranchName = "Test Branch 3",
+                    BranchAddress = "Test Address 3",
+                    Status = "Inactive",
+                    Courts = new List<Court>
+                    {
+                        new Court { CourtId = "C005", CourtName = "Court 5", BranchId = "B00003" },
+                        new Court { CourtId = "C006", CourtName = "Court 6", BranchId = "B00003" }
+                    },
+                    Prices = new List<Price>
+                    {
+                        new Price { PriceId = "P005", SlotPrice = 130, BranchId = "B00003", IsWeekend = false },
+                        new Price { PriceId = "P006", SlotPrice = 190, BranchId = "B00003", IsWeekend = true }
+                    }
+                }
             };
 
             var data = branchList.AsQueryable();
@@ -171,6 +219,31 @@ namespace UnitTests.DAOsTests
             var dao = new BranchDAO(mockContext.Object);
 
             var result = dao.GetBranchesByStatus(status);
+
+            Assert.Equal(expectedNum, result.Count);
+        }
+        [Theory]
+        [InlineData(100, 150, 1)]
+        [InlineData(120, 180, 1)]
+        public void GetBranchByPrice_ReturnsAllBranches(decimal minPrice, decimal maxPrice, int expectedNum)
+        {
+            var dao = new BranchDAO(mockContext.Object);
+
+            var result = dao.GetBranchByPrice(minPrice, maxPrice);
+
+            Assert.Equal(expectedNum, result.Count);
+        }
+
+
+
+        [Theory]
+        [InlineData("C001", 1)]
+        [InlineData("C003", 1)]
+        public void GetBranchesByCourtId_ReturnsAllBranches(string courtId, int expectedNum)
+        {
+            var dao = new BranchDAO(mockContext.Object);
+
+            var result = dao.GetBranchesByCourtId(courtId);
 
             Assert.Equal(expectedNum, result.Count);
         }

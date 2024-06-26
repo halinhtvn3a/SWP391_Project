@@ -126,9 +126,9 @@ namespace API.Controllers
         }
 
         [HttpGet("search/{start}/{end}")]
-        public async Task<ActionResult<IEnumerable<Booking>>> SearchBookings(DateTime start, DateTime end)
+        public async Task<ActionResult<IEnumerable<Booking>>> SearchBookingsByTime(DateTime start, DateTime end)
         {
-            return _bookingService.SearchBookings(start, end).ToList();
+            return _bookingService.SearchBookingsByTime(start, end).ToList();
         }
 
         [HttpGet("search/{userId}")]

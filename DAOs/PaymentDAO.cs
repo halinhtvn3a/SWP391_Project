@@ -21,6 +21,10 @@ namespace DAOs
             }
         }
 
+        public PaymentDAO(CourtCallerDbContext courtCallerDbContext)
+        {
+            _courtCallerDbContext = courtCallerDbContext;
+        }
         public List<Payment> GetPayments()
         {
             return _courtCallerDbContext.Payments.ToList();

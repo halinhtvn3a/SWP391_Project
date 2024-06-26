@@ -22,6 +22,11 @@ namespace DAOs
             }
         }
 
+        public CourtDAO(CourtCallerDbContext courtCallerDbContext)
+        {
+            _courtCallerDbContext = courtCallerDbContext;
+        }
+
        public async Task<List<Court>> GetCourts (PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Courts.AsQueryable();

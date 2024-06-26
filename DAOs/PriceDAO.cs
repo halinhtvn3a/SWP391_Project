@@ -21,6 +21,14 @@ namespace DAOs
                 _dbContext = new CourtCallerDbContext();
             }
         }
+        
+        public PriceDAO(CourtCallerDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+        
+        public List<Price> GetPrices() => _dbContext.Prices.ToList();
+        
 
         public Price GetPrice(string id)
         {

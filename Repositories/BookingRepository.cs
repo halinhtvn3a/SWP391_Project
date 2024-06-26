@@ -85,7 +85,7 @@ namespace Repositories
         public List<Booking> GetBookingsByStatus(string status) => _bookingDao.GetBookingsByStatus(status);
 
         public async Task SaveChangesAsync() => await _bookingDao.SaveChangesAsync();
-        public List<Booking> SearchBookings(DateTime start, DateTime end) => _bookingDao.SearchBookings(start, end);
+        public List<Booking> SearchBookingsByTime(DateTime start, DateTime end) => _bookingDao.SearchBookingsByTime(start, end);
 
         public async Task<List<Booking>> GetBookingsByUserId(string userId, PageResult pageResult) => await _bookingDao.GetBookingsByUserId(userId, pageResult);
 
@@ -242,9 +242,9 @@ namespace Repositories
                         Id = userId,
                         BookingDate = DateTime.Now,
                         BranchId = branchId,
-                        Status = "Reserved",
+                        Status = "Pending",
                         TotalPrice = 0,
-                        BookingType = "Normal",
+                        BookingType = "By Day",
                         NumberOfSlot = slotModels.Length
                     };
                     _bookingDao.AddBooking(booking);
@@ -320,7 +320,7 @@ namespace Repositories
                 Id = userId,
                 BookingDate = DateTime.Now,
                 BranchId = branchId,
-                Status = "In Use",
+                Status = "Pending",
                 TotalPrice = totalPrice,
                 BookingType = "Flex",
                 NumberOfSlot = numberOfSlot,
@@ -414,7 +414,7 @@ namespace Repositories
                 BookingId = bookingId,
                 Id = userId,
                 BookingDate = DateTime.Now,
-                Status = "In Use",
+                Status = "Pending",
                 BranchId = branchId,
                 TotalPrice = totalPrice,
                 BookingType = "Fix",
@@ -461,7 +461,6 @@ namespace Repositories
 
             userDetail.Balance += booking.TotalPrice;
             userDetail.Point -= booking.TotalPrice;
-            booking.Status = "Canceled";
 
             UserDetailsModel userDetailsModel = new UserDetailsModel()
             {
