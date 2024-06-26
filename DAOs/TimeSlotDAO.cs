@@ -11,11 +11,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PageResult = DAOs.Helper.PageResult;
 
+
+
 namespace DAOs
 {
     public class TimeSlotDAO
     {
         private readonly CourtCallerDbContext _dbContext = null;
+
 
         public TimeSlotDAO()
         {
@@ -24,6 +27,8 @@ namespace DAOs
                 _dbContext = new CourtCallerDbContext();
             }
         }
+
+
 
         public List<TimeSlot> GetTimeSlots()
         {
@@ -367,6 +372,55 @@ namespace DAOs
             return timeSlots;
         }
 
-       
+        
+        public int CountTimeSlot(SlotCheckModel slotCheckModel)
+        {
+            var count = _dbContext.Courts.Count(c => c.BranchId == slotCheckModel.BranchId) - _dbContext.TimeSlots.Count(ts => ts.Court.BranchId == slotCheckModel.BranchId && ts.SlotDate == slotCheckModel.SlotDate && ts.SlotStartTime == slotCheckModel.TimeSlot.SlotStartTime && ts.SlotEndTime == slotCheckModel.TimeSlot.SlotEndTime);  
+            return count;
+        }
+
+        //viết hàm unavailable slot với param là ngày và giờ từ opentime và closetime, hàm sẽ check các time slot (cách nhau 1h) trong ngày đó xem  slot đó cái nào bằng với lại số lượng court của branch đó, nếu bằng thì trả về list các slot đó, (lưu ý opentime và close time là của bảng branch)
+        public List<TimeSlot> UnavailableSlot(DateOnly date, string branchId)
+        {
+            var branch = _dbContext.Branches.FirstOrDefault(b => b.BranchId == branchId);
+            if (branch == null)
+            {
+                return null;
+            }
+
+            var openTime = branch.OpenTime;
+            var closeTime = branch.CloseTime;
+
+            var timeSlots = new List<TimeSlot>();
+            for (var i = openTime; i < closeTime; i = i.AddHours(1))
+            {
+                var slotCheckModel = new SlotCheckModel
+                {
+                    BranchId = branchId,
+                    SlotDate = date,
+                    TimeSlot = new TimeSlotModel
+                    {
+                        SlotStartTime = i,
+                        SlotEndTime = i.AddHours(1)
+                    }
+                };
+
+                if (CountTimeSlot(slotCheckModel) == 0)
+                {
+                    timeSlots.Add(new TimeSlot
+                    {
+                        SlotDate = date,
+                        SlotStartTime = i,
+                        SlotEndTime = i.AddHours(1)
+                    });
+                }
+            }
+
+            return timeSlots;
+        }
+        
+        
+
+
     }
 }

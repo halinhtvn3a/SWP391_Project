@@ -21,4 +21,14 @@ namespace DAOs.Models
         [Required]
         public TimeSlotModel TimeSlot { get; set; }
     }
+
+    public class SlotCheckModel
+    {
+        [StringLength(10)]
+        public string? BranchId { get; set; }
+        public DateOnly SlotDate { get; set; }
+        
+        [Required]
+        public TimeSlotModel TimeSlot { get; set; }
+    }
 }

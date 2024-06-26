@@ -141,7 +141,12 @@ namespace Repositories
 
         public async Task<List<TimeSlot>> SortTimeSlot(string? sortBy, bool isAsc, PageResult pageResult) => await _timeSlotDao.SortTimeSlot(sortBy, isAsc, pageResult);
 
-       
+        public int CountTimeSlot(SlotCheckModel slotCheckModel) => _timeSlotDao.CountTimeSlot(slotCheckModel);
+
+        public List<TimeSlot> UnavailableSlot(DateOnly date, string branchId) => _timeSlotDao.UnavailableSlot(date,  branchId);
+
+
+
     }
 
     

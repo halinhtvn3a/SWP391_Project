@@ -100,6 +100,7 @@ namespace API
             builder.Services.AddScoped<PriceDAO>();
             builder.Services.AddScoped<PriceService>();
             builder.Services.Configure<TokenSettings>(configuration.GetSection("TokenSettings"));
+            builder.Services.AddScoped<TimeSlotRepository>();
             builder.Services.AddScoped<TimeSlotService>();
             builder.Services.AddScoped<PaymentService>();
             builder.Services.AddScoped<TokenForPayment>();
@@ -150,12 +151,12 @@ namespace API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
             });
-
+            app.MapControllers();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                
                 endpoints.MapHub<Services.SignalRHub.TimeSlotHub>("/timeslotHub");
             });
 

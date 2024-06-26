@@ -16,34 +16,10 @@ namespace Services.SignalRHub
         {
             _timeSlotService = timeSlotService;
         }
-        public async Task LockSlot(SlotModel slotModel)
+        
+        public async Task DisableSlot(SlotCheckModel slotCheckModel)
         {
-
-            bool isBooked = _timeSlotService.IsSlotBookedInBranch(new SlotModel
-            {
-                CourtId = slotModel.CourtId,
-                BranchId = slotModel.BranchId,
-                SlotDate = slotModel.SlotDate,
-                TimeSlot = new TimeSlotModel
-                {
-                    SlotStartTime = slotModel.TimeSlot.SlotStartTime,
-                    SlotEndTime = slotModel.TimeSlot.SlotEndTime
-                }
-            });
-
-            if (!isBooked)
-            {
-                await Clients.All.SendAsync("LockingSlot", slotModel);
-            }
-            else
-            {
-                throw new HubException("Slot is already booked.");
-            }
-        }
-
-        public async Task ReleaseSlot(SlotModel slotModel)
-        {
-            await Clients.All.SendAsync("ReleaseSlot", slotModel);
+            await Clients.All.SendAsync("DisableSlot", slotCheckModel);
         }
     }    
 }

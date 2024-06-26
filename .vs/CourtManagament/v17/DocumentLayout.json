@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "C:\\FPTUNI\\5\\SWP391_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\helper\\timeslotcleanupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\helper\\timeslotcleanupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|c:\\fptuni\\5\\swp391_project\\businessobjects\\timeslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\timeslot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|c:\\fptuni\\5\\swp391_project\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|c:\\fptuni\\5\\swp391_project\\services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|c:\\fptuni\\5\\swp391_project\\services\\signalrhub\\timeslothub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\signalrhub\\timeslothub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -46,68 +50,77 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BookingRepository.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\BookingRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\BookingRepository.cs",
-              "RelativeToolTip": "Repositories\\BookingRepository.cs",
-              "ViewState": "AQIAAOgAAAAAAAAAAAApwPQAAAAqAAAA",
+              "DocumentIndex": 0,
+              "Title": "VnpayService.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\VnpayService.cs",
+              "RelativeDocumentMoniker": "Services\\VnpayService.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\VnpayService.cs*",
+              "RelativeToolTip": "Services\\VnpayService.cs*",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABEAAABTAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T14:03:51.099Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TimeSlot.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\TimeSlot.cs",
-              "RelativeDocumentMoniker": "BusinessObjects\\TimeSlot.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\BusinessObjects\\TimeSlot.cs",
-              "RelativeToolTip": "BusinessObjects\\TimeSlot.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAkwCkAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T15:06:19.182Z",
+              "WhenOpened": "2024-06-26T09:30:29.569Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "VnpayService.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\VnpayService.cs",
-              "RelativeDocumentMoniker": "Services\\VnpayService.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\VnpayService.cs",
-              "RelativeToolTip": "Services\\VnpayService.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAMwDgAAABGAAAA",
+              "Title": "TimeSlotHub.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\SignalRHub\\TimeSlotHub.cs",
+              "RelativeDocumentMoniker": "Services\\SignalRHub\\TimeSlotHub.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\SignalRHub\\TimeSlotHub.cs",
+              "RelativeToolTip": "Services\\SignalRHub\\TimeSlotHub.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAuwBkAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T14:03:51.119Z",
+              "WhenOpened": "2024-06-25T16:59:47.758Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TimeSlotsController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\TimeSlotsController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "RelativeToolTip": "API\\Controllers\\TimeSlotsController.cs",
+              "ViewState": "AQIAABABAAAAAAAAAAAkwBMBAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T16:23:12.848Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Program.cs",
-              "RelativeDocumentMoniker": "API\\Program.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Program.cs",
-              "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AQIAAMIAAAAAAAAAAAApwGwAAAAAAAAA",
+              "Title": "TimeSlotService.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\TimeSlotService.cs",
+              "RelativeDocumentMoniker": "Services\\TimeSlotService.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\TimeSlotService.cs",
+              "RelativeToolTip": "Services\\TimeSlotService.cs",
+              "ViewState": "AQIAAEwAAAAAAAAAAAAiwFAAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T13:46:34.126Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T16:23:00.404Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TimeslotCleanupManager.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Helper\\TimeslotCleanupManager.cs",
-              "RelativeDocumentMoniker": "API\\Helper\\TimeslotCleanupManager.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Helper\\TimeslotCleanupManager.cs",
-              "RelativeToolTip": "API\\Helper\\TimeslotCleanupManager.cs",
-              "ViewState": "AQIAABIAAAAAAAAAAAAowBsAAABLAAAA",
+              "DocumentIndex": 3,
+              "Title": "TimeSlotRepository.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\TimeSlotRepository.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
+              "RelativeToolTip": "Repositories\\TimeSlotRepository.cs",
+              "ViewState": "AQIAAIgAAAAAAAAAAAAWwI8AAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T13:49:35.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T16:22:46.709Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "TimeSlotDAO.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\TimeSlotDAO.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
+              "RelativeToolTip": "DAOs\\TimeSlotDAO.cs",
+              "ViewState": "AQIAAG4BAAAAAAAAAAAjwHsBAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-25T15:49:58.947Z"
             }
           ]
         }

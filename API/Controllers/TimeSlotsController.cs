@@ -251,6 +251,43 @@ namespace API.Controllers
             await _hubContext.Clients.All.SendAsync("ReleaseSlot", slotInfo);
             return Ok();
         }
+
+        [HttpPost("confirm")]
+        public async Task<IActionResult> ConfirmBooking(SlotCheckModel slotCheckModel)
+        {
+            await _timeSlotService.ConfirmBooking(slotCheckModel);
+            return Ok();
+        }
+
+        [HttpGet("unavailable_slot")]
+        public ActionResult<List<TimeSlot>> UnavailableSlot([FromQuery] DateOnly date, [FromQuery] string branchId)
+        {
+            
+            var result = _timeSlotService.UnavailableSlot(date, branchId);
+            if (result == null)
+            {
+                return NotFound("Slot not found.");
+            }
+            return Ok(result);
+        }
+        [HttpPost("checkSlotAvailability")]
+        public async Task<IActionResult> CheckSlotAvailability([FromBody] List<SlotCheckModel> slotCheckModels)
+        {
+            foreach (var slotCheckModel in slotCheckModels)
+            {
+                var count = _timeSlotService.CountTimeSlot(slotCheckModel);
+                if (count == 0)
+                {
+                    // Phát sự kiện SignalR để thông báo cho tất cả các client về các slot không khả dụng
+                    await _hubContext.Clients.All.SendAsync("DisableSlot", slotCheckModel);
+                    return Ok(new { isAvailable = false });
+                }
+            }
+
+            return Ok(new { isAvailable = true });
+        }
+
+
         private QRData DecryptQRCode(string qrCodeData)
         {
             // Implement logic to decrypt and parse the QR code data

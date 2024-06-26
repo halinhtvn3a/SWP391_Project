@@ -11,18 +11,20 @@ using DAOs.Helper;
 using QRCoder;
 using System.Drawing.Imaging;
 using System.Drawing;
+using Microsoft.AspNetCore.SignalR;
+using Services.SignalRHub;
+using Microsoft.EntityFrameworkCore;
 
 namespace Services
 {
     public class TimeSlotService
     {
         private readonly TimeSlotRepository _timeSlotRepository = null;
-        public TimeSlotService()
+        private readonly IHubContext<TimeSlotHub> _hubContext;
+        public TimeSlotService(TimeSlotRepository timeSlotRepository, IHubContext<TimeSlotHub> hubContext)
         {
-            if (_timeSlotRepository == null)
-            {
-                _timeSlotRepository = new TimeSlotRepository();
-            }
+            _timeSlotRepository = timeSlotRepository;
+            _hubContext = hubContext;
         }
         public TimeSlot AddTimeSlot(TimeSlot timeSlot) => _timeSlotRepository.AddTimeSlot(timeSlot);
         //public void DeleteTimeSlot(string id) => TimeSlotRepository.DeleteTimeSlot(id);
@@ -73,6 +75,25 @@ namespace Services
         //        }
         //    }).ToList();
         //}
+
+        public List<TimeSlot> UnavailableSlot(DateOnly date, string branchId) => _timeSlotRepository.UnavailableSlot(date, branchId);
+
+        public int CountTimeSlot(SlotCheckModel slotCheckModel) => _timeSlotRepository.CountTimeSlot(slotCheckModel);
+        public async Task ConfirmBooking(SlotCheckModel slotCheckModel)
+        {
+            // Kiểm tra và cập nhật TimeSlots
+            var count = _timeSlotRepository.CountTimeSlot(slotCheckModel);
+            Console.WriteLine($"Count for slot {slotCheckModel.TimeSlot.SlotStartTime} to {slotCheckModel.TimeSlot.SlotEndTime} on {slotCheckModel.SlotDate}: {count}");
+
+            if (count == 0)
+            {
+                Console.WriteLine("Slot is no longer available. Sending notification to clients.");
+
+               
+                await _hubContext.Clients.All.SendAsync("DisableSlot", slotCheckModel);
+            }
+        }
+
     }
 
 }

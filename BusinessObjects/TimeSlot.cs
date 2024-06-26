@@ -40,7 +40,7 @@ namespace BusinessObjects
         public string? Status { get; set; }
 
 		
-		public DateTime? Created_at { get; set; } = DateTime.Now;
+		public DateTime? Created_at { get; set; } 
 
 		// Navigation property
 		public virtual Court Court { get; set; }
