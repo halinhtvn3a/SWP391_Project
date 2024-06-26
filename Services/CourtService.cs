@@ -28,6 +28,12 @@ namespace Services
         public List<Court> GetCourtsByStatus(string status) => _courtRepository.GetCourtsByStatus(status);
 
         public async Task<List<Court>> SortCourt(string? sortBy, bool isAsc, PageResult pageResult) => await _courtRepository.SortCourt(sortBy, isAsc, pageResult);
+
+        public void MaintainCourt(string courtId)
+        {
+            _courtRepository.MaintainCourt(courtId);
+
+        }
     }
 
 }
