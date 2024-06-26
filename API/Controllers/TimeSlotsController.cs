@@ -297,7 +297,7 @@ namespace API.Controllers
         //}
 
         [HttpPost("add_timeslot_if_exist_booking")]
-        public ActionResult<TimeSlot> AddSlotToBooking(SlotModel slotModel, string bookingId)
+        public ActionResult<List<TimeSlot>> AddSlotToBooking(SlotModel[] slotModel, string bookingId)
         {
             try
             {

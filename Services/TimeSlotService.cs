@@ -94,7 +94,7 @@ namespace Services
             }
         }
 
-        public TimeSlot AddSlotToBooking(SlotModel slotModel, string bookingId) => _timeSlotRepository.AddSlotToBooking(slotModel, bookingId);
+        public List<TimeSlot> AddSlotToBooking(SlotModel[] slotModel, string bookingId) => _timeSlotRepository.AddSlotToBooking(slotModel, bookingId);
 
     }
 
