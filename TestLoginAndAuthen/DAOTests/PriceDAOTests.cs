@@ -28,8 +28,7 @@ namespace UnitTests.DAOTests
                 new Price { PriceId = "P00002", BranchId = "B0001", SlotPrice = 200, IsWeekend = false, Type = "By day" },
                 new Price { PriceId = "P00003", BranchId = "B0001", SlotPrice = 300, IsWeekend = null, Type = "Fix" },
                 new Price { PriceId = "P00004", BranchId = "B0001", SlotPrice = 400, IsWeekend = true, Type = "By day" },
-                new Price { PriceId = "P00005", BranchId = "B0005", SlotPrice = 500, IsWeekend = true, Type = "By day" },
-                new Price { PriceId = "P00006" }
+                new Price { PriceId = "P00005", BranchId = "B0005", SlotPrice = 500, IsWeekend = true, Type = "By day" }
             };
 
             var data = priceList.AsQueryable();
