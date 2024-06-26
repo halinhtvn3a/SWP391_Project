@@ -111,7 +111,7 @@ namespace Services
                         return new PaymentStatusModel
                         {
                             IsSuccessful = true,
-                            RedirectUrl = $"https://localhost:3000/staff/confirm?vnp_TxnRef={json["vnp_TxnRef"].ToString()}"
+                            RedirectUrl = $"https://localhost:3000/confirm?vnp_TxnRef={json["vnp_TxnRef"].ToString()}"
                         };
                     }
                     else
@@ -134,7 +134,7 @@ namespace Services
                         return new PaymentStatusModel
                         {
                             IsSuccessful = false,
-                            RedirectUrl = "https://localhost:3000/staff/reject?vnp_TxnRef={json[\"vnp_TxnRef\"].ToString()}"
+                            RedirectUrl = "https://localhost:3000/reject?vnp_TxnRef={json[\"vnp_TxnRef\"].ToString()}"
                         };
                     }
                 }

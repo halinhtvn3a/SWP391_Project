@@ -311,11 +311,13 @@ namespace Repositories
             return null;
         }
 
-        public int NumberOfSlotsAvailable(string userId,string branchId) {
+        public (string , int) NumberOfSlotsAvailable(string userId,string branchId) {
             var booking = CheckAvaiableSlotsFromBookingTypeFlex(userId, branchId);
-            if (booking is null) return 0;  
+            
+            if (booking is null || booking.BookingId is null ) return (null,0);
+            string bookingId = booking.BookingId;
             int numberOfSlotsAvailable = booking.NumberOfSlot - _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId);
-            return numberOfSlotsAvailable;
+            return (bookingId, numberOfSlotsAvailable) ;
         }
 
         public Booking AddBookingTypeFlex(string userId, int numberOfSlot, string branchId)

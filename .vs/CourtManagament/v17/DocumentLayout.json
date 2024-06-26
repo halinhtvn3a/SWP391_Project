@@ -3,14 +3,6 @@
   "WorkspaceRootPath": "C:\\FPTUNI\\5\\SWP391_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\helper\\timeslotcleanupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\helper\\timeslotcleanupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,8 +15,12 @@
       "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\bookingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\models\\checkbookingtypeflexmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\models\\checkbookingtypeflexmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,80 +46,67 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TimeslotCleanupManager.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Helper\\TimeslotCleanupManager.cs",
-              "RelativeDocumentMoniker": "API\\Helper\\TimeslotCleanupManager.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Helper\\TimeslotCleanupManager.cs",
-              "RelativeToolTip": "API\\Helper\\TimeslotCleanupManager.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAgwBsAAABKAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T16:58:12.562Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\.gitignore",
-              "RelativeDocumentMoniker": "API\\.gitignore",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\.gitignore",
-              "RelativeToolTip": "API\\.gitignore",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-06-26T16:58:09.737Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "BookingService.cs",
               "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\BookingService.cs",
               "RelativeDocumentMoniker": "Services\\BookingService.cs",
               "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\BookingService.cs",
               "RelativeToolTip": "Services\\BookingService.cs",
-              "ViewState": "AQIAAGUAAAAAAAAAAAAQwGsAAACHAAAA",
+              "ViewState": "AQIAAGUAAAAAAAAAAAAQwGsAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T15:48:25.686Z",
+              "WhenOpened": "2024-06-26T18:16:54.942Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TimeSlotRepository.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\TimeSlotRepository.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
-              "RelativeToolTip": "Repositories\\TimeSlotRepository.cs",
-              "ViewState": "AQIAACwAAAAAAAAAAAA3wCwAAAAUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T15:46:19.771Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "BookingRepository.cs",
               "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\BookingRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
               "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\BookingRepository.cs",
               "RelativeToolTip": "Repositories\\BookingRepository.cs",
-              "ViewState": "AQIAADABAAAAAAAAAAAkwDkBAABJAAAA",
+              "ViewState": "AQIAAC4BAAAAAAAAAAAnwDIBAAARAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T12:55:25.938Z",
+              "WhenOpened": "2024-06-26T18:14:47.502Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "CheckBookingTypeFlexModel.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\Models\\CheckBookingTypeFlexModel.cs",
+              "RelativeDocumentMoniker": "DAOs\\Models\\CheckBookingTypeFlexModel.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\Models\\CheckBookingTypeFlexModel.cs",
+              "RelativeToolTip": "DAOs\\Models\\CheckBookingTypeFlexModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T18:13:15.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "BookingsController.cs",
               "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BookingsController.cs",
               "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
               "RelativeToolTip": "API\\Controllers\\BookingsController.cs",
-              "ViewState": "AQIAAOwAAAAAAAAAAAAwwPUAAAAhAAAA",
+              "ViewState": "AQIAAOwAAAAAAAAAAAAwwP4AAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-26T12:55:25.931Z",
+              "WhenOpened": "2024-06-26T18:12:35.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TimeSlotsController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\TimeSlotsController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "RelativeToolTip": "API\\Controllers\\TimeSlotsController.cs",
+              "ViewState": "AQIAAKsAAAAAAAAAAAAnwLoAAAA7AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T17:55:17.988Z",
               "EditorCaption": ""
             }
           ]

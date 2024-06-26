@@ -243,11 +243,16 @@ namespace API.Controllers
         //}
 
         [HttpGet("checkbookingtypeflex")]
-        public  ActionResult<int> CheckAvaiableSlotsFromBookingTypeFlex(string userId, string branchId)
+        public  ActionResult<CheckBookingTypeFlexModel> CheckAvaiableSlotsFromBookingTypeFlex(string userId, string branchId)
         {
-            var numberOfAvailableSlot = _bookingService.NumberOfSlotsAvailable(userId, branchId);
+            var bookingFlexModel = _bookingService.NumberOfSlotsAvailable(userId, branchId);
+            var result = new CheckBookingTypeFlexModel
+            {
+                bookingId = bookingFlexModel.Item1,
+                numberOfSlot = bookingFlexModel.Item2
+            };
             
-            return Ok(numberOfAvailableSlot);
+            return Ok(result);
         }
 
         // public int NumberOfSlotsAvailable(string userId,string bookingId)

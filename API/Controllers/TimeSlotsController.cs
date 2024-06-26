@@ -179,6 +179,13 @@ namespace API.Controllers
                 return NotFound("Timeslot not found.");
             }
 
+
+            //              "bookingId": "12345",
+            //"userId": "67890",
+            //"branchId": "B001",
+            //"courtId": "C002",
+            //"slotDate": "2024-07-01", nên tạo các thứ này
+
             var qrData = new
             {
                 BookingId = timeslot.BookingId,
@@ -208,6 +215,8 @@ namespace API.Controllers
             if (timeSlot != null && timeSlot.Status == "Reserved" && timeSlot.SlotId == qrData.TimeslotId)
             {
                 //cần phải checked-in tất cả time slot ngày hôm đó luôn chứ không phải chỉ 1 time slot
+
+ 
                 _timeSlotService.GetTimeSlotsByDate(timeSlot.SlotDate).ForEach(async t =>
                 {
                     t.Status = "checked-in";
