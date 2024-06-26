@@ -156,7 +156,6 @@ namespace API
 
             app.UseEndpoints(endpoints =>
             {
-                
                 endpoints.MapHub<Services.SignalRHub.TimeSlotHub>("/timeslotHub");
             });
 

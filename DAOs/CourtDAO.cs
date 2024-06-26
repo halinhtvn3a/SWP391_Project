@@ -131,5 +131,16 @@ namespace DAOs
             List<Court> courts = await pagination.GetListAsync<Court>(query, pageResult);
             return courts;
         }
+
+        public void MaintainCourt(string courtId)
+        {
+            Court oCourt = GetCourt(courtId);
+            if (oCourt != null)
+            {
+                oCourt.Status = "Maintaining";
+                _courtCallerDbContext.Update(oCourt);
+                _courtCallerDbContext.SaveChanges();
+            }
+        }
     }
 }
