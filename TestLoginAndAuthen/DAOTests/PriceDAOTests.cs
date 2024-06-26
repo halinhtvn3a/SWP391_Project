@@ -28,7 +28,8 @@ namespace UnitTests.DAOTests
                 new Price { PriceId = "P00002", BranchId = "B0001", SlotPrice = 200, IsWeekend = false, Type = "By day" },
                 new Price { PriceId = "P00003", BranchId = "B0001", SlotPrice = 300, IsWeekend = null, Type = "Fix" },
                 new Price { PriceId = "P00004", BranchId = "B0001", SlotPrice = 400, IsWeekend = true, Type = "By day" },
-                new Price { PriceId = "P00005", BranchId = "B0005", SlotPrice = 500, IsWeekend = true, Type = "By day" }
+                new Price { PriceId = "P00005", BranchId = "B0005", SlotPrice = 500, IsWeekend = true, Type = "By day" },
+                new Price { PriceId = "P00006" }
             };
 
             var data = priceList.AsQueryable();
@@ -88,41 +89,17 @@ namespace UnitTests.DAOTests
             Assert.Equal(2, prices.Count);
         }
 
-        //[Theory]
-        //[InlineData("P00001")]
-        //[InlineData("P00002")]
-        //public void UpdatePrice_ReturnsPrice(string priceId)
-        //{
-        //    var dao = new PriceDAO(mockContext.Object);
-        //    var price = new Price
-        //    {
-        //        PriceId = priceId,
-        //        BranchId = "C0001",
-        //        SlotPrice = 200,
-        //        IsWeekend = false,
-        //        Type = "By day"
-        //    };
-        //    var updatedPrice = dao.UpdatePrice(priceId, price);
-        //    Assert.NotNull(updatedPrice);
-        //    Assert.Equal(priceId, updatedPrice.PriceId);
-        //    Assert.Equal(price.BranchId, updatedPrice.BranchId);
-        //    Assert.Equal(price.SlotPrice, updatedPrice.SlotPrice);
-        //    Assert.Equal(price.IsWeekend, updatedPrice.IsWeekend);
-        //    Assert.Equal(price.Type, updatedPrice.Type);
-        //}
-
-        //[Theory]
-        //[InlineData("P00003")]
-        //[InlineData("P00004")]
-        //public void DeletePrice_ReturnsPrice(string priceId)
-        //{
-        //    var dao = new PriceDAO(mockContext.Object);
-        //    var price = dao.GetPrice(priceId);
-        //    Assert.NotNull(price);
-        //    dao.DeletePrice(priceId);
-        //    price = dao.GetPrice(priceId);
-        //    Assert.Null(price);
-        //}
+        [Theory]
+        [InlineData("P00001", 150)]
+        [InlineData("P00002", 150)]
+        public void UpdatePrice_ReturnsPrice(string priceId, decimal money)
+        {
+            var dao = new PriceDAO(mockContext.Object);
+            var price = dao.GetPrice(priceId);
+            price.SlotPrice = money;
+            var updatedPrice = dao.UpdatePrice(priceId, price);
+            Assert.Equal(money, updatedPrice.SlotPrice);
+        }
 
         [Fact]
         public void GetSlotPriceOfBookingFlex_B0001_ReturnsPrice()

@@ -124,3 +124,5 @@ E:\25-6\SWP391_Project\Repositories\obj\Release\net8.0\Repositories.dll
 E:\25-6\SWP391_Project\Repositories\obj\Release\net8.0\refint\Repositories.dll
 E:\25-6\SWP391_Project\Repositories\obj\Release\net8.0\Repositories.pdb
 E:\25-6\SWP391_Project\Repositories\obj\Release\net8.0\ref\Repositories.dll
+E:\25-6\SWP391_Project\Repositories\bin\Release\net8.0\appsettings.Development.json
+E:\25-6\SWP391_Project\Repositories\bin\Release\net8.0\appsettings.json
