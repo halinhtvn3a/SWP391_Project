@@ -85,7 +85,7 @@ namespace Repositories
         public List<Booking> GetBookingsByStatus(string status) => _bookingDao.GetBookingsByStatus(status);
 
         public async Task SaveChangesAsync() => await _bookingDao.SaveChangesAsync();
-        public List<Booking> SearchBookings(DateTime start, DateTime end) => _bookingDao.SearchBookings(start, end);
+        public List<Booking> SearchBookingsByTime(DateTime start, DateTime end) => _bookingDao.SearchBookingsByTime(start, end);
 
         public async Task<List<Booking>> GetBookingsByUserId(string userId, PageResult pageResult) => await _bookingDao.GetBookingsByUserId(userId, pageResult);
 
@@ -244,7 +244,7 @@ namespace Repositories
                         BranchId = branchId,
                         Status = "Pending",
                         TotalPrice = 0,
-                        BookingType = "Normal",
+                        BookingType = "By Day",
                         NumberOfSlot = slotModels.Length
                     };
                     _bookingDao.AddBooking(booking);

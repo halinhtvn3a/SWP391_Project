@@ -72,6 +72,7 @@ namespace DAOs
         public async Task<Booking> GetBooking(string id)
         {
             var booking = await _courtCallerDbContext.Bookings.FirstOrDefaultAsync(m => m.BookingId.Equals(id));
+            Console.WriteLine();
             return booking;
         }
 
@@ -126,8 +127,6 @@ namespace DAOs
         {
             _courtCallerDbContext.Bookings.Update(booking);
            await _courtCallerDbContext.SaveChangesAsync();
-            
-        
         }
 
         public async Task<Booking> UpdateBooking(string id, decimal price)
@@ -158,7 +157,7 @@ namespace DAOs
             return _courtCallerDbContext.Bookings.Where(m => m.Status.Equals(status)).ToList();
         }
 
-        public List<Booking> SearchBookings(DateTime start, DateTime end)
+        public List<Booking> SearchBookingsByTime(DateTime start, DateTime end)
         {
             return _courtCallerDbContext.Bookings.Where(m => m.BookingDate >= start && m.BookingDate <= end).ToList();
         }
