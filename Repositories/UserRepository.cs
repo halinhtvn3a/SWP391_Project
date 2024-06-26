@@ -25,7 +25,7 @@ namespace Repositories
 
         //public void DeleteIdentityUser(string id) => UserDAO.DeleteIdentityUser(id);
 
-        public async Task<List<IdentityUser>> GetUsers(PageResult page, string searchQuery = null) => await _userDao.GetUsers(page,searchQuery);
+        public async Task<(List<IdentityUser>, int total)> GetUsers(PageResult page, string searchQuery = null) => await _userDao.GetUsers(page,searchQuery);
 
 
 

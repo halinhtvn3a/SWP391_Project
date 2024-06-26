@@ -39,7 +39,7 @@ namespace Services
         public async Task<Booking> GetBooking(string id) => await _bookingRepository.GetBooking(id);
         //public List<Booking> GetBookings() => BookingRepository.GetBookings();
         
-        public async Task<List<Booking>> GetBookings(PageResult pageResult, string searchQuery = null) => await _bookingRepository.GetBookings(pageResult,searchQuery);
+        public async Task<(List<Booking>, int total)> GetBookings(PageResult pageResult, string searchQuery = null) => await _bookingRepository.GetBookings(pageResult,searchQuery);
 
         public List<Booking> GetBookingsByStatus(string status) => _bookingRepository.GetBookingsByStatus(status);
         public List<Booking> SearchBookingsByTime(DateTime start, DateTime end) => _bookingRepository.SearchBookingsByTime(start, end);

@@ -26,7 +26,7 @@ namespace API.Controllers
 
         // GET: api/Reviews
         [HttpGet]
-        public async Task<IActionResult> GetReviews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<PagingResponse<Review>>> GetReviews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
@@ -34,9 +34,15 @@ namespace API.Controllers
                 PageSize = pageSize
             };
 
-            List<Review> review = await _reviewService.GetReview(pageResult,searchQuery);
+            var  (review,total) = await _reviewService.GetReview(pageResult,searchQuery);
 
-            return Ok(review);
+            var response = new PagingResponse<Review>
+            {
+                Data = review,
+                Total = total
+            };
+
+            return Ok(response);
         }
 
         // GET: api/Reviews/5

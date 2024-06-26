@@ -32,9 +32,10 @@ namespace DAOs
 
 
 
-        public async Task<List<Branch>> GetBranches(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<Branch>,int total)> GetBranches(PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Branches.AsQueryable();
+            var total = await _courtCallerDbContext.Branches.CountAsync();
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
@@ -48,7 +49,7 @@ namespace DAOs
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
-            return branches;
+            return (branches,total);
         }
 
 

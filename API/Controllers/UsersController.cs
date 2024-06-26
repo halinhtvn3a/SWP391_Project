@@ -9,6 +9,7 @@ using BusinessObjects;
 using Services;
 using Microsoft.AspNetCore.Identity;
 using DAOs.Helper;
+using DAOs.Models;
 
 namespace API.Controllers
 {
@@ -26,7 +27,7 @@ namespace API.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<IActionResult> GetUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<PagingResponse<IdentityUser>>> GetUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
@@ -34,9 +35,15 @@ namespace API.Controllers
                 PageSize = pageSize
             };
 
-            List<IdentityUser> users = await _userService.GetUsers(pageResult,searchQuery);
+            var (users,total) = await _userService.GetUsers(pageResult,searchQuery);
 
-            return Ok(users);
+            var response = new PagingResponse<IdentityUser>
+            {
+                Data = users,
+                Total = total
+            };
+
+            return Ok(response);
         }
 
 

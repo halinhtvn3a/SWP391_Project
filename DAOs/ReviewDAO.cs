@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Identity;
 using DAOs.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
@@ -27,10 +28,10 @@ namespace DAOs
             _courtCallerDbContext = dbContext;
         }
 
-        public async Task<List<Review>> GetReview(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<Review>,int total)> GetReview(PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Reviews.AsQueryable();
-
+            var total = await _courtCallerDbContext.Reviews.CountAsync();
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 query = query.Where(review => review.User.Email.Contains(searchQuery) ||
@@ -45,7 +46,7 @@ namespace DAOs
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Review> reviews = await pagination.GetListAsync<Review>(query, pageResult);
-            return reviews;
+            return (reviews,total);
         }
 
         public Review GetReview(string id)
