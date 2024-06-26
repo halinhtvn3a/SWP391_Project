@@ -242,9 +242,15 @@ namespace API.Controllers
         //    return BadRequest("Invalid QR code or booking.");
         //}
 
-        
+        [HttpGet("checkbookingtypeflex")]
+        public  ActionResult<int> CheckAvaiableSlotsFromBookingTypeFlex(string userId, string branchId)
+        {
+            var numberOfAvailableSlot = _bookingService.NumberOfSlotsAvailable(userId, branchId);
+            
+            return Ok(numberOfAvailableSlot);
+        }
 
-
+        // public int NumberOfSlotsAvailable(string userId,string bookingId)
 
     }
 }

@@ -311,6 +311,13 @@ namespace Repositories
             return null;
         }
 
+        public int NumberOfSlotsAvailable(string userId,string branchId) {
+            var booking = CheckAvaiableSlotsFromBookingTypeFlex(userId, branchId);
+            if (booking is null) return 0;  
+            int numberOfSlotsAvailable = booking.NumberOfSlot - _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId);
+            return numberOfSlotsAvailable;
+        }
+
         public Booking AddBookingTypeFlex(string userId, int numberOfSlot, string branchId)
         {
             Decimal totalPrice = _priceDao.GetSlotPriceOfBookingFlex(branchId) * numberOfSlot;

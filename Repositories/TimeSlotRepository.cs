@@ -105,7 +105,7 @@ namespace Repositories
                         t.SlotDate == slotModel.SlotDate &&
                         t.SlotStartTime == slotModel.TimeSlot.SlotStartTime &&
                         t.SlotEndTime == slotModel.TimeSlot.SlotEndTime &&
-                        t.Status == "Reserved");
+                        t.Status == "Pending");
 
                     if (!isBooked)
                     {
