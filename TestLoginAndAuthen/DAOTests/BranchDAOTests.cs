@@ -222,6 +222,19 @@ namespace UnitTests.DAOsTests
 
             Assert.Equal(expectedNum, result.Count);
         }
+        [Theory]
+        [InlineData(100, 150, 1)]
+        [InlineData(120, 180, 1)]
+        public void GetBranchByPrice_ReturnsAllBranches(decimal minPrice, decimal maxPrice, int expectedNum)
+        {
+            var dao = new BranchDAO(mockContext.Object);
+
+            var result = dao.GetBranchByPrice(minPrice, maxPrice);
+
+            Assert.Equal(expectedNum, result.Count);
+        }
+
+
 
         [Theory]
         [InlineData("C001", 1)]

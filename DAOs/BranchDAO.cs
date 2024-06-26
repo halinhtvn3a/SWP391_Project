@@ -122,8 +122,12 @@ namespace DAOs
 
         public List<Branch> GetBranchByPrice(decimal minPrice, decimal maxPrice)
         {
-            return _courtCallerDbContext.Branches.Where(m => m.Prices.Any(c =>
-                c.SlotPrice >= minPrice && c.SlotPrice <= maxPrice
+
+            List<Branch> branches = _courtCallerDbContext.Branches.Where(m => m.Prices.Any(c =>
+                c.SlotPrice >= minPrice && c.IsWeekend == false
+            )).ToList();
+            return branches.Where(m => m.Prices.Any(c =>
+                c.SlotPrice <= maxPrice && c.IsWeekend == true
             )).ToList();
         }
 

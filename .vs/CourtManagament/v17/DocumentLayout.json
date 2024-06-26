@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "E:\\25-6\\SWP391_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\25-6\\swp391_project\\testloginandauthen\\daotests\\branchdaotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\daotests\\branchdaotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\25-6\\swp391_project\\repositories\\branchrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\branchrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\pricedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\pricedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\25-6\\swp391_project\\api\\helper\\timeslotcleanupmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,24 +46,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PriceDAO.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\PriceDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\PriceDAO.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\PriceDAO.cs",
+              "RelativeToolTip": "DAOs\\PriceDAO.cs",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAcwFEAAAArAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T03:39:39.529Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BranchRepository.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\BranchRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\BranchRepository.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\Repositories\\BranchRepository.cs",
+              "RelativeToolTip": "Repositories\\BranchRepository.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAABEAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T03:37:00.226Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "BranchDAO.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\BranchDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\BranchDAO.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\BranchDAO.cs",
+              "RelativeToolTip": "DAOs\\BranchDAO.cs",
+              "ViewState": "AQIAAHMAAAAAAAAAAAAIwIAAAAA4AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-26T03:35:22.044Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "BranchDAOTests.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\DAOTests\\BranchDAOTests.cs",
               "RelativeDocumentMoniker": "TestLoginAndAuthen\\DAOTests\\BranchDAOTests.cs",
               "ToolTip": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\DAOTests\\BranchDAOTests.cs",
               "RelativeToolTip": "TestLoginAndAuthen\\DAOTests\\BranchDAOTests.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAswD4AAAARAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAswOcAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-25T16:03:21.365Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "BookingRepository.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
@@ -63,7 +114,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "TimeSlot.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\BusinessObjects\\TimeSlot.cs",
               "RelativeDocumentMoniker": "BusinessObjects\\TimeSlot.cs",
@@ -75,7 +126,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "VnpayService.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Services\\VnpayService.cs",
               "RelativeDocumentMoniker": "Services\\VnpayService.cs",
@@ -83,11 +134,12 @@
               "RelativeToolTip": "Services\\VnpayService.cs",
               "ViewState": "AQIAABsAAAAAAAAAAAAMwDgAAABGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T14:03:51.119Z"
+              "WhenOpened": "2024-06-25T14:03:51.119Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Program.cs",
               "RelativeDocumentMoniker": "API\\Program.cs",
@@ -99,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "TimeslotCleanupManager.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Helper\\TimeslotCleanupManager.cs",
               "RelativeDocumentMoniker": "API\\Helper\\TimeslotCleanupManager.cs",
@@ -107,8 +159,7 @@
               "RelativeToolTip": "API\\Helper\\TimeslotCleanupManager.cs",
               "ViewState": "AQIAABIAAAAAAAAAAAAowBsAAABLAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-25T13:49:35.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-25T13:49:35.874Z"
             }
           ]
         }
