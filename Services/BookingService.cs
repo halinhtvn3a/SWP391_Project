@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Services
 {
@@ -76,23 +77,25 @@ namespace Services
             }
         }
         
-        public async Task<IActionResult> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel timeSlotModel, string userId, string branchId)
+        public async Task<Booking> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel timeSlotModel, string userId, string branchId)
         {
             try
             {
-                var success =
+                var booking =
                     await _bookingRepository.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId, branchId);
 
-                if (!success)
+                if (booking is null)
                 {
-                    return new ConflictObjectResult("Slot is already reserved.");
+                    return null;
+                   // return new ConflictObjectResult("Slot is already reserved.");
                 }
 
-                return new OkObjectResult("Slot reserved successfully.");
+                return booking;
             }
             catch (Exception ex)
             {
-                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+                return null;
+                // new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
         }
 

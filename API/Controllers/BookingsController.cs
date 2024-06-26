@@ -201,8 +201,9 @@ namespace API.Controllers
             [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel timeSlotModel,
             [FromQuery] string userId, string branchId)
         {
-            return await _bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId,
+            var booking = await _bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId,
                 branchId);
+            return booking is not null ? Ok(booking) : BadRequest("Fail to reserve slot type fix");
         }
 
         [HttpGet("sortBooking/{sortBy}")]

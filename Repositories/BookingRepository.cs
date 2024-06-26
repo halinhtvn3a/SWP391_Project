@@ -379,7 +379,7 @@ namespace Repositories
 
         //    return true;
         //}
-        public async Task<bool> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel timeSlotModel, string userId, string branchId)
+        public async Task<Booking> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel timeSlotModel, string userId, string branchId)
         {
             DateOnly endDate = startDate.AddMonths(numberOfMonths);
             List<DateOnly> validDates = new List<DateOnly>();
@@ -401,7 +401,7 @@ namespace Repositories
                     TimeSlot = timeSlotModel
                 })))
             {
-                return false;
+                return null;
             }
 
             string bookingId = GenerateId.GenerateShortBookingId();
@@ -437,7 +437,7 @@ namespace Repositories
             await _bookingDao.SaveChangesAsync();
             _userDetailDao.GetUserDetail(userId).Point += totalPrice;
 
-            return true;
+            return booking;
         }
 
         public async void CancelBooking(string bookingId)

@@ -147,7 +147,8 @@ namespace DAOs
 
         public IdentityUser GetUserByBookingId(string bookingId)
         {
-            return _dbContext.Users.FirstOrDefault(m => m.Id.Equals(bookingId));
+            var userId = _dbContext.Bookings.FirstOrDefault(m => m.BookingId.Equals(bookingId)).Id;
+            return _dbContext.Users.FirstOrDefault(m => m.Id.Equals(userId));
         }
     }
 }
