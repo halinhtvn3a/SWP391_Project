@@ -28,6 +28,11 @@ namespace DAOs
             }
         }
 
+        public TimeSlotDAO(CourtCallerDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
 
 
         public List<TimeSlot> GetTimeSlots()

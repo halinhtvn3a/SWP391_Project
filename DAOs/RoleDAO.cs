@@ -21,6 +21,10 @@ namespace DAOs
             }
         }
 
+        public RoleDAO(CourtCallerDbContext dbContext)
+        {
+            _courtCallerDbContext = dbContext;
+        }
         public List<IdentityRole> GetRoles()
         {
             return _courtCallerDbContext.Roles.ToList();
@@ -87,7 +91,7 @@ namespace DAOs
                 catch (Exception ex)
                 {
                     transaction.Rollback();
-                    throw new Exception("Error when update transaction of role huhu");
+                    throw new Exception("Error when update transaction of role");
                 }
             }
         }
