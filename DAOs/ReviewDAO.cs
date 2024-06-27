@@ -58,7 +58,7 @@ namespace DAOs
         {
             Review review = new Review()
             {
-                ReviewId = "R" + (_courtCallerDbContext.Reviews.Count() + 1).ToString("D5"),
+                ReviewId = "R" + DAOs.Helper.GenerateId.GenerateShortBookingId(),
                 ReviewText = reviewModel.ReviewText,
                 Rating = reviewModel.Rating,
                 ReviewDate = DateTime.Now,
@@ -66,7 +66,7 @@ namespace DAOs
                 Id = reviewModel.UserId
             };
             _courtCallerDbContext.Reviews.Add(review);
-            _courtCallerDbContext.SaveChanges();
+             _courtCallerDbContext.SaveChanges();
             return review;
         }
 
