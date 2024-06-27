@@ -203,7 +203,7 @@ namespace API.Controllers
 
         [HttpPost("fix-slot")]
         public async Task<IActionResult> PostBookingTypeFix([FromQuery] int numberOfMonths,
-            [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel timeSlotModel,
+            [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel[] timeSlotModel,
             [FromQuery] string userId, string branchId)
         {
             var booking = await _bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId,

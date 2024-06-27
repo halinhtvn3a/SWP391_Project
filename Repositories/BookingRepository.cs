@@ -388,7 +388,7 @@ namespace Repositories
 
         //    return true;
         //}
-        public async Task<Booking> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel timeSlotModel, string userId, string branchId)
+        public async Task<Booking> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel[] timeSlotModels, string userId, string branchId)
         {
             DateOnly endDate = startDate.AddDays(numberOfMonths * 30);
             List<DateOnly> validDates = new List<DateOnly>();
@@ -403,18 +403,27 @@ namespace Repositories
             }
 
             // Check if any slot is already booked
-            if (validDates.Any(date => _timeSlotRepository.IsSlotBookedInBranch(new SlotModel()
-                {
-                    BranchId = branchId,
-                    SlotDate = date,
-                    TimeSlot = timeSlotModel
-                })))
+            foreach (var timeSlotModel in timeSlotModels)
             {
-                return null;
+                foreach (var date in validDates)
+                {
+                    // Assuming IsSlotBookedInBranch method can check a specific time slot for a given date
+                    if (_timeSlotRepository.IsSlotBookedInBranch(new SlotModel()
+                    {
+                        BranchId = branchId,
+                        SlotDate = date,
+                        // Assuming TimeSlotModel has properties that can be mapped to SlotModel or they are the same
+                        // You might need to adjust this part based on your actual model structure
+                        TimeSlot = timeSlotModel
+                    }))
+                    {
+                        return null; // Found a booked slot, return null
+                    }
+                }
             }
 
             string bookingId = GenerateId.GenerateShortBookingId();
-            int numberOfSlots = validDates.Count; // Assuming one slot per valid date
+            int numberOfSlots = validDates.Count * timeSlotModels.Length; // Assuming one slot per valid date per TimeSlotModel
 
             decimal totalPrice = _priceDao.GetSlotPriceOfBookingFix(branchId) * numberOfSlots;
 
@@ -433,14 +442,17 @@ namespace Repositories
             _bookingDao.AddBooking(booking);
 
             // Add slots to booking for each valid date
-            foreach (var date in validDates)
+            foreach (var timeSlotModel in timeSlotModels)
             {
-                _timeSlotDao.AddSlotToBooking(new SlotModel()
+                foreach (var date in validDates)
                 {
-                    BranchId = branchId,
-                    SlotDate = date,
-                    TimeSlot = timeSlotModel
-                }, booking.BookingId);
+                    _timeSlotDao.AddSlotToBooking(new SlotModel()
+                    {
+                        BranchId = branchId,
+                        SlotDate = date,
+                        TimeSlot = timeSlotModel
+                    }, booking.BookingId);
+                }
             }
 
             await _bookingDao.SaveChangesAsync();
