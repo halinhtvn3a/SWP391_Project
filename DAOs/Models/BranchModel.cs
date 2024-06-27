@@ -25,7 +25,7 @@ namespace DAOs.Models
 		[StringLength(255)]
 		public string Description { get; set; }
 
-		[StringLength(255)]
+		[StringLength(int.MaxValue)]
 		public string BranchPicture { get; set; }
 
 		[Required(ErrorMessage = "Open time is required")]
