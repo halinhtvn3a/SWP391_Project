@@ -13,7 +13,6 @@ using QRCoder;
 using Page = DAOs.Helper;
 using Repositories;
 using Newtonsoft.Json;
-using DAOs.Models;
 
 namespace API.Controllers
 {

@@ -390,7 +390,7 @@ namespace Repositories
         //}
         public async Task<Booking> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel timeSlotModel, string userId, string branchId)
         {
-            DateOnly endDate = startDate.AddMonths(numberOfMonths);
+            DateOnly endDate = startDate.AddDays(numberOfMonths * 30);
             List<DateOnly> validDates = new List<DateOnly>();
 
             // Collect all valid dates first
