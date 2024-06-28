@@ -20,7 +20,6 @@ Court Callers is a web application designed to simplify the process of booking b
     <li><a href="#-technologies-used">Technologies Used</a></li>
     <li><a href="#-screenshots">Screenshots</a></li>
     <li><a href="#-contact-us">Contact Us</a></li>
-    <li><a href="#-license">License</a></li>
     <li><a href="#-acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
