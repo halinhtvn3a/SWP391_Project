@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "E:\\25-6\\SWP391_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\25-6\\swp391_project\\testloginandauthen\\repositorytests\\bookingrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\repositorytests\\bookingrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\25-6\\swp391_project\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\25-6\\swp391_project\\testloginandauthen\\repositorytests\\branchrepositorydao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\repositorytests\\branchrepositorydao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\25-6\\swp391_project\\testloginandauthen\\repositorytests\\reviewrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\repositorytests\\reviewrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\25-6\\swp391_project\\testloginandauthen\\daotests\\timeslotdaotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\daotests\\timeslotdaotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\25-6\\swp391_project\\repositories\\branchrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,11 +38,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ReviewRepositoryTests.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\RepositoryTests\\ReviewRepositoryTests.cs",
+              "RelativeDocumentMoniker": "TestLoginAndAuthen\\RepositoryTests\\ReviewRepositoryTests.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\RepositoryTests\\ReviewRepositoryTests.cs",
+              "RelativeToolTip": "TestLoginAndAuthen\\RepositoryTests\\ReviewRepositoryTests.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T01:58:42.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "BookingRepository.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
+              "RelativeToolTip": "Repositories\\BookingRepository.cs",
+              "ViewState": "AQIAADEAAAAAAAAAAAAgwEkAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T01:55:34.374Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TimeSlotDAOTests.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\DAOTests\\TimeSlotDAOTests.cs",
+              "RelativeDocumentMoniker": "TestLoginAndAuthen\\DAOTests\\TimeSlotDAOTests.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\DAOTests\\TimeSlotDAOTests.cs",
+              "RelativeToolTip": "TestLoginAndAuthen\\DAOTests\\TimeSlotDAOTests.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABwAAADqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T01:52:09.309Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookingRepositoryTests.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\RepositoryTests\\BookingRepositoryTests.cs",
+              "RelativeDocumentMoniker": "TestLoginAndAuthen\\RepositoryTests\\BookingRepositoryTests.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\RepositoryTests\\BookingRepositoryTests.cs",
+              "RelativeToolTip": "TestLoginAndAuthen\\RepositoryTests\\BookingRepositoryTests.cs",
+              "ViewState": "AQIAAFgAAAAAAAAAAAAQwGoAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T01:43:20.101Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "BranchRepository.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\BranchRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\BranchRepository.cs",
@@ -39,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "BranchDAOTests.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\DAOTests\\BranchDAOTests.cs",
               "RelativeDocumentMoniker": "TestLoginAndAuthen\\DAOTests\\BranchDAOTests.cs",
@@ -52,13 +120,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "BranchRepositoryDAO.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\RepositoryTests\\BranchRepositoryDAO.cs",
               "RelativeDocumentMoniker": "TestLoginAndAuthen\\RepositoryTests\\BranchRepositoryDAO.cs",
               "ToolTip": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\RepositoryTests\\BranchRepositoryDAO.cs",
               "RelativeToolTip": "TestLoginAndAuthen\\RepositoryTests\\BranchRepositoryDAO.cs",
-              "ViewState": "AQIAAJwAAAAAAAAAAAAAALQAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-28T01:38:09.739Z",
               "EditorCaption": ""

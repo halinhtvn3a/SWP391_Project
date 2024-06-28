@@ -63,10 +63,15 @@ namespace Repositories
         }
 
 
-        public BookingRepository(BookingDAO bookingDAO, TimeSlotDAO timeSlotDAO)
+        public BookingRepository(BookingDAO bookingDAO, TimeSlotDAO timeSlotDAO, PriceDAO priceDAO, TimeSlotRepository timeSlotRepository, UserDAO user, UserDetailDAO userDetailDAO, BranchDAO branchDAO)
         {
             _bookingDao = bookingDAO;
             _timeSlotDao = timeSlotDAO;
+            _priceDao = priceDAO;
+            _timeSlotRepository = timeSlotRepository;
+            _userDao = user;
+            _userDetailDao = userDetailDAO;
+            _branchDAO = branchDAO;
         }
 
         //public Booking AddBooking(Booking Booking) => BookingDAO.AddBooking(Booking);
