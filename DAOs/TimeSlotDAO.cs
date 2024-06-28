@@ -389,9 +389,9 @@ namespace DAOs
         public List<TimeSlotModel> UnavailableSlot(DateOnly date, string branchId)
         {
             var courtIds = _dbContext.Courts
-    .Where(c => c.BranchId == branchId)
-    .Select(c => c.CourtId)
-    .ToList();
+                            .Where(c => c.BranchId == branchId)
+                            .Select(c => c.CourtId)
+                            .ToList();
 
             if (!courtIds.Any())
             {
@@ -408,7 +408,7 @@ namespace DAOs
              .Where(ts => courtIds.Contains(ts.CourtId))
              .Select(ts => new TimeSlotModel
              {
-                 SlotDate = ts.SlotDate,
+                 //SlotDate = ts.SlotDate,
                  SlotStartTime = ts.SlotStartTime,
                  SlotEndTime = ts.SlotEndTime
              })
