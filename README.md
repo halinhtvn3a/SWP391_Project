@@ -61,7 +61,6 @@ Feel free to reach out via [courtcallers@gmail.com](mailto:courtcallers@gmail.co
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🌟 Acknowledgements
-## 🌟 Acknowledgements
 
 - [halinhtvn3a](https://github.com/halinhtvn3a ) - Project Lead
 - [th3y3m](https://github.com/th3y3m ) - Backend development and database management
