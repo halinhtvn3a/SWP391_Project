@@ -22,7 +22,6 @@ Court Callers is a web application designed to simplify the process of booking b
     <li><a href="#-contact-us">Contact Us</a></li>
     <li><a href="#-license">License</a></li>
     <li><a href="#-acknowledgements">Acknowledgements</a></li>
-    <li><a href="#-acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -57,8 +56,6 @@ Feel free to reach out via [courtcallers@gmail.com](mailto:courtcallers@gmail.co
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🌟 Acknowledgements
 
