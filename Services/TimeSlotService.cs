@@ -76,7 +76,7 @@ namespace Services
         //    }).ToList();
         //}
 
-        public List<TimeSlot> UnavailableSlot(DateOnly date, string branchId) => _timeSlotRepository.UnavailableSlot(date, branchId);
+        public List<TimeSlotModel> UnavailableSlot(DateOnly date, string branchId) => _timeSlotRepository.UnavailableSlot(date, branchId);
 
         public int CountTimeSlot(SlotCheckModel slotCheckModel) => _timeSlotRepository.CountTimeSlot(slotCheckModel);
         public async Task ConfirmBooking(SlotCheckModel slotCheckModel)

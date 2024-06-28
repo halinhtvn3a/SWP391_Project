@@ -386,43 +386,61 @@ namespace DAOs
         }
 
         //viết hàm unavailable slot với param là ngày và giờ từ opentime và closetime, hàm sẽ check các time slot (cách nhau 1h) trong ngày đó xem  slot đó cái nào bằng với lại số lượng court của branch đó, nếu bằng thì trả về list các slot đó, (lưu ý opentime và close time là của bảng branch)
-        public List<TimeSlot> UnavailableSlot(DateOnly date, string branchId)
+        public List<TimeSlotModel> UnavailableSlot(DateOnly date, string branchId)
         {
-            var branch = _dbContext.Branches.FirstOrDefault(b => b.BranchId == branchId);
-            if (branch == null)
+            var courtIds = _dbContext.Courts
+    .Where(c => c.BranchId == branchId)
+    .Select(c => c.CourtId)
+    .ToList();
+
+            if (courtIds == null)
             {
                 return null;
             }
 
-            var openTime = branch.OpenTime;
-            var closeTime = branch.CloseTime;
+            var allTimeSlots = _dbContext.TimeSlots
+      .Where(ts => courtIds.Contains(ts.CourtId) && ts.SlotDate == date)
+      .Select(ts => new TimeSlotModel
+      {
+          SlotStartTime = ts.SlotStartTime,
+          SlotEndTime = ts.SlotEndTime
+      })
+      .Distinct()
+      .ToList();
 
-            var timeSlots = new List<TimeSlot>();
-            for (var i = openTime; i < closeTime; i = i.AddHours(1))
-            {
+
+            var unavailableSlots = new List<TimeSlotModel>();
+            foreach (var timeslot in allTimeSlots) {
                 var slotCheckModel = new SlotCheckModel
                 {
                     BranchId = branchId,
                     SlotDate = date,
-                    TimeSlot = new TimeSlotModel
-                    {
-                        SlotStartTime = i,
-                        SlotEndTime = i.AddHours(1)
-                    }
-                };
+                    TimeSlot = timeslot
 
-                if (CountTimeSlot(slotCheckModel) == 0)
+                };
+                if (CountTimeSlot(slotCheckModel) <= 0)
                 {
-                    timeSlots.Add(new TimeSlot
-                    {
-                        SlotDate = date,
-                        SlotStartTime = i,
-                        SlotEndTime = i.AddHours(1)
-                    });
+                    unavailableSlots.Add(timeslot);
                 }
+
             }
 
-            return timeSlots;
+
+            //    var unavailableSlots = _context.Bookings
+            //.Where(b => b.BranchId == branchId && b.Date == date.ToDateTime(TimeOnly.MinValue))
+            //.GroupBy(b => new { b.TimeSlot.StartTime, b.TimeSlot.EndTime })
+            //.Where(g => g.Count() >= CountTimeSlot(slotCheckModel))
+            //.Select(g => g.Key)
+            //.ToList();
+
+            //    return unavailableSlots.Select(us => new TimeSlot
+            //    {
+            //        StartTime = us.StartTime,
+            //        EndTime = us.EndTime
+            //    }).ToList();
+            //}
+
+            return unavailableSlots;
         }
         
         

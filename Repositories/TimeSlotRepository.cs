@@ -143,7 +143,7 @@ namespace Repositories
 
         public int CountTimeSlot(SlotCheckModel slotCheckModel) => _timeSlotDao.CountTimeSlot(slotCheckModel);
 
-        public List<TimeSlot> UnavailableSlot(DateOnly date, string branchId) => _timeSlotDao.UnavailableSlot(date,  branchId);
+        public List<TimeSlotModel> UnavailableSlot(DateOnly date, string branchId) => _timeSlotDao.UnavailableSlot(date,  branchId);
 
         public List<TimeSlot> AddSlotToBooking(SlotModel[] slotModel, string bookingId)
         {

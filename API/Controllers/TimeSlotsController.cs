@@ -269,7 +269,7 @@ namespace API.Controllers
         }
 
         [HttpGet("unavailable_slot")]
-        public ActionResult<List<TimeSlot>> UnavailableSlot([FromQuery] DateOnly date, [FromQuery] string branchId)
+        public ActionResult<List<TimeSlotModel>> UnavailableSlot([FromQuery] DateOnly date, [FromQuery] string branchId)
         {
 
             var result = _timeSlotService.UnavailableSlot(date, branchId);
