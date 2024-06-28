@@ -1,30 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\25-6\\SWP391_Project\\",
+  "WorkspaceRootPath": "C:\\FPTUNI\\5\\SWP391_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\timeslotdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\25-6\\swp391_project\\repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\timeslotrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|c:\\fptuni\\5\\swp391_project\\testloginandauthen\\controllertests\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\controllertests\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\25-6\\swp391_project\\services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\timeslotservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\models\\slotmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\models\\slotmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\models\\timeslotmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\models\\timeslotmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\25-6\\swp391_project\\api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\timeslotscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\helper\\validatepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\helper\\validatepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,84 +26,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TimeSlotRepository.cs",
-              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\TimeSlotRepository.cs",
-              "ToolTip": "E:\\25-6\\SWP391_Project\\Repositories\\TimeSlotRepository.cs",
-              "RelativeToolTip": "Repositories\\TimeSlotRepository.cs",
-              "ViewState": "AQIAAIUAAAAAAAAAAAAawJEAAAByAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T12:27:16.783Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "SlotModel.cs",
-              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\SlotModel.cs",
-              "RelativeDocumentMoniker": "DAOs\\Models\\SlotModel.cs",
-              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\SlotModel.cs",
-              "RelativeToolTip": "DAOs\\Models\\SlotModel.cs",
-              "ViewState": "AQIAAAYAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Title": "ValidatePassword.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\Helper\\ValidatePassword.cs",
+              "RelativeDocumentMoniker": "DAOs\\Helper\\ValidatePassword.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\Helper\\ValidatePassword.cs",
+              "RelativeToolTip": "DAOs\\Helper\\ValidatePassword.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAwAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T12:23:58.083Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "TimeSlotModel.cs",
-              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\TimeSlotModel.cs",
-              "RelativeDocumentMoniker": "DAOs\\Models\\TimeSlotModel.cs",
-              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\TimeSlotModel.cs",
-              "RelativeToolTip": "DAOs\\Models\\TimeSlotModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-28T12:23:41.215Z",
+              "WhenOpened": "2024-06-28T17:23:10.218Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "TimeSlotDAO.cs",
-              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\TimeSlotDAO.cs",
-              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\TimeSlotDAO.cs",
-              "RelativeToolTip": "DAOs\\TimeSlotDAO.cs",
-              "ViewState": "AQIAAH8BAAAAAAAAAAAAAIoBAAAAAAAA",
+              "Title": "AuthenController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\AuthenController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
+              "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
+              "ViewState": "AQIAACkAAAAAAAAAAAAgwDIAAABqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T15:41:24.064Z",
+              "WhenOpened": "2024-06-28T16:54:35.824Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthServiceTests.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
+              "RelativeDocumentMoniker": "TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
+              "RelativeToolTip": "TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
+              "ViewState": "AQIAAIcAAAAAAAAAAADgv5AAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T16:55:46.618Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "TimeSlotService.cs",
-              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Services\\TimeSlotService.cs",
-              "RelativeDocumentMoniker": "Services\\TimeSlotService.cs",
-              "ToolTip": "E:\\25-6\\SWP391_Project\\Services\\TimeSlotService.cs",
-              "RelativeToolTip": "Services\\TimeSlotService.cs",
-              "ViewState": "AQIAAD4AAAAAAAAAAAAkwE4AAAB5AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T16:04:43.363Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
               "Title": "TimeSlotsController.cs",
-              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\TimeSlotsController.cs",
-              "ToolTip": "E:\\25-6\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
               "RelativeToolTip": "API\\Controllers\\TimeSlotsController.cs",
-              "ViewState": "AQIAACcAAAAAAAAAAAAAAD0AAAASAAAA",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAcwD0AAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-27T15:01:25.509Z"
+              "WhenOpened": "2024-06-27T15:01:25.509Z",
+              "EditorCaption": ""
             }
           ]
         }

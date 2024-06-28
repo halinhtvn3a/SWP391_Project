@@ -7,7 +7,7 @@ using DAOs.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
+using DAOs.Helper;
 using Services;
 using Repositories.Helper;
 using Services.Interface;
@@ -46,6 +46,10 @@ namespace API.Controllers
         [Route("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
+            if (ValidatePassword.ValidatePass(model.Password) == false) 
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "Password format is incorrect."});
+            if (model.Email == null || model.Password == null || model.Email == "" || model.Password == "")
+                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "Email or password is empty." });
             //var ip = Utils.GetIpAddress(HttpContext);
             var user = await _userManager.FindByNameAsync(model.Email);
 

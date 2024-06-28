@@ -140,6 +140,56 @@ namespace UnitTests.ControllerTests
         //    Assert.Equal("User registered successfully!", response.Message);
         //}
 
+     
+        [Fact]
+        public async Task Login_MissingEmail_ReturnsBadRequest()
+        {
+            var loginModel = new LoginModel { Email = "", Password = "Qwe@123" };
+
+            var result = await _authController.Login(loginModel);
+
+            var badRequestResult = Assert.IsType<ObjectResult>(result);
+            Assert.Equal(StatusCodes.Status500InternalServerError, badRequestResult.StatusCode);
+
+            var responseModel = Assert.IsType<ResponseModel>(badRequestResult.Value);
+            Assert.Equal("Error", responseModel.Status);
+            Assert.Equal("Email or password is empty.", responseModel.Message);
+        }
+
+        [Fact]
+        public async Task Login_InvalidPasswordFormat_ReturnsBadRequest()
+        {
+            var loginModel = new LoginModel { Email = "user@gmail.com", Password = "123" };
+
+            var result = await _authController.Login(loginModel);
+
+            var badRequestResult = Assert.IsType<ObjectResult>(result);
+            Assert.Equal(StatusCodes.Status500InternalServerError, badRequestResult.StatusCode);
+
+            var responseModel = Assert.IsType<ResponseModel>(badRequestResult.Value);
+            Assert.Equal("Error", responseModel.Status);
+            Assert.Equal("Password format is incorrect.", responseModel.Message);
+        }
+
+        [Fact]
+        public async Task Login_LockedOutUser_ReturnsUnauthorized()
+        {
+            var loginModel = new LoginModel { Email = "lockeduser@gmail.com", Password = "Qwe@123" };
+            var user = new IdentityUser { UserName = loginModel.Email, Email = loginModel.Email, LockoutEnabled = false, LockoutEnd = DateTimeOffset.MaxValue };
+
+            _userManagerMock.Setup(um => um.FindByNameAsync(loginModel.Email)).ReturnsAsync(user);
+            _userManagerMock.Setup(um => um.CheckPasswordAsync(user, loginModel.Password)).ReturnsAsync(true);
+
+            var result = await _authController.Login(loginModel);
+
+            var unauthorizedResult = Assert.IsType<ObjectResult>(result);
+            Assert.Equal(StatusCodes.Status500InternalServerError, unauthorizedResult.StatusCode);
+           
+            var responseModel = Assert.IsType<ResponseModel>(unauthorizedResult.Value);
+            Assert.Equal("Error", responseModel.Status);
+            Assert.Equal("User is banned!", responseModel.Message);
+        }
+
 
         [Fact]
         public async Task Register_ExistingUser_ReturnsError()
