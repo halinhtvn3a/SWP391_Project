@@ -7,6 +7,14 @@
       "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\daotests\\userdaotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\25-6\\swp391_project\\testloginandauthen\\daotests\\userdetaildaotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\daotests\\userdetaildaotests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\userdetaildao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\userdetaildao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -54,8 +62,34 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserDetailDAO.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\UserDetailDAO.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
+              "RelativeToolTip": "DAOs\\UserDetailDAO.cs",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAAAGYAAABCAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T00:59:43.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserDetailDAOTests.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\DAOTests\\UserDetailDAOTests.cs",
+              "RelativeDocumentMoniker": "TestLoginAndAuthen\\DAOTests\\UserDetailDAOTests.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\DAOTests\\UserDetailDAOTests.cs",
+              "RelativeToolTip": "TestLoginAndAuthen\\DAOTests\\UserDetailDAOTests.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAswFkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-28T00:56:26.497Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -64,14 +98,14 @@
               "RelativeDocumentMoniker": "TestLoginAndAuthen\\DAOTests\\UserDAOTests.cs",
               "ToolTip": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\DAOTests\\UserDAOTests.cs",
               "RelativeToolTip": "TestLoginAndAuthen\\DAOTests\\UserDAOTests.cs",
-              "ViewState": "AQIAAE4AAAAAAAAAAAAcwF4AAAAJAAAA",
+              "ViewState": "AQIAACcAAAAAAAAAAAAAADcAAAA2AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-28T00:38:45.938Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "UserDAO.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\UserDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\UserDAO.cs",
@@ -84,7 +118,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "TimeSlotDAOTests.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\DAOTests\\TimeSlotDAOTests.cs",
               "RelativeDocumentMoniker": "TestLoginAndAuthen\\DAOTests\\TimeSlotDAOTests.cs",
@@ -97,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "CourtDAO.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\CourtDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\CourtDAO.cs",
@@ -109,7 +143,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "TimeSlotsController.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\TimeSlotsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\TimeSlotsController.cs",
@@ -122,7 +156,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "BranchModel.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\BranchModel.cs",
               "RelativeDocumentMoniker": "DAOs\\Models\\BranchModel.cs",
@@ -134,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "Branch.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\BusinessObjects\\Branch.cs",
               "RelativeDocumentMoniker": "BusinessObjects\\Branch.cs",
@@ -146,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "BranchesController.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BranchesController.cs",
@@ -158,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ReviewDAO.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\ReviewDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\ReviewDAO.cs",
@@ -170,7 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "AuthenController.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\AuthenController.cs",
@@ -182,7 +216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "GenerateId.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Helper\\GenerateId.cs",
               "RelativeDocumentMoniker": "DAOs\\Helper\\GenerateId.cs",

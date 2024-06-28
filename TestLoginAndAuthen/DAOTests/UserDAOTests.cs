@@ -47,7 +47,7 @@ namespace UnitTests.DAOTests
             var user = dao.GetUser(userId);
             Assert.Equal(user.Id, userId);
         }
-        
+
         [Theory]
         [InlineData("U00009")]
         [InlineData("U00010")]
