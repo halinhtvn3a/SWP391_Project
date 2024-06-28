@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTests.DAOsTests
+namespace UnitTests.DAOTests
 {
     public class BookingDAOTests
     {

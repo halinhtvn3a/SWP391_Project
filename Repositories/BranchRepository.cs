@@ -38,6 +38,14 @@ namespace Repositories
                 _courtDao = new CourtDAO();
             }
         }
+
+        public BranchRepository(BranchDAO branchDao, BookingDAO bookingDao, TimeSlotDAO timeSlotDao, CourtDAO courtDao)
+        {
+            _branchDao = branchDao;
+            _bookingDao = bookingDao;
+            _timeSlotDao = timeSlotDao;
+            _courtDao = courtDao;
+        }
         public Branch AddBranch(BranchModel branchModel) => _branchDao.AddBranch(branchModel);
 
         public void DeleteBranch(string id) => _branchDao.DeleteBranch(id);

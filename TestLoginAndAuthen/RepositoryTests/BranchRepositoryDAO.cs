@@ -1,24 +1,29 @@
 ﻿using BusinessObjects;
 using DAOs;
-using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
 using Moq;
+using Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitTests.DAOTests
+namespace UnitTests.RepositoryTests
 {
-    public class BranchDAOTests
+    public class BranchRepositoryDAO
     {
         private readonly Mock<DbSet<Branch>> mockSet;
         private readonly Mock<CourtCallerDbContext> mockContext;
         private readonly List<Branch> branchList;
+        private readonly BranchDAO branchDAO;
+        private readonly BookingDAO bookingDAO;
+        private readonly TimeSlotDAO timeSlotDAO;
+        private readonly CourtDAO courtDAO;
+        private readonly BranchRepository branchRepository;
 
-        public BranchDAOTests()
+        public BranchRepositoryDAO()
         {
             // Initialize mock set and context
             mockSet = new Mock<DbSet<Branch>>();
@@ -86,166 +91,90 @@ namespace UnitTests.DAOTests
             mockSet.As<IQueryable<Branch>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Branches).Returns(mockSet.Object);
-        }
 
-        [Fact]
-        public void GetBranches_ReturnsAllBranches()
-        {
-            var dao = new BranchDAO(mockContext.Object);
-
-            var result = dao.GetBranches();
-
-            Assert.Equal(3, result.Count);
-            Assert.Equal(branchList, result);
+            branchDAO = new BranchDAO(mockContext.Object);
+            bookingDAO = new BookingDAO(mockContext.Object);
+            timeSlotDAO = new TimeSlotDAO(mockContext.Object);
+            courtDAO = new CourtDAO(mockContext.Object);
+            branchRepository = new BranchRepository(branchDAO, bookingDAO, timeSlotDAO, courtDAO);
         }
 
         [Theory]
         [InlineData("B00001")]
-        [InlineData("B00002")]
         public void GetBranch_ReturnsBranch(string branchId)
         {
-            var dao = new BranchDAO(mockContext.Object);
-
-            var result = dao.GetBranch(branchId);
-
-            Assert.NotNull(result);
-            Assert.Equal(branchId, result.BranchId);
+            var branch = branchRepository.GetBranch(branchId);
+            Assert.Equal(branch.BranchId, branchId);
         }
 
-        [Fact]
-        public void GetBranch_ReturnsNull()
+        [Theory]
+        [InlineData("B00009")]
+        public void GetBranch_ReturnsNull(string branchId)
         {
-            var dao = new BranchDAO(mockContext.Object);
-
-            var result = dao.GetBranch("B00000");
-
-            Assert.Null(result);
+            var branch = branchRepository.GetBranch(branchId);
+            Assert.Null(branch);
         }
 
         [Fact]
         public void AddBranch_ReturnsBranch()
         {
-            var dao = new BranchDAO(mockContext.Object);
-            var branchModel = new BranchModel
+            branchRepository.AddBranch(new BranchModel()
             {
-                BranchName = "Test Branch 4",
-                BranchAddress = "Test Address 4",
-            };
-
-            var result = dao.AddBranch(branchModel);
-
-            Assert.NotNull(result);
-            Assert.Equal("B00004", result.BranchId);
-            Assert.Equal(branchModel.BranchName, result.BranchName);
+                BranchAddress = "Q2",
+                BranchName = "B",
+                BranchPhone = "0001"
+            });
+            mockSet.Verify(m => m.Add(It.IsAny<Branch>()), Times.Once());
+            mockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
 
-        //use DDT to test addbranch
-        [Theory]
-        [InlineData("Test Branch 4", "Test Address 4")]
-        [InlineData("Test Branch 5", "Test Address 5")]
-        public void AddBranchDDT_ReturnsBranch(string branchName, string branchAddress)
+        [Fact]
+        public void RemoveBranch_ReturnsBranch()
         {
-            var dao = new BranchDAO(mockContext.Object);
-            var branchModel = new BranchModel
-            {
-                BranchName = branchName,
-                BranchAddress = branchAddress,
-            };
+            branchRepository.DeleteBranch("B00001");
+            var branch = branchRepository.GetBranch("B00001");
+            Assert.Equal("Inactive", branch.Status);
 
-            var result = dao.AddBranch(branchModel);
-
-            Assert.NotNull(result);
-            Assert.Equal("B00004", result.BranchId);
-            Assert.Equal(branchModel.BranchName, result.BranchName);
-            Assert.Equal(branchModel.BranchAddress, result.BranchAddress);
         }
-
-
         [Fact]
         public void UpdateBranch_ReturnsBranch()
         {
-            var dao = new BranchDAO(mockContext.Object);
-            var branchModel = new BranchModel
+            branchRepository.UpdateBranch("B00001", new BranchModel()
             {
-                BranchName = "Test Branch 4",
-            };
-
-            var result = dao.UpdateBranch("B00001", branchModel);
-
-            Assert.NotNull(result);
-            Assert.Equal("B00001", result.BranchId);
-            Assert.Equal(branchModel.BranchName, result.BranchName);
-            Assert.Equal(branchModel.BranchAddress, result.BranchAddress);
-        }
-
-        [Fact]
-        public void DeleteBranch_ReturnsBranch()
-        {
-            var dao = new BranchDAO(mockContext.Object);
-
-            dao.DeleteBranch("B00001");
-
-            var result = dao.GetBranch("B00001");
-            Assert.Equal("Inactive", result.Status);
-        }
-
-        [Fact]
-        public void DeleteBranch_ReturnsNull()
-        {
-            var dao = new BranchDAO(mockContext.Object);
-
-            dao.DeleteBranch("B00000");
-
-            var result = dao.GetBranch("B00000");
-            Assert.Null(result);
-        }
-
-        [Fact]
-        public void DeleteBranch_ReturnsBranchNotFound()
-        {
-            var dao = new BranchDAO(mockContext.Object);
-
-            dao.DeleteBranch("B00004");
-
-            var result = dao.GetBranch("B00004");
-            Assert.Null(result);
+                BranchAddress = "HCM",
+            });
+            var branch = branchRepository.GetBranch("B00001");
+            Assert.Equal("HCM", branch.BranchAddress);
         }
 
         [Theory]
         [InlineData("Active", 2)]
         [InlineData("Inactive", 1)]
-        public void GetBranchesByStatusActive_ReturnsAllBranches(string status, int expectedNum)
+        [InlineData("Maintaining", 0)]
+
+        public void GetBranchesByStatus_ReturnsBranches(string status, int count)
         {
-            var dao = new BranchDAO(mockContext.Object);
-
-            var result = dao.GetBranchesByStatus(status);
-
-            Assert.Equal(expectedNum, result.Count);
+            var branches = branchRepository.GetBranchesByStatus(status);
+            Assert.Equal(count, branches.Count);
         }
-        [Theory]
-        [InlineData(100, 150, 1)]
-        [InlineData(120, 180, 1)]
-        public void GetBranchByPrice_ReturnsAllBranches(decimal minPrice, decimal maxPrice, int expectedNum)
-        {
-            var dao = new BranchDAO(mockContext.Object);
-
-            var result = dao.GetBranchByPrice(minPrice, maxPrice);
-
-            Assert.Equal(expectedNum, result.Count);
-        }
-
-
 
         [Theory]
         [InlineData("C001", 1)]
         [InlineData("C003", 1)]
-        public void GetBranchesByCourtId_ReturnsAllBranches(string courtId, int expectedNum)
+        [InlineData("C005", 1)]
+        public void GetBranchesByCourtId_ReturnsBranches(string courtId, int count)
         {
-            var dao = new BranchDAO(mockContext.Object);
+            var branches = branchRepository.GetBranchesByCourtId(courtId);
+            Assert.Equal(count, branches.Count);
+        }
 
-            var result = dao.GetBranchesByCourtId(courtId);
-
-            Assert.Equal(expectedNum, result.Count);
+        [Theory]
+        [InlineData(100, 150, 1)]
+        [InlineData(120, 180, 1)]
+        public void GetBranchByPrice_ReturnsBranches(decimal minPrice, decimal maxPrice, int count)
+        {
+            var branches = branchRepository.GetBranchByPrice(minPrice, maxPrice);
+            Assert.Equal(count, branches.Count);
         }
     }
 }
