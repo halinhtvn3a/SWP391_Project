@@ -23,6 +23,11 @@ namespace DAOs
 			}
 		}
 
+        public UserDAO(CourtCallerDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
 
         //public string GenerateUserId ()
         //{
