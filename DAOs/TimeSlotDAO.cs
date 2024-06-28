@@ -402,40 +402,40 @@ namespace DAOs
             for (int i = 0; i < 7; i++)
             {
                 var currentday = date.AddDays(i);
+                var allTimeSlots = _dbContext.TimeSlots
+             .Where(ts => ts.SlotDate == currentday)
+             .AsEnumerable()
+             .Where(ts => courtIds.Contains(ts.CourtId))
+             .Select(ts => new TimeSlotModel
+             {
+                 SlotDate = ts.SlotDate,
+                 SlotStartTime = ts.SlotStartTime,
+                 SlotEndTime = ts.SlotEndTime
+             })
+             .Distinct()
+             .ToList();
 
-            var allTimeSlots = _dbContext.TimeSlots
-         .Where(ts => ts.SlotDate == currentday)
-         .AsEnumerable() 
-         .Where(ts => courtIds.Contains(ts.CourtId)) 
-         .Select(ts => new TimeSlotModel
-         {
 
-             SlotStartTime = ts.SlotStartTime,
-             SlotEndTime = ts.SlotEndTime
-         })
-         .Distinct() 
-         .ToList();
 
-           
-            
-            
-            foreach (var timeslot in allTimeSlots) {
-                var slotCheckModel = new SlotCheckModel
+
+                foreach (var timeslot in allTimeSlots)
                 {
-                    BranchId = branchId,
-                    SlotDate = currentday,
-                    TimeSlot = timeslot
+                    var slotCheckModel = new SlotCheckModel
+                    {
+                        BranchId = branchId,
+                        SlotDate = currentday,
+                        TimeSlot = timeslot
 
-                };
-                if (CountTimeSlot(slotCheckModel) <= 0)
-                {
+                    };
+                    if (CountTimeSlot(slotCheckModel) <= 0)
+                    {
                         if (!unavailableSlots.Any(us => us.SlotStartTime == timeslot.SlotStartTime && us.SlotEndTime == timeslot.SlotEndTime))
                         {
                             unavailableSlots.Add(timeslot);
                         }
-                }
+                    }
 
-            }
+                }
 
 
                 //    var unavailableSlots = _context.Bookings
@@ -456,9 +456,6 @@ namespace DAOs
 
             return unavailableSlots;
         }
-        
-        
-
 
     }
 }
