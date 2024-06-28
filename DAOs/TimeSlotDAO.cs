@@ -393,52 +393,66 @@ namespace DAOs
     .Select(c => c.CourtId)
     .ToList();
 
-            if (courtIds == null)
+            if (!courtIds.Any())
             {
-                return null;
+                return new List<TimeSlotModel>();
             }
 
-            var allTimeSlots = _dbContext.TimeSlots
-      .Where(ts => courtIds.Contains(ts.CourtId) && ts.SlotDate == date)
-      .Select(ts => new TimeSlotModel
-      {
-          SlotStartTime = ts.SlotStartTime,
-          SlotEndTime = ts.SlotEndTime
-      })
-      .Distinct()
-      .ToList();
-
-
             var unavailableSlots = new List<TimeSlotModel>();
+            for (int i = 0; i < 7; i++)
+            {
+                var currentday = date.AddDays(i);
+
+            var allTimeSlots = _dbContext.TimeSlots
+         .Where(ts => ts.SlotDate == currentday)
+         .AsEnumerable() 
+         .Where(ts => courtIds.Contains(ts.CourtId)) 
+         .Select(ts => new TimeSlotModel
+         {
+
+             SlotStartTime = ts.SlotStartTime,
+             SlotEndTime = ts.SlotEndTime
+         })
+         .Distinct() 
+         .ToList();
+
+           
+            
+            
             foreach (var timeslot in allTimeSlots) {
                 var slotCheckModel = new SlotCheckModel
                 {
                     BranchId = branchId,
-                    SlotDate = date,
+                    SlotDate = currentday,
                     TimeSlot = timeslot
 
                 };
                 if (CountTimeSlot(slotCheckModel) <= 0)
                 {
-                    unavailableSlots.Add(timeslot);
+                        if (!unavailableSlots.Any(us => us.SlotStartTime == timeslot.SlotStartTime && us.SlotEndTime == timeslot.SlotEndTime))
+                        {
+                            unavailableSlots.Add(timeslot);
+                        }
                 }
 
             }
 
 
-            //    var unavailableSlots = _context.Bookings
-            //.Where(b => b.BranchId == branchId && b.Date == date.ToDateTime(TimeOnly.MinValue))
-            //.GroupBy(b => new { b.TimeSlot.StartTime, b.TimeSlot.EndTime })
-            //.Where(g => g.Count() >= CountTimeSlot(slotCheckModel))
-            //.Select(g => g.Key)
-            //.ToList();
+                //    var unavailableSlots = _context.Bookings
+                //.Where(b => b.BranchId == branchId && b.Date == date.ToDateTime(TimeOnly.MinValue))
+                //.GroupBy(b => new { b.TimeSlot.StartTime, b.TimeSlot.EndTime })
+                //.Where(g => g.Count() >= CountTimeSlot(slotCheckModel))
+                //.Select(g => g.Key)
+                //.ToList();
 
-            //    return unavailableSlots.Select(us => new TimeSlot
-            //    {
-            //        StartTime = us.StartTime,
-            //        EndTime = us.EndTime
-            //    }).ToList();
-            //}
+                //    return unavailableSlots.Select(us => new TimeSlot
+                //    {
+                //        StartTime = us.StartTime,
+                //        EndTime = us.EndTime
+                //    }).ToList();
+                //}
+
+            }
 
             return unavailableSlots;
         }
