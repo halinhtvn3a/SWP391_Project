@@ -169,37 +169,7 @@ namespace API.Controllers
             return _timeSlotService.GetTimeSlots().Any(e => e.SlotId == id);
         }
 
-        [Route("api/timeslots/qrcode/{timeslotid}")]
-        [HttpGet]
-        public async Task<IActionResult> GetQRCode(string timeslotid)
-        {
-            var timeslot = _timeSlotService.GetTimeSlot(timeslotid);
-            if (timeslot == null)
-            {
-                return NotFound("Timeslot not found.");
-            }
-
-
-            //              "bookingId": "12345",
-            //"userId": "67890",
-            //"branchId": "B001",
-            //"courtId": "C002",
-            //"slotDate": "2024-07-01", nên tạo các thứ này
-
-            var qrData = new
-            {
-                BookingId = timeslot.BookingId,
-                Status = timeslot.Status,
-                TimeslotId = timeslot.SlotId,
-                SlotDate = timeslot.SlotDate,
-
-            };
-
-            string qrString = JsonConvert.SerializeObject(qrData);
-            string qrCodeBase64 = _timeSlotService.GenerateQRCode(qrString);
-
-            return Ok(new { qrCodeBase64 });
-        }
+        
 
         [HttpPost("checkin/qr")]
         public async Task<IActionResult> CheckInWithQR([FromBody] QRCheckInModel request)
@@ -211,18 +181,19 @@ namespace API.Controllers
 
             var qrData = DecryptQRCode(request.QRCodeData);
 
-            var timeSlot = _timeSlotService.GetTimeSlot(qrData.TimeslotId);
-            if (timeSlot != null && timeSlot.Status == "Reserved" && timeSlot.SlotId == qrData.TimeslotId)
-            {
-                //cần phải checked-in tất cả time slot ngày hôm đó luôn chứ không phải chỉ 1 time slot
-
-
-                _timeSlotService.GetTimeSlotsByDate(timeSlot.SlotDate).ForEach(async t =>
+            var allTimeSlot = _timeSlotService.GetTimeSlotsByBookingId(qrData.BookingId);
+            foreach (var timeSlot in allTimeSlot) {
+                if (timeSlot != null && timeSlot.Status == "Reserved" && timeSlot.SlotId == qrData.BookingId)
                 {
-                    t.Status = "checked-in";
-                    await _timeSlotService.UpdateTimeSlotWithObject(t);
-                });
+                    //cần phải checked-in tất cả time slot ngày hôm đó luôn chứ không phải chỉ 1 time slot
 
+
+                    _timeSlotService.GetTimeSlotsByDate(timeSlot.SlotDate).ForEach(async t =>
+                    {
+                        t.Status = "checked-in";
+                        await _timeSlotService.UpdateTimeSlotWithObject(t);
+                    });
+                }
 
                 return Ok("Check-in successful.");
             }
@@ -318,7 +289,7 @@ namespace API.Controllers
 
         public class QRData
         {
-            public string TimeslotId { get; set; }
+            public string BookingId { get; set; }
             public string UserId { get; set; }
         }
 

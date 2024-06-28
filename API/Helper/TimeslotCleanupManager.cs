@@ -25,7 +25,13 @@ namespace API.Helper
                     try
                     {
                         SqlCommand command = new SqlCommand(
-                            "DELETE FROM timeslots WHERE status = 'Pending' AND DATEDIFF(minute, Created_at, GETDATE()) > 10",
+                            @"DELETE FROM timeslots
+WHERE BookingId IN (
+    SELECT bookingid FROM bookings WHERE status = 'pending'
+) AND DATEDIFF(minute, Created_at, GETDATE()) > 15
+UPDATE bookings
+SET status = 'cancel'
+WHERE status = 'pending' AND DATEDIFF(minute, BookingDate , GETDATE()) > 15;",
                             connection, transaction);
 
                         int rowsAffected = await command.ExecuteNonQueryAsync();

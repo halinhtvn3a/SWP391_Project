@@ -46,19 +46,7 @@ namespace Services
         public List<TimeSlot> GetTimeSlotsByDate(DateOnly dateOnly) => _timeSlotRepository.GetTimeSlotsByDate(dateOnly);
         public async Task<List<TimeSlot>> SortTimeSlot(string? sortBy, bool isAsc, PageResult pageResult) => await _timeSlotRepository.SortTimeSlot(sortBy, isAsc, pageResult);
 
-        public string GenerateQRCode(string qrData)
-        {
-            QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(qrData, QRCodeGenerator.ECCLevel.Q);
-            QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(20);
-
-            using (var ms = new MemoryStream())
-            {
-                qrCodeImage.Save(ms, ImageFormat.Png);
-                return Convert.ToBase64String(ms.ToArray());
-            }
-        }
+        
 
         //public async Task<List<SlotModel>> GetLockedSlots()
         //{

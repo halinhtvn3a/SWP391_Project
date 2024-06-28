@@ -13,6 +13,8 @@ using QRCoder;
 using Page = DAOs.Helper;
 using Repositories;
 using Newtonsoft.Json;
+using Qr = API.Helper;
+using API.Helper;
 
 namespace API.Controllers
 {
@@ -255,6 +257,36 @@ namespace API.Controllers
         }
 
         // public int NumberOfSlotsAvailable(string userId,string bookingId)
+
+        [Route("api/bookings/qrcode/{timeslotid}")]
+        [HttpGet]
+        public async Task<IActionResult> GetQRCode(string bookingId)
+        {
+            var booking = _bookingService.GetBooking(bookingId);
+            if (booking == null)
+            {
+                return NotFound("Booking not found.");
+            }
+
+
+            //              "bookingId": "12345",
+            //"userId": "67890",
+            //"branchId": "B001",
+            //"courtId": "C002",
+            //"slotDate": "2024-07-01", nên tạo các thứ này
+
+            var qrData = new
+            {
+                BookingId = booking.Result.Id,
+                
+            };
+
+            string qrString = JsonConvert.SerializeObject(qrData);
+            string qrCodeBase64 = Qr.QrCode.GenerateQRCode(qrString);
+
+            return Ok(new { qrCodeBase64 });
+        }
+
 
     }
 }
