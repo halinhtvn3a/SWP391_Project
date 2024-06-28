@@ -341,7 +341,7 @@ namespace Repositories
             };
             _bookingDao.AddBooking(booking);
             _userDetailDao.GetUserDetail(userId).Point += totalPrice;
-
+            _userDetailDao.UpdatePointAndBalance(_userDetailDao.GetUserDetail(userId).Point, _userDetailDao.GetUserDetail(userId).Balance, userId);
             return booking;
         }
 
@@ -462,7 +462,7 @@ namespace Repositories
 
             await _bookingDao.SaveChangesAsync();
             _userDetailDao.GetUserDetail(userId).Point += totalPrice;
-
+            _userDetailDao.UpdatePointAndBalance(_userDetailDao.GetUserDetail(userId).Point, _userDetailDao.GetUserDetail(userId).Balance, userId);
             return booking;
         }
 
@@ -485,7 +485,7 @@ namespace Repositories
             Booking booking = await GetBooking(bookingId);
             UserDetail userDetail = _userDetailDao.GetUserDetail(user.Id);
 
-            userDetail.Balance += booking.TotalPrice;
+            userDetail.Balance += booking.TotalPrice / 2;
             userDetail.Point -= booking.TotalPrice;
 
             UserDetailsModel userDetailsModel = new UserDetailsModel()
@@ -494,7 +494,8 @@ namespace Repositories
                 FullName = userDetail.FullName,
                 Address = userDetail.Address,
                 ProfilePicture = userDetail.ProfilePicture,
-                YearOfBirth = userDetail.YearOfBirth
+                YearOfBirth = userDetail.YearOfBirth,
+                Balance = userDetail.Balance
 
             };
             _userDetailDao.UpdateUserDetail(user.Id, userDetailsModel);

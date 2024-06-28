@@ -11,6 +11,9 @@ namespace DAOs.Models
     {
         public decimal? Point { get; set; }
 
+        public decimal? Balance { get; set; }
+
+
         [Required(ErrorMessage = "Full name is required")]
         [StringLength(50)]
         public string? FullName { get; set; }

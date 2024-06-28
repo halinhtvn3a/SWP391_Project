@@ -59,7 +59,7 @@ namespace API.Controllers
                 return NotFound();
             }
 
-            return await timeSlot;
+            return timeSlot;
         }
 
         [HttpGet("bookingId/{bookingId}")]
@@ -80,7 +80,7 @@ namespace API.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTimeSlot(string id, SlotModel slotModel)
         {
-            var timeSlot = await _timeSlotService.GetTimeSlot(id);
+            var timeSlot = _timeSlotService.GetTimeSlot(id);
             if (id != timeSlot.SlotId)
             {
                 return BadRequest();
@@ -173,7 +173,7 @@ namespace API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetQRCode(string timeslotid)
         {
-            var timeslot = await _timeSlotService.GetTimeSlot(timeslotid);
+            var timeslot = _timeSlotService.GetTimeSlot(timeslotid);
             if (timeslot == null)
             {
                 return NotFound("Timeslot not found.");
@@ -211,7 +211,7 @@ namespace API.Controllers
 
             var qrData = DecryptQRCode(request.QRCodeData);
 
-            var timeSlot = await _timeSlotService.GetTimeSlot(qrData.TimeslotId);
+            var timeSlot = _timeSlotService.GetTimeSlot(qrData.TimeslotId);
             if (timeSlot != null && timeSlot.Status == "Reserved" && timeSlot.SlotId == qrData.TimeslotId)
             {
                 //cần phải checked-in tất cả time slot ngày hôm đó luôn chứ không phải chỉ 1 time slot

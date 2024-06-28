@@ -58,9 +58,9 @@ namespace DAOs
             return timeSlots;
         }
 
-        public async Task<TimeSlot> GetTimeSlot(string id)
+        public TimeSlot GetTimeSlot(string id)
         {
-            var timeslots = await _dbContext.TimeSlots.FirstOrDefaultAsync(m => m.SlotId.Equals(id));
+            TimeSlot timeslots = _dbContext.TimeSlots.Where(t => t.SlotId.Equals(id)).FirstOrDefault(); 
             return timeslots;
         }
 
@@ -93,7 +93,7 @@ namespace DAOs
 
         public async Task<TimeSlot> UpdateTimeSlot(string slotId, SlotModel slotModel)
         {
-            TimeSlot timeSlot = await GetTimeSlot(slotId);
+            TimeSlot timeSlot = GetTimeSlot(slotId);
             if (timeSlot != null)
             {
                 timeSlot.CourtId = slotModel.CourtId;
@@ -124,7 +124,7 @@ namespace DAOs
         {
             try
             {
-                TimeSlot oTimeSlot = await GetTimeSlot(slotId);
+                TimeSlot oTimeSlot = GetTimeSlot(slotId);
                 if (oTimeSlot != null)
                 {
                     oTimeSlot.BookingId = bookingId;
@@ -256,7 +256,7 @@ namespace DAOs
 
         public async void DeleteTimeSlot(string timeSlotId)
         {
-            TimeSlot timeSlot = await GetTimeSlot(timeSlotId);
+            TimeSlot timeSlot = GetTimeSlot(timeSlotId);
             if (timeSlot != null)
             {
                 _dbContext.TimeSlots.Remove(timeSlot);
