@@ -5,6 +5,14 @@ Welcome to **Court Callers**! 🎉
 
 Court Callers is a web application designed to simplify the process of booking badminton courts. Whether you’re a passionate player or a casual enthusiast, Court Callers provides an intuitive platform for reserving your favorite courts hassle-free.
 
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-5C2D91?style=for-the-badge&logo=dot-net&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![SQL Server](https://img.shields.io/badge/SQL_Server-CC2927?style=for-the-badge&logo=microsoft-sql-server&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-black?style=for-the-badge&logo=JSON%20web%20tokens)
+![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+
 <details>
   <summary>Table of Contents</summary>
   <ol>
@@ -13,6 +21,7 @@ Court Callers is a web application designed to simplify the process of booking b
     <li><a href="#-screenshots">Screenshots</a></li>
     <li><a href="#-contact-us">Contact Us</a></li>
     <li><a href="#-license">License</a></li>
+    <li><a href="#-acknowledgements">Acknowledgements</a></li>
     <li><a href="#-acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
@@ -52,4 +61,10 @@ Feel free to reach out via [courtcallers@gmail.com](mailto:courtcallers@gmail.co
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🌟 Acknowledgements
-Special thanks to all contributors and supporters of this project.
+## 🌟 Acknowledgements
+
+- [halinhtvn3a](https://github.com/halinhtvn3a ) - Project Lead
+- [th3y3m](https://github.com/th3y3m ) - Backend development and database management
+
+Special thanks to [Freepik](https://www.freepik.com) for providing the icons used in this project.
+
