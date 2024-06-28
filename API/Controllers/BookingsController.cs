@@ -258,7 +258,7 @@ namespace API.Controllers
 
         // public int NumberOfSlotsAvailable(string userId,string bookingId)
 
-        [Route("api/bookings/qrcode/{bookingId}")]
+        [Route("qrcode/{bookingId}")]
         [HttpGet]
         public async Task<IActionResult> GetQRCode(string bookingId)
         {
