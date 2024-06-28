@@ -23,6 +23,10 @@ namespace DAOs
             }
         }
 
+        public UserDetailDAO(CourtCallerDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
         public List<UserDetail> GetUserDetails()
         {
             return _dbContext.UserDetails.ToList();
