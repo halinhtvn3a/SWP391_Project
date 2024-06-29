@@ -1,5 +1,6 @@
 ﻿using BusinessObjects;
 using DAOs;
+using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Repositories;
@@ -55,6 +56,33 @@ namespace UnitTests.RepositoryTests
             decimal actual = Math.Round(reviewRepository.GetRatingPercentageOfABranch(rating, branchId));
 
             Assert.Equal(expected, actual);
+        }
+
+        [Fact]
+        public void GetRatingPercentageOfABranch_ReturnsZero()
+        {
+            decimal actual = Math.Round(reviewRepository.GetRatingPercentageOfABranch(0, "B00001"));
+
+            Assert.Equal(0, actual);
+        }
+
+        [Fact]
+        public void AddReview_ReturnsWell()
+        {
+            ReviewModel reviewModel = new ReviewModel
+            {
+                ReviewText = "Test Review 7",
+                Rating = 5,
+                BranchId = "B00001",
+                UserId= "U00001"
+            };
+
+            Review review = reviewRepository.AddReview(reviewModel);
+
+            Assert.NotNull(review);
+            Assert.Equal("Test Review 7", review.ReviewText);
+            Assert.Equal(5, review.Rating);
+            Assert.Equal("B00001", review.BranchId);
         }
     }
 }

@@ -1,12 +1,54 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "E:\\25-6\\SWP391_Project\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\25-6\\swp391_project\\testloginandauthen\\repositorytests\\reviewrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\repositorytests\\reviewrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\25-6\\swp391_project\\repositories\\reviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\reviewrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ReviewRepository.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\ReviewRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\ReviewRepository.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\Repositories\\ReviewRepository.cs",
+              "RelativeToolTip": "Repositories\\ReviewRepository.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAAABoAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T16:06:08.653Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReviewRepositoryTests.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\RepositoryTests\\ReviewRepositoryTests.cs",
+              "RelativeDocumentMoniker": "TestLoginAndAuthen\\RepositoryTests\\ReviewRepositoryTests.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\RepositoryTests\\ReviewRepositoryTests.cs",
+              "RelativeToolTip": "TestLoginAndAuthen\\RepositoryTests\\ReviewRepositoryTests.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAAAE0AAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-29T16:06:00.356Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }
