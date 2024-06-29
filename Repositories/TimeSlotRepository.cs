@@ -27,6 +27,12 @@ namespace Repositories
                 _courtDao = new CourtDAO();
             }
         }
+
+        public TimeSlotRepository(TimeSlotDAO timeSlotDao, CourtDAO courtDao)
+        {
+            _timeSlotDao = timeSlotDao;
+            _courtDao = courtDao;
+        }
         public TimeSlot AddTimeSlot(TimeSlot timeSlot) => _timeSlotDao.AddTimeSlot(timeSlot);
 
         public async Task<List<TimeSlot>> GetTimeSlots(PageResult pageResult, string searchQuery = null) => await _timeSlotDao.GetTimeSlots(pageResult, searchQuery);

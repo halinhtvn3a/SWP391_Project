@@ -1,5 +1,7 @@
 ﻿using BusinessObjects;
 using DAOs;
+using DAOs.Models;
+using Firebase.Auth;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Repositories;
@@ -21,6 +23,7 @@ namespace UnitTests.RepositoryTests
         private readonly TimeSlotDAO timeSlotDAO;
         private readonly CourtDAO courtDAO;
         private readonly UserDAO userDAO;
+        private readonly PriceDAO priceDAO;
         private readonly UserDetailDAO userDetailDAO;
         private readonly BookingRepository bookingRepository;
         private readonly TimeSlotRepository timeSlotRepository;
@@ -115,8 +118,43 @@ namespace UnitTests.RepositoryTests
 
             mockContext.Setup(c => c.Bookings).Returns(mockSet.Object);
 
+            bookingDAO = new BookingDAO(mockContext.Object);
+            timeSlotDAO = new TimeSlotDAO(mockContext.Object);
+            priceDAO = new PriceDAO(mockContext.Object);
+            userDAO = new UserDAO(mockContext.Object);
+            userDetailDAO = new UserDetailDAO(mockContext.Object);
+            branchDAO = new BranchDAO(mockContext.Object);
+            courtDAO = new CourtDAO(mockContext.Object);
+            timeSlotRepository = new TimeSlotRepository(timeSlotDAO, courtDAO);
+
+            bookingRepository = new BookingRepository(bookingDAO, timeSlotDAO, priceDAO, timeSlotRepository, userDAO, userDetailDAO, branchDAO);
         }
 
-       
+        [Theory]
+        [InlineData("U00001", 1)]
+        [InlineData("U00002", 0)]
+
+        public void GetBookingsByUserId_ReturnsBookings(string userId, int expected)
+        {
+            var bookings = bookingRepository.GetBookingsByUserId(userId);
+            Assert.Equal(expected, bookings.Count);
+        }
+        
+        [Theory]
+        [InlineData("Complete", 1)]
+        [InlineData("Cancelled", 0)]
+        public void GetBookingsByStatus_ReturnsBookings(string status, int expected)
+        {
+            var bookings = bookingRepository.GetBookingsByStatus(status);
+            Assert.Equal(expected, bookings.Count);
+        }
+
+        [Fact]
+        public void SearchBookingsByTime_ReturnsBookings()
+        {
+            var bookings = bookingRepository.SearchBookingsByTime(DateTime.Now.AddHours(-1), DateTime.Now.AddHours(1));
+            Assert.Equal(1, bookings.Count);
+        }
+
     }
 }
