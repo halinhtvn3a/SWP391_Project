@@ -408,7 +408,7 @@ namespace DAOs
              .Where(ts => courtIds.Contains(ts.CourtId))
              .Select(ts => new TimeSlotModel
              {
-                 //SlotDate = ts.SlotDate,
+                 SlotDate = ts.SlotDate,
                  SlotStartTime = ts.SlotStartTime,
                  SlotEndTime = ts.SlotEndTime
              })
