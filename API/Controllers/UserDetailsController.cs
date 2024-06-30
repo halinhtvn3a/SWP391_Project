@@ -105,7 +105,7 @@ namespace API.Controllers
         }
 
         [HttpGet("GetUserDetailByUserEmail/{userEmail}")]
-        public async Task<ActionResult<IEnumerable<UserDetail>>> GetUserByEmail(string userEmail)
+        public async Task<ActionResult<UserDetail>> GetUserByEmail(string userEmail)
         {
             if (string.IsNullOrEmpty(userEmail))
             {
@@ -114,7 +114,7 @@ namespace API.Controllers
 
             try
             {
-                List<UserDetail> user = _userDetailService.SearchUserByEmail(userEmail);
+                var user = _userDetailService.SearchUserByEmail(userEmail).FirstOrDefault();
                 if (user == null)
                 {
                     return NotFound($"User with email {userEmail} not found.");
@@ -124,7 +124,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log the exception here
+                
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }

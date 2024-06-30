@@ -385,7 +385,7 @@ namespace DAOs
             return count;
         }
 
-        //viết hàm unavailable slot với param là ngày và giờ từ opentime và closetime, hàm sẽ check các time slot (cách nhau 1h) trong ngày đó xem  slot đó cái nào bằng với lại số lượng court của branch đó, nếu bằng thì trả về list các slot đó, (lưu ý opentime và close time là của bảng branch)
+        
         public List<TimeSlotModel> UnavailableSlot(DateOnly date, string branchId)
         {
             var courtIds = _dbContext.Courts
@@ -415,9 +415,6 @@ namespace DAOs
              .Distinct()
              .ToList();
 
-
-
-
                 foreach (var timeslot in allTimeSlots)
                 {
                     var slotCheckModel = new SlotCheckModel
@@ -436,21 +433,6 @@ namespace DAOs
                     }
 
                 }
-
-
-                //    var unavailableSlots = _context.Bookings
-                //.Where(b => b.BranchId == branchId && b.Date == date.ToDateTime(TimeOnly.MinValue))
-                //.GroupBy(b => new { b.TimeSlot.StartTime, b.TimeSlot.EndTime })
-                //.Where(g => g.Count() >= CountTimeSlot(slotCheckModel))
-                //.Select(g => g.Key)
-                //.ToList();
-
-                //    return unavailableSlots.Select(us => new TimeSlot
-                //    {
-                //        StartTime = us.StartTime,
-                //        EndTime = us.EndTime
-                //    }).ToList();
-                //}
 
             }
 

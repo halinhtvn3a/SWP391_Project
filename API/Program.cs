@@ -32,6 +32,10 @@ namespace API
 
             // Configure SignalR
             builder.Services.AddSignalR();
+            builder.Services.AddLogging(builder => builder
+        .AddConsole()
+        .AddDebug()
+    );
 
             // Configure Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
