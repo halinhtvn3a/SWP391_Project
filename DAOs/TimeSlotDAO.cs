@@ -426,10 +426,11 @@ namespace DAOs
                     };
                     if (CountTimeSlot(slotCheckModel) <= 0)
                     {
-                        if (!unavailableSlots.Any(us => us.SlotStartTime == timeslot.SlotStartTime && us.SlotEndTime == timeslot.SlotEndTime))
+                        if (!unavailableSlots.Any(us => us.SlotStartTime == timeslot.SlotStartTime && us.SlotEndTime == timeslot.SlotEndTime && us.SlotDate  == timeslot.SlotDate))
                         {
                             unavailableSlots.Add(timeslot);
                         }
+
                     }
 
                 }
