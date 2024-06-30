@@ -10,7 +10,7 @@ using Repositories;
 using Repositories.Helper;
 using Services;
 using Services.Interface;
-using API.Helper; // Đảm bảo rằng bạn nhập đúng namespace của TimeslotCleanupManager
+using API.Helper; 
 
 namespace API
 {
@@ -125,14 +125,14 @@ namespace API
                 options.AddPolicy("AllowSpecificOrigin",
                     policy =>
                     {
-                        policy.WithOrigins("https://localhost:3000")
+                        policy.AllowAnyOrigin()
                               .AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowCredentials();
                     });
             });
 
-            // Đăng ký TimeslotCleanupManager với DI container
+            
             builder.Services.AddScoped<TimeslotCleanupManager>();
 
             var app = builder.Build();
