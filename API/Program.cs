@@ -41,7 +41,6 @@ namespace API
                 logging.AddConsole();
                 logging.AddDebug();
             });
-            builder.Services.AddApplicationInsightsTelemetry(configuration["ApplicationInsights:InstrumentationKey"]);
 
 
             // Configure Identity
