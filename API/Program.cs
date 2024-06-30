@@ -10,7 +10,9 @@ using Repositories;
 using Repositories.Helper;
 using Services;
 using Services.Interface;
-using API.Helper; 
+using API.Helper;
+using Services.SignalRHub;
+
 
 namespace API
 {
@@ -26,16 +28,21 @@ namespace API
             builder.Services.AddDbContext<CourtCallerDbContext>(options =>
             {
                 var connectionString = configuration.GetConnectionString("CourtCallerDb");
-                Console.WriteLine($"Connection String là heeeheheheheh: {connectionString}"); 
+                Console.WriteLine($"Connection String: {connectionString}");
                 options.UseSqlServer(connectionString);
             });
 
-            // Configure SignalR
-            builder.Services.AddSignalR();
-            builder.Services.AddLogging(builder => builder
-        .AddConsole()
-        .AddDebug()
-    );
+            // Configure Azure SignalR
+            builder.Services.AddSignalR()
+                .AddAzureSignalR(configuration.GetConnectionString("AzureSignalRConnectionString"));
+
+            builder.Services.AddLogging(logging =>
+            {
+                logging.AddConsole();
+                logging.AddDebug();
+            });
+            builder.Services.AddApplicationInsightsTelemetry(configuration["ApplicationInsights:InstrumentationKey"]);
+
 
             // Configure Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
@@ -84,23 +91,22 @@ namespace API
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
                 {
+                    new OpenApiSecurityScheme
                     {
-                        new OpenApiSecurityScheme
+                        Reference = new OpenApiReference
                         {
-                            Reference = new OpenApiReference
-                            {
-                                Type = ReferenceType.SecurityScheme,
-                                Id = "Bearer"
-                            }
-                        },
-                        new string[] {}
-                    }
-                });
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] {}
+                }
+            });
             });
 
             builder.Services.AddScoped<ITokenService, TokenService>();
-
             builder.Services.AddScoped<PriceDAO>();
             builder.Services.AddScoped<PriceService>();
             builder.Services.Configure<TokenSettings>(configuration.GetSection("TokenSettings"));
@@ -127,13 +133,9 @@ namespace API
                     {
                         policy.AllowAnyOrigin()
                               .AllowAnyHeader()
-                              .AllowAnyMethod()
-                              .AllowCredentials();
+                              .AllowAnyMethod();
                     });
             });
-
-            
-            builder.Services.AddScoped<TimeslotCleanupManager>();
 
             var app = builder.Build();
 
@@ -144,10 +146,8 @@ namespace API
             }
 
             app.UseHttpsRedirection();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseCors("AllowSpecificOrigin");
 
             app.UseSwagger();
@@ -155,12 +155,12 @@ namespace API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1");
             });
-            app.MapControllers();
-            app.UseRouting();
 
+            app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<Services.SignalRHub.TimeSlotHub>("/timeslotHub");
+                endpoints.MapHub<TimeSlotHub>("/timeslotHub");
+                endpoints.MapControllers();
             });
 
             app.UseHangfireDashboard();
@@ -173,7 +173,10 @@ namespace API
             app.Run();
         }
     }
+
 }
+
+
 
 
 
