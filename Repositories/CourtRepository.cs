@@ -20,6 +20,11 @@ namespace Repositories
                 _courtDao = new CourtDAO();
             }
         }
+
+        public CourtRepository(CourtDAO courtDao)
+        {
+            _courtDao = courtDao;
+        }
         public Court AddCourt(CourtModel courtModel) => _courtDao.AddCourt(courtModel);
 
         public void DeleteCourt(string id) => _courtDao.DeleteCourt(id);
