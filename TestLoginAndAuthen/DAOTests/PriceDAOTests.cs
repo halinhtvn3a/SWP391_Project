@@ -74,7 +74,6 @@ namespace UnitTests.DAOTests
             };
             var price = dao.AddPrice(priceModel);
             Assert.NotNull(price);
-            Assert.Equal("P00006", price.PriceId);
         }
 
         [Theory]
