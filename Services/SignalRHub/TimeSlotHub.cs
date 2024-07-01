@@ -19,23 +19,24 @@ namespace Services.SignalRHub
             _logger = logger;
         }
 
+        [HubMethodName("DisableSlot")]
         public async Task DisableSlot(SlotCheckModel slotCheckModel)
         {
             _logger.LogInformation("Received DisableSlot call");
             _logger.LogInformation($"BranchId: {slotCheckModel.BranchId}, SlotDate: {slotCheckModel.SlotDate}, StartTime: {slotCheckModel.TimeSlot.SlotStartTime}, EndTime: {slotCheckModel.TimeSlot.SlotEndTime}");
+            await Clients.All.SendAsync("SenDisableSlot", slotCheckModel);
 
-
-            int count = _timeSlotService.CountTimeSlot(slotCheckModel);
-            if (count <= 0)
-            {
-                // Nếu thỏa mãn điều kiện, gửi lại dữ liệu cho tất cả các client
-                await Clients.All.SendAsync("DisableSlot", slotCheckModel);
-                _logger.LogInformation("Slot disabled and sent to all clients: " + slotCheckModel);
-            }
-            else
-            {
-                _logger.LogInformation("Slot not disabled: " + slotCheckModel);
-            }
+            //int count = _timeSlotService.CountTimeSlot(slotCheckModel);
+            //if (count <= 0)
+            //{
+            //    // Nếu thỏa mãn điều kiện, gửi lại dữ liệu cho tất cả các client
+              
+            //    _logger.LogInformation("Slot disabled and sent to all clients: " + slotCheckModel);
+            //}
+            //else
+            //{
+            //    _logger.LogInformation("Slot not disabled: " + slotCheckModel);
+            //}
         }
     }    
 }

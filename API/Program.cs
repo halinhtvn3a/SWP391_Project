@@ -12,6 +12,8 @@ using Services;
 using Services.Interface;
 using API.Helper;
 using Services.SignalRHub;
+using Microsoft.Extensions.Logging;
+
 
 
 namespace API
@@ -28,7 +30,6 @@ namespace API
             builder.Services.AddDbContext<CourtCallerDbContext>(options =>
             {
                 var connectionString = configuration.GetConnectionString("CourtCallerDb");
-                Console.WriteLine($"Connection String: {connectionString}");
                 options.UseSqlServer(connectionString);
             });
 
@@ -38,6 +39,7 @@ namespace API
 
             builder.Services.AddLogging(logging =>
             {
+                logging.ClearProviders();
                 logging.AddConsole();
                 logging.AddDebug();
             });
@@ -51,6 +53,8 @@ namespace API
             builder.Services.AddHangfire(config =>
                 config.UseSqlServerStorage(configuration.GetConnectionString("CourtCallerDb")));
             builder.Services.AddHangfireServer();
+
+
 
             // Add services to the container
             builder.Services.AddControllers();
@@ -89,19 +93,19 @@ namespace API
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
-        {
             {
-                new OpenApiSecurityScheme
                 {
-                    Reference = new OpenApiReference
+                    new OpenApiSecurityScheme
                     {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer"
-                    }
-                },
-                new string[] {}
-            }
-        });
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "Bearer"
+                        }
+                    },
+                    new string[] {}
+                }
+            });
             });
 
             builder.Services.AddScoped<ITokenService, TokenService>();
@@ -131,7 +135,8 @@ namespace API
                     {
                         policy.WithOrigins("https://localhost:3000")
                               .AllowAnyHeader()
-                              .AllowAnyMethod();
+                              .AllowAnyMethod()
+                              .AllowCredentials();
                     });
             });
 
@@ -157,7 +162,7 @@ namespace API
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<TimeSlotHub>("/timeslotHub");
+                endpoints.MapHub<TimeSlotHub>("/timeslothub");
                 endpoints.MapControllers();
             });
 
@@ -172,7 +177,8 @@ namespace API
         }
     }
 
-    }
+
+}
 
 
 
