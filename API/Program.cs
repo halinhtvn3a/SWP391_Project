@@ -42,7 +42,6 @@ namespace API
                 logging.AddDebug();
             });
 
-
             // Configure Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<CourtCallerDbContext>()
@@ -90,19 +89,19 @@ namespace API
                 });
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
             {
+                new OpenApiSecurityScheme
                 {
-                    new OpenApiSecurityScheme
+                    Reference = new OpenApiReference
                     {
-                        Reference = new OpenApiReference
-                        {
-                            Type = ReferenceType.SecurityScheme,
-                            Id = "Bearer"
-                        }
-                    },
-                    new string[] {}
-                }
-            });
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer"
+                    }
+                },
+                new string[] {}
+            }
+        });
             });
 
             builder.Services.AddScoped<ITokenService, TokenService>();
@@ -130,7 +129,7 @@ namespace API
                 options.AddPolicy("AllowSpecificOrigin",
                     policy =>
                     {
-                        policy.AllowAnyOrigin()
+                        policy.WithOrigins("https://localhost:3000")
                               .AllowAnyHeader()
                               .AllowAnyMethod();
                     });
@@ -173,7 +172,7 @@ namespace API
         }
     }
 
-}
+    }
 
 
 

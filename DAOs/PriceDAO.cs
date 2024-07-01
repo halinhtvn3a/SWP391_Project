@@ -38,7 +38,7 @@ namespace DAOs
         {
             Price price = new Price()
             {
-                PriceId = "P" + (_dbContext.Prices.Count() + 1).ToString("D5"), // "P00001
+                PriceId = "P" + DAOs.Helper.GenerateId.GenerateShortBookingId(), // "P00001
                 BranchId = priceModel.BranchId,
                 Type = priceModel.Type,
                 IsWeekend = priceModel.IsWeekend,
