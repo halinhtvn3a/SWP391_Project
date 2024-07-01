@@ -24,13 +24,24 @@ namespace Services.SignalRHub
         {
             _logger.LogInformation("Received DisableSlot call");
             _logger.LogInformation($"BranchId: {slotCheckModel.BranchId}, SlotDate: {slotCheckModel.SlotDate}, StartTime: {slotCheckModel.TimeSlot.SlotStartTime}, EndTime: {slotCheckModel.TimeSlot.SlotEndTime}");
-            await Clients.All.SendAsync("SenDisableSlot", slotCheckModel);
+
+
+            try
+            {
+                _logger.LogInformation("Sending DisableSlot to all clients");
+                await Clients.All.SendAsync("DisableSlot", slotCheckModel);
+                _logger.LogInformation("DisableSlot sent successfully");
+            }
+    catch (Exception ex)
+    {
+                _logger.LogError($"Error sending DisableSlot: {ex.Message}");
+            }
 
             //int count = _timeSlotService.CountTimeSlot(slotCheckModel);
             //if (count <= 0)
             //{
             //    // Nếu thỏa mãn điều kiện, gửi lại dữ liệu cho tất cả các client
-              
+
             //    _logger.LogInformation("Slot disabled and sent to all clients: " + slotCheckModel);
             //}
             //else
