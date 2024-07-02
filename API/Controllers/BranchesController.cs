@@ -70,9 +70,26 @@ namespace API.Controllers
         // PUT: api/Branches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBranch(string id, BranchModel branchModel)
+        public async Task<IActionResult> PutBranch(string id, [FromForm] BranchModel branchModel)
         {
             var branch = _branchService.GetBranch(id);
+            var imageUrls = new List<string>();
+
+            foreach (var file in branchModel.BranchPictures)
+            {
+                var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+                using (var stream = file.OpenReadStream())
+                {
+                    var task = new FirebaseStorage("court-callers.appspot.com")
+                        .Child("BranchImage")
+                        .Child(fileName)
+                        .PutAsync(stream);
+
+                    var downloadUrl = await task;
+                    imageUrls.Add(downloadUrl);
+                }
+            }
+            branchModel.BranchPicture = JsonSerializer.Serialize(imageUrls);
             if (id != branch.BranchId)
             {
                 return BadRequest();
