@@ -12,6 +12,11 @@ Court Callers is a web application designed to simplify the process of booking b
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
 ![Axios](https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white)
+![Identity](https://img.shields.io/badge/Identity-0078D4?style=for-the-badge&logo=asp.net&logoColor=white)
+![Hangfire](https://img.shields.io/badge/Hangfire-FF5722?style=for-the-badge&logo=hangfire&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+![SignalR](https://img.shields.io/badge/SignalR-5C2D91?style=for-the-badge&logo=signalr&logoColor=white)
+![Leaflet](https://img.shields.io/badge/Leaflet-199900?style=for-the-badge&logo=leaflet&logoColor=white)
 
 <details>
   <summary>Table of Contents</summary>
