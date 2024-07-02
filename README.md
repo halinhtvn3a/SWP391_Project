@@ -38,14 +38,19 @@ Court Callers is a web application designed to simplify the process of booking b
 - **User Authentication:** Secure sign-up and login for users.
 - **Admin Dashboard:** Manage bookings, courts, and users from an easy-to-use admin interface.
 - **Notifications:** Receive notifications for booking confirmations and reminders.
+- **Map Integration:** Locate courts using interactive maps with Leaflet.
 
 ## 🛠️ Technologies Used
 - **Backend:** ASP.NET Core Web API
 - **Frontend:** React
 - **Database:** SQL Server
-- **Authentication:** JWT (JSON Web Tokens)
+- **Authentication:** JWT (JSON Web Tokens) & Identity
 - **Styling:** CSS, Bootstrap
 - **HTTP Client:** Axios
+- **Background Jobs:** Hangfire
+- **Realtime Communication:** SignalR
+- **Notifications:** Firebase
+- **Map Integration:** Leaflet
 
 ## 📸 Screenshots
 ![APIPage](https://github.com/halinhtvn3a/SWP391_Project/blob/main/screenshots/Swagger.jpeg)
@@ -60,11 +65,9 @@ Feel free to reach out via [courtcallers@gmail.com](mailto:courtcallers@gmail.co
 
 ---
 
-
 ## 🌟 Acknowledgements
 
-- [halinhtvn3a](https://github.com/halinhtvn3a ) - Project Lead
-- [th3y3m](https://github.com/th3y3m ) - Backend development and database management
+- [halinhtvn3a](https://github.com/halinhtvn3a) - Project Lead
+- [th3y3m](https://github.com/th3y3m) - Backend development and database management
 
 Special thanks to [Freepik](https://www.freepik.com) for providing the icons used in this project.
-
