@@ -9,27 +9,36 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Repositories
 {
-	public class RoleRepository
-	{
-			private readonly RoleDAO _roleDao = null;
-			public RoleRepository()
-			{
-				if (_roleDao == null)
-				{
-                    _roleDao = new RoleDAO();
-				}
-			}
-			public IdentityRole AddRole(IdentityRole role) => _roleDao.AddRole(role);
+    public class RoleRepository
+    {
+        private readonly RoleDAO _roleDao = null;
+        public RoleRepository()
+        {
+            if (_roleDao == null)
+            {
+                _roleDao = new RoleDAO();
+            }
+        }
 
-			public void DeleteRole(string id) => _roleDao.DeleteRole(id);
+        public RoleRepository(RoleDAO roleDAO)
+        {
 
-			public IdentityRole GetRole(string id) => _roleDao.GetRole(id);
+            _roleDao = roleDAO;
 
-			public List<IdentityRole> GetRoles() => _roleDao.GetRoles();
+        }
 
-			public void UpdateRole(string id, string role) => _roleDao.UpdateRole(id, role);
 
-			public string[] GetRoleNameByUserId(string userId) => _roleDao.GetRoleNameByUserId(userId);
-	}
-	
+        public IdentityRole AddRole(IdentityRole role) => _roleDao.AddRole(role);
+
+        public void DeleteRole(string id) => _roleDao.DeleteRole(id);
+
+        public IdentityRole GetRole(string id) => _roleDao.GetRole(id);
+
+        public List<IdentityRole> GetRoles() => _roleDao.GetRoles();
+
+        public void UpdateRole(string id, string role) => _roleDao.UpdateRole(id, role);
+
+        public string[] GetRoleNameByUserId(string userId) => _roleDao.GetRoleNameByUserId(userId);
+    }
+
 }
