@@ -55,7 +55,7 @@ namespace API.Controllers
             if (model.Email == null || model.Password == null || model.Email == "" || model.Password == "")
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "Email or password is empty." });
             //var ip = Utils.GetIpAddress(HttpContext);
-            var user = await _userManager.FindByNameAsync(model.Email);
+            var user = await _userManager.FindByEmailAsync(model.Email);
 
             if (user == null)
             {
@@ -106,7 +106,7 @@ namespace API.Controllers
         [Route("register")]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
-            var userExists = await _userManager.FindByNameAsync(model.Email);
+            var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User already exists!" });
 
@@ -150,7 +150,7 @@ namespace API.Controllers
         [Route("register-admin")]
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
         {
-            var userExists = await _userManager.FindByNameAsync(model.Email);
+            var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User already exists!" });
 
@@ -193,7 +193,7 @@ namespace API.Controllers
         [Route("register-staff")]
         public async Task<IActionResult> RegisterStaff([FromBody] RegisterModel model)
         {
-            var userExists = await _userManager.FindByNameAsync(model.Email);
+            var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User already exists!" });
 
@@ -394,10 +394,10 @@ namespace API.Controllers
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-                return Redirect($"https://localhost:3000/khong-thanh-cong-dcm");
+                return BadRequest(new ResponseModel { Status = "Error" , Message = "Something Wrong, Please Try Again" });
             }
 
-            return Redirect($"https://localhost:3000/thanh-cong-dcm");
+            return Ok( new ResponseModel{ Status = "Complele" , Message = "Confirmed"});
         }
 
     }
