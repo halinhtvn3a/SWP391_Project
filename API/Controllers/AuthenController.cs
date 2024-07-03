@@ -13,6 +13,8 @@ using Repositories.Helper;
 using Services.Interface;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using NuGet.Common;
+using System.Net;
+using Microsoft.AspNetCore.WebUtilities;
 
 
 
@@ -324,9 +326,12 @@ namespace API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User does not exist!" });
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
-            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token, email = user.Email }, Request.Scheme);
+            var base64 = Encoding.UTF8.GetBytes(token);
+            var encodeToken = WebEncoders.Base64UrlEncode(base64);
+            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token = encodeToken, email = user.Email }, Request.Scheme);
             Console.WriteLine("Generated Token: " + token);
-            Console.WriteLine("hàm call back" + callbackUrl);
+            Console.WriteLine("encode " + encodeToken);
+            Console.WriteLine("callback " + callbackUrl);
             var mailRequest = new MailRequest
             {
                 ToEmail = user.Email,
@@ -353,11 +358,11 @@ namespace API.Controllers
                 return BadRequest("User not found.");
             }
 
-            var isTokenValid = await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", token);
-            if (!isTokenValid)
-            {
-                return BadRequest("Invalid token.");
-            }
+            //var isTokenValid = await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", token);
+            //if (!isTokenValid)
+            //{
+            //    return BadRequest("Invalid token.");
+            //}
 
             // Redirect to the React app's reset password page with token and email
             var resetPasswordUrl = $"https://localhost:3000/reset-password?token={token}&email={email}";
@@ -376,8 +381,11 @@ namespace API.Controllers
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
                 return RedirectToAction("ResetPasswordConfirmation", "Authentication");
-
-            var resetPassResult = await _userManager.ResetPasswordAsync(user, model.Token.Trim(), model.Password);
+            var base64 = WebEncoders.Base64UrlDecode(model.Token);
+            var decodedToken = Encoding.UTF8.GetString(base64);
+            Console.WriteLine("token check giống call back: " + model.Token);
+            Console.WriteLine("token sau khi decode : " + decodedToken);
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, decodedToken, model.Password);
           
 
             if (!resetPassResult.Succeeded)

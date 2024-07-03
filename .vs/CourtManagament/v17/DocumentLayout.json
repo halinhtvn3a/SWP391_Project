@@ -11,14 +11,6 @@
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\branchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -34,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,41 +42,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Program.cs",
               "RelativeDocumentMoniker": "API\\Program.cs",
               "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Program.cs",
               "RelativeToolTip": "API\\Program.cs",
-              "ViewState": "AQIAAM4AAAAAAAAAAADgvx4AAAAMAAAA",
+              "ViewState": "AQIAAG0AAAAAAAAAAAAgwB4AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-03T10:39:55.601Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\appsettings.json",
-              "RelativeDocumentMoniker": "API\\appsettings.json",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\appsettings.json",
-              "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAABsAAAADAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-07-03T10:21:20.138Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "BranchDAO.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\BranchDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\BranchDAO.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\BranchDAO.cs",
-              "RelativeToolTip": "DAOs\\BranchDAO.cs",
-              "ViewState": "AQIAAEEAAAAAAAAAAAAAwE8AAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-03T10:02:31.136Z",
               "EditorCaption": ""
             },
             {
@@ -106,16 +72,16 @@
               "Title": "AuthenController.cs",
               "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\AuthenController.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
-              "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
-              "ViewState": "AQIAAHUBAAAAAAAAAAAAAH8BAAANAAAA",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\AuthenController.cs*",
+              "RelativeToolTip": "API\\Controllers\\AuthenController.cs*",
+              "ViewState": "AQIAAHQBAAAAAAAAAAArwIEBAABNAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-03T07:16:43.55Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "BookingsController.cs",
               "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BookingsController.cs",
