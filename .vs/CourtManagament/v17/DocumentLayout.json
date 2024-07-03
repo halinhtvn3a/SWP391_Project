@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\FPTUNI\\5\\SWP391_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\bookingrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\branchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\branchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -31,12 +39,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "BookingRepository.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\BookingRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\BookingRepository.cs",
+              "RelativeToolTip": "Repositories\\BookingRepository.cs",
+              "ViewState": "AQIAAH8BAAAAAAAAAAArwI0BAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-02T09:59:58.475Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BookingsController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\BookingsController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
+              "RelativeToolTip": "API\\Controllers\\BookingsController.cs",
+              "ViewState": "AQIAAL8AAAAAAAAAAAAEwNIAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-02T09:59:58.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "BranchesController.cs",
               "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BranchesController.cs",
               "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
               "RelativeToolTip": "API\\Controllers\\BranchesController.cs",
-              "ViewState": "AQIAADsAAAAAAAAAAAAiwGUAAAAAAAAA",
+              "ViewState": "AQIAAEcAAAAAAAAAAAAqwGIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-02T09:25:27.445Z",
               "EditorCaption": ""
