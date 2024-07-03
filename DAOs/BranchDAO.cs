@@ -79,7 +79,7 @@ namespace DAOs
             return branch;
         }
 
-        public Branch UpdateBranch(string id, BranchModel branchModel)
+        public Branch UpdateBranch(string id, PutBranch branchModel)
         {
             Branch oBranch = GetBranch(id);
             if (oBranch != null)

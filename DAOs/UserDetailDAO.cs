@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using DAOs.Models;
 using DAOs.Helper;
+using Microsoft.AspNetCore.Identity;
 
 namespace DAOs
 {
@@ -71,14 +72,50 @@ namespace DAOs
         public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel)
         {
             UserDetail oUserDetail = GetUserDetail(id);
+            IdentityUser identityUser = _dbContext.Users.FirstOrDefault(m => m.Id.Equals(id));
             if (oUserDetail != null)
             {
-                oUserDetail.Point = userDetailsModel.Point;
+
                 oUserDetail.FullName = userDetailsModel.FullName;
                 oUserDetail.Address = userDetailsModel.Address;
                 oUserDetail.ProfilePicture = userDetailsModel.ProfilePicture;
                 oUserDetail.YearOfBirth = userDetailsModel.YearOfBirth;
 
+                _dbContext.Update(oUserDetail);
+                _dbContext.SaveChanges();
+            }
+            return oUserDetail;
+        }
+        public UserDetail UpdateUser (string id, PutUserDetail userDetailsModel)
+        {
+            UserDetail oUserDetail = GetUserDetail(id);
+            IdentityUser identityUser = _dbContext.Users.FirstOrDefault(m => m.Id.Equals(id));
+            if (oUserDetail != null)
+            {
+                if (!string.IsNullOrEmpty(userDetailsModel.UserName))
+                {
+                    identityUser.UserName = userDetailsModel.UserName;
+                }
+                if (!string.IsNullOrEmpty(userDetailsModel.FullName))
+                {
+                    oUserDetail.FullName = userDetailsModel.FullName;
+                }
+                if (!string.IsNullOrEmpty(userDetailsModel.PhoneNumber))
+                {
+                    identityUser.PhoneNumber = userDetailsModel.PhoneNumber;
+                }
+                if (!string.IsNullOrEmpty(userDetailsModel.Address))
+                {
+                    oUserDetail.Address = userDetailsModel.Address;
+                }
+                if (!string.IsNullOrEmpty(userDetailsModel.ProfilePicture))
+                {
+                    oUserDetail.ProfilePicture = userDetailsModel.ProfilePicture;
+                }
+                if (userDetailsModel.YearOfBirth.HasValue)
+                {
+                    oUserDetail.YearOfBirth = userDetailsModel.YearOfBirth.Value;
+                }
                 _dbContext.Update(oUserDetail);
                 _dbContext.SaveChanges();
             }

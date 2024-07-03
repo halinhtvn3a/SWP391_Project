@@ -37,6 +37,8 @@ namespace Repositories
 
         public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel) => _userDetailDao.UpdateUserDetail(id, userDetailsModel);
 
+        public UserDetail UpdateUser (string id , PutUserDetail putUserDetail) => _userDetailDao.UpdateUser(id, putUserDetail);
+
         public List<UserDetail> SearchUserByEmail(string searchValue) => _userDetailDao.SearchUserByEmail(searchValue);
 
         public async Task<List<UserDetail>> SortUserDetail(string? sortBy, bool isAsc, PageResult pageResult) => await _userDetailDao.SortUserDetail(sortBy, isAsc, pageResult);

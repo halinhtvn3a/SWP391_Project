@@ -48,6 +48,9 @@ namespace API
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<CourtCallerDbContext>()
                 .AddDefaultTokenProviders();
+            builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+      options.TokenLifespan = TimeSpan.FromHours(24));
+
 
             // Configure Hangfire
             builder.Services.AddHangfire(config =>

@@ -139,7 +139,7 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void UpdateBranch_ReturnsBranch()
         {
-            branchRepository.UpdateBranch("B00001", new BranchModel()
+            branchRepository.UpdateBranch("B00001", new PutBranch()
             {
                 BranchAddress = "HCM",
             });

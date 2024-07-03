@@ -61,6 +61,20 @@ namespace API.Controllers
             return CreatedAtAction("GetUserDetailByUserId", new { userId = user.UserId }, user);
         }
 
+        [HttpPut("foruser/{id}")]
+        public async Task<IActionResult> PutUserDetail(string id, PutUserDetail userDetailsModel)
+        {
+            var user = _userDetailService.GetUserDetail(id);
+            if (id != user.UserId)
+            {
+                return BadRequest();
+            }
+
+            _userDetailService.UpdateUser(id, userDetailsModel);
+
+            return CreatedAtAction("GetUserDetailByUserId", new { userId = user.UserId }, user);
+        }
+
         // POST: api/UserDetails
         // To protect from overposting attacks, seek https://go.microsoft.com/fwlink/?linkid=2123754
         //[HttpPost]

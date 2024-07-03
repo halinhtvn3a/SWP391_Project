@@ -165,7 +165,7 @@ namespace UnitTests.DAOTests
         public void UpdateBranch_ReturnsBranch()
         {
             var dao = new BranchDAO(mockContext.Object);
-            var branchModel = new BranchModel
+            var branchModel = new PutBranch
             {
                 BranchName = "Test Branch 4",
             };

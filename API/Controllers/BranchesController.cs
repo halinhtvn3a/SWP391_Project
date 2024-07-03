@@ -69,27 +69,48 @@ namespace API.Controllers
 
         // PUT: api/Branches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutBranch(string id, [FromForm] BranchModel branchModel)
+        public async Task<IActionResult> PutBranch(string id, [FromForm] PutBranch branchModel, [FromForm] List<string> ExistingImages)
         {
             var branch = _branchService.GetBranch(id);
-            var imageUrls = new List<string>();
-
-            foreach (var file in branchModel.BranchPictures)
+            if (branch == null)
             {
-                var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                using (var stream = file.OpenReadStream())
-                {
-                    var task = new FirebaseStorage("court-callers.appspot.com")
-                        .Child("BranchImage")
-                        .Child(fileName)
-                        .PutAsync(stream);
-
-                    var downloadUrl = await task;
-                    imageUrls.Add(downloadUrl);
-                }
+                return NotFound();
             }
+
+           
+            Console.WriteLine("Existing Images: " + string.Join(", ", ExistingImages ?? new List<string>()));
+
+            
+            var existingImageUrls = ExistingImages ?? new List<string>();
+            var imageUrls = new List<string>(existingImageUrls);
+
+            // Upload new images and add their URLs to the list
+            //foreach (var file in branchModel.BranchPictures)
+            //{
+            //    if (file.Length > 0)
+            //    {
+            //        var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+            //        using (var stream = file.OpenReadStream())
+            //        {
+            //            var task = new FirebaseStorage("court-callers.appspot.com")
+            //                .Child("BranchImage")
+            //                .Child(fileName)
+            //                .PutAsync(stream);
+
+            //            var downloadUrl = await task;
+            //            imageUrls.Add(downloadUrl);
+            //        }
+            //    }
+            //}
+
+            // Log để kiểm tra các URL ảnh kết hợp
+            Console.WriteLine("Combined Image URLs: " + string.Join(", ", imageUrls));
+
+            // Serialize combined image URLs
             branchModel.BranchPicture = JsonSerializer.Serialize(imageUrls);
+
             if (id != branch.BranchId)
             {
                 return BadRequest();
@@ -99,6 +120,8 @@ namespace API.Controllers
 
             return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
         }
+
+
 
         // POST: api/Branches
 

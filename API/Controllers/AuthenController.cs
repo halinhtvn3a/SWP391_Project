@@ -11,6 +11,8 @@ using DAOs.Helper;
 using Services;
 using Repositories.Helper;
 using Services.Interface;
+using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using NuGet.Common;
 
 
 
@@ -324,6 +326,7 @@ namespace API.Controllers
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token, email = user.Email }, Request.Scheme);
             Console.WriteLine("Generated Token: " + token);
+            Console.WriteLine("hàm call back" + callbackUrl);
             var mailRequest = new MailRequest
             {
                 ToEmail = user.Email,
@@ -335,27 +338,58 @@ namespace API.Controllers
             return Ok(new ResponseModel { Status = "Success", Message = "Reset password link has been sent to your email address." });
         }
 
+        [HttpGet]
+        [Route("reset-password")]
+        public async Task<IActionResult> ResetPassword(string token, string email)
+        {
+            if (string.IsNullOrEmpty(token) || string.IsNullOrEmpty(email))
+            {
+                return BadRequest("Invalid password reset token or email.");
+            }
+
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null)
+            {
+                return BadRequest("User not found.");
+            }
+
+            var isTokenValid = await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", token);
+            if (!isTokenValid)
+            {
+                return BadRequest("Invalid token.");
+            }
+
+            // Redirect to the React app's reset password page with token and email
+            var resetPasswordUrl = $"https://localhost:3000/reset-password?token={token}&email={email}";
+            return Redirect(resetPasswordUrl);
+        }
+
+
 
         //ResetPassword
         [HttpPost]
         [Route("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)
         {
+            
+
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User does not exist!" });
+                return RedirectToAction("ResetPasswordConfirmation", "Authentication");
 
-            var resetPassResult = await _userManager.ResetPasswordAsync(user, model.Token, model.Password);
-            var isTokenValid = await _userManager.VerifyUserTokenAsync(user, _userManager.Options.Tokens.PasswordResetTokenProvider, "ResetPassword", model.Token);
-            Console.WriteLine("Is Token Valid: " + isTokenValid);
+            var resetPassResult = await _userManager.ResetPasswordAsync(user, model.Token.Trim(), model.Password);
+          
 
             if (!resetPassResult.Succeeded)
             {
-                var errors = resetPassResult.Errors.Select(e => e.Description);
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = string.Join(" ", errors) });
+                foreach (var error in resetPassResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return Redirect($"https://localhost:3000/khong-thanh-cong-dcm");
             }
 
-            return Ok(new ResponseModel { Status = "Success", Message = "Password has been reset successfully!" });
+            return Redirect($"https://localhost:3000/thanh-cong-dcm");
         }
 
     }

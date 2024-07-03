@@ -25,5 +25,31 @@ namespace DAOs.Models
         public string? ProfilePicture { get; set; }
 
         public int? YearOfBirth { get; set; }
+
+        
+        
+    }
+
+    public class PutUserDetail
+    {
+
+        [Required(ErrorMessage = "Full name is required")]
+        [StringLength(50)]
+        public string FullName { get; set; }
+
+        [StringLength(50)]
+        public string UserName { get; set; }    
+
+        [StringLength(500)]
+        public string? Address { get; set; }
+
+        [StringLength(500)]
+        public string? ProfilePicture { get; set; }
+
+        public int? YearOfBirth { get; set; }
+
+        [StringLength(500)]
+        public string? PhoneNumber { get; set; }
+
     }
 }

@@ -24,7 +24,7 @@ namespace Services
         public void DeleteBranch(string id) => _branchRepository.DeleteBranch(id);
         public Branch GetBranch(string id) => _branchRepository.GetBranch(id);
         public async Task<(List<Branch>, int total)> GetBranches(PageResult pageResult, string searchQuery = null) => await _branchRepository.GetBranches(pageResult, searchQuery);
-        public Branch UpdateBranch(string id, BranchModel branchModel) => _branchRepository.UpdateBranch(id, branchModel);
+        public Branch UpdateBranch(string id, PutBranch branchModel) => _branchRepository.UpdateBranch(id, branchModel);
 
         public List<Branch> GetBranchesByStatus(string status) => _branchRepository.GetBranchesByStatus(status);
 

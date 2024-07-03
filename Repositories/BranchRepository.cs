@@ -54,7 +54,7 @@ namespace Repositories
 
         public async Task<(List<Branch>, int total)> GetBranches(PageResult pageResult, string searchQuery = null) => await _branchDao.GetBranches(pageResult,searchQuery);
 
-        public Branch UpdateBranch(string id, BranchModel branchModel) => _branchDao.UpdateBranch(id, branchModel);
+        public Branch UpdateBranch(string id, PutBranch branchModel) => _branchDao.UpdateBranch(id, branchModel);
 
         public List<Branch> GetBranchesByStatus(string status) => _branchDao.GetBranchesByStatus(status);
 
