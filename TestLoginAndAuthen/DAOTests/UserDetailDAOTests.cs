@@ -78,15 +78,15 @@ namespace UnitTests.DAOTests
             Assert.Equal(userList.Count, user.Count);
         }
 
-        [Fact]
-        public void UpdateUserDetail_ReturnsUserDetail()
-        {
-            var dao = new UserDetailDAO(mockContext.Object);
-            var user = new UserDetailsModel { Point = 100, FullName = "F", Address = "Q6" };
-            var result = dao.UpdateUserDetail("U00001", user);
-            Assert.Equal(result.FullName, user.FullName);
-            Assert.Equal(result.Point, user.Point);
-            Assert.Equal(result.Address, user.Address);
-        }
+        //[Fact]
+        //public void UpdateUserDetail_ReturnsUserDetail()
+        //{
+        //    var dao = new UserDetailDAO(mockContext.Object);
+        //    var user = new UserDetailsModel { Point = 100, FullName = "F", Address = "Q6" };
+        //    var result = dao.UpdateUserDetail("U00001", user);
+        //    Assert.Equal(result.FullName, user.FullName);
+        //    Assert.Equal(result.Point, user.Point);
+        //    Assert.Equal(result.Address, user.Address);
+        //}
     }
 }

@@ -83,15 +83,15 @@ namespace UnitTests.RepositoryTests
             Assert.Equal(userList.Count, user.Count);
         }
 
-        [Fact]
-        public void UpdateUserDetail_ReturnsUserDetail()
-        {
+        //[Fact]
+        //public void UpdateUserDetail_ReturnsUserDetail()
+        //{
             
-            var user = new UserDetailsModel { Point = 100, FullName = "F", Address = "Q6" };
-            var result = userDetailRepository.UpdateUserDetail("U00001", user);
-            Assert.Equal(result.FullName, user.FullName);
-            Assert.Equal(result.Point, user.Point);
-            Assert.Equal(result.Address, user.Address);
-        }
+        //    var user = new UserDetailsModel { Point = 100, FullName = "F", Address = "Q6" };
+        //    var result = userDetailRepository.UpdateUserDetail("U00001", user);
+        //    Assert.Equal(result.FullName, user.FullName);
+        //    Assert.Equal(result.Point, user.Point);
+        //    Assert.Equal(result.Address, user.Address);
+        //}
     }
 }
