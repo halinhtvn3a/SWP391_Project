@@ -20,6 +20,11 @@ namespace Repositories
                 _userDao = new UserDAO();
 			}
 		}
+		public UserRepository(UserDAO userDAO)
+		{
+			_userDao = userDAO;
+			
+		}
 
         public IdentityUser AddUser(IdentityUser user) => _userDao.AddUser(user);
 

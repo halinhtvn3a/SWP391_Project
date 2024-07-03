@@ -20,6 +20,13 @@ namespace Repositories
                 _userDetailDao = new UserDetailDAO();
             }
         }
+        public UserDetailRepository(UserDetailDAO userDetailDAO)
+        {
+            _userDetailDao = userDetailDAO;
+
+        }
+
+
         public UserDetail AddUserDetail(UserDetail userDetail) => _userDetailDao.AddUserDetail(userDetail);
 
         //public void DeleteUserDetail(string id) => _userDetailDao.DeleteUserDetail(id);
