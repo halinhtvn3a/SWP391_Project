@@ -262,17 +262,11 @@ namespace Repositories
                     }
 
                     _bookingDao.UpdateBooking(generateBookingId, paymentAmount);
-
-                    _userDetailDao.GetUserDetail(userId).Point += paymentAmount;
-
+                    UserDetail userDetail = _userDetailDao.GetUserDetail(userId);
+                    userDetail.Point += paymentAmount;
+                    _userDetailDao.UpdateUserDetail(userDetail);
                     return booking;
                 }
-
-
-
-
-
-                //await _bookingDao.CommitTransactionAsync();
 
                 return null;
             }
@@ -341,8 +335,10 @@ namespace Repositories
                 NumberOfSlot = numberOfSlot,
             };
             _bookingDao.AddBooking(booking);
-            _userDetailDao.GetUserDetail(userId).Point += totalPrice;
-            _userDetailDao.UpdatePointAndBalance(_userDetailDao.GetUserDetail(userId).Point, _userDetailDao.GetUserDetail(userId).Balance, userId);
+            UserDetail userDetail = _userDetailDao.GetUserDetail(userId);
+            userDetail.Point += totalPrice;
+            _userDetailDao.UpdateUserDetail(userDetail);
+
             return booking;
         }
 
@@ -462,8 +458,9 @@ namespace Repositories
             }
 
             await _bookingDao.SaveChangesAsync();
-            _userDetailDao.GetUserDetail(userId).Point += totalPrice;
-            _userDetailDao.UpdatePointAndBalance(_userDetailDao.GetUserDetail(userId).Point, _userDetailDao.GetUserDetail(userId).Balance, userId);
+            UserDetail userDetail = _userDetailDao.GetUserDetail(userId);
+            userDetail.Point += totalPrice;
+            _userDetailDao.UpdateUserDetail(userDetail);
             return booking;
         }
 
@@ -489,17 +486,7 @@ namespace Repositories
             userDetail.Balance += booking.TotalPrice / 2;
             userDetail.Point -= booking.TotalPrice;
 
-            UserDetailsModel userDetailsModel = new UserDetailsModel()
-            {
-                Point = userDetail.Point,
-                FullName = userDetail.FullName,
-                Address = userDetail.Address,
-                ProfilePicture = userDetail.ProfilePicture,
-                YearOfBirth = userDetail.YearOfBirth,
-                Balance = userDetail.Balance
-
-            };
-            _userDetailDao.UpdateUserDetail(user.Id, userDetailsModel);
+            _userDetailDao.UpdateUserDetail(userDetail);
             _bookingDao.DeleteBooking(bookingId);
         }
 

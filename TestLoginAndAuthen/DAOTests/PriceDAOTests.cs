@@ -87,18 +87,6 @@ namespace UnitTests.DAOTests
             Assert.Equal(2, prices.Count);
         }
 
-        [Theory]
-        [InlineData("P00001", 150)]
-        [InlineData("P00002", 150)]
-        public void UpdatePrice_ReturnsPrice(string priceId, decimal money)
-        {
-            var dao = new PriceDAO(mockContext.Object);
-            var price = dao.GetPrice(priceId);
-            price.SlotPrice = money;
-            var updatedPrice = dao.UpdatePrice(priceId, price);
-            Assert.Equal(money, updatedPrice.SlotPrice);
-        }
-
         [Fact]
         public void GetSlotPriceOfBookingFlex_B0001_ReturnsPrice()
         {

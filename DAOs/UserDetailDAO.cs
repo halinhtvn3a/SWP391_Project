@@ -93,6 +93,11 @@ namespace DAOs
             await _dbContext.SaveChangesAsync();
             return GetUserDetail(userId);
         }
+        public void UpdateUserDetail(UserDetail user)
+        {
+            _dbContext.UserDetails.Update(user);
+            _dbContext.SaveChanges();
+        }
 
         public UserDetail UpdateUser (string id, PutUserDetail userDetailsModel)
         {
@@ -170,13 +175,6 @@ namespace DAOs
             Pagination pagination = new Pagination(_dbContext);
             List<UserDetail> userDetails = await pagination.GetListAsync<UserDetail>(query, pageResult);
             return userDetails;
-        }
-
-        public void UpdatePointAndBalance(decimal? point, decimal? balance, string userId)
-        {
-            GetUserDetail(userId).Point = point ?? 0;
-            GetUserDetail(userId).Balance = balance ?? 0;
-            _dbContext.SaveChanges();
         }
     }
 }
