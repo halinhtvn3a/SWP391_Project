@@ -98,13 +98,7 @@ namespace API.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 
 
-        //[HttpPost]
-        //public async Task<ActionResult<Booking>> PostBooking(Booking booking)
-        //{
-        //    bookingService.AddBooking(booking);
-
-        //    return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
-        //}
+        
 
         // DELETE: api/Bookings/5
         [HttpDelete("{id}")]

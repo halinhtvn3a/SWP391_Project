@@ -25,6 +25,7 @@ namespace Services
         public UserDetail GetUserDetail(string id) => _userDetailRepository.GetUserDetail(id);
         public List<UserDetail> GetUserDetails() => _userDetailRepository.GetUserDetails();
         public UserDetail UpdateUserDetail(string id, UserDetailsModel userDetailsModel) => _userDetailRepository.UpdateUserDetail(id, userDetailsModel);
+       public async Task<UserDetail> UpdateUserDetailAsync(string userId) => await _userDetailRepository.UpdateUserDetailAsync(userId);
 
         public UserDetail UpdateUser(string id, PutUserDetail putUserDetail) => _userDetailRepository.UpdateUser(id, putUserDetail);
         public List<UserDetail> SearchUserByEmail(string searchValue) => _userDetailRepository.SearchUserByEmail(searchValue);

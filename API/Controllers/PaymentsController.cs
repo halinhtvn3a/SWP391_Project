@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using DAOs.Helper;
 using Services;
+using DAOs.Models;
 
 namespace API.Controllers
 {
@@ -148,6 +149,34 @@ namespace API.Controllers
             var response = await _paymentService.ProcessBookingPayment(bookingId);
             return Ok(response);
         }
+
+        [HttpPost("ProcessPaymentByBalance")]
+        public async Task<ActionResult> ProcessPaymentByBalance(string token)
+        {
+            var bookingId = _tokenForPayment.ValidateToken(token);
+            var response = await _paymentService.ProcessBookingPaymentByBalance(bookingId);
+            if (response.Equals("Error When Processing Balance"))
+            {
+                return BadRequest(new ResponseModel
+                {
+                    Status = "Error",
+                    Message = response.ToString()
+                });
+            }
+            if (response.Equals("User Or Booking Not Found"))
+            {
+                return NotFound(new ResponseModel
+                {
+                    Status = "Error",
+                    Message = response.ToString()
+                });
+            }
+            return Ok(response);
+            
+        }
+
+
+
 
         [HttpGet("SortPayment/{sortBy}")]
         public async Task<ActionResult<IEnumerable<Payment>> > SortPayment(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)

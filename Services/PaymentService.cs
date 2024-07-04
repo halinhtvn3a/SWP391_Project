@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
+using Microsoft.AspNetCore.Http.HttpResults;
+using MimeKit.Cryptography;
 
 namespace Services
 {
@@ -17,6 +19,7 @@ namespace Services
     {
         private readonly PaymentRepository _paymentRepository = null;
         private readonly BookingRepository _bookingRepository = null;
+        private readonly UserDetailService _userDetailService = null;
         private readonly VnpayService _vnpayService = null;
         private readonly ILogger<VnpayService> _logger;
         public PaymentService()
@@ -32,6 +35,10 @@ namespace Services
             if (_vnpayService == null)
             {
                 _vnpayService = new VnpayService(_logger, _bookingRepository, _paymentRepository);
+            }
+            if (_userDetailService == null)
+            {
+                _userDetailService = new UserDetailService();
             }
 
         }
@@ -58,6 +65,44 @@ namespace Services
 
 
             return paymentURL;
+        }
+        public async Task<IResult> ProcessBookingPaymentByBalance(string bookingId)
+        {
+            try
+            {
+                var bookings = await _bookingRepository.GetBooking(bookingId);
+                var user = _userDetailService.GetUserDetail(bookings.Id);
+
+                if (bookings == null || user == null)
+                {
+                    return Results.NotFound("User Or Booking Not Found");
+                }
+
+                if (user.Balance < bookings.TotalPrice || user.Balance - bookings.TotalPrice < 0)
+                {
+                    return Results.BadRequest("Error When Processing Balance");
+                }
+                user.Balance -= bookings.TotalPrice;
+                bookings.Status = "Complete";
+                await _userDetailService.UpdateUserDetailAsync(user.UserId);
+                await _bookingRepository.UpdateBooking(bookings);
+                var payment = new Payment
+                {
+                    PaymentId = "P" + GenerateId.GenerateShortBookingId(),
+                    BookingId = bookingId,
+                    PaymentAmount = bookings.TotalPrice,
+                    PaymentDate = DateTime.Now,
+                    PaymentMessage = "Complete",
+                    PaymentStatus = "True",
+
+                };
+                _paymentRepository.AddPayment(payment);
+                return Results.Ok(payment);
+            }
+            catch (Exception e)
+            {
+                return Results.BadRequest(e.Message);
+            }
         }
         public async Task<List<Payment>> SortPayment(string? sortBy, bool isAsc, PageResult pageResult) => await _paymentRepository.SortPayment(sortBy, isAsc, pageResult);
     }

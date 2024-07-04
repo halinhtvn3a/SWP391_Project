@@ -10,6 +10,7 @@ using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Repositories
 {
@@ -503,7 +504,8 @@ namespace Repositories
         }
 
         public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult) => await _bookingDao.SortBookings(sortBy, isAsc, pageResult);
-    }
 
-    
+        
+    }
+ 
 }
