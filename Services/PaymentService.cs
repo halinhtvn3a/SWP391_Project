@@ -66,7 +66,7 @@ namespace Services
 
             return paymentURL;
         }
-        public async Task<IResult> ProcessBookingPaymentByBalance(string bookingId)
+        public async Task<ResponseModel> ProcessBookingPaymentByBalance(string bookingId)
         {
             try
             {
@@ -75,12 +75,20 @@ namespace Services
 
                 if (bookings == null || user == null)
                 {
-                    return Results.NotFound("User Or Booking Not Found");
+                    return new ResponseModel
+                    {
+                        Status = "Error",
+                        Message = "Booking information is required."
+                    };
                 }
 
                 if (user.Balance < bookings.TotalPrice || user.Balance - bookings.TotalPrice < 0)
                 {
-                    return Results.BadRequest("Error When Processing Balance");
+                    return new ResponseModel
+                    {
+                        Status = "Error",
+                        Message = "Error While Processing Balance"
+                    };
                 }
                 user.Balance -= bookings.TotalPrice;
                 bookings.Status = "Complete";
@@ -97,11 +105,19 @@ namespace Services
 
                 };
                 _paymentRepository.AddPayment(payment);
-                return Results.Ok(payment);
+                return new ResponseModel
+                {
+                    Status = "Success",
+                    Message = "Payment Success"
+                };
             }
             catch (Exception e)
             {
-                return Results.BadRequest(e.Message);
+                return new ResponseModel
+                {
+                    Status = "Error",
+                    Message = e.Message
+                };
             }
         }
         public async Task<List<Payment>> SortPayment(string? sortBy, bool isAsc, PageResult pageResult) => await _paymentRepository.SortPayment(sortBy, isAsc, pageResult);

@@ -153,26 +153,31 @@ namespace API.Controllers
         [HttpPost("ProcessPaymentByBalance")]
         public async Task<ActionResult> ProcessPaymentByBalance(string token)
         {
-            var bookingId = _tokenForPayment.ValidateToken(token);
-            var response = await _paymentService.ProcessBookingPaymentByBalance(bookingId);
-            if (response.Equals("Error When Processing Balance"))
+            try
+            {
+
+                var bookingId = _tokenForPayment.ValidateToken(token);
+                var response = await _paymentService.ProcessBookingPaymentByBalance(bookingId);
+                if (response.Status == "Error")
+                {
+                    return response.Message switch
+                    {
+                        "Booking information is required." => BadRequest(response.Message),
+                        "User information is required." => BadRequest(response.Message),
+                        "User balance is not enough." => BadRequest(response.Message),
+                        _ => BadRequest(response.Message),
+                    };
+                }
+                return Ok(response.Message);
+            }
+            catch (Exception e)
             {
                 return BadRequest(new ResponseModel
                 {
                     Status = "Error",
-                    Message = response.ToString()
+                    Message = e.Message
                 });
             }
-            if (response.Equals("User Or Booking Not Found"))
-            {
-                return NotFound(new ResponseModel
-                {
-                    Status = "Error",
-                    Message = response.ToString()
-                });
-            }
-            return Ok(response);
-            
         }
 
 

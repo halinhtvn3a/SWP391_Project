@@ -86,6 +86,14 @@ namespace DAOs
             }
             return oUserDetail;
         }
+
+        public async Task<UserDetail> UpdateUserDetailAsync(string userId)
+        {
+            _dbContext.UserDetails.Update(GetUserDetail(userId));
+            await _dbContext.SaveChangesAsync();
+            return GetUserDetail(userId);
+        }
+
         public UserDetail UpdateUser (string id, PutUserDetail userDetailsModel)
         {
             UserDetail oUserDetail = GetUserDetail(id);
