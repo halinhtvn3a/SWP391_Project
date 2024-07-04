@@ -57,16 +57,12 @@ namespace API.Controllers
         }
         // PUT: api/Prices/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPrice(string id, PriceModel price)
+        [HttpPut("UpdatePrice")]
+        public async Task<IActionResult> PutPrice(PriceModel priceModel)
         {
-            var Price = _priceService.GetPrice(id);
-            if (id != Price.PriceId)
-            {
-                return BadRequest();
-            }
 
-            _priceService.UpdatePrice(id, price);
+
+            var Price = _priceService.UpdatePriceByPriceModel(priceModel);
 
             return CreatedAtAction("GetPrice", new { id = Price.PriceId }, Price);
         }
@@ -100,6 +96,7 @@ namespace API.Controllers
 
             return NoContent();
         }
+
 
 
         [HttpGet("sortPrice/{sortBy}")]

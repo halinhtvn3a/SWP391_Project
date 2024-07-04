@@ -125,5 +125,26 @@ namespace UnitTests.DAOTests
             var price = dao.GetPriceByBranchAndType(branchId, type, isWeekend);
             Assert.Equal(slotPrice, price);
         }
+
+        //test UpdatePriceByPriceModel
+        [Theory]
+        [InlineData("B0001", "By day", true, 500)]
+        [InlineData("B0001", "By day", false, 600)]
+        [InlineData("B0001", "Fix", null, 700)]
+        [InlineData("B0001", "Flex", null, 800)]
+        public void UpdatePriceByPriceModel_ReturnsPrice(string branchId, string type, bool? isWeekend, decimal money)
+        {
+            PriceModel priceModel = new PriceModel
+            {
+                BranchId = branchId,
+                Type = type,
+                IsWeekend = isWeekend,
+                SlotPrice = money
+            };
+            var dao = new PriceDAO(mockContext.Object);
+            var price = dao.UpdatePriceByPriceModel(priceModel);
+            Assert.NotNull(price);
+            Assert.Equal(money, price.SlotPrice);
+        }
     }
 }

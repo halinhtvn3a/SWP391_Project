@@ -33,5 +33,7 @@ namespace Repositories
         public async Task<List<Price>> SortPrice(string? sortBy, bool isAsc, PageResult pageResult) => await _priceDao.SortPrice(sortBy, isAsc, pageResult);
 
         public decimal GetPriceByBranchAndType(string branchId, string type, bool? isWeekend) => _priceDao.GetPriceByBranchAndType(branchId, type, isWeekend);
+
+        public Price UpdatePriceByPriceModel(PriceModel priceModel) => _priceDao.UpdatePriceByPriceModel(priceModel);
     }
 }
