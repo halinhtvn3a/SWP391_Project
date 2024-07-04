@@ -163,8 +163,7 @@ namespace API.Controllers
                     return response.Message switch
                     {
                         "Booking information is required." => BadRequest(response.Message),
-                        "User information is required." => BadRequest(response.Message),
-                        "User balance is not enough." => BadRequest(response.Message),
+                        "Error While Processing Balance" => BadRequest(response.Message),
                         _ => BadRequest(response.Message),
                     };
                 }
