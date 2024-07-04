@@ -58,7 +58,7 @@ namespace API.Controllers
         // PUT: api/Prices/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPrice(string id, Price price)
+        public async Task<IActionResult> PutPrice(string id, PriceModel price)
         {
             var Price = _priceService.GetPrice(id);
             if (id != Price.PriceId)

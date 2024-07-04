@@ -64,7 +64,7 @@ namespace DAOs
 
        
 
-        public Price UpdatePrice(string id, Price price)
+        public Price UpdatePrice(string id, PriceModel price)
         {
             Price oPrice = GetPrice(id);
             if (oPrice != null)

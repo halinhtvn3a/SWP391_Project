@@ -26,7 +26,7 @@ namespace Repositories
 
         public Price GetPrice(string id) => _priceDao.GetPrice(id);
 
-        public Price UpdatePrice(string id, Price price) => _priceDao.UpdatePrice(id, price);
+        public Price UpdatePrice(string id, PriceModel price) => _priceDao.UpdatePrice(id, price);
 
         public List<Price> GetPriceByBranch(string branchId) => _priceDao.GetPriceByBranch(branchId);
 
