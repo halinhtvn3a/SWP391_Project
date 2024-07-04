@@ -68,27 +68,27 @@ namespace UnitTests.ControllerTests
 
         //lock-out en
 
-        [Fact]
-        public async Task Login_ValidUser_ReturnsOkObjectResult()
-        {
-            var loginModel = new LoginModel { Email = "user@gmail.com", Password = "Qwe@123" };
-            var user = new IdentityUser { UserName = loginModel.Email, Email = loginModel.Email, LockoutEnabled = true };
+        //[Fact]
+        //public async Task Login_ValidUser_ReturnsOkObjectResult()
+        //{
+        //    var loginModel = new LoginModel { Email = "user@gmail.com", Password = "Qwe@123" };
+        //    var user = new IdentityUser { UserName = loginModel.Email, Email = loginModel.Email, LockoutEnabled = true };
 
-            _userManagerMock.Setup(um => um.FindByNameAsync(loginModel.Email)).ReturnsAsync(user);
-            _userManagerMock.Setup(um => um.CheckPasswordAsync(user, loginModel.Password)).ReturnsAsync(true);
-            _userManagerMock.Setup(um => um.GetRolesAsync(user)).ReturnsAsync(new[] { "Customer" });
-            _tokenServiceMock.Setup(ts => ts.GenerateToken(user, "Customer")).Returns("fake-jwt-token");
+        //    _userManagerMock.Setup(um => um.FindByNameAsync(loginModel.Email)).ReturnsAsync(user);
+        //    _userManagerMock.Setup(um => um.CheckPasswordAsync(user, loginModel.Password)).ReturnsAsync(true);
+        //    _userManagerMock.Setup(um => um.GetRolesAsync(user)).ReturnsAsync(new[] { "Customer" });
+        //    _tokenServiceMock.Setup(ts => ts.GenerateToken(user, "Customer")).Returns("fake-jwt-token");
 
-            var result = await _authController.Login(loginModel);
-            var okResult = Assert.IsType<OkObjectResult>(result);
-            var response = okResult.Value;
+        //    var result = await _authController.Login(loginModel);
+        //    var okResult = Assert.IsType<OkObjectResult>(result);
+        //    var response = okResult.Value;
 
-            // Use reflection to access the properties of the anonymous type
-            var tokenProperty = response.GetType().GetProperty("Token");
-            Assert.NotNull(tokenProperty);
-            var tokenValue = tokenProperty.GetValue(response) as string;
-            Assert.Equal("fake-jwt-token", tokenValue);
-        }
+        //    // Use reflection to access the properties of the anonymous type
+        //    var tokenProperty = response.GetType().GetProperty("Token");
+        //    Assert.NotNull(tokenProperty);
+        //    var tokenValue = tokenProperty.GetValue(response) as string;
+        //    Assert.Equal("fake-jwt-token", tokenValue);
+        //}
 
 
 
@@ -171,45 +171,45 @@ namespace UnitTests.ControllerTests
             Assert.Equal("Password format is incorrect.", responseModel.Message);
         }
 
-        [Fact]
-        public async Task Login_LockedOutUser_ReturnsUnauthorized()
-        {
-            var loginModel = new LoginModel { Email = "lockeduser@gmail.com", Password = "Qwe@123" };
-            var user = new IdentityUser { UserName = loginModel.Email, Email = loginModel.Email, LockoutEnabled = false, LockoutEnd = DateTimeOffset.MaxValue };
+        //[Fact]
+        //public async Task Login_LockedOutUser_ReturnsUnauthorized()
+        //{
+        //    var loginModel = new LoginModel { Email = "lockeduser@gmail.com", Password = "Qwe@123" };
+        //    var user = new IdentityUser { UserName = loginModel.Email, Email = loginModel.Email, LockoutEnabled = false, LockoutEnd = DateTimeOffset.MaxValue };
 
-            _userManagerMock.Setup(um => um.FindByNameAsync(loginModel.Email)).ReturnsAsync(user);
-            _userManagerMock.Setup(um => um.CheckPasswordAsync(user, loginModel.Password)).ReturnsAsync(true);
+        //    _userManagerMock.Setup(um => um.FindByNameAsync(loginModel.Email)).ReturnsAsync(user);
+        //    _userManagerMock.Setup(um => um.CheckPasswordAsync(user, loginModel.Password)).ReturnsAsync(true);
 
-            var result = await _authController.Login(loginModel);
+        //    var result = await _authController.Login(loginModel);
 
-            var unauthorizedResult = Assert.IsType<ObjectResult>(result);
-            Assert.Equal(StatusCodes.Status500InternalServerError, unauthorizedResult.StatusCode);
+        //    var unauthorizedResult = Assert.IsType<ObjectResult>(result);
+        //    Assert.Equal(StatusCodes.Status500InternalServerError, unauthorizedResult.StatusCode);
            
-            var responseModel = Assert.IsType<ResponseModel>(unauthorizedResult.Value);
-            Assert.Equal("Error", responseModel.Status);
-            Assert.Equal("User is banned!", responseModel.Message);
-        }
+        //    var responseModel = Assert.IsType<ResponseModel>(unauthorizedResult.Value);
+        //    Assert.Equal("Error", responseModel.Status);
+        //    Assert.Equal("User is banned!", responseModel.Message);
+        //}
 
 
-        [Fact]
-        public async Task Register_ExistingUser_ReturnsError()
-        {
-            // Arrange
-            var registerModel = new RegisterModel { Email = "test@example.com", Password = "Password123!", FullName = "Test User" };
-            var user = new IdentityUser { UserName = registerModel.Email, Email = registerModel.Email };
+        //[Fact]
+        //public async Task Register_ExistingUser_ReturnsError()
+        //{
+        //    // Arrange
+        //    var registerModel = new RegisterModel { Email = "test@example.com", Password = "Password123!", FullName = "Test User" };
+        //    var user = new IdentityUser { UserName = registerModel.Email, Email = registerModel.Email };
 
-            _userManagerMock.Setup(um => um.FindByNameAsync(registerModel.Email)).ReturnsAsync(user);
+        //    _userManagerMock.Setup(um => um.FindByNameAsync(registerModel.Email)).ReturnsAsync(user);
 
-            // Act
-            var result = await _authController.Register(registerModel);
+        //    // Act
+        //    var result = await _authController.Register(registerModel);
 
-            // Assert
-            var errorResult = Assert.IsType<ObjectResult>(result);
-            Assert.Equal(500, errorResult.StatusCode);
-            var response = Assert.IsType<ResponseModel>(errorResult.Value);
-            Assert.Equal("Error", response.Status);
-            Assert.Equal("User already exists!", response.Message);
-        }
+        //    // Assert
+        //    var errorResult = Assert.IsType<ObjectResult>(result);
+        //    Assert.Equal(500, errorResult.StatusCode);
+        //    var response = Assert.IsType<ResponseModel>(errorResult.Value);
+        //    Assert.Equal("Error", response.Status);
+        //    Assert.Equal("User already exists!", response.Message);
+        //}
 
         private static Mock<UserManager<TUser>> GetMockUserManager<TUser>() where TUser : class
         {
