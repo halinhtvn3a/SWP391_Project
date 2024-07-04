@@ -35,6 +35,8 @@ namespace Repositories
 
         public Court UpdateCourt(string id, CourtModel courtModel) => _courtDao.UpdateCourt(id, courtModel);
 
+        public int GetNumberOfCourtsByBranchId(string branchId) => _courtDao.GetNumberOfCourtsByBranchId(branchId);
+
         public List<Court> GetCourtsByStatus(string status) => _courtDao.GetCourtsByStatus(status);
 
         public async Task<List<Court>> SortCourt(string? sortBy, bool isAsc, PageResult pageResult) => await _courtDao.SortCourt(sortBy, isAsc, pageResult);

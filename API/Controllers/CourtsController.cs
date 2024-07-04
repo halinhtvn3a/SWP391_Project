@@ -118,5 +118,15 @@ namespace API.Controllers
             };
             return await _courtService.SortCourt(sortBy, isAsc, pageResult);
         }
+
+        [HttpGet("/numberOfCourt/{branchId}")]
+        public async Task<ActionResult<int>> GetNumberOfCourtsByBranchId(string branchId)
+        {
+            if (branchId == null)
+            {
+                return BadRequest();
+            }
+            return Ok(_courtService.GetNumberOfCourtsByBranchId(branchId));
+        }
     }
 }

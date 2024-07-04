@@ -100,6 +100,8 @@ namespace DAOs
 
         public List<Court> GetCourtsByBranchId(string branchId) => _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(branchId)).ToList();
 
+        public int GetNumberOfCourtsByBranchId(string branchId) => _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(branchId)).Count();
+
 
         public List<Court> GetCourtsByStatus(string status) => _courtCallerDbContext.Courts.Where(m => m.Status.Equals(status)).ToList();
 
