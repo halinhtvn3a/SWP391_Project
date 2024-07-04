@@ -139,7 +139,7 @@ namespace API
                 options.AddPolicy("AllowSpecificOrigin",
                     policy =>
                     {
-                        policy.WithOrigins("https://localhost:3000", "https://courtcaller.azurewebsites.net")
+                        policy.WithOrigins("https://localhost:3000", "https://courtcaller.azurewebsites.net", "https://localhost:7104")
                               .AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowCredentials();
