@@ -151,5 +151,17 @@ namespace DAOs
                 return _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.Type == "By day" && p.IsWeekend == isWeekend).SlotPrice;
             }
         }
+
+        public Price UpdatePriceByPriceModel(PriceModel priceModel)
+        {
+            Price price = GetPrices().FirstOrDefault(p => p.BranchId == priceModel.BranchId && p.Type == priceModel.Type && p.IsWeekend == priceModel.IsWeekend);
+            if (price != null)
+            {
+                price.SlotPrice = priceModel.SlotPrice;
+                _dbContext.Update(price);
+                _dbContext.SaveChanges();
+            }
+            return price;
+        }
     }
 }
