@@ -36,5 +36,7 @@ namespace Services
         public Branch GetLastBranch(string userId) => _branchRepository.GetLastBranch(userId);
 
         public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult) => await _branchRepository.SortBranch(sortBy, isAsc, pageResult);
+
+        public async Task<List<BranchDistance>> SortBranchByDistance(LocationModel user) => await _branchRepository.SortBranchByDistance(user);
     }
 }
