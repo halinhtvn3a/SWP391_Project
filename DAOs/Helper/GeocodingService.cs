@@ -6,45 +6,48 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DAOs.Helper
 {
     public class GeocodingService
     {
-        private const string GeocodingApiUrl = "https://maps.googleapis.com/maps/api/geocode/json";
+        private static readonly HttpClient client = new HttpClient();
 
-        public static async Task<LocationModel> GetGeolocationAsync(string address)
+        public static async Task<LocationModel> GetGeocodeAsync(string address)
         {
-            using (HttpClient httpClient = new HttpClient())
+            var userAgent = "CourtCallers/1.0 (courtcallers@gmail.com)"; // Replace with your app name and contact info
+            client.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
+
+            var url = $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(address)}&format=json&addressdetails=1&limit=1";
+            var response = await client.GetAsync(url);
+
+            if (response.IsSuccessStatusCode)
             {
-                var requestUri = $"{GeocodingApiUrl}?address={Uri.EscapeDataString(address)}&key=";
+                var json = JArray.Parse(await response.Content.ReadAsStringAsync());
 
-                HttpResponseMessage response = await httpClient.GetAsync(requestUri);
-                response.EnsureSuccessStatusCode();
-
-                var content = await response.Content.ReadAsStringAsync();
-                var geocodingResponse = JsonConvert.DeserializeObject<GeocodingResponse>(content);
-
-                if (geocodingResponse.Status == "OK")
+                if (json.Count > 0)
                 {
-                    var location = geocodingResponse.Results.First();
-                    return new LocationModel
+                    var location = json[0];
+                    double latitude = (double)location["lat"];
+                    double longitude = (double)location["lon"];
+                    LocationModel locationModel = new LocationModel
                     {
-                        Latitude = location.Latitude,
-                        Longitude = location.Longitude
+                        Latitude = latitude,
+                        Longitude = longitude
                     };
+                    return locationModel;
                 }
-
-                throw new Exception("Unable to geocode address");
+                else
+                {
+                    throw new Exception("Unable to geocode address");
+                }
+            }
+            else
+            {
+                throw new HttpRequestException($"Response status code does not indicate success: {(int)response.StatusCode} ({response.ReasonPhrase}).");
             }
         }
-    }
-
-    public class GeocodingResponse
-    {
-        public string Status { get; set; }
-        public IEnumerable<LocationModel> Results { get; set; }
-
     }
 
 }

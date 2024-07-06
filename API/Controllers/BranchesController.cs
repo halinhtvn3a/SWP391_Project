@@ -213,5 +213,17 @@ namespace API.Controllers
 
             return await _branchService.SortBranch(sortBy, isAsc, pageResult);
         }
+
+        [HttpGet("sortBranchByDistance")]
+        public async Task<ActionResult<IEnumerable<BranchDistance>>> SortBranchByDistance([FromQuery] LocationModel user)
+        {
+            var sortedBranchesWithDistance = await _branchService.SortBranchByDistance(user);
+            if (sortedBranchesWithDistance == null || !sortedBranchesWithDistance.Any())
+            {
+                return NotFound("No branches found or unable to sort branches by distance.");
+            }
+            return Ok(sortedBranchesWithDistance);
+        }
+
     }
 }

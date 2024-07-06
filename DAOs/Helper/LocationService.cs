@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAOs.Models;
+using Newtonsoft.Json.Linq;
 
 namespace DAOs.Helper
 {
@@ -31,6 +32,25 @@ namespace DAOs.Helper
         private static double DegreesToRadians(double degrees)
         {
             return degrees * Math.PI / 180.0;
+        }
+
+        private static readonly HttpClient client = new HttpClient();
+
+        public static async Task<double> GetRouteDistanceAsync(LocationModel user, LocationModel destination)
+        {
+            var url = $"http://router.project-osrm.org/route/v1/driving/{user.Longitude},{user.Latitude};{destination.Longitude},{destination.Latitude}?overview=false";
+            var response = await client.GetStringAsync(url);
+            var json = JObject.Parse(response);
+
+            if (json["routes"] != null && json["routes"].HasValues)
+            {
+                var distanceInMeters = json["routes"][0]["distance"];
+                return (double)distanceInMeters / 1000; // Convert meters to kilometers
+            }
+            else
+            {
+                throw new Exception("Unable to get route distance");
+            }
         }
     }
 }

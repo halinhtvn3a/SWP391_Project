@@ -1,6 +1,7 @@
 ﻿using DAOs.Models;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Mvc;
+using static QRCoder.PayloadGenerator;
 
 namespace API.Controllers
 {
@@ -21,13 +22,36 @@ namespace API.Controllers
         {
             try
             {
-                var geolocation = await GeocodingService.GetGeolocationAsync(addressModel);
+                var geolocation = await GeocodingService.GetGeocodeAsync(addressModel);
                 return Ok(geolocation);
+
             }
             catch (Exception ex)
             {
                 return BadRequest(new { message = ex.Message });
             }
         }
+        
+        [HttpPost("pathdistance")]
+        public async Task<IActionResult> GetRouteDistanceAsync(LocationModel user)
+        {
+            try
+            {
+                var s = await LocationService.GetRouteDistanceAsync(user, new LocationModel
+                {
+                    Latitude = 10.875323976132528,
+                    Longitude = 106.80076631184579
+                });
+
+                return Ok(s);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
+
     }
 }
