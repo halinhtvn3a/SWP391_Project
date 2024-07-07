@@ -28,7 +28,6 @@ namespace DAOs
 
         public async Task<(List<News>, int total)> GetNews(PageResult pageResult, string searchQuery = null)
         {
-
             var query = _courtCallerDbContext.News.OrderByDescending(News => News.PublicationDate).AsQueryable();
 
             var total = await _courtCallerDbContext.News.CountAsync();
@@ -81,9 +80,9 @@ namespace DAOs
         public async Task<(List<News>, int total)> GetNews(PageResult pageResult, bool IsHomepageSlideshow, string status, string searchQuery = null)
         {
 
-            var query = _courtCallerDbContext.News.Where(m => m.IsHomepageSlideshow == IsHomepageSlideshow && m.Status == status).ToList().OrderByDescending(News => News.PublicationDate).AsQueryable();
+            var query = _courtCallerDbContext.News.Where(m => m.IsHomepageSlideshow == IsHomepageSlideshow && m.Status == status).OrderByDescending(News => News.PublicationDate).AsQueryable();
 
-            var total = await _courtCallerDbContext.News.CountAsync();
+            var total = await _courtCallerDbContext.News.Where(m => m.IsHomepageSlideshow == IsHomepageSlideshow && m.Status == status).OrderByDescending(News => News.PublicationDate).CountAsync();
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 query = query.Where(News => News.Content.Contains(searchQuery));
@@ -94,6 +93,11 @@ namespace DAOs
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<News> reviews = await pagination.GetListAsync<News>(query, pageResult);
             return (reviews, total);
+        }
+
+        public List<News> ShowSlideShowImage()
+        {
+            return _courtCallerDbContext.News.Where(m => m.IsHomepageSlideshow == true && m.Status == "Active").ToList();
         }
     }
 }

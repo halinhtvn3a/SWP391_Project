@@ -20,27 +20,44 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<News>>> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<PagingResponse<News>>> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-            var news = await newsService.GetNews(pageResult, searchQuery);
-            return Ok(news);
+            var (news, total) = await newsService.GetNews(pageResult, searchQuery);
+            var response = new PagingResponse<News>
+            {
+                Data = news,
+                Total = total
+            };
+            return Ok(response);
         }
 
         [HttpGet("NewsPage")]
-        public async Task<ActionResult<IEnumerable<News>>> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] bool IsHomepageSlideshow = true, [FromQuery] string status = "Active", [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<PagingResponse<News>>> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] bool IsHomepageSlideshow = true, [FromQuery] string status = "Active", [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-            var news = await newsService.GetNews(pageResult, searchQuery);
-            return Ok(news);
+            var (news, total) = await newsService.GetNews(pageResult, IsHomepageSlideshow, status, searchQuery);
+            var response = new PagingResponse<News>
+            {
+                Data = news,
+                Total = total
+            };
+            return Ok(response);
+        }
+
+        [HttpGet("SlideShowImage")]
+        public ActionResult<List<News>> ShowSlideShowImage()
+        {
+            var slideShowImages = newsService.ShowSlideShowImage();
+            return Ok(slideShowImages);
         }
 
         [HttpGet("{id}")]

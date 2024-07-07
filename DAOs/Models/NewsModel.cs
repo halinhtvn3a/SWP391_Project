@@ -15,7 +15,7 @@ namespace DAOs.Models
         public string Title { get; set; }
 
         [Required]
-        [StringLength(255)]
+        [StringLength(int.MaxValue)]
         public string Content { get; set; }
 
         [StringLength(int.MaxValue)]

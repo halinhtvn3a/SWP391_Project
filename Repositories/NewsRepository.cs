@@ -44,5 +44,7 @@ namespace Repositories
         }
         public News UpdateNew(string id, News news) => newsDAO.UpdateNew(id, news);
         public void DeleteNew(string id) => newsDAO.DeleteNew(id);
+
+        public List<News> ShowSlideShowImage() => newsDAO.ShowSlideShowImage();
     }
 }
