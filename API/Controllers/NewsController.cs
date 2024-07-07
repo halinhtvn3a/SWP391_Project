@@ -31,7 +31,7 @@ namespace API.Controllers
             return Ok(news);
         }
 
-        [HttpGet]
+        [HttpGet("NewsPage")]
         public async Task<ActionResult<IEnumerable<News>>> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] bool IsHomepageSlideshow = true, [FromQuery] string status = "Active", [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult

@@ -51,7 +51,7 @@ namespace API.Controllers
 
             return Ok(response);
         }
-        [HttpGet("/HomePage")]
+        [HttpGet("HomePage")]
         public async Task<ActionResult<PagingResponse<Branch>>> GetBranches([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string status = "Active", [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
