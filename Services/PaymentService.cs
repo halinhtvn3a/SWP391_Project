@@ -121,5 +121,9 @@ namespace Services
             }
         }
         public async Task<List<Payment>> SortPayment(string? sortBy, bool isAsc, PageResult pageResult) => await _paymentRepository.SortPayment(sortBy, isAsc, pageResult);
+
+        public async Task<decimal> GetDailyRevenue(DateTime date) => await _paymentRepository.GetDailyRevenue(date);
+
+        public async Task<decimal> GetRevenueByDay(DateTime start, DateTime end) => await _paymentRepository.GetRevenueByDay(start, end);
     }
 }

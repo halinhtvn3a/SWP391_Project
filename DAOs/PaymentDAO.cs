@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
@@ -107,7 +108,29 @@ namespace DAOs
             return payments;
         }
 
+        //viết hàm để tính revenue theo ngày
+        public async Task<decimal> GetDailyRevenue (DateTime date)
+        {
+            var startDate = date.Date; 
+            var endDate = startDate.AddDays(1);
 
+            var payments = await _courtCallerDbContext.Payments
+                                .Where(m => m.PaymentDate >= startDate && m.PaymentDate < endDate
+                                            && m.PaymentMessage == "Complete")
+                                .SumAsync(p => p.PaymentAmount);
+            return payments;
+        }
+
+        public async Task<decimal> GetRevenueByDay (DateTime start, DateTime end)
+        {
+            var dayStartParse = start.Date;
+            var dayEndParse = end.Date;
+            var payments = await _courtCallerDbContext.Payments
+                                .Where(m => m.PaymentDate >= dayStartParse && m.PaymentDate < dayEndParse
+                                            && m.PaymentMessage == "Complete")
+                                .SumAsync(p => p.PaymentAmount);
+            return payments;
+        }
 
     }
 }
