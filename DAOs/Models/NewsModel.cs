@@ -1,18 +1,15 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessObjects
+namespace DAOs.Models
 {
-    public class News
+    public class NewsModel
     {
-        [Key]
-        [StringLength(10)]
-        public string NewId { get; set; }
-
         [Required]
         [StringLength(255)]
         public string Title { get; set; }
@@ -21,11 +18,8 @@ namespace BusinessObjects
         [StringLength(255)]
         public string Content { get; set; }
 
-        [Required]
-        public DateTime PublicationDate { get; set; }
-
         [StringLength(int.MaxValue)]
-        public string Image { get; set; }
+        public string? Image { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -33,6 +27,6 @@ namespace BusinessObjects
 
         [Required]
         public bool IsHomepageSlideshow { get; set; }
+        public IFormFile? NewsImage { get; set; }
     }
 }
-

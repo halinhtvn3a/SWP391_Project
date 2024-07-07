@@ -20,6 +20,8 @@ namespace Services
                 _branchRepository = new BranchRepository();
             }
         }
+
+        public async Task<(List<Branch>, int total)> GetBranches(PageResult pageResult, string status = "Active", string searchQuery = null) => await _branchRepository.GetBranches(pageResult, status, searchQuery);
         public Branch AddBranch(BranchModel branchModel) => _branchRepository.AddBranch(branchModel);
         public void DeleteBranch(string id) => _branchRepository.DeleteBranch(id);
         public Branch GetBranch(string id) => _branchRepository.GetBranch(id);

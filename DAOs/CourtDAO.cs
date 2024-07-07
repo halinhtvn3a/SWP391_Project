@@ -147,7 +147,7 @@ namespace DAOs
 
         public List<Court> AvailableCourts(SlotModel slotModel)
         {
-            List<Court> courts = _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(slotModel.BranchId)).ToList();
+            List<Court> courts = _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(slotModel.BranchId) && m.Status == "Active").ToList();
             List<Court> availableCourts = new List<Court>();
             foreach (Court court in courts)
             {
