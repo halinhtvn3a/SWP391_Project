@@ -61,7 +61,7 @@ namespace Repositories
             }
             else
             {
-                List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId).ToList(); 
+                List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId && c.Status == "Active").ToList(); 
                 foreach (var court in courtsInBranch)
                 {
                     isBooked = false;
@@ -103,7 +103,7 @@ namespace Repositories
             }
             else
             {
-                List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId).ToList();
+                List<Court> courtsInBranch = _courtDao.GetCourts().Where(c => c.BranchId == slotModel.BranchId && c.Status == "Active").ToList();
                 foreach (var court in courtsInBranch)
                 {
                     bool isBooked = _timeSlotDao.GetTimeSlots().Any(t =>
