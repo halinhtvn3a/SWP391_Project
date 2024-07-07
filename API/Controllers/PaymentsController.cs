@@ -192,5 +192,52 @@ namespace API.Controllers
             };
             return await _paymentService.SortPayment(sortBy, isAsc, pageResult);
         }
+
+        [HttpGet("GetDailyRevenue")]
+        public async Task<ActionResult<decimal>> GetDailyRevenue()
+        {
+            try
+            {
+                var date = DateTime.UtcNow;
+                TimeZoneInfo asianZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                date = TimeZoneInfo.ConvertTimeFromUtc(date, asianZone);
+               Console.WriteLine(date);
+                return Ok(await _paymentService.GetDailyRevenue(date));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseModel
+                {
+                    Status = "Error",
+                    Message = e.Message
+                });
+            }
+        }
+
+        [HttpGet("GetRevenueByDate")]
+        public async Task<ActionResult<decimal>> GetRevenueByDate(DateTime start, DateTime end)
+        {   
+            if (start > end)
+            {
+                return BadRequest(new ResponseModel
+                {
+                    Status = "Error",
+                    Message = "Start date must be before end date"
+                });
+            }
+            try
+            {
+                return Ok(await _paymentService.GetRevenueByDay(start, end));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(new ResponseModel
+                {
+                    Status = "Error",
+                    Message = e.Message
+                });
+            }
+        }
+
     }
 }

@@ -43,5 +43,9 @@ namespace Repositories
         public List<Payment> SearchByDate(DateTime start, DateTime end) => _paymentDao.SearchByDate(start, end);
 
         public async Task<List<Payment>> SortPayment(string? sortBy, bool isAsc, PageResult pageResult) => await _paymentDao.SortPayment(sortBy, isAsc, pageResult);
+
+        public async Task<decimal> GetDailyRevenue(DateTime date) => await _paymentDao.GetDailyRevenue(date);
+
+        public async Task<decimal> GetRevenueByDay(DateTime start, DateTime end) => await _paymentDao.GetRevenueByDay(start, end);
     }
 }
