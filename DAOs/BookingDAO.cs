@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PageResult = DAOs.Helper.PageResult;
 using System.ComponentModel.DataAnnotations;
+using DAOs.Models;
 
 namespace DAOs
 {
@@ -231,16 +232,50 @@ namespace DAOs
             return bookings;
         }
 
-        public async Task<IEnumerable<Booking>> GetDailyBookings()
+        public async Task<(IEnumerable<BookingResponse>,int count)> GetDailyBookings()
         {
-            return await _courtCallerDbContext.Bookings
+            var today = DateTime.Today;
+            var endDate = today.AddDays(1);
+
+            var dailyBooking = await _courtCallerDbContext.Bookings
+                .Where(m => m.BookingDate >= today && m.BookingDate < endDate) // Chỉ so sánh phần ngày của BookingDate
                 .GroupBy(b => new { b.BookingDate.Year, b.BookingDate.Month, b.BookingDate.Day })
-                .Select(g => new Booking
+                .Select(g => new BookingResponse
                 {
                     BookingDate = new DateTime(g.Key.Year, g.Key.Month, g.Key.Day),
-                    NumberOfSlot = g.Count()
+                    TotalPrice = g.Sum(b => b.TotalPrice)
                 })
                 .ToListAsync();
+            int count = dailyBooking.Count();
+            return (dailyBooking,count);
         }
+
+
+        public async Task<(IEnumerable<WeeklyBookingResponse>, decimal)> GetWeeklyBookingsAsync()
+        {
+            var today = DateTime.Today;
+            var startOfWeek = today.AddDays(-(int)today.DayOfWeek);
+            var endOfWeek = startOfWeek.AddDays(7);
+
+            var bookings = await _courtCallerDbContext.Bookings
+                .Where(m => m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek)
+                .ToListAsync();
+
+            var weeklyBooking = bookings
+                .GroupBy(b => b.BookingDate.DayOfWeek)
+                .Select(g => new WeeklyBookingResponse
+                {
+                    DayOfWeek = g.Key.ToString(),
+                    TotalPrice = g.Sum(b => b.TotalPrice)
+                })
+                .ToList();
+
+            decimal total = weeklyBooking.Sum(w => w.TotalPrice);
+            return (weeklyBooking, total);
+        }
+
+
+
+
     }
 }

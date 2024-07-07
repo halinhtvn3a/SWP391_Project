@@ -15,6 +15,7 @@ using Repositories;
 using Newtonsoft.Json;
 using Qr = API.Helper;
 using API.Helper;
+using Microsoft.AspNetCore.Identity;
 
 namespace API.Controllers
 {
@@ -282,10 +283,22 @@ namespace API.Controllers
         }
 
         [HttpGet("daily-bookings")]
-        public async Task<IActionResult> GetDailyBookings()
+        public async Task<ActionResult<PagingResponse<BookingResponse>>> GetDailyBookings()
         {
-            var dailyBookings = await _bookingService.GetDailyBookings();
-            return Ok(dailyBookings);
+            var (dailyBookings,total) = await _bookingService.GetDailyBookings();
+            var response = new PagingResponse<BookingResponse>
+            {
+                Data = dailyBookings,
+                Total = total
+            };
+            return Ok(response);
+        }
+
+        [HttpGet("weekly-bookings")]
+        public async Task<IActionResult> GetWeeklyBookings()
+        {
+            var result = await _bookingService.GetWeeklyBookingsAsync();
+            return Ok(new { data = result.Item1, total = result.Item2 });
         }
     }
 }

@@ -493,9 +493,9 @@ namespace Repositories
         public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult) => await _bookingDao.SortBookings(sortBy, isAsc, pageResult);
 
 
-        public async Task<IEnumerable<Booking>> GetDailyBookings() => await _bookingDao.GetDailyBookings();
+        public async Task<(IEnumerable<BookingResponse>, int count)> GetDailyBookings() => await _bookingDao.GetDailyBookings();
 
-
+        public async Task<(IEnumerable<WeeklyBookingResponse>, decimal)> GetWeeklyBookingsAsync() => await _bookingDao.GetWeeklyBookingsAsync();
     }
  
 }
