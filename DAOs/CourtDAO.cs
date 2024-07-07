@@ -144,5 +144,29 @@ namespace DAOs
                 _courtCallerDbContext.SaveChanges();
             }
         }
+
+        public List<Court> AvailableCourts(SlotModel slotModel)
+        {
+            List<Court> courts = _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(slotModel.BranchId)).ToList();
+            List<Court> availableCourts = new List<Court>();
+            foreach (Court court in courts)
+            {
+                List<TimeSlot> timeSlots = _courtCallerDbContext.TimeSlots.Where(m => m.CourtId.Equals(court.CourtId)).ToList();
+                bool isAvailable = true;
+                foreach (TimeSlot timeSlot in timeSlots)
+                {
+                    if (timeSlot.SlotDate.Equals(slotModel.SlotDate) && timeSlot.SlotStartTime.Equals(slotModel.TimeSlot.SlotStartTime) && timeSlot.SlotEndTime.Equals(slotModel.TimeSlot.SlotEndTime))
+                    {
+                        isAvailable = false;
+                        break;
+                    }
+                }
+                if (isAvailable)
+                {
+                    availableCourts.Add(court);
+                }
+            }
+            return availableCourts;
+        }
     }
 }

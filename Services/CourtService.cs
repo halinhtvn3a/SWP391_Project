@@ -36,6 +36,8 @@ namespace Services
             _courtRepository.MaintainCourt(courtId);
 
         }
+
+        public List<Court> AvailableCourts(SlotModel slotModel) => _courtRepository.AvailableCourts(slotModel);
     }
 
 }
