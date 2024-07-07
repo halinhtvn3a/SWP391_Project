@@ -31,11 +31,13 @@ namespace Repositories
         {
             News news = new News
             {
+                NewId = "N" + GenerateId.GenerateShortBookingId(),
                 Content = newsModel.Content,
                 PublicationDate = DateTime.Now,
                 Title = newsModel.Title,
                 IsHomepageSlideshow = newsModel.IsHomepageSlideshow,
-                Status = newsModel.Status
+                Status = newsModel.Status,
+                Image = newsModel.Image
             };
             newsDAO.AddNew(news);
             return news;

@@ -24,7 +24,7 @@ namespace BusinessObjects
         [Required]
         public DateTime PublicationDate { get; set; }
 
-        [StringLength(255)]
+        [StringLength(int.MaxValue)]
         public string Image { get; set; }
 
         [Required]

@@ -7,8 +7,56 @@
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\25-6\\swp391_project\\businessobjects\\new.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\new.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\25-6\\swp391_project\\api\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\models\\newsmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\models\\newsmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\25-6\\swp391_project\\businessobjects\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\branch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\25-6\\swp391_project\\repositories\\newsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\newsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\newsdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\newsdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\25-6\\swp391_project\\services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\vnpayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\25-6\\swp391_project\\repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\paymentrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\paymentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\paymentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\branchdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\bookingdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\25-6\\swp391_project\\services\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\newsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\25-6\\swp391_project\\api\\controllers\\branchescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,32 +70,68 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NewsController.cs",
-              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\NewsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\NewsController.cs",
-              "ToolTip": "E:\\25-6\\SWP391_Project\\API\\Controllers\\NewsController.cs",
-              "RelativeToolTip": "API\\Controllers\\NewsController.cs",
-              "ViewState": "AQIAABAAAAAAAAAAAAAAABkAAAANAAAA",
+              "DocumentIndex": 10,
+              "Title": "CourtDAO.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\CourtDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\CourtDAO.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\CourtDAO.cs",
+              "RelativeToolTip": "DAOs\\CourtDAO.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAAcwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T11:03:12.895Z",
+              "WhenOpened": "2024-07-07T11:11:28.988Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NewsDAO.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\NewsDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\NewsDAO.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\NewsDAO.cs",
+              "RelativeToolTip": "DAOs\\NewsDAO.cs",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAADQAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:07:45.277Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NewsRepository.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\NewsRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\NewsRepository.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\Repositories\\NewsRepository.cs",
+              "RelativeToolTip": "Repositories\\NewsRepository.cs",
+              "ViewState": "AQIAABoAAAAAAAAAAAAswCEAAABBAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:07:54.345Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "NewsModel.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\NewsModel.cs",
+              "RelativeDocumentMoniker": "DAOs\\Models\\NewsModel.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\NewsModel.cs",
+              "RelativeToolTip": "DAOs\\Models\\NewsModel.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABgAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:06:55.561Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BranchesController.cs",
-              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\BranchesController.cs",
-              "ToolTip": "E:\\25-6\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
-              "RelativeToolTip": "API\\Controllers\\BranchesController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAADQAAAAJAAAA",
+              "DocumentIndex": 1,
+              "Title": "New.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\BusinessObjects\\New.cs",
+              "RelativeDocumentMoniker": "BusinessObjects\\New.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\BusinessObjects\\New.cs",
+              "RelativeToolTip": "BusinessObjects\\New.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T11:01:58.707Z",
+              "WhenOpened": "2024-07-07T11:13:36.637Z",
               "EditorCaption": ""
             },
             {
@@ -58,9 +142,120 @@
               "RelativeDocumentMoniker": "API\\appsettings.json",
               "ToolTip": "E:\\25-6\\SWP391_Project\\API\\appsettings.json",
               "RelativeToolTip": "API\\appsettings.json",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAAABkAAAAAAAAA",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAABIAAAATAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2024-07-07T10:23:45.023Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "PaymentDAO.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\PaymentDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\PaymentDAO.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\PaymentDAO.cs",
+              "RelativeToolTip": "DAOs\\PaymentDAO.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowCoAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:11:34.199Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NewsController.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\NewsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\NewsController.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\API\\Controllers\\NewsController.cs",
+              "RelativeToolTip": "API\\Controllers\\NewsController.cs",
+              "ViewState": "AQIAAD8AAAAAAAAAAAASwFYAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:03:12.895Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Branch.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\BusinessObjects\\Branch.cs",
+              "RelativeDocumentMoniker": "BusinessObjects\\Branch.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\BusinessObjects\\Branch.cs",
+              "RelativeToolTip": "BusinessObjects\\Branch.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAAAB8AAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:13:26.8Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PaymentRepository.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\PaymentRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\PaymentRepository.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\Repositories\\PaymentRepository.cs",
+              "RelativeToolTip": "Repositories\\PaymentRepository.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAiwBwAAAATAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:11:47.074Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "VnpayService.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Services\\VnpayService.cs",
+              "RelativeDocumentMoniker": "Services\\VnpayService.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\Services\\VnpayService.cs",
+              "RelativeToolTip": "Services\\VnpayService.cs",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAiwGEAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:01:58.648Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "BranchDAO.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\BranchDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\BranchDAO.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\BranchDAO.cs",
+              "RelativeToolTip": "DAOs\\BranchDAO.cs",
+              "ViewState": "AQIAAE4AAAAAAAAAAAAcwA4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:11:23.091Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BookingDAO.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\BookingDAO.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\BookingDAO.cs",
+              "RelativeToolTip": "DAOs\\BookingDAO.cs",
+              "ViewState": "AQIAAE8AAAAAAAAAAAA0wA0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:10:51.382Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "NewsService.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Services\\NewsService.cs",
+              "RelativeDocumentMoniker": "Services\\NewsService.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\Services\\NewsService.cs",
+              "RelativeToolTip": "Services\\NewsService.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAAB4AAAAuAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:08:23.539Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "BranchesController.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\BranchesController.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
+              "RelativeToolTip": "API\\Controllers\\BranchesController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADQAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-07T11:01:58.707Z",
               "EditorCaption": ""
             }
           ]

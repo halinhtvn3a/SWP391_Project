@@ -18,8 +18,8 @@ namespace DAOs.Models
         [StringLength(255)]
         public string Content { get; set; }
 
-        [StringLength(255)]
-        public string Image { get; set; }
+        [StringLength(int.MaxValue)]
+        public string? Image { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -27,6 +27,6 @@ namespace DAOs.Models
 
         [Required]
         public bool IsHomepageSlideshow { get; set; }
-        public IFormFile NewsImage { get; set; }
+        public IFormFile? NewsImage { get; set; }
     }
 }
