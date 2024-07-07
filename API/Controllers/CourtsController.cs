@@ -128,5 +128,14 @@ namespace API.Controllers
             }
             return Ok(_courtService.GetNumberOfCourtsByBranchId(branchId));
         }
+
+        [HttpPost("/AvailableCourts")]
+        public ActionResult<IEnumerable<Court>> AvailableCourts([FromBody] SlotModel slotModel)
+        {
+            return _courtService.AvailableCourts(slotModel);
+        }
+
+
+
     }
 }
