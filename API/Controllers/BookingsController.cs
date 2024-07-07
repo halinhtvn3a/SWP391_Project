@@ -281,6 +281,11 @@ namespace API.Controllers
             return Ok(new { qrCodeBase64 });
         }
 
-
+        [HttpGet("daily-bookings")]
+        public async Task<IActionResult> GetDailyBookings()
+        {
+            var dailyBookings = await _bookingService.GetDailyBookings();
+            return Ok(dailyBookings);
+        }
     }
 }

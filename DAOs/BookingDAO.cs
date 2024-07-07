@@ -231,5 +231,16 @@ namespace DAOs
             return bookings;
         }
 
+        public async Task<IEnumerable<Booking>> GetDailyBookings()
+        {
+            return await _courtCallerDbContext.Bookings
+                .GroupBy(b => new { b.BookingDate.Year, b.BookingDate.Month, b.BookingDate.Day })
+                .Select(g => new Booking
+                {
+                    BookingDate = new DateTime(g.Key.Year, g.Key.Month, g.Key.Day),
+                    NumberOfSlot = g.Count()
+                })
+                .ToListAsync();
+        }
     }
 }

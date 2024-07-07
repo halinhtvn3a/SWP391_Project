@@ -107,7 +107,7 @@ namespace Services
 
         public (string, int) NumberOfSlotsAvailable(string userId, string branchId) => _bookingRepository.NumberOfSlotsAvailable(userId, branchId);
 
-
+        public async Task<IEnumerable<Booking>> GetDailyBookings() => await _bookingRepository.GetDailyBookings();
 
     }
 }
