@@ -52,6 +52,29 @@ namespace DAOs
             return (branches,total);
         }
 
+        public async Task<(List<Branch>,int total)> GetBranches(PageResult pageResult, string status = "Active", string searchQuery = null)
+        {
+
+            var query = 
+                _courtCallerDbContext.Branches.Where(m => m.Status == status).AsQueryable();
+
+            var total = await _courtCallerDbContext.Branches.CountAsync();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(branch => branch.BranchId.Contains(searchQuery) ||
+                                              branch.BranchName.Contains(searchQuery) ||
+                                              branch.BranchAddress.Contains(searchQuery) ||
+                                              branch.BranchPhone.Contains(searchQuery) ||
+                                              branch.Description.Contains(searchQuery) ||
+                                              branch.Status.Contains(searchQuery));
+            }
+
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
+            return (branches,total);
+        }
+
 
 
         public Branch GetBranch(string id)

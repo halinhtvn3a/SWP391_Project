@@ -46,6 +46,7 @@ namespace Repositories
             _timeSlotDao = timeSlotDao;
             _courtDao = courtDao;
         }
+        public async Task<(List<Branch>, int total)> GetBranches(PageResult pageResult, string status = "Active", string searchQuery = null) => await _branchDao.GetBranches(pageResult, status, searchQuery);
         public Branch AddBranch(BranchModel branchModel) => _branchDao.AddBranch(branchModel);
 
         public void DeleteBranch(string id) => _branchDao.DeleteBranch(id);
