@@ -58,12 +58,12 @@ namespace API
                 config.UseSqlServerStorage(configuration.GetConnectionString("CourtCallerDb")));
             builder.Services.AddHangfireServer();
 
-            // Add services to the container
-            builder.Services.AddControllers().AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-                options.JsonSerializerOptions.WriteIndented = true;
-            });
+            //// Add services to the container
+            //builder.Services.AddControllers().AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+            //    options.JsonSerializerOptions.WriteIndented = true;
+            //});
 
             // Add services to the container
             builder.Services.AddControllers();
