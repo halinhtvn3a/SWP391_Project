@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
+
 
 namespace BusinessObjects
 {
@@ -30,6 +29,8 @@ namespace BusinessObjects
 
 		// Navigation properties
 		public virtual Branch Branch { get; set; }
-		public virtual ICollection<TimeSlot> TimeSlots { get; set; }
+
+        [JsonIgnore]
+        public virtual ICollection<TimeSlot> TimeSlots { get; set; }
 	}
 }
