@@ -70,8 +70,7 @@
               "RelativeToolTip": "Repositories\\BookingRepository.cs",
               "ViewState": "AQIAAOkBAAAAAAAAAAAiwPEBAABlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T14:28:15.141Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T14:28:15.141Z"
             },
             {
               "$type": "Document",
@@ -96,8 +95,7 @@
               "RelativeToolTip": "Repositories\\UserRepository.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAiwCAAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T14:24:20.874Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T14:24:20.874Z"
             },
             {
               "$type": "Document",
@@ -109,8 +107,7 @@
               "RelativeToolTip": "DAOs\\Models\\BookingResponse.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwBIAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T13:17:17.283Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T13:17:17.283Z"
             },
             {
               "$type": "Document",
@@ -122,8 +119,7 @@
               "RelativeToolTip": "DAOs\\PaymentDAO.cs",
               "ViewState": "AQIAAGsAAAAAAAAAAAAiwHUAAABhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T10:30:52.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T10:30:52.419Z"
             },
             {
               "$type": "Document",
@@ -135,8 +131,7 @@
               "RelativeToolTip": "Services\\BookingService.cs",
               "ViewState": "AQIAAGQAAAAAAAAAAAAjwG8AAABlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T10:30:21.62Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T10:30:21.62Z"
             },
             {
               "$type": "Document",
@@ -174,8 +169,7 @@
               "RelativeToolTip": "DAOs\\UserDAO.cs",
               "ViewState": "AQIAABsAAAAAAAAAAAAowCQAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-07T13:18:08.805Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-07T13:18:08.805Z"
             }
           ]
         }
