@@ -162,6 +162,7 @@ namespace Repositories
             return timeSlots;
         }
 
+        public async Task<int> GetNumberOfSlotsForDateAsync(DateTime date) => await _timeSlotDao.GetNumberOfSlotsForDateAsync(date);
     }
 
     

@@ -14,6 +14,7 @@ using API.Helper;
 using Services.SignalRHub;
 using Microsoft.Extensions.Logging;
 using System.Text.Json.Serialization;
+using Services.MLModels;
 
 
 
@@ -57,6 +58,14 @@ namespace API
             builder.Services.AddHangfire(config =>
                 config.UseSqlServerStorage(configuration.GetConnectionString("CourtCallerDb")));
             builder.Services.AddHangfireServer();
+
+            //add Model Training
+            builder.Services.AddScoped<ModelTrainer>(sp => new ModelTrainer(
+        @"C:\FPTUNI\5\SWP391_Project\API\data\booking_data.csv",
+        @"C:\FPTUNI\5\SWP391_Project\API\data\Model.zip"
+    ));
+  
+            builder.Services.AddScoped<ModelTrainingService>();
 
             //// Add services to the container
             //builder.Services.AddControllers().AddJsonOptions(options =>

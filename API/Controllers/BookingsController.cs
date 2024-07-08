@@ -300,5 +300,18 @@ namespace API.Controllers
             var result = await _bookingService.GetWeeklyBookingsAsync();
             return Ok(new { data = result.Item1, total = result.Item2 });
         }
+
+        [HttpGet("weekly-growth")]
+        public async Task<ActionResult<(float predictedCount, float growthRate)>> PredictWeeklyBookingGrowth()
+        {
+            var result = await _bookingService.PredictWeeklyBookingGrowthAsync();
+            Console.WriteLine($"Controller result: Predicted Count={result.predictedCount}, Growth Rate={result.growthRate}");
+            var response = new MachineResponse
+            {
+                predictedCount = result.Item1,
+                growthRate = result.Item2,
+            };
+            return Ok(response);
+        }
     }
 }

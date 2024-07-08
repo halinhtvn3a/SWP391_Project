@@ -45,4 +45,8 @@ namespace BusinessObjects
 		public virtual ICollection<TimeSlot> TimeSlots { get; set; }
         public virtual ICollection<Payment> Payments { get; set; }
 	}
+
+
+    
+
 }

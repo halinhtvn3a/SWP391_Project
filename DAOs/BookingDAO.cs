@@ -275,7 +275,14 @@ namespace DAOs
         }
 
 
-
+        public async Task<List<Booking>> GetBookingsForLastWeekAsync()
+        {
+            var lastWeek = DateTime.Today.AddDays(-7);
+            return await _courtCallerDbContext.Bookings
+                .Where(b => b.BookingDate >= lastWeek)
+                .Include(b => b.TimeSlots)
+                .ToListAsync();
+        }
 
     }
 }

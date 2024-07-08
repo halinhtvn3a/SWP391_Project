@@ -496,6 +496,8 @@ namespace Repositories
         public async Task<(IEnumerable<BookingResponse>, int count)> GetDailyBookings() => await _bookingDao.GetDailyBookings();
 
         public async Task<(IEnumerable<WeeklyBookingResponse>, decimal)> GetWeeklyBookingsAsync() => await _bookingDao.GetWeeklyBookingsAsync();
+
+        public async Task<List<Booking>> GetBookingsForLastWeekAsync() => await _bookingDao.GetBookingsForLastWeekAsync();
     }
  
 }

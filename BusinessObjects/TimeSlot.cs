@@ -46,4 +46,6 @@ namespace BusinessObjects
 		public virtual Court Court { get; set; }
         public virtual Booking? Booking { get; set; }
     }
+
+
 }

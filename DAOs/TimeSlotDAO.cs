@@ -440,5 +440,16 @@ namespace DAOs
             return unavailableSlots;
         }
 
+
+        public async Task<int> GetNumberOfSlotsForDateAsync(DateTime date)
+        {
+
+            var dateOnly = DateOnly.FromDateTime(date);
+            var slotCount = await _dbContext.TimeSlots
+                .Where(ts => ts.SlotDate == dateOnly)
+                .CountAsync();
+
+            return slotCount;
+        }
     }
 }
