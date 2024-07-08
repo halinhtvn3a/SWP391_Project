@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DAOs
 {
@@ -198,5 +199,35 @@ namespace DAOs
             List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
             return branches;
         }
+
+        public async Task<(List<BranchDistance>, int total)> SortBranchByDistance(LocationModel user, PageResult pageResult)
+        {
+            // Ensure GetBranches is awaited and correctly fetches branches asynchronously
+            var branches = GetBranches(); // Assuming GetBranchesAsync is the correct async method
+
+            var branchDistances = new List<BranchDistance>();
+
+            foreach (var branch in branches.Where(b => b.Status == "Active"))
+            {
+                var branchLocation = await GeocodingService.GetGeocodeAsync(branch.BranchAddress);
+                var distance = await LocationService.GetRouteDistanceAsync(user, branchLocation);
+                branchDistances.Add(new BranchDistance { Branch = branch, Distance = distance });
+            }
+
+            // Sort the list by distance
+            var sortedBranchDistances = branchDistances.OrderBy(bd => bd.Distance).ToList();
+
+            // Manually paginate the sorted list
+            var paginatedBranchDistances = sortedBranchDistances
+                .Skip((pageResult.PageNumber - 1) * pageResult.PageSize)
+                .Take(pageResult.PageSize)
+                .ToList();
+
+            // The total count of branches before pagination
+            var total = branchDistances.Count;
+
+            return (paginatedBranchDistances, total);
+        }
+
     }
 }

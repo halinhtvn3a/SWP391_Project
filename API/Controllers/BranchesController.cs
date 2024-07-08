@@ -14,6 +14,7 @@ using DAOs.Models;
 using Firebase.Storage;
 using Firebase.Auth;
 using System.Text.Json;
+using MailKit.Search;
 
 namespace API.Controllers
 {
@@ -235,14 +236,25 @@ namespace API.Controllers
         }
 
         [HttpGet("sortBranchByDistance")]
-        public async Task<ActionResult<IEnumerable<BranchDistance>>> SortBranchByDistance([FromQuery] LocationModel user)
+        public async Task<ActionResult<PagingResponse<BranchDistance>>> SortBranchByDistance([FromQuery] LocationModel user, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
-            var sortedBranchesWithDistance = await _branchService.SortBranchByDistance(user);
-            if (sortedBranchesWithDistance == null || !sortedBranchesWithDistance.Any())
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            var (branches, total) = await _branchService.SortBranchByDistance(user, pageResult);
+            if (total == 0)
             {
                 return NotFound("No branches found or unable to sort branches by distance.");
             }
-            return Ok(sortedBranchesWithDistance);
+
+            var response = new PagingResponse<BranchDistance>
+            {
+                Data = branches,
+                Total = total
+            };
+            return Ok(response);
         }
 
     }

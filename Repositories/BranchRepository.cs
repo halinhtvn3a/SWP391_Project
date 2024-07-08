@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Repositories
 {
@@ -77,26 +78,9 @@ namespace Repositories
             return _branchDao.GetBranch(court.BranchId);
         }
         public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult) => await _branchDao.SortBranch(sortBy, isAsc, pageResult);
+        public List<Branch> GetBranches() => _branchDao.GetBranches();
 
-
-        public async Task<List<BranchDistance>> SortBranchByDistance(LocationModel user)
-        {
-            List<Branch> branches = _branchDao.GetBranches(); // Assuming GetBranches is an async method
-
-            var branchDistances = new List<BranchDistance>();
-
-            foreach (var branch in branches)
-            {
-                var branchLocation = await GeocodingService.GetGeocodeAsync(branch.BranchAddress);
-                var distance = await LocationService.GetRouteDistanceAsync(user, branchLocation);
-                branchDistances.Add(new BranchDistance { Branch = branch, Distance = distance });
-            }
-
-            // Sort the list by distance
-            var sortedBranchDistances = branchDistances.OrderBy(bd => bd.Distance).ToList();
-
-            return sortedBranchDistances;
-        }
+        public async Task<(List<BranchDistance>, int total)> SortBranchByDistance(LocationModel user, PageResult pageResult) => await _branchDao.SortBranchByDistance(user, pageResult);
 
 
     }

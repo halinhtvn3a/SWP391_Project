@@ -39,6 +39,6 @@ namespace Services
 
         public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult) => await _branchRepository.SortBranch(sortBy, isAsc, pageResult);
 
-        public async Task<List<BranchDistance>> SortBranchByDistance(LocationModel user) => await _branchRepository.SortBranchByDistance(user);
+        public async Task<(List<BranchDistance>, int total)> SortBranchByDistance(LocationModel user, PageResult pageResult) => await _branchRepository.SortBranchByDistance(user, pageResult);
     }
 }
