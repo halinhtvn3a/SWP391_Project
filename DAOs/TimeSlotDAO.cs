@@ -85,10 +85,12 @@ namespace DAOs
         //}
 
 
-        public async Task<TimeSlot> UpdateTimeSlotWithObject(TimeSlot timeSlot)
+        public async Task UpdateTimeSlotWithObject(TimeSlot timeSlot)
         {
-            var timeslot = await _dbContext.TimeSlots.FirstOrDefaultAsync(m => m.SlotId.Equals(timeSlot));
-            return timeslot;
+           
+            _dbContext.TimeSlots.Update(timeSlot);
+            _dbContext.SaveChanges();
+           
         }
 
         public async Task<TimeSlot> UpdateTimeSlot(string slotId, SlotModel slotModel)
