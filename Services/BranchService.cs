@@ -40,5 +40,9 @@ namespace Services
         public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult) => await _branchRepository.SortBranch(sortBy, isAsc, pageResult);
 
         public async Task<(List<BranchDistance>, int total)> SortBranchByDistance(LocationModel user, PageResult pageResult) => await _branchRepository.SortBranchByDistance(user, pageResult);
+
+        public async Task<(List<Branch>, int total)> GetBranchByPrice(decimal minPrice, decimal maxPrice, PageResult pageResult) => await _branchRepository.GetBranchByPrice(minPrice, maxPrice, pageResult);
+
+        public async Task<(List<Branch>, int total)> GetBranchByRating(int rating, PageResult pageResult) => await _branchRepository.GetBranchByRating(rating, pageResult);
     }
 }

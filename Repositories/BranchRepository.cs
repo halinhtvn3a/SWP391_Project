@@ -15,6 +15,7 @@ namespace Repositories
     {
         private readonly BranchDAO _branchDao = null;
         private readonly BookingDAO _bookingDao = null;
+        private readonly ReviewDAO _reviewDAO = null;
         private readonly TimeSlotDAO _timeSlotDao = null;
         private readonly CourtDAO _courtDao = null;
         public BranchRepository()
@@ -37,6 +38,11 @@ namespace Repositories
             if (_courtDao == null)
             {
                 _courtDao = new CourtDAO();
+            }
+
+            if (_reviewDAO == null)
+            {
+                _reviewDAO = new ReviewDAO();
             }
         }
 
@@ -82,7 +88,9 @@ namespace Repositories
 
         public async Task<(List<BranchDistance>, int total)> SortBranchByDistance(LocationModel user, PageResult pageResult) => await _branchDao.SortBranchByDistance(user, pageResult);
 
+        public async Task<(List<Branch>, int total)> GetBranchByPrice(decimal minPrice, decimal maxPrice, PageResult pageResult) => await _branchDao.GetBranchByPrice(minPrice, maxPrice, pageResult);
 
+        public async Task<(List<Branch>, int total)> GetBranchByRating(int rating, PageResult pageResult) => await _branchDao.GetBranchByRating(rating, pageResult);
     }
 
 

@@ -15,6 +15,7 @@ using Firebase.Storage;
 using Firebase.Auth;
 using System.Text.Json;
 using MailKit.Search;
+using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
 
 namespace API.Controllers
 {
@@ -205,11 +206,11 @@ namespace API.Controllers
             return _branchService.GetBranchesByStatus(status).ToList();
         }
 
-        [HttpGet("GetBranchByPrice/{minPrice}&&{maxPrice}")]
-        public async Task<ActionResult<IEnumerable<Branch>>> SortBranchByPrice(decimal minPrice, decimal maxPrice)
-        {
-            return _branchService.GetBranchByPrice(minPrice, maxPrice).ToList();
-        }
+        //[HttpGet("GetBranchByPrice/{minPrice}&&{maxPrice}")]
+        //public async Task<ActionResult<IEnumerable<Branch>>> SortBranchByPrice(decimal minPrice, decimal maxPrice)
+        //{
+        //    return _branchService.GetBranchByPrice(minPrice, maxPrice).ToList();
+        //}
 
         [HttpGet("courtId/{courtId}")]
         public async Task<ActionResult<IEnumerable<Branch>>> GetBranchesByCourtId(string courtId)
@@ -250,6 +251,50 @@ namespace API.Controllers
             }
 
             var response = new PagingResponse<BranchDistance>
+            {
+                Data = branches,
+                Total = total
+            };
+            return Ok(response);
+        }
+
+        [HttpGet("GetBranchByPrice/{minPrice}&&{maxPrice}")]
+        public async Task<ActionResult<PagingResponse<Branch>>> GetBranchByPrice([FromQuery] decimal minPrice = 0, [FromQuery] decimal maxPrice = 200, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            var (branches, total) = await _branchService.GetBranchByPrice(minPrice, maxPrice, pageResult);
+            if (total == 0)
+            {
+                return NotFound("No branches found.");
+            }
+            var response = new PagingResponse<Branch>
+            {
+                Data = branches,
+                Total = total
+            };
+            return Ok(response);
+        }
+
+        [HttpGet("GetBranchByRating/{rating}")]
+        public async Task<ActionResult<PagingResponse<Branch>>> GetBranchByRating([FromQuery] int rating = 5, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        {
+
+            var pageResult = new PageResult
+            {
+                PageNumber = pageNumber,
+                PageSize = pageSize
+            };
+            var (branches, total) = await _branchService.GetBranchByRating(rating, pageResult);
+            if (total == 0)
+            {
+                return NotFound("No branches found.");
+            }
+            var response = new PagingResponse<Branch>
             {
                 Data = branches,
                 Total = total

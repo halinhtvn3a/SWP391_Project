@@ -155,6 +155,32 @@ namespace DAOs
                 c.SlotPrice <= maxPrice && c.IsWeekend == true
             )).ToList();
         }
+        
+        public async Task<(List<Branch>, int total)> GetBranchByPrice(decimal minPrice, decimal maxPrice, PageResult pageResult)
+        {
+            var query = _courtCallerDbContext.Branches.Where(m => m.Prices.Any(c =>
+                c.SlotPrice >= minPrice && c.IsWeekend == false
+            )).Where(m => m.Prices.Any(c =>
+                c.SlotPrice <= maxPrice && c.IsWeekend == true
+            )).AsQueryable();
+            var total = await _courtCallerDbContext.Branches.CountAsync();
+
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
+            return (branches, total);
+        }
+
+        public async Task<(List<Branch>, int total)> GetBranchByRating(int rating, PageResult pageResult)
+        {
+            var query = _courtCallerDbContext.Branches.Where(m => m.Reviews.Any(c =>
+                c.Rating == rating
+            )).AsQueryable();
+            var total = await _courtCallerDbContext.Branches.CountAsync();
+
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
+            return (branches, total);
+        }
 
         public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult)
         {
