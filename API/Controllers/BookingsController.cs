@@ -272,7 +272,7 @@ namespace API.Controllers
 
             var qrData = new
             {
-                BookingId = booking.Result.Id,
+                BookingId = booking.Result.BookingId,
                 
             };
 

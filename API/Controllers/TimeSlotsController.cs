@@ -183,7 +183,7 @@ namespace API.Controllers
 
             var allTimeSlot = _timeSlotService.GetTimeSlotsByBookingId(qrData.BookingId);
             foreach (var timeSlot in allTimeSlot) {
-                if (timeSlot != null && timeSlot.Status == "Reserved" && timeSlot.SlotId == qrData.BookingId)
+                if (timeSlot != null && timeSlot.Status == "Reserved" && timeSlot.BookingId == qrData.BookingId)
                 {
                     //cần phải checked-in tất cả time slot ngày hôm đó luôn chứ không phải chỉ 1 time slot
 
