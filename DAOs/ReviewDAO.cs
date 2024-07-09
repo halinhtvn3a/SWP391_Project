@@ -135,5 +135,19 @@ namespace DAOs
             List<Review> reviews = await pagination.GetListAsync<Review>(query, pageResult);
             return reviews;
         }
+
+        public double AverageRating(string branchId)
+        {
+            List<Review> reviews = GetReviewsByBranch(branchId);
+            if (reviews.Count == 0)
+            {
+                return 0;
+            }
+            double total = 0;
+            foreach (Review review in reviews) {
+                total += review.Rating.Value;
+            }
+            return total / reviews.Count;
+        }
     }
 }

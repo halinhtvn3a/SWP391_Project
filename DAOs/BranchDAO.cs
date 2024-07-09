@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace DAOs
 {
@@ -154,6 +155,32 @@ namespace DAOs
                 c.SlotPrice <= maxPrice && c.IsWeekend == true
             )).ToList();
         }
+        
+        public async Task<(List<Branch>, int total)> GetBranchByPrice(decimal minPrice, decimal maxPrice, PageResult pageResult)
+        {
+            var query = _courtCallerDbContext.Branches.Where(m => m.Prices.Any(c =>
+                c.SlotPrice >= minPrice && c.IsWeekend == false
+            )).Where(m => m.Prices.Any(c =>
+                c.SlotPrice <= maxPrice && c.IsWeekend == true
+            )).AsQueryable();
+            var total = await _courtCallerDbContext.Branches.CountAsync();
+
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
+            return (branches, total);
+        }
+
+        public async Task<(List<Branch>, int total)> GetBranchByRating(int rating, PageResult pageResult)
+        {
+            var query = _courtCallerDbContext.Branches.Where(m => m.Reviews.Any(c =>
+                c.Rating == rating
+            )).AsQueryable();
+            var total = await _courtCallerDbContext.Branches.CountAsync();
+
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
+            return (branches, total);
+        }
 
         public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult)
         {
@@ -198,5 +225,35 @@ namespace DAOs
             List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
             return branches;
         }
+
+        public async Task<(List<BranchDistance>, int total)> SortBranchByDistance(LocationModel user, PageResult pageResult)
+        {
+            // Ensure GetBranches is awaited and correctly fetches branches asynchronously
+            var branches = GetBranches(); // Assuming GetBranchesAsync is the correct async method
+
+            var branchDistances = new List<BranchDistance>();
+
+            foreach (var branch in branches.Where(b => b.Status == "Active"))
+            {
+                var branchLocation = await GeocodingService.GetGeocodeAsync(branch.BranchAddress);
+                var distance = await LocationService.GetRouteDistanceAsync(user, branchLocation);
+                branchDistances.Add(new BranchDistance { Branch = branch, Distance = distance });
+            }
+
+            // Sort the list by distance
+            var sortedBranchDistances = branchDistances.OrderBy(bd => bd.Distance).ToList();
+
+            // Manually paginate the sorted list
+            var paginatedBranchDistances = sortedBranchDistances
+                .Skip((pageResult.PageNumber - 1) * pageResult.PageSize)
+                .Take(pageResult.PageSize)
+                .ToList();
+
+            // The total count of branches before pagination
+            var total = branchDistances.Count;
+
+            return (paginatedBranchDistances, total);
+        }
+
     }
 }
