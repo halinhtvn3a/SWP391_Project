@@ -140,9 +140,15 @@ namespace API.Controllers
         }
 
         [HttpGet("{rating}/{branchId}")]
-        public async Task<ActionResult<decimal>> GetRatingPercentageOfABranch(int rating, string branchId)
+        public ActionResult<decimal> GetRatingPercentageOfABranch(int rating, string branchId)
         {
             return _reviewService.GetRatingPercentageOfABranch(rating, branchId);
+        }
+
+        [HttpGet("AverageRating/{branchId}")]
+        public ActionResult<double> AverageRating(string branchId)
+        {
+            return _reviewService.AverageRating(branchId);
         }
     }
 }

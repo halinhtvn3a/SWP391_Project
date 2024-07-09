@@ -53,6 +53,8 @@ namespace Repositories
                 percentOfRating = (totalReviews / _reviewDao.GetReviewsByBranch(branchId).Count()) * 100;
             }
             return percentOfRating;
-        } 
+        }
+
+        public double AverageRating(string branchId) => _reviewDao.AverageRating(branchId);
     }
 }
