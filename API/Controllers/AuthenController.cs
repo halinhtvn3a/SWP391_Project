@@ -129,19 +129,64 @@ namespace API.Controllers
                 await _roleManager.CreateAsync(role);
             }
 
+            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            var base64 = Encoding.UTF8.GetBytes(token);
+            var encodeToken = WebEncoders.Base64UrlEncode(base64);
+            Console.WriteLine("code đầu: " + token);
+            Console.WriteLine("code gửi: " + encodeToken);
+            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token = encodeToken, email = user.Email }, Request.Scheme);
+
+            var mailRequest = new MailRequest
+            {
+                ToEmail = user.Email,
+                Subject = "Court Caller Confirmation Email (Register)",
+                Body = API.Helper.FormEmail.EnailContent(user.Email, callbackUrl)
+            };
+            await _mailService.SendEmailAsync(mailRequest);
+
+            return Ok(new ResponseModel() { Status = "Success", Message = "Please check email to activate account" });
+            //await _userManager.AddToRoleAsync(user, "Customer");
+            //UserDetail userDetail = new UserDetail()
+            //{
+            //    UserId = user.Id,
+            //    Point = 0,
+            //    FullName = model.FullName,
+            //    ProfilePicture = $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/user.jpg?alt=media&token=3601d057-9503-4cc8-b203-2eb0b89f900d"
+
+            //};
+            //_userDetailService.AddUserDetail(userDetail);
+            //return Ok(new ResponseModel() { Status = "Success", Message = "User created successfully!" });
+        }
+
+
+        [HttpGet]
+        [Route("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail (string email, string token)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            if (user == null) 
+                return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = "Invalid email." });
+            var base64 = WebEncoders.Base64UrlDecode(token);
+            var decodedToken = Encoding.UTF8.GetString(base64);
+            Console.WriteLine("code nhận: " + token);
+            Console.WriteLine("code đã decode: " + decodedToken);
+
+            var result = _userManager.ConfirmEmailAsync(user, decodedToken);
+            if (!result.IsCompleted)
+                return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = "Email confirmation failed."});
             await _userManager.AddToRoleAsync(user, "Customer");
             UserDetail userDetail = new UserDetail()
             {
                 UserId = user.Id,
                 Point = 0,
-                FullName = model.FullName,
+                FullName = user.UserName,  // Replace with actual full name if available
                 ProfilePicture = $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/user.jpg?alt=media&token=3601d057-9503-4cc8-b203-2eb0b89f900d"
-                
             };
             _userDetailService.AddUserDetail(userDetail);
-            return Ok(new ResponseModel() { Status = "Success", Message = "User created successfully!" });
-        }
 
+            return Ok(new ResponseModel() { Status = "Success", Message = "Email confirmed successfully!" });
+            
+        }
 
 
 
@@ -329,9 +374,7 @@ namespace API.Controllers
             var base64 = Encoding.UTF8.GetBytes(token);
             var encodeToken = WebEncoders.Base64UrlEncode(base64);
             var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token = encodeToken, email = user.Email }, Request.Scheme);
-            Console.WriteLine("Generated Token: " + token);
-            Console.WriteLine("encode " + encodeToken);
-            Console.WriteLine("callback " + callbackUrl);
+           
             var mailRequest = new MailRequest
             {
                 ToEmail = user.Email,
@@ -383,8 +426,7 @@ namespace API.Controllers
                 return RedirectToAction("ResetPasswordConfirmation", "Authentication");
             var base64 = WebEncoders.Base64UrlDecode(model.Token);
             var decodedToken = Encoding.UTF8.GetString(base64);
-            Console.WriteLine("token check giống call back: " + model.Token);
-            Console.WriteLine("token sau khi decode : " + decodedToken);
+           
             var resetPassResult = await _userManager.ResetPasswordAsync(user, decodedToken, model.Password);
           
 

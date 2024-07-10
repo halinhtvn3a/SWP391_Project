@@ -158,7 +158,7 @@ namespace API.Controllers
         [HttpPost("reserve-slot")]
         public async Task<IActionResult> ReserveSlotV2(SlotModel[] slotModels, string userId)
         {
-            var booking = _bookingService.PessimistLockAsyncV2(slotModels, userId);
+            var booking = _bookingService.ReserveSlotAsyncV2(slotModels, userId);
 
             return booking != null ? Ok(booking) : BadRequest("Failed to reserve slot.");
         }

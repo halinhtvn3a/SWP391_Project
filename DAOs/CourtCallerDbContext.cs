@@ -37,7 +37,7 @@ namespace DAOs
 		public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<News> News { get; set; }
-
+        public virtual DbSet<RegistrationRequest> RegistrationRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
