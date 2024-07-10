@@ -5378,19 +5378,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\admin\\.nuget\\packages\\": {}
+    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\25-6\\SWP391_Project\\Services\\Services.csproj",
+      "projectUniqueName": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\Services.csproj",
       "projectName": "Services",
-      "projectPath": "E:\\25-6\\SWP391_Project\\Services\\Services.csproj",
-      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-      "outputPath": "E:\\25-6\\SWP391_Project\\Services\\obj\\",
+      "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\Services.csproj",
+      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
+      "outputPath": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5405,8 +5405,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "E:\\25-6\\SWP391_Project\\Repositories\\Repositories.csproj": {
-              "projectPath": "E:\\25-6\\SWP391_Project\\Repositories\\Repositories.csproj"
+            "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj": {
+              "projectPath": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\Repositories.csproj"
             }
           }
         }
@@ -5467,7 +5467,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
