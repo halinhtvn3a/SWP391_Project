@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "E:\\25-6\\SWP391_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|e:\\25-6\\swp391_project\\daos\\helper\\locationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\helper\\locationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\25-6\\swp391_project\\testloginandauthen\\repositorytests\\bookingrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\repositorytests\\bookingrepositorytests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -58,6 +62,19 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "LocationService.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Helper\\LocationService.cs",
+              "RelativeDocumentMoniker": "DAOs\\Helper\\LocationService.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\DAOs\\Helper\\LocationService.cs",
+              "RelativeToolTip": "DAOs\\Helper\\LocationService.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAAACYAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T15:32:45.716Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "BookingRepositoryTests.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\RepositoryTests\\BookingRepositoryTests.cs",
               "RelativeDocumentMoniker": "TestLoginAndAuthen\\RepositoryTests\\BookingRepositoryTests.cs",
@@ -70,7 +87,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "AuthServiceTests.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
               "RelativeDocumentMoniker": "TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
@@ -78,12 +95,11 @@
               "RelativeToolTip": "TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
               "ViewState": "AQIAAGMAAAAAAAAAAAAowGsAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T14:22:08.388Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-10T14:22:08.388Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "BranchesController.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BranchesController.cs",
@@ -95,7 +111,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "dbo.AspNetUsers [Data]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/MSI_SQLEXPRESS/CourtCallerDb/sa/SqlTable/dbo.AspNetUsers.sql",
               "ToolTip": "dbo.AspNetUsers [Data]",
@@ -104,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "AuthenController.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\AuthenController.cs",
@@ -116,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ReviewsController.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\ReviewsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\ReviewsController.cs",
@@ -128,7 +144,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ReviewDAO.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\ReviewDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\ReviewDAO.cs",
@@ -136,12 +152,11 @@
               "RelativeToolTip": "DAOs\\ReviewDAO.cs",
               "ViewState": "AQIAAEcAAAAAAAAAAAAgwFsAAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T03:48:28.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-09T03:48:28.629Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "UserDAO.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\UserDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\UserDAO.cs",
@@ -153,7 +168,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "ReviewRepository.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\ReviewRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\ReviewRepository.cs",
@@ -165,7 +180,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ReviewService.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Services\\ReviewService.cs",
               "RelativeDocumentMoniker": "Services\\ReviewService.cs",
@@ -177,7 +192,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\appsettings.json",
               "RelativeDocumentMoniker": "API\\appsettings.json",
