@@ -74,7 +74,7 @@ namespace DAOs
         public async Task<Booking> GetBooking(string id)
         {
             var booking = await _courtCallerDbContext.Bookings.FirstOrDefaultAsync(m => m.BookingId.Equals(id));
-            Console.WriteLine();
+            
             return booking;
         }
 
