@@ -111,14 +111,14 @@ jobs:
   #     run: az webapp restart --name CourtCaller --resource-group Badminton
 
 
-deploy:
-  runs-on: windows-latest
-  needs: build
-  environment:
-    name: 'Production'
-    url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+  deploy:
+    runs-on: windows-latest
+    needs: build
+    environment:
+      name: 'Production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
-  steps:
+    steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
