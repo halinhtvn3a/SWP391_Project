@@ -111,6 +111,41 @@ jobs:
   #     run: az webapp restart --name CourtCaller --resource-group Badminton
 
 
+deploy:
+  runs-on: windows-latest
+  needs: build
+  environment:
+    name: 'Production'
+    url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Publish
+      run: dotnet publish -c Release -o publish_output /p:PublishProfile=YourPublishProfileName.pubxml
+
+    - name: Download artifact from build job
+      uses: actions/download-artifact@v3
+      with:
+        name: publish_output
+
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'CourtCaller'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: publish_output
+
+    - name: Restart Azure Web App
+      run: az webapp restart --name CourtCaller --resource-group Badminton
 
 
 
