@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "E:\\25-6\\SWP391_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\25-6\\swp391_project\\api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\25-6\\swp391_project\\api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|e:\\25-6\\swp391_project\\businessobjects\\court.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EA7612FD-529F-4B2B-B30B-70EB7C2C74CF}|BusinessObjects\\BusinessObjects.csproj|solutionrelative:businessobjects\\court.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -13,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\25-6\\swp391_project\\api\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\newscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\25-6\\swp391_project\\api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|e:\\25-6\\swp391_project\\services\\mailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -59,32 +63,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\UsersController.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\API\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "API\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-11T09:03:55.339Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Court.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\BusinessObjects\\Court.cs",
               "RelativeDocumentMoniker": "BusinessObjects\\Court.cs",
               "ToolTip": "E:\\25-6\\SWP391_Project\\BusinessObjects\\Court.cs",
               "RelativeToolTip": "BusinessObjects\\Court.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAA8AAAAYAAAA",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAqwA8AAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-11T07:32:36.838Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BookingRepository.cs",
-              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
-              "ToolTip": "E:\\25-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
-              "RelativeToolTip": "Repositories\\BookingRepository.cs",
-              "ViewState": "AQIAAPEAAAAAAAAAAAAAAA0BAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T07:28:14.311Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "NewsController.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\NewsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\NewsController.cs",
@@ -92,12 +96,11 @@
               "RelativeToolTip": "API\\Controllers\\NewsController.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T07:01:19.388Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-11T07:01:19.388Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "MachineResponse.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\MachineResponse.cs",
               "RelativeDocumentMoniker": "DAOs\\Models\\MachineResponse.cs",
@@ -105,12 +108,11 @@
               "RelativeToolTip": "DAOs\\Models\\MachineResponse.cs",
               "ViewState": "AQIAAAEAAAAAAAAAAAAUwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T06:34:11.327Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-11T06:34:11.327Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "LoginModel.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\LoginModel.cs",
               "RelativeDocumentMoniker": "DAOs\\Models\\LoginModel.cs",
@@ -118,12 +120,11 @@
               "RelativeToolTip": "DAOs\\Models\\LoginModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T06:34:07.81Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-11T06:34:07.81Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "ForgetPasswordModel.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\ForgetPasswordModel.cs",
               "RelativeDocumentMoniker": "DAOs\\Models\\ForgetPasswordModel.cs",
@@ -131,12 +132,11 @@
               "RelativeToolTip": "DAOs\\Models\\ForgetPasswordModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T06:33:57.124Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-11T06:33:57.124Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ExternalLoginModel.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\DAOs\\Models\\ExternalLoginModel.cs",
               "RelativeDocumentMoniker": "DAOs\\Models\\ExternalLoginModel.cs",
@@ -144,12 +144,11 @@
               "RelativeToolTip": "DAOs\\Models\\ExternalLoginModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T06:33:51.572Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-11T06:33:51.572Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "MailService.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Services\\MailService.cs",
               "RelativeDocumentMoniker": "Services\\MailService.cs",
@@ -157,25 +156,36 @@
               "RelativeToolTip": "Services\\MailService.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-11T06:29:46.325Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-11T06:29:46.325Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "AuthenController.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\AuthenController.cs",
               "ToolTip": "E:\\25-6\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
               "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
-              "ViewState": "AQIAAHAAAAAAAAAAAAAwwI4AAAArAAAA",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAAI4AAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-10T14:45:17.011Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 3,
+              "Title": "BookingRepository.cs",
+              "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
+              "ToolTip": "E:\\25-6\\SWP391_Project\\Repositories\\BookingRepository.cs",
+              "RelativeToolTip": "Repositories\\BookingRepository.cs",
+              "ViewState": "AQIAAPEAAAAAAAAAAAAAAA0BAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-11T07:28:14.311Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "BookingService.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\Services\\BookingService.cs",
               "RelativeDocumentMoniker": "Services\\BookingService.cs",
@@ -187,7 +197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "BookingsController.cs",
               "DocumentMoniker": "E:\\25-6\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BookingsController.cs",
