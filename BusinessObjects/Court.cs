@@ -21,7 +21,7 @@ namespace BusinessObjects
 		public string CourtName { get; set; }
         
         [StringLength(450)]
-		public string CourtPicture { get; set; }
+		public string? CourtPicture { get; set; }
 
 		[Required]
         [StringLength(100)]
