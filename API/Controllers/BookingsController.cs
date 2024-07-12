@@ -159,9 +159,20 @@ namespace API.Controllers
         [HttpPost("reserve-slot")]
         public async Task<IActionResult> ReserveSlotV2(SlotModel[] slotModels, string userId)
         {
-            var booking = _bookingService.ReserveSlotAsyncV2(slotModels, userId);
-
-            return booking != null ? Ok(booking) : BadRequest("Failed to reserve slot.");
+            try
+            {
+                var booking = _bookingService.ReserveSlotAsyncV2(slotModels, userId);
+                return booking != null ? Ok(booking) : BadRequest("Failed to reserve slot.");
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception (if logging is set up)
+                return StatusCode(500, ex.Message);
+            }
         }
 
         [HttpDelete("cancelBooking/{bookingId}")]

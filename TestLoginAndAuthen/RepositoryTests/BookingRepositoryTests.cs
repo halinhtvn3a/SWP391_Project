@@ -31,7 +31,6 @@ namespace UnitTests.RepositoryTests
 
         public BookingRepositoryTests()
         {
-            // Initialize mock set and context
             mockSet = new Mock<DbSet<Booking>>();
             mockContext = new Mock<CourtCallerDbContext>();
             bookingList = new List<Booking>

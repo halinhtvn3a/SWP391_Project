@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Repositories
 {
@@ -209,6 +210,14 @@ namespace Repositories
             string branchId;
             try
             {
+                if(slotModels.IsNullOrEmpty())
+                {
+                    throw new ArgumentException("SlotModels is not null or empty");
+                }
+                if (userId.IsNullOrEmpty() || _userDao.GetUser(userId) is null)
+                {
+                    throw new ArgumentException("userId is not null and having this user in system");
+                }
                 foreach (var s in slotModels)
                 {
                     if (_timeSlotRepository.IsSlotBookedInBranch(s))
@@ -272,7 +281,7 @@ namespace Repositories
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw;
             }
         }
 

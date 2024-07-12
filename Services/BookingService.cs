@@ -14,7 +14,7 @@ namespace Services
         private readonly BookingRepository _bookingRepository = null;
         private readonly TimeSlotRepository _timeSlotRepository = null;
 
-        public BookingService() 
+        public BookingService()
         {
             if (_bookingRepository == null)
             {
@@ -43,7 +43,7 @@ namespace Services
             try
             {
                 var booking = _bookingRepository.ReserveSlotAsyncV2(slotModels, userId);
-                return  booking;
+                return booking;
             }
             catch (Exception ex)
             {
