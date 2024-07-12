@@ -141,6 +141,7 @@ namespace API
             builder.Services.AddScoped<PaymentRepository>();
             builder.Services.AddScoped<TimeslotCleanupManager>();
             builder.Services.AddScoped<TrainingService>();
+            builder.Services.AddScoped<IBookingService , BookingService>();
             // VNPay Service
             builder.Services.AddScoped<VnpayService>();
 

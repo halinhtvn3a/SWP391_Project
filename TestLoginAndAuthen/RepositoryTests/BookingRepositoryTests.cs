@@ -156,44 +156,8 @@ namespace UnitTests.RepositoryTests
             Assert.Equal(1, bookings.Count);
         }
 
-        //[Fact]
-        //public void ReserveSlotAsyncV2_BookingSuccessfully()
-        //{
-        //    // Arrange
-        //    var slotModels = new SlotModel[]
-        //    {
-        //        new SlotModel { TimeSlot = new TimeSlotModel { SlotStartTime = new TimeOnly(11, 0), SlotEndTime = new TimeOnly(12, 0) }, CourtId = "C00002", BranchId = "B00001", SlotDate = DateOnly.FromDateTime(DateTime.Now) },
-        //        new SlotModel { TimeSlot = new TimeSlotModel { SlotStartTime = new TimeOnly(12, 0), SlotEndTime = new TimeOnly(13, 0) }, CourtId = "C00002", BranchId = "B00001", SlotDate = DateOnly.FromDateTime(DateTime.Now) }
-        //    };
 
-        //    var userId = "U00002";
 
-        //    var bookingDaoMock = new Mock<BookingDAO>(mockContext.Object);
-        //    var timeSlotDaoMock = new Mock<TimeSlotDAO>(mockContext.Object);
-        //    var branchDaoMock = new Mock<BranchDAO>(mockContext.Object);
-        //    var userDetailDaoMock = new Mock<UserDetailDAO>(mockContext.Object);
-
-        //    var bookingRepositoryMock = new BookingRepository(bookingDaoMock.Object, timeSlotDaoMock.Object, priceDAO, timeSlotRepository, userDAO, userDetailDAO, branchDAO);
-
-        //    // Setup mock methods
-        //    branchDaoMock.Setup(x => x.GetBranchesByCourtId(It.IsAny<string>())).Returns(new List<Branch> { new Branch { BranchId = "B00001" } });
-        //    timeSlotDaoMock.Setup(x => x.AddSlotToBooking(It.IsAny<SlotModel>(), It.IsAny<string>())).Returns(new TimeSlot { Price = 50 });
-        //    userDetailDaoMock.Setup(x => x.GetUserDetail(It.IsAny<string>())).Returns(new UserDetail { UserId = userId, Point = 0 });
-        //    userDetailDaoMock.Setup(x => x.UpdateUserDetail(It.IsAny<UserDetail>())).Verifiable();
-
-        //    // Act
-        //    var result = bookingRepositoryMock.ReserveSlotAsyncV2(slotModels, userId);
-
-        //    // Assert
-        //    Assert.NotNull(result);
-        //    Assert.Equal(userId, result.Id);
-        //    Assert.Equal("Pending", result.Status);
-        //    Assert.Equal(2, result.NumberOfSlot);
-        //    Assert.Equal(100, result.TotalPrice);
-
-        //    branchDaoMock.Verify(x => x.GetBranchesByCourtId(It.IsAny<string>()), Times.Once);
-        //    timeSlotDaoMock.Verify(x => x.AddSlotToBooking(It.IsAny<SlotModel>(), It.IsAny<string>()), Times.Exactly(2));
-        //    userDetailDaoMock.Verify(x => x.UpdateUserDetail(It.IsAny<UserDetail>()), Times.Once);
-        //}
+        
     }
 }

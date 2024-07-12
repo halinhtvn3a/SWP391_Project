@@ -9,7 +9,7 @@ using Services;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace UnitTests.ControllerTests
+namespace UnitTests.ServiceTests
 {
 
     public class BookingServiceTests
@@ -20,7 +20,7 @@ namespace UnitTests.ControllerTests
         public BookingServiceTests()
         {
             _bookingServiceMock = new Mock<BookingService> { CallBase = true };
-            _bookingController = new BookingsController();
+            _bookingController = new BookingsController(_bookingServiceMock.Object);
 
             // Use reflection to set the private _bookingService field
             var field = typeof(BookingsController).GetField("_bookingService", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -28,7 +28,7 @@ namespace UnitTests.ControllerTests
         }
 
 
-        
+
 
         [Fact]
         public async Task CancelBooking_ValidId_ReturnsOk()

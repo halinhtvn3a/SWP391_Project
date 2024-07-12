@@ -16,6 +16,7 @@ using Newtonsoft.Json;
 using Qr = API.Helper;
 using API.Helper;
 using Microsoft.AspNetCore.Identity;
+using Services.Interface;
 
 namespace API.Controllers
 {
@@ -25,9 +26,9 @@ namespace API.Controllers
 
     public class BookingsController : ControllerBase
     {
-        private readonly BookingService _bookingService;
+        private readonly IBookingService _bookingService;
 
-        public BookingsController()
+        public BookingsController(IBookingService bookingService)
         {
             _bookingService = new BookingService();
         }

@@ -5,15 +5,16 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using DAOs.Models;
 using DAOs.Helper;
+using Services.Interface;
 
 namespace Services
 {
-    public class BookingService
+    public class BookingService : IBookingService
     {
         private readonly BookingRepository _bookingRepository = null;
         private readonly TimeSlotRepository _timeSlotRepository = null;
 
-        public BookingService()
+        public BookingService() 
         {
             if (_bookingRepository == null)
             {
@@ -37,12 +38,12 @@ namespace Services
         public List<Booking> SearchBookingsByTime(DateTime start, DateTime end) => _bookingRepository.SearchBookingsByTime(start, end);
         public async Task<List<Booking>> GetBookingsByUserId(string userId, PageResult pageResult) => await _bookingRepository.GetBookingsByUserId(userId, pageResult);
 
-        public async Task<Booking> ReserveSlotAsyncV2(SlotModel[] slotModels, string userId)
+        public Booking ReserveSlotAsyncV2(SlotModel[] slotModels, string userId)
         {
             try
             {
                 var booking = _bookingRepository.ReserveSlotAsyncV2(slotModels, userId);
-                return await Task.FromResult(booking);
+                return  booking;
             }
             catch (Exception ex)
             {
