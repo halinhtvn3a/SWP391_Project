@@ -85,7 +85,8 @@ namespace DAOs
             var total = await _courtCallerDbContext.News.Where(m => m.IsHomepageSlideshow == IsHomepageSlideshow && m.Status == status).OrderByDescending(News => News.PublicationDate).CountAsync();
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                query = query.Where(News => News.Content.Contains(searchQuery));
+                query = query.Where(news => news.Content.Contains(searchQuery) ||
+                                            news.Title.Contains(searchQuery));
             }
 
 
