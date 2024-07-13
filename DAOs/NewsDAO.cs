@@ -55,9 +55,16 @@ namespace DAOs
             return news;
         }
 
-        public News UpdateNew(string id, News news)
+        public News UpdateNew(string id, NewsModel news)
         {
-            News oNews = GetNew(id);
+            var oNews = GetNew(id);
+
+            oNews.Title = news.Title;
+            oNews.Content = news.Content;
+            oNews.Image = news.Image;
+            oNews.Status = news.Status;
+            oNews.IsHomepageSlideshow = news.IsHomepageSlideshow;
+            
             if (oNews != null)
             {
                 _courtCallerDbContext.Update(oNews);

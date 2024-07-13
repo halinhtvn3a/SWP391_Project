@@ -73,9 +73,23 @@ namespace API.Controllers
             return news;
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutNew(string id, News news)
+        [HttpPut("EditNews")]
+        public async Task<IActionResult> PutNew(string id, NewsModel news)
         {
+            var file = news.NewsImage;
+
+            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
+            using (var stream = file.OpenReadStream())
+            {
+                var task = new FirebaseStorage("court-callers.appspot.com")
+                    .Child("NewsImages")
+                    .Child(fileName)
+                    .PutAsync(stream);
+
+                var downloadUrl = await task;
+                news.Image = downloadUrl; // Directly assign the URL
+            }
+
             var updatedNews = newsService.UpdateNew(id, news);
             return Ok(updatedNews);
         }

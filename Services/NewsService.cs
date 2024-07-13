@@ -29,7 +29,7 @@ namespace Services
 
         public News GetNew(string id) => newsRepository.GetNew(id);
         public News AddNew(NewsModel news) => newsRepository.AddNew(news);
-        public News UpdateNew(string id, News news) => newsRepository.UpdateNew(id, news);
+        public News UpdateNew(string id, NewsModel news) => newsRepository.UpdateNew(id, news);
         public void DeleteNew(string id) => newsRepository.DeleteNew(id);
 
         public List<News> ShowSlideShowImage() => newsRepository.ShowSlideShowImage();

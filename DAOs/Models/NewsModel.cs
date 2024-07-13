@@ -29,4 +29,7 @@ namespace DAOs.Models
         public bool IsHomepageSlideshow { get; set; }
         public IFormFile? NewsImage { get; set; }
     }
+
+
+
 }
