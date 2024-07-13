@@ -29,8 +29,5 @@ namespace Services.Interface
         Task<(IEnumerable<WeeklyBookingResponse>, decimal)> GetWeeklyBookingsAsync();
 
 
-
-
-
     }
 }

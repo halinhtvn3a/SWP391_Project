@@ -22,21 +22,14 @@ namespace UnitTests.ServiceTests
             _bookingServiceMock = new Mock<BookingService> { CallBase = true };
             _bookingController = new BookingsController(_bookingServiceMock.Object);
 
-            // Use reflection to set the private _bookingService field
             var field = typeof(BookingsController).GetField("_bookingService", BindingFlags.NonPublic | BindingFlags.Instance);
             field.SetValue(_bookingController, _bookingServiceMock.Object);
         }
 
-
-
-
         [Fact]
         public async Task CancelBooking_ValidId_ReturnsOk()
         {
-            // Act
             var result = await _bookingController.CancelBooking("valid-id");
-
-            // Assert
             var okResult = Assert.IsType<OkObjectResult>(result);
             Assert.Equal("Booking cancelled successfully.", okResult.Value);
         }
@@ -44,10 +37,8 @@ namespace UnitTests.ServiceTests
         [Fact]
         public async Task CancelBooking_InvalidId_ReturnsBadRequest()
         {
-            // Act
-            var result = await _bookingController.CancelBooking("");
 
-            // Assert
+            var result = await _bookingController.CancelBooking("");
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
             Assert.Equal("Invalid booking id.", badRequestResult.Value);
         }
