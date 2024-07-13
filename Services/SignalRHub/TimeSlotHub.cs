@@ -33,7 +33,7 @@ namespace Services.SignalRHub
                 _logger.LogInformation("DisableSlot sent successfully");
 
                 
-                    await Clients.All.SendAsync("RefreshCourt");
+                    //await Clients.All.SendAsync("RefreshCourt");
                 
             int count = _timeSlotService.CountTimeSlot(slotCheckModel);
             if (count <= 0)

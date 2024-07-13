@@ -119,6 +119,9 @@ namespace Services
                         var amount = decimal.Parse(json["vnp_Amount"]);
                         if (json["vnp_BankTranNo"]?.ToString() != null || json["vnp_TxnRef"]?.ToString() != null)
                         {
+                            booking.Status = "cancel";
+                            _bookingRepository.UpdateBooking(booking);
+
                         var payment = new Payment
                         {
                             PaymentId = "P" + GenerateId.GenerateShortBookingId(),
