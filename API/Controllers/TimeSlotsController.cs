@@ -47,6 +47,19 @@ namespace API.Controllers
             List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlots(pageResult, searchQuery);
             return Ok(timeSlots);
         }
+        
+        [HttpGet("GetTimeSlotsByCourtId")]
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsByCourtId([FromQuery] string courtId ,[FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        {
+
+            var pageResult = new Page.PageResult
+            {
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+            };
+            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlotsByCourtId(courtId, pageResult, searchQuery);
+            return Ok(timeSlots);
+        }
 
         // GET: api/TimeSlots/5
         [HttpGet("{id}")]

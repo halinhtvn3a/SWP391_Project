@@ -42,6 +42,8 @@ namespace Services
             }
 
         }
+
+        public async Task<(List<Payment>, int total)> GetPayments(PageResult pageResult) => await _paymentRepository.GetPayments(pageResult);
         public Payment AddPayment(Payment Payment) => _paymentRepository.AddPayment(Payment);
         public void DeletePayment(string id) => _paymentRepository.DeletePayment(id);
 

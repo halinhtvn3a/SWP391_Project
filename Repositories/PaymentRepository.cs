@@ -25,7 +25,7 @@ namespace Repositories
         }
 
 
-
+        public async Task<(List<Payment>, int total)> GetPayments(PageResult pageResult) => await _paymentDao.GetPayments(pageResult);
         public Payment AddPayment(Payment payment) => _paymentDao.AddPayment(payment);
 
         public void DeletePayment(string id) => _paymentDao.DeletePayment(id);

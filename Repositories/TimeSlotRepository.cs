@@ -27,6 +27,8 @@ namespace Repositories
                 _courtDao = new CourtDAO();
             }
         }
+        public async Task<List<TimeSlot>> GetTimeSlotsByCourtId(string courtId, PageResult pageResult, string searchQuery = null)
+=> await _timeSlotDao.GetTimeSlotsByCourtId(courtId, pageResult, searchQuery);
 
         public TimeSlotRepository(TimeSlotDAO timeSlotDao, CourtDAO courtDao)
         {

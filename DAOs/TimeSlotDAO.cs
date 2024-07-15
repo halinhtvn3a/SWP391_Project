@@ -57,6 +57,24 @@ namespace DAOs
             List<TimeSlot> timeSlots = await pagination.GetListAsync<TimeSlot>(query, pageResult);
             return timeSlots;
         }
+        
+        public async Task<List<TimeSlot>> GetTimeSlotsByCourtId(string courtId, PageResult pageResult, string searchQuery = null)
+        {
+            var query = _dbContext.TimeSlots.Where(t => t.CourtId.Equals(courtId)).AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(timeslot => timeslot.SlotId.Contains(searchQuery) ||
+                                                timeslot.Booking.Id.Contains(searchQuery) ||
+                                                timeslot.Price.Equals(searchQuery) ||
+                                                timeslot.CourtId.Contains(searchQuery) ||
+                                                (timeslot.SlotDate.ToString().Contains(searchQuery)) ||
+                                                timeslot.Status.Contains(searchQuery));
+            }
+            Pagination pagination = new Pagination(_dbContext);
+            List<TimeSlot> timeSlots = await pagination.GetListAsync<TimeSlot>(query, pageResult);
+            return timeSlots;
+        }
 
         public TimeSlot GetTimeSlot(string id)
         {

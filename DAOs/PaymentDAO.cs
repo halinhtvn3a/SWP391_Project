@@ -26,6 +26,28 @@ namespace DAOs
         {
             _courtCallerDbContext = courtCallerDbContext;
         }
+
+        public async Task<(List<Payment>, int total)> GetPayments(Helper.PageResult pageResult)
+        {
+            var query = _courtCallerDbContext.Payments.AsQueryable();
+            var total = await _courtCallerDbContext.Payments.CountAsync();
+
+
+            //if (!string.IsNullOrEmpty(searchQuery))
+            //{
+            //    query = query.Where(court => court.CourtId.Contains(searchQuery) ||
+            //                                  court.BranchId.Contains(searchQuery) ||
+            //                                  court.CourtName.Contains(searchQuery) ||
+            //                                  court.Status.Contains(searchQuery));
+
+            //}
+
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Payment> payments = await pagination.GetListAsync<Payment>(query, pageResult);
+            return (payments, total);
+
+        }
+
         public List<Payment> GetPayments()
         {
             return _courtCallerDbContext.Payments.ToList();

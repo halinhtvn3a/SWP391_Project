@@ -9,6 +9,7 @@ using BusinessObjects;
 using DAOs.Helper;
 using Services;
 using DAOs.Models;
+using Services.Interface;
 
 namespace API.Controllers
 {
@@ -31,6 +32,27 @@ namespace API.Controllers
         {
             return _paymentService.GetPayments();
         }
+
+        [HttpGet("GetPayments")]
+        public async Task<ActionResult<PagingResponse<Payment>>> GetPayments([FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10)
+        {
+
+            var pageResult = new PageResult
+            {
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+            };
+            var (payments, total) = await _paymentService.GetPayments(pageResult);
+
+            var response = new PagingResponse<Payment>
+            {
+                Data = payments,
+                Total = total
+            };
+            return Ok(response);
+        }
+
 
         [HttpGet("bookingid/{bookingId}")]
         public async Task<ActionResult<Payment>> GetPaymentByBookingId(string bookingId)
