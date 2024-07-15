@@ -89,7 +89,7 @@ namespace Services
                     return new ResponseModel
                     {
                         Status = "Error",
-                        Message = "Error While Processing Balance"
+                        Message = "Error While Processing Balance(Not enough balance)"
                     };
                 }
                 user.Balance -= bookings.TotalPrice;

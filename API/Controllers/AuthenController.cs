@@ -129,33 +129,35 @@ namespace API.Controllers
                 await _roleManager.CreateAsync(role);
             }
 
-            var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-            var base64 = Encoding.UTF8.GetBytes(token);
-            var encodeToken = WebEncoders.Base64UrlEncode(base64);
-            Console.WriteLine("code đầu: " + token);
-            Console.WriteLine("code gửi: " + encodeToken);
-            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token = encodeToken, email = user.Email }, Request.Scheme);
+            //var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            //var base64 = Encoding.UTF8.GetBytes(token);
+            //var encodeToken = WebEncoders.Base64UrlEncode(base64);
+            //Console.WriteLine("code đầu: " + token);
+            //Console.WriteLine("code gửi: " + encodeToken);
+            //var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token = encodeToken, email = user.Email }, Request.Scheme);
 
-            var mailRequest = new MailRequest
-            {
-                ToEmail = user.Email,
-                Subject = "Court Caller Confirmation Email (Register)",
-                Body = API.Helper.FormEmail.EnailContent(user.Email, callbackUrl)
-            };
-            await _mailService.SendEmailAsync(mailRequest);
-
-            return Ok(new ResponseModel() { Status = "Success", Message = "Please check email to activate account" });
-            //await _userManager.AddToRoleAsync(user, "Customer");
-            //UserDetail userDetail = new UserDetail()
+            //var mailRequest = new MailRequest
             //{
-            //    UserId = user.Id,
-            //    Point = 0,
-            //    FullName = model.FullName,
-            //    ProfilePicture = $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/user.jpg?alt=media&token=3601d057-9503-4cc8-b203-2eb0b89f900d"
-
+            //    ToEmail = user.Email,
+            //    Subject = "Court Caller Confirmation Email (Register)",
+            //    Body = API.Helper.FormEmail.EnailContent(user.Email, callbackUrl)
             //};
-            //_userDetailService.AddUserDetail(userDetail);
-            //return Ok(new ResponseModel() { Status = "Success", Message = "User created successfully!" });
+            //await _mailService.SendEmailAsync(mailRequest);
+
+            //return Ok(new ResponseModel() { Status = "Success", Message = "Please check email to activate account" });
+
+            //để này sau (phải xóa phần này)
+            await _userManager.AddToRoleAsync(user, "Customer");
+            UserDetail userDetail = new UserDetail()
+            {
+                UserId = user.Id,
+                Point = 0,
+                FullName = model.FullName,
+                ProfilePicture = $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/user.jpg?alt=media&token=3601d057-9503-4cc8-b203-2eb0b89f900d"
+
+            };
+            _userDetailService.AddUserDetail(userDetail);
+            return Ok(new ResponseModel() { Status = "Success", Message = "User created successfully!" });
         }
 
 
