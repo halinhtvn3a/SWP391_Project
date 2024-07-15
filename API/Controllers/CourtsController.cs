@@ -142,7 +142,16 @@ namespace API.Controllers
             }
         }
 
-
+        [HttpGet("GetCourtsByBranchId")]
+        public async Task<ActionResult<IEnumerable<Court>>> GetCourtsByBranchId([FromQuery] string branchId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        {
+            var pageResult = new PageResult
+            {
+                PageNumber = 1,
+                PageSize = 10
+            };
+            return await _courtService.GetCourtsByBranchId(branchId, pageResult, searchQuery);
+        }
 
     }
 }

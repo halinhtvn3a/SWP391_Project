@@ -38,6 +38,9 @@ namespace Services
         }
 
         public List<Court> AvailableCourts(SlotModel slotModel) => _courtRepository.AvailableCourts(slotModel);
+
+        public async Task<List<Court>> GetCourtsByBranchId(string branchId, PageResult pageResult, string searchQuery = null)
+=> await _courtRepository.GetCourtsByBranchId(branchId, pageResult, searchQuery);
     }
 
 }

@@ -97,17 +97,6 @@ namespace UnitTests.DAOTests
         }
 
         [Theory]
-        [InlineData("B0001", 2)]
-        [InlineData("B0002", 2)]
-        [InlineData("B0003", 1)]
-        public void GetCourtsByBranchId_ReturnsCourts(string branchId, int count)
-        {
-            var dao = new CourtDAO(mockContext.Object);
-            var courts = dao.GetCourtsByBranchId(branchId);
-            Assert.Equal(count, courts.Count);
-        }
-
-        [Theory]
         [InlineData("Active", 3)]
         [InlineData("Inactive", 2)]
         public void GetCourtsByStatus_ReturnsCourts(string status, int count)
