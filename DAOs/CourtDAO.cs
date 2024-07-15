@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
 using DAOs.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace DAOs
 {
@@ -27,7 +28,7 @@ namespace DAOs
             _courtCallerDbContext = courtCallerDbContext;
         }
 
-       public async Task<List<Court>> GetCourts (PageResult pageResult, string searchQuery = null)
+       public async Task<List<Court>> GetCourts (Helper.PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Courts.AsQueryable();
 
@@ -98,14 +99,33 @@ namespace DAOs
             }
         }
 
-        public List<Court> GetCourtsByBranchId(string branchId) => _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(branchId)).ToList();
+        public async Task<List<Court>> GetCourtsByBranchId(string branchId, Helper.PageResult pageResult, string searchQuery = null)
+        {
+            var query = _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(branchId)).AsQueryable();
+
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(court => court.CourtId.Contains(searchQuery) ||
+                                              court.BranchId.Contains(searchQuery) ||
+                                              court.CourtName.Contains(searchQuery) ||
+                                              court.Status.Contains(searchQuery));
+
+            }
+
+            Pagination pagination = new Pagination(_courtCallerDbContext);
+            List<Court> courts = await pagination.GetListAsync<Court>(query, pageResult);
+            return courts;
+        }
+
+
 
         public int GetNumberOfCourtsByBranchId(string branchId) => _courtCallerDbContext.Courts.Where(m => m.BranchId.Equals(branchId)).Count();
 
 
         public List<Court> GetCourtsByStatus(string status) => _courtCallerDbContext.Courts.Where(m => m.Status.Equals(status)).ToList();
 
-        public async Task<List<Court>> SortCourt(string? sortBy, bool isAsc, PageResult pageResult)
+        public async Task<List<Court>> SortCourt(string? sortBy, bool isAsc, Helper.PageResult pageResult)
         {
             IQueryable<Court> query = _courtCallerDbContext.Courts;
 
