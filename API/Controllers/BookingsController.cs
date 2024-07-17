@@ -281,13 +281,12 @@ namespace API.Controllers
             //"branchId": "B001",
             //"courtId": "C002",
             //"slotDate": "2024-07-01", nên tạo các thứ này
-
+            
             var qrData = new
             {
                 BookingId = booking.Result.BookingId,
                 
             };
-
             string qrString = JsonConvert.SerializeObject(qrData);
             string qrCodeBase64 = Qr.QrCode.GenerateQRCode(qrString);
 

@@ -31,7 +31,7 @@ namespace Services
 
         public async Task<List<Review>> SortReview(string? sortBy, bool isAsc, HelperResult.PageResult pageResult) => await _reviewRepository.SortReview(sortBy, isAsc, pageResult);
 
-        public decimal GetRatingPercentageOfABranch(int rating, string branchId) => _reviewRepository.GetRatingPercentageOfABranch(rating, branchId);
+        public List<decimal> GetRatingPercentageOfABranch( string branchId) => _reviewRepository.GetRatingPercentageOfABranch( branchId);
 
         public double AverageRating(string branchId) => _reviewRepository.AverageRating(branchId);
     }

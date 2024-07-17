@@ -32,10 +32,31 @@ namespace DAOs
             _courtCallerDbContext = context;
         }
 
-        public async Task<(List<Booking>,int total)> GetBookings(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<Booking>, int total)> GetBookings(PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Bookings
                 .Include(b => b.User)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                query = query.Where(b =>
+                    b.BookingId.ToString().Contains(searchQuery) ||
+                    b.User.Id.ToString().Contains(searchQuery) ||
+                    b.BookingDate.ToString().Contains(searchQuery) ||
+                    b.Status.Contains(searchQuery) ||
+                    b.TotalPrice.ToString().Contains(searchQuery) ||
+                    b.BookingType.Contains(searchQuery) ||
+                    b.NumberOfSlot.ToString().Contains(searchQuery)
+                );
+            }
+
+           
+            var total = await query.CountAsync();
+
+            var pagedQuery = query
+                .Skip((pageResult.PageNumber - 1) * pageResult.PageSize)
+                .Take(pageResult.PageSize)
                 .Select(b => new Booking
                 {
                     BookingId = b.BookingId,
@@ -48,28 +69,13 @@ namespace DAOs
                     NumberOfSlot = b.NumberOfSlot
                 });
 
-            var pagedQuery = query
-                .Skip((pageResult.PageNumber - 1) * pageResult.PageSize)
-                .Take(pageResult.PageSize);
-
             var bookings = await pagedQuery.ToListAsync();
-            var total = await _courtCallerDbContext.Bookings.CountAsync();
 
-            if (!string.IsNullOrEmpty(searchQuery))
-            {
-                bookings = bookings.Where(b =>
-                    b.BookingId.ToString().Contains(searchQuery) ||
-                    b.Id.ToString().Contains(searchQuery) ||
-                    b.BookingDate.ToString().Contains(searchQuery) ||
-                    b.Status.Contains(searchQuery) ||
-                    b.TotalPrice.ToString().Contains(searchQuery) ||
-                    b.BookingType.Contains(searchQuery) ||
-                    b.NumberOfSlot.ToString().Contains(searchQuery)
-                ).ToList();
-            }
-
-            return (bookings,total);
+            return (bookings, total);
         }
+
+
+
 
         public async Task<Booking> GetBooking(string id)
         {

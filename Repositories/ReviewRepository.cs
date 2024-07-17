@@ -43,14 +43,25 @@ namespace Repositories
 
         public async Task<List<Review>> SortReview(string? sortBy, bool isAsc, PageResult pageResult) => await _reviewDao.SortReview(sortBy, isAsc, pageResult);
 
-        public decimal GetRatingPercentageOfABranch(int rating, string branchId)
+        public List<decimal> GetRatingPercentageOfABranch( string branchId)
         {
-            List<Review> reviews = _reviewDao.GetReviewsByBranch(branchId).Where(m => m.Rating == rating).ToList();
-            decimal totalReviews = reviews.Count();
-            decimal percentOfRating = 0;
-            if (totalReviews > 0)
+             
+            var review = _reviewDao.GetReviewsByBranch(branchId);
+            var percentOfRating = new List<decimal>();
+            int totalReviewsCount = review.Count();
+            for (int i = 1; i < 6; i++)
             {
-                percentOfRating = (totalReviews / _reviewDao.GetReviewsByBranch(branchId).Count()) * 100;
+               
+                decimal totalReviews = review.Count(m => m.Rating == i);
+
+                if (totalReviewsCount > 0)
+                {
+                    var listOfRatingRate = (totalReviews / _reviewDao.GetReviewsByBranch(branchId).Count()) * 100;
+                    percentOfRating.Add(listOfRatingRate);
+                } else
+                {
+                    percentOfRating.Add(0);
+                }
             }
             return percentOfRating;
         }

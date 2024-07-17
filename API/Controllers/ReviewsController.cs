@@ -139,10 +139,10 @@ namespace API.Controllers
             return await _reviewService.SortReview(sortBy, isAsc, pageResult);
         }
 
-        [HttpGet("GetRatingPercentageOfABranch/{rating}/{branchId}")]
-        public ActionResult<decimal> GetRatingPercentageOfABranch(int rating, string branchId)
+        [HttpGet("GetRatingPercentageOfABranch/{branchId}")]
+        public ActionResult<List<decimal>> GetRatingPercentageOfABranch(string branchId)
         {
-            return _reviewService.GetRatingPercentageOfABranch(rating, branchId);
+            return _reviewService.GetRatingPercentageOfABranch(branchId);
         }
 
         [HttpGet("AverageRating/{branchId}")]
