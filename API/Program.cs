@@ -155,7 +155,7 @@ namespace API
                 options.AddPolicy("AllowSpecificOrigin",
                     policy =>
                     {
-                        policy.WithOrigins("https://localhost:3000", "https://courtcaller.azurewebsites.net", "https://localhost:7104", "https://court-caller-deploy-git-master-lethanhnhan91s-projects.vercel.app/")
+                        policy.WithOrigins("https://localhost:3000", "https://courtcaller.azurewebsites.net", "https://localhost:7104", "https://court-caller-deploy-git-master-lethanhnhan91s-projects.vercel.app", "https://react-admin-lilac.vercel.app")
                               .AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowCredentials();
@@ -171,9 +171,10 @@ namespace API
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("AllowSpecificOrigin");
             app.UseAuthentication();
 
-            app.UseCors("AllowSpecificOrigin");
+           
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
