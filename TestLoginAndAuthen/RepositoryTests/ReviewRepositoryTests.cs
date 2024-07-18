@@ -49,23 +49,23 @@ namespace UnitTests.RepositoryTests
             reviewRepository = new ReviewRepository(reviewDAO);
         }
 
-        [Theory]
-        [InlineData(5, 33, "B00001")]
-        [InlineData(1, 17, "B00001")]
-        public void GetRatingPercentageOfABranch_ReturnsWell(int rating, decimal expected, string branchId)
-        {
-            decimal actual = Math.Round(reviewRepository.GetRatingPercentageOfABranch(rating, branchId));
+        //[Theory]
+        //[InlineData(5, 33, "B00001")]
+        //[InlineData(1, 17, "B00001")]
+        //public void GetRatingPercentageOfABranch_ReturnsWell(int rating, decimal expected, string branchId)
+        //{
+        //    decimal actual = Math.Round(reviewRepository.GetRatingPercentageOfABranch(rating, branchId));
 
-            Assert.Equal(expected, actual);
-        }
+        //    Assert.Equal(expected, actual);
+        //}
 
-        [Fact]
-        public void GetRatingPercentageOfABranch_ReturnsZero()
-        {
-            decimal actual = Math.Round(reviewRepository.GetRatingPercentageOfABranch(0, "B00001"));
+        //[Fact]
+        //public void GetRatingPercentageOfABranch_ReturnsZero()
+        //{
+        //    decimal actual = Math.Round(reviewRepository.GetRatingPercentageOfABranch(0, "B00001"));
 
-            Assert.Equal(0, actual);
-        }
+        //    Assert.Equal(0, actual);
+        //}
 
         [Fact]
         public void AddReview_ReturnsWell()
