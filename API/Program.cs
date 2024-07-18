@@ -186,7 +186,7 @@ namespace API
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHub<TimeSlotHub>("/timeslothub");
+                //endpoints.MapHub<TimeSlotHub>("/timeslothub");
                 endpoints.MapControllers();
             });
 
