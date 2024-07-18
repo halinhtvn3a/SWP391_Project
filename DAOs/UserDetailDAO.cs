@@ -176,5 +176,6 @@ namespace DAOs
             List<UserDetail> userDetails = await pagination.GetListAsync<UserDetail>(query, pageResult);
             return userDetails;
         }
+
     }
 }

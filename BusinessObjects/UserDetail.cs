@@ -26,6 +26,8 @@ namespace BusinessObjects
 
 		public int? YearOfBirth { get; set; }
 
+		public bool? IsVip { get; set; }
+
 		// Navigation property
 		public virtual IdentityUser User { get; set; }
 	}

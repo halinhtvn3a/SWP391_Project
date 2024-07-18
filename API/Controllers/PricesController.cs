@@ -70,9 +70,9 @@ namespace API.Controllers
         // POST: api/Prices
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost("showprice")]
-        public IActionResult GetPricesForWeek(string branchId)
+        public IActionResult GetPricesForWeek(bool isVip,string branchId)
         {
-            var price = _priceService.ShowPrice(branchId);
+            var price = _priceService.ShowPrice(isVip,branchId);
             var weekdayPrice = price[0];
             var weekendPrice = price[1];
             return Ok(new

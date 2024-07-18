@@ -14,15 +14,31 @@ namespace Services
     public class PriceService
     {
         private readonly PriceRepository _priceRepository = null;
+       
         public PriceService()
         {
             if (_priceRepository == null)
             {
                 _priceRepository = new PriceRepository();
             }
+           
         }
         public Price AddPrice(PriceModel priceModel) => _priceRepository.AddPrice(priceModel);
-        public List<decimal> ShowPrice(string branchId) => _priceRepository.ShowPrice(branchId);
+        public List<decimal> ShowPrice(bool isVip,string branchId)
+        {
+
+            var price = _priceRepository.ShowPrice(branchId);
+            
+            if (isVip)
+            {
+                for (int i = 0; i < price.Count; i++)
+                {
+                    price[i] *= 0.8m;
+                }
+                
+            }
+            return price;
+        }
         public void DeletePrice(string id) => _priceRepository.DeletePrice(id);
         public Price GetPrice(string id) => _priceRepository.GetPrice(id);
         public Price UpdatePrice(string id, PriceModel price) => _priceRepository.UpdatePrice(id, price);
