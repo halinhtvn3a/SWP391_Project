@@ -155,7 +155,7 @@ namespace API
                 options.AddPolicy("AllowSpecificOrigin",
                     policy =>
                     {
-                        policy.WithOrigins("https://localhost:3000", "https://courtcaller.azurewebsites.net", "https://localhost:7104", "https://court-caller-deploy-git-master-lethanhnhan91s-projects.vercel.app", "https://react-admin-lilac.vercel.app")
+                        policy.WithOrigins("https://localhost:3000", "https://courtcaller.azurewebsites.net", "https://localhost:7104", "https://court-caller-deploy-git-master-lethanhnhan91s-projects.vercel.app", "https://react-admin-lilac.vercel.app", "https://court-caller-deploy.vercel.app")
                               .AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowCredentials();
