@@ -30,15 +30,22 @@ namespace API.Controllers
         // GET: api/Courts
         [HttpGet]
         
-        public async Task<ActionResult<IEnumerable<Court>>> GetCourts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null) 
+        public async Task<ActionResult<PagingResponse<Court>>> GetCourts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null) 
         {
             var pageResult = new PageResult
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-            var court = await _courtService.GetCourts(pageResult, searchQuery);
-            return Ok(court);
+
+            var (court,total) = await _courtService.GetCourts(pageResult, searchQuery);
+            var response = new PagingResponse<Court>
+            {
+                Data = court,
+                Total = total
+
+            };
+            return Ok(response);
         }
 
         // GET: api/Courts/5
