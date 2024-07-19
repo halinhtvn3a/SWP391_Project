@@ -157,7 +157,7 @@ namespace API.Controllers
         }
 
         [HttpPost("ProcessPayment")]
-        public async Task<ActionResult> ProcessPayment( string token)
+        public async Task<ActionResult> ProcessPayment(string role ,string token)
         {
             //if (bookingId == null)
             //{
@@ -168,7 +168,7 @@ namespace API.Controllers
             //    });
             //}
             var bookingId = _tokenForPayment.ValidateToken(token);
-            var response = await _paymentService.ProcessBookingPayment(bookingId);
+            var response = await _paymentService.ProcessBookingPayment(role,bookingId);
             return Ok(response);
         }
 

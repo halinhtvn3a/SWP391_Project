@@ -55,7 +55,7 @@ namespace Services
 
         public List<Payment> SearchByDate(DateTime start, DateTime end) => _paymentRepository.SearchByDate(start, end);
 
-        public async Task<string> ProcessBookingPayment(string bookingId)
+        public async Task<string> ProcessBookingPayment(string role ,string bookingId)
         {
             var bookings = await _bookingRepository.GetBooking(bookingId);
             if (bookings == null)
@@ -63,7 +63,7 @@ namespace Services
                 return null;
             }
 
-            var paymentURL = _vnpayService.CreatePaymentUrl(bookings.TotalPrice,"ok",bookings.BookingId);
+            var paymentURL = _vnpayService.CreatePaymentUrl(bookings.TotalPrice,role,bookings.BookingId);
 
 
             return paymentURL;
