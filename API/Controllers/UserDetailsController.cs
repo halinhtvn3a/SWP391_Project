@@ -119,7 +119,7 @@ namespace API.Controllers
         }
 
         [HttpGet("GetUserDetailByUserEmail/{userEmail}")]
-        public async Task<ActionResult<UserDetail>> GetUserByEmail(string userEmail)
+        public async Task<ActionResult<List<UserDetail>>> GetUserByEmail(string userEmail)
         {
             if (string.IsNullOrEmpty(userEmail))
             {
@@ -128,13 +128,13 @@ namespace API.Controllers
 
             try
             {
-                var user = _userDetailService.SearchUserByEmail(userEmail).FirstOrDefault();
+                var user = _userDetailService.SearchUserByEmail(userEmail);
                 if (user == null)
                 {
                     return NotFound($"User with email {userEmail} not found.");
                 }
 
-                return user;
+                return  user;
             }
             catch (Exception ex)
             {

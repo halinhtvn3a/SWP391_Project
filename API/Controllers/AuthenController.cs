@@ -370,7 +370,7 @@ namespace API.Controllers
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User does not exist!" });
+                return StatusCode(StatusCodes.Status404NotFound, new ResponseModel { Status = "Error", Message = "User does not exist!" });
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var base64 = Encoding.UTF8.GetBytes(token);

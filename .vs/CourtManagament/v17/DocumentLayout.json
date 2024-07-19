@@ -3,28 +3,36 @@
   "WorkspaceRootPath": "C:\\FPTUNI\\5\\SWP391_Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\courtscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\courtscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\authencontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\courtdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\userdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\userdetailscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|c:\\fptuni\\5\\swp391_project\\services\\courtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\courtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\userdetaildao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\userdetaildao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\courtrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\courtrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|c:\\fptuni\\5\\swp391_project\\repositories\\userdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\userdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\reviewdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\reviewdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|c:\\fptuni\\5\\swp391_project\\services\\userdetailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{79F1DFD1-89B5-4FBC-87AF-D524FCAE1A72}|Services\\Services.csproj|solutionrelative:services\\userdetailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\paymentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\paymentdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|c:\\fptuni\\5\\swp391_project\\api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\paymentscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|c:\\fptuni\\5\\swp391_project\\daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{93C92229-04F6-491E-9580-96BFD4E448A5}|DAOs\\DAOs.csproj|solutionrelative:daos\\userdao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -50,80 +58,106 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CourtDAO.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\CourtDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\CourtDAO.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\CourtDAO.cs",
-              "RelativeToolTip": "DAOs\\CourtDAO.cs",
-              "ViewState": "AQIAAGQAAAAAAAAAAAD4v2kAAAAIAAAA",
+              "DocumentIndex": 4,
+              "Title": "UserDetailService.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\UserDetailService.cs",
+              "RelativeDocumentMoniker": "Services\\UserDetailService.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\UserDetailService.cs",
+              "RelativeToolTip": "Services\\UserDetailService.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAqwCAAAABwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T11:06:28.536Z",
+              "WhenOpened": "2024-07-19T11:55:31.545Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "CourtRepository.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\CourtRepository.cs",
-              "RelativeDocumentMoniker": "Repositories\\CourtRepository.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\CourtRepository.cs",
-              "RelativeToolTip": "Repositories\\CourtRepository.cs",
-              "ViewState": "AQIAACEAAAAAAAAAAAD4vzAAAAAuAAAA",
+              "Title": "UserDetailRepository.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\UserDetailRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\UserDetailRepository.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Repositories\\UserDetailRepository.cs",
+              "RelativeToolTip": "Repositories\\UserDetailRepository.cs",
+              "ViewState": "AQIAAB0AAAAAAAAAAAAqwCoAAABpAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T11:06:19.611Z",
+              "WhenOpened": "2024-07-19T11:55:18.594Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CourtService.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\CourtService.cs",
-              "RelativeDocumentMoniker": "Services\\CourtService.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\Services\\CourtService.cs",
-              "RelativeToolTip": "Services\\CourtService.cs",
-              "ViewState": "AQIAABoAAAAAAAAAAAD4vyoAAAAtAAAA",
+              "DocumentIndex": 7,
+              "Title": "UserDAO.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\UserDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\UserDAO.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\UserDAO.cs",
+              "RelativeToolTip": "DAOs\\UserDAO.cs",
+              "ViewState": "AQIAAIoAAAAAAAAAAAAAAJgAAAAzAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T11:06:05.608Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CourtsController.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\CourtsController.cs",
-              "RelativeDocumentMoniker": "API\\Controllers\\CourtsController.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\CourtsController.cs",
-              "RelativeToolTip": "API\\Controllers\\CourtsController.cs",
-              "ViewState": "AQIAAI0AAAAAAAAAAAD4v6cAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T11:04:29.157Z",
+              "WhenOpened": "2024-07-19T11:54:55.313Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "PaymentDAO.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\PaymentDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\PaymentDAO.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\PaymentDAO.cs",
-              "RelativeToolTip": "DAOs\\PaymentDAO.cs",
-              "ViewState": "AQIAAGgAAAAAAAAAAAAAAIAAAABMAAAA",
+              "Title": "UsersController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\UsersController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\UsersController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\UsersController.cs",
+              "RelativeToolTip": "API\\Controllers\\UsersController.cs",
+              "ViewState": "AQIAAHcAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T10:49:21.261Z",
+              "WhenOpened": "2024-07-19T11:54:40.104Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ReviewDAO.cs",
-              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\ReviewDAO.cs",
-              "RelativeDocumentMoniker": "DAOs\\ReviewDAO.cs",
-              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\ReviewDAO.cs",
-              "RelativeToolTip": "DAOs\\ReviewDAO.cs",
-              "ViewState": "AQIAAB4AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 2,
+              "Title": "UserDetailDAO.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
+              "RelativeDocumentMoniker": "DAOs\\UserDetailDAO.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\DAOs\\UserDetailDAO.cs",
+              "RelativeToolTip": "DAOs\\UserDetailDAO.cs",
+              "ViewState": "AQIAAIQAAAAAAAAAAAAqwJsAAABkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-19T10:49:08.929Z",
+              "WhenOpened": "2024-07-19T11:54:05.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserDetailsController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\UserDetailsController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
+              "RelativeToolTip": "API\\Controllers\\UserDetailsController.cs",
+              "ViewState": "AQIAAHIAAAAAAAAAAAAWwHoAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T11:52:53.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PaymentsController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\PaymentsController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\PaymentsController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\PaymentsController.cs",
+              "RelativeToolTip": "API\\Controllers\\PaymentsController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T11:07:26.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AuthenController.cs",
+              "DocumentMoniker": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
+              "RelativeDocumentMoniker": "API\\Controllers\\AuthenController.cs",
+              "ToolTip": "C:\\FPTUNI\\5\\SWP391_Project\\API\\Controllers\\AuthenController.cs",
+              "RelativeToolTip": "API\\Controllers\\AuthenController.cs",
+              "ViewState": "AQIAAHABAAAAAAAAAAAAAHQBAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-19T10:14:40.229Z",
               "EditorCaption": ""
             }
           ]
