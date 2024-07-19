@@ -103,7 +103,7 @@ namespace Services
                         _paymentRepository.AddPayment(payment);
 
                         
-                        booking.Status = "complete";
+                        booking.Status = "Complete";
                         await _bookingRepository.SaveChangesAsync();
 
 
@@ -119,7 +119,7 @@ namespace Services
                         var amount = decimal.Parse(json["vnp_Amount"]);
                         if (json["vnp_BankTranNo"]?.ToString() != null || json["vnp_TxnRef"]?.ToString() != null)
                         {
-                            booking.Status = "cancel";
+                            booking.Status = "Canceled";
                             _bookingRepository.UpdateBooking(booking);
 
                         var payment = new Payment
