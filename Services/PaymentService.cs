@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Http.HttpResults;
 using MimeKit.Cryptography;
+using DAOs;
 
 namespace Services
 {
@@ -127,5 +128,8 @@ namespace Services
         public async Task<decimal> GetDailyRevenue(DateTime date) => await _paymentRepository.GetDailyRevenue(date);
 
         public async Task<decimal> GetRevenueByDay(DateTime start, DateTime end) => await _paymentRepository.GetRevenueByDay(start, end);
+
+        public async Task<(List<Payment>, int total)> GetPayments(PageResult pageResult, int? day, int? month, int? year) => await _paymentRepository.GetPayments(pageResult, day, month, year);
+
     }
 }
