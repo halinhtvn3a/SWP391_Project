@@ -270,7 +270,7 @@ namespace DAOs
         {
             var today = DateTime.UtcNow.Date.AddDays(1);
             var startOfWeek = today.AddDays(-(int)today.DayOfWeek).AddDays(1);
-            var endOfWeek = startOfWeek.AddDays(6);
+            var endOfWeek = startOfWeek.AddDays(7);
             var startOfLastWeek = startOfWeek.AddDays(-7);
             var endOfLastWeek = startOfWeek;
 
@@ -342,7 +342,7 @@ namespace DAOs
                  startOfWeek <= startOfCurrentWeek;
                  startOfWeek = startOfWeek.AddDays(7))
             {
-                var endOfWeek = startOfWeek.AddDays(6);
+                var endOfWeek = startOfWeek.AddDays(7);
 
                 var count = await _courtCallerDbContext.Bookings
                     .Where(m => m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek)
