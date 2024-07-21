@@ -154,7 +154,7 @@ namespace API.Controllers
                 UserId = user.Id,
                 Point = 0,
                 FullName = model.FullName,
-                ProfilePicture = $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/user.jpg?alt=media&token=3601d057-9503-4cc8-b203-2eb0b89f900d"
+                ProfilePicture = $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/UserImage%2F2b24782f-6bef-439a-b46a-57feb2bd38f5?alt=media&token=54e5cc04-60ff-40d6-923d-1ccd3953a9b6"
 
             };
             _userDetailService.AddUserDetail(userDetail);
