@@ -240,7 +240,7 @@ namespace DAOs
 
         public async Task<(int todayCount, double changePercentage)> GetDailyBookings()
         {
-            var today = DateTime.Today;
+            var today = DateTime.UtcNow.Date.AddDays(1);
             var tomorrow = today.AddDays(1);
             var yesterday = today.AddDays(-1);
 
@@ -268,7 +268,7 @@ namespace DAOs
 
         public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync()
         {
-            var today = DateTime.Today;
+            var today = DateTime.UtcNow.Date.AddDays(1);
             var startOfWeek = today.AddDays(-(int)today.DayOfWeek);
             var endOfWeek = startOfWeek.AddDays(7);
             var startOfLastWeek = startOfWeek.AddDays(-7);
