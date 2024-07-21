@@ -27,6 +27,7 @@ namespace Services.Interface
         (string, int) NumberOfSlotsAvailable(string userId, string branchId);
         Task<(int todayCount, double changePercentage)> GetDailyBookings();
         Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync();
+        Task<int[]> GetBookingsFromStartOfWeek();
 
 
     }

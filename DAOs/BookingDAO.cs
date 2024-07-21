@@ -311,5 +311,24 @@ namespace DAOs
                 .ToListAsync();
         }
 
+        public async Task<int[]> GetBookingsFromStartOfWeek()
+        {
+            var today = DateTime.UtcNow.Date.AddDays(1);
+            var startOfWeek = today.AddDays(-(int)today.DayOfWeek);
+
+            var bookingCounts = new List<int>();
+
+            for (var date = startOfWeek; date <= today; date = date.AddDays(1))
+            {
+                var nextDate = date.AddDays(1);
+                var count = await _courtCallerDbContext.Bookings
+                    .Where(m => m.BookingDate >= date && m.BookingDate < nextDate)
+                    .CountAsync();
+
+                bookingCounts.Add(count);
+            }
+
+            return bookingCounts.ToArray();
+        }
     }
 }

@@ -206,6 +206,8 @@ namespace Repositories
 
         public Booking ReserveSlotAsyncV2(SlotModel[] slotModels, string userId)
         {
+            var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            var nowUtc = DateTime.UtcNow;
             //await _bookingDao.BeginTransactionAsync();
             string branchId;
             try
@@ -255,7 +257,7 @@ namespace Repositories
                     {
                         BookingId = generateBookingId,
                         Id = userId,
-                        BookingDate = DateTime.Now,
+                        BookingDate = TimeZoneInfo.ConvertTimeFromUtc(nowUtc, timeZone),
                         BranchId = branchId,
                         Status = "Pending",
                         TotalPrice = 0,
@@ -331,12 +333,14 @@ namespace Repositories
 
         public Booking AddBookingTypeFlex(string userId, int numberOfSlot, string branchId)
         {
+            var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            var nowUtc = DateTime.UtcNow;
             Decimal totalPrice = _priceDao.GetSlotPriceOfBookingFlex(branchId) * numberOfSlot;
             Booking booking = new Booking
             {
                 BookingId = "B" + GenerateId.GenerateShortBookingId(),
                 Id = userId,
-                BookingDate = DateTime.Now,
+                BookingDate = TimeZoneInfo.ConvertTimeFromUtc(nowUtc, timeZone),
                 BranchId = branchId,
                 Status = "Pending",
                 TotalPrice = totalPrice,
@@ -437,12 +441,13 @@ namespace Repositories
             int numberOfSlots = validDates.Count * timeSlotModels.Length; // Assuming one slot per valid date per TimeSlotModel
 
             decimal totalPrice = _priceDao.GetSlotPriceOfBookingFix(branchId) * numberOfSlots;
-
+            var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            var nowUtc = DateTime.UtcNow;
             Booking booking = new Booking
             {
                 BookingId = bookingId,
                 Id = userId,
-                BookingDate = DateTime.Now,
+                BookingDate = TimeZoneInfo.ConvertTimeFromUtc(nowUtc, timeZone),
                 Status = "Pending",
                 BranchId = branchId,
                 TotalPrice = totalPrice,
@@ -507,6 +512,7 @@ namespace Repositories
         public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync() => await _bookingDao.GetWeeklyBookingsAsync();
 
         public async Task<List<Booking>> GetBookingsForLastWeekAsync() => await _bookingDao.GetBookingsForLastWeekAsync();
+        public async Task<int[]> GetBookingsFromStartOfWeek() => await _bookingDao.GetBookingsFromStartOfWeek();
     }
  
 }

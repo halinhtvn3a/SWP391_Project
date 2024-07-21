@@ -339,6 +339,19 @@ namespace API.Controllers
             return Ok(response);
         }
 
-
+        [HttpGet("bookings-from-start-of-week")]
+        [Authorize]
+        public async Task<IActionResult> GetBookingsFromStartOfWeek()
+        {
+            try
+            {
+                var result = await _bookingService.GetBookingsFromStartOfWeek();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {               
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }
