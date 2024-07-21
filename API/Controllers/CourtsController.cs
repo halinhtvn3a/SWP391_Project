@@ -29,7 +29,6 @@ namespace API.Controllers
 
         // GET: api/Courts
         [HttpGet]
-        
         public async Task<ActionResult<PagingResponse<Court>>> GetCourts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null) 
         {
             var pageResult = new PageResult
@@ -65,6 +64,7 @@ namespace API.Controllers
         // PUT: api/Courts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutCourt(string id, CourtModel courtModel)
         {
             var court = _courtService.GetCourt(id);
@@ -81,6 +81,7 @@ namespace API.Controllers
         // POST: api/Courts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Court>> PostCourt(CourtModel courtModel)
         {
 
@@ -91,6 +92,7 @@ namespace API.Controllers
 
         // DELETE: api/Courts/5
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteCourt(string id)
         {
             var court = _courtService.GetCourt(id);

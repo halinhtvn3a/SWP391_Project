@@ -10,6 +10,7 @@ using DAOs.Helper;
 using Services;
 using Microsoft.AspNetCore.Identity;
 using DAOs.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -26,6 +27,8 @@ namespace API.Controllers
 
         // GET: api/UserDetails
         [HttpGet]
+        [Authorize]
+
         public async Task<ActionResult<IEnumerable<UserDetail>>> GetUserDetails()
         {
             return _userDetailService.GetUserDetails().ToList();
@@ -33,6 +36,8 @@ namespace API.Controllers
 
         // GET: api/UserDetails/5
         [HttpGet("{id}")]
+        [Authorize]
+
         public async Task<ActionResult<UserDetail>> GetUser(string id)
         {
             var user = _userDetailService.GetUserDetail(id);
@@ -48,6 +53,8 @@ namespace API.Controllers
         //PUT: api/UserDetails/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
+        [Authorize]
+
         public async Task<IActionResult> PutUser(string id, UserDetailsModel userDetailsModel)
         {
             var user = _userDetailService.GetUserDetail(id);
@@ -62,6 +69,8 @@ namespace API.Controllers
         }
 
         [HttpPut("foruser/{id}")]
+        [Authorize]
+
         public async Task<IActionResult> PutUserDetail(string id, PutUserDetail userDetailsModel)
         {
             var user = _userDetailService.GetUserDetail(id);
@@ -106,6 +115,8 @@ namespace API.Controllers
         }
 
         [HttpGet("GetUserDetailByUserId/{userId}")]
+        [Authorize]
+
         public async Task<ActionResult<UserDetail>> GetUserDetailByUserId(string userId)
         {
             var user = _userDetailService.GetUserDetail(userId);
@@ -119,6 +130,8 @@ namespace API.Controllers
         }
 
         [HttpGet("GetUserDetailByUserEmail/{userEmail}")]
+        [Authorize]
+
         public async Task<ActionResult<List<UserDetail>>> GetUserByEmail(string userEmail)
         {
             if (string.IsNullOrEmpty(userEmail))
@@ -144,6 +157,8 @@ namespace API.Controllers
         }
 
         [HttpGet("SortUser/{sortBy}")]
+        [Authorize]
+
         public async Task<ActionResult<IEnumerable<UserDetail>>> SortReview(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var pageResult = new PageResult

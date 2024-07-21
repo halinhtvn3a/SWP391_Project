@@ -100,19 +100,13 @@ namespace DAOs
 			return IdentityUser;
 		}
 
-        //public IdentityUser UpdateIdentityUser(string id, IdentityUser IdentityUser)
-        //{
-        //	IdentityUser oIdentityUser = GetIdentityUser(id);
-        //	if (oIdentityUser != null)
-        //	{
-        //		oIdentityUser.Point = IdentityUser.Point;
-        //		oIdentityUser.FullName = IdentityUser.FullName;
-        //		oIdentityUser.Status = IdentityUser.Status;
-        //		_dbContext.Update(oIdentityUser);
-        //		_dbContext.SaveChanges();
-        //	}
-        //	return oIdentityUser;
-        //}
+        public void UpdateIdentityUser(IdentityUser IdentityUser)
+        {
+
+                _dbContext.Update(IdentityUser);
+                _dbContext.SaveChanges();
+            
+        }
 
         public void DeleteUser(string id)
         {

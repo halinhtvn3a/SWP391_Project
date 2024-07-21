@@ -35,6 +35,7 @@ namespace API.Controllers
 
         // GET: api/Bookings
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<PagingResponse<Booking>>> GetBookings([FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10,
            [FromQuery] string searchQuery = null)
@@ -56,6 +57,7 @@ namespace API.Controllers
 
         // GET: api/Bookings/5
         [HttpGet("{id}")]
+        [Authorize]
         public async Task<ActionResult<Booking>> GetBooking(string id)
         {
             var booking = _bookingService.GetBooking(id);
@@ -69,6 +71,7 @@ namespace API.Controllers
         }
 
         [HttpGet("userId/{userId}")]
+        [Authorize]
         public async Task<ActionResult<Booking>> GetBookingByUserId(string userId)
         {
             var bookings = _bookingService.GetBookingsByUserId(userId);
@@ -104,6 +107,7 @@ namespace API.Controllers
 
         // DELETE: api/Bookings/5
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteBooking(string id)
         {
             var booking = _bookingService.GetBooking(id);
@@ -123,18 +127,21 @@ namespace API.Controllers
         //}
 
         [HttpGet("status/{status}")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByStatus(string status)
         {
             return _bookingService.GetBookingsByStatus(status).ToList();
         }
 
         [HttpGet("search/{start}/{end}")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Booking>>> SearchBookingsByTime(DateTime start, DateTime end)
         {
             return _bookingService.SearchBookingsByTime(start, end).ToList();
         }
 
         [HttpGet("search/{userId}")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByUser(string userId,
             [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
@@ -157,6 +164,7 @@ namespace API.Controllers
         //}
 
         [HttpPost("reserve-slot")]
+        [Authorize]
         public async Task<IActionResult> ReserveSlotV2(SlotModel[] slotModels, string userId)
         {
             try
@@ -176,6 +184,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("cancelBooking/{bookingId}")]
+        [Authorize]
         public async Task<IActionResult> CancelBooking(string bookingId)
         {
             if (string.IsNullOrEmpty(bookingId))
@@ -189,6 +198,7 @@ namespace API.Controllers
         }
 
         [HttpDelete("delete/{bookingId}")]
+        [Authorize]
         public async Task<IActionResult> DeleteBookingAndSetTimeSlot(string bookingId)
         {
             if (string.IsNullOrEmpty(bookingId))
@@ -203,6 +213,7 @@ namespace API.Controllers
 
         //post booking type flex
         [HttpPost("flex")]
+        [Authorize]
         public async Task<ActionResult<Booking>> PostBookingTypeFlex(string userId, int numberOfSlot, string branchId)
         {
 
@@ -211,6 +222,7 @@ namespace API.Controllers
         }
 
         [HttpPost("fix-slot")]
+        [Authorize]
         public async Task<IActionResult> PostBookingTypeFix([FromQuery] int numberOfMonths,
             [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel[] timeSlotModel,
             [FromQuery] string userId, string branchId)
@@ -221,6 +233,7 @@ namespace API.Controllers
         }
 
         [HttpGet("sortBooking/{sortBy}")]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Booking>>> SortBookings(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var pageResult = new Page.PageResult
@@ -251,6 +264,7 @@ namespace API.Controllers
         //}
 
         [HttpGet("checkbookingtypeflex")]
+        [Authorize]
         public  ActionResult<CheckBookingTypeFlexModel> CheckAvaiableSlotsFromBookingTypeFlex(string userId, string branchId)
         {
             var bookingFlexModel = _bookingService.NumberOfSlotsAvailable(userId, branchId);
@@ -294,6 +308,7 @@ namespace API.Controllers
         }
 
         [HttpGet("daily-bookings")]
+        [Authorize]
         public async Task<ActionResult<PagingResponse<BookingResponse>>> GetDailyBookings()
         {
             var (dailyBookings,total) = await _bookingService.GetDailyBookings();
@@ -306,6 +321,7 @@ namespace API.Controllers
         }
 
         [HttpGet("weekly-bookings")]
+        [Authorize]
         public async Task<IActionResult> GetWeeklyBookings()
         {
             var result = await _bookingService.GetWeeklyBookingsAsync();
