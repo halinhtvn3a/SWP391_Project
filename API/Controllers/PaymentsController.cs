@@ -57,6 +57,32 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [HttpGet("GetPaymentsByDate")]
+        [Authorize]
+        public async Task<ActionResult<PagingResponse<Payment>>> GetPaymentsByDate(
+            [FromQuery] int? day, 
+            [FromQuery] int? month, 
+            [FromQuery] int? year,
+            [FromQuery] int pageNumber = 1, 
+            [FromQuery] int pageSize = 10
+            )
+        {
+
+            var pageResult = new PageResult
+            {
+                PageSize = pageSize,
+                PageNumber = pageNumber,
+            };
+            var (payments, total) = await _paymentService.GetPayments(pageResult, day, month, year);
+
+            var response = new PagingResponse<Payment>
+            {
+                Data = payments,
+                Total = total
+            };
+            return Ok(response);
+        }
+
 
         [HttpGet("bookingid/{bookingId}")]
         [Authorize]
