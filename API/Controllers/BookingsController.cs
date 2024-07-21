@@ -45,7 +45,7 @@ namespace API.Controllers
                 PageSize = pageSize,
                 PageNumber = pageNumber,
             };
-            var (bookings,total) = await _bookingService.GetBookings(pageResult,searchQuery);
+            var (bookings, total) = await _bookingService.GetBookings(pageResult, searchQuery);
 
             var response = new PagingResponse<Booking>
             {
@@ -103,7 +103,7 @@ namespace API.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 
 
-        
+
 
         // DELETE: api/Bookings/5
         [HttpDelete("{id}")]
@@ -265,7 +265,7 @@ namespace API.Controllers
 
         [HttpGet("checkbookingtypeflex")]
         [Authorize]
-        public  ActionResult<CheckBookingTypeFlexModel> CheckAvaiableSlotsFromBookingTypeFlex(string userId, string branchId)
+        public ActionResult<CheckBookingTypeFlexModel> CheckAvaiableSlotsFromBookingTypeFlex(string userId, string branchId)
         {
             var bookingFlexModel = _bookingService.NumberOfSlotsAvailable(userId, branchId);
             var result = new CheckBookingTypeFlexModel
@@ -273,7 +273,7 @@ namespace API.Controllers
                 bookingId = bookingFlexModel.Item1,
                 numberOfSlot = bookingFlexModel.Item2
             };
-            
+
             return Ok(result);
         }
 
@@ -295,11 +295,11 @@ namespace API.Controllers
             //"branchId": "B001",
             //"courtId": "C002",
             //"slotDate": "2024-07-01", nên tạo các thứ này
-            
+
             var qrData = new
             {
                 BookingId = booking.Result.BookingId,
-                
+
             };
             string qrString = JsonConvert.SerializeObject(qrData);
             string qrCodeBase64 = Qr.QrCode.GenerateQRCode(qrString);
@@ -309,7 +309,7 @@ namespace API.Controllers
 
         [HttpGet("daily-bookings")]
         [Authorize]
-        
+
         public async Task<ActionResult<DailyBookingResponse>> GetDailyBookings()
         {
             var (todayCount, changePercentage) = await _bookingService.GetDailyBookings();
@@ -349,7 +349,22 @@ namespace API.Controllers
                 return Ok(result);
             }
             catch (Exception ex)
-            {               
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+        [HttpGet("weekly-bookings-from-start-of-month")]
+      
+        public async Task<IActionResult> GetWeeklyBookingsFromStartOfMonth()
+        {
+            try
+            {
+                var result = await _bookingService.GetWeeklyBookingsFromStartOfMonth();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
                 return StatusCode(500, "Internal server error");
             }
         }

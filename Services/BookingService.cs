@@ -82,5 +82,7 @@ namespace Services
 
         public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync() => await _bookingRepository.GetWeeklyBookingsAsync();
         public async Task<int[]> GetBookingsFromStartOfWeek() => await _bookingRepository.GetBookingsFromStartOfWeek();
+        public async Task<int[]> GetWeeklyBookingsFromStartOfMonth() => await _bookingRepository.GetWeeklyBookingsFromStartOfMonth();
+
     }
 }

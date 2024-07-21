@@ -28,6 +28,7 @@ namespace Services.Interface
         Task<(int todayCount, double changePercentage)> GetDailyBookings();
         Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync();
         Task<int[]> GetBookingsFromStartOfWeek();
+        Task<int[]> GetWeeklyBookingsFromStartOfMonth();
 
 
     }

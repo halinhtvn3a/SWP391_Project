@@ -513,6 +513,7 @@ namespace Repositories
 
         public async Task<List<Booking>> GetBookingsForLastWeekAsync() => await _bookingDao.GetBookingsForLastWeekAsync();
         public async Task<int[]> GetBookingsFromStartOfWeek() => await _bookingDao.GetBookingsFromStartOfWeek();
+        public async Task<int[]> GetWeeklyBookingsFromStartOfMonth() => await _bookingDao.GetWeeklyBookingsFromStartOfMonth();
     }
  
 }

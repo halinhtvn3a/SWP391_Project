@@ -269,8 +269,8 @@ namespace DAOs
         public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync()
         {
             var today = DateTime.UtcNow.Date.AddDays(1);
-            var startOfWeek = today.AddDays(-(int)today.DayOfWeek);
-            var endOfWeek = startOfWeek.AddDays(7);
+            var startOfWeek = today.AddDays(-(int)today.DayOfWeek).AddDays(1);
+            var endOfWeek = startOfWeek.AddDays(6);
             var startOfLastWeek = startOfWeek.AddDays(-7);
             var endOfLastWeek = startOfWeek;
 
@@ -314,7 +314,7 @@ namespace DAOs
         public async Task<int[]> GetBookingsFromStartOfWeek()
         {
             var today = DateTime.UtcNow.Date.AddDays(1);
-            var startOfWeek = today.AddDays(-(int)today.DayOfWeek);
+            var startOfWeek = today.AddDays(-(int)today.DayOfWeek).AddDays(1);
 
             var bookingCounts = new List<int>();
 
@@ -330,5 +330,29 @@ namespace DAOs
 
             return bookingCounts.ToArray();
         }
+        public async Task<int[]> GetWeeklyBookingsFromStartOfMonth()
+        {
+            var today = DateTime.UtcNow.Date.AddDays(1);
+            var firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
+            var startOfCurrentWeek = today.AddDays(-(int)today.DayOfWeek).AddDays(1);
+
+            var bookingCounts = new List<int>();
+
+            for (var startOfWeek = firstDayOfMonth.AddDays(-(int)firstDayOfMonth.DayOfWeek).AddDays(1);
+                 startOfWeek <= startOfCurrentWeek;
+                 startOfWeek = startOfWeek.AddDays(7))
+            {
+                var endOfWeek = startOfWeek.AddDays(6);
+
+                var count = await _courtCallerDbContext.Bookings
+                    .Where(m => m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek)
+                    .CountAsync();
+
+                bookingCounts.Add(count);
+            }
+
+            return bookingCounts.ToArray();
+        }
+
     }
 }
