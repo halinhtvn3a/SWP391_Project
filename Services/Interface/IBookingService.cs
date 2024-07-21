@@ -25,8 +25,8 @@ namespace Services.Interface
         void CancelBooking(string bookingId);
         Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult);
         (string, int) NumberOfSlotsAvailable(string userId, string branchId);
-        Task<(IEnumerable<BookingResponse>, int count)> GetDailyBookings();
-        Task<(IEnumerable<WeeklyBookingResponse>, decimal)> GetWeeklyBookingsAsync();
+        Task<(int todayCount, double changePercentage)> GetDailyBookings();
+        Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync();
 
 
     }

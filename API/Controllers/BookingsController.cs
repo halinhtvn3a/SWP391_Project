@@ -309,25 +309,36 @@ namespace API.Controllers
 
         [HttpGet("daily-bookings")]
         [Authorize]
-        public async Task<ActionResult<PagingResponse<BookingResponse>>> GetDailyBookings()
+        
+        public async Task<ActionResult<DailyBookingResponse>> GetDailyBookings()
         {
-            var (dailyBookings,total) = await _bookingService.GetDailyBookings();
-            var response = new PagingResponse<BookingResponse>
+            var (todayCount, changePercentage) = await _bookingService.GetDailyBookings();
+
+            var response = new DailyBookingResponse
             {
-                Data = dailyBookings,
-                Total = total
+                TodayCount = todayCount,
+                ChangePercentage = changePercentage
             };
+
             return Ok(response);
         }
 
+
         [HttpGet("weekly-bookings")]
         [Authorize]
-        public async Task<IActionResult> GetWeeklyBookings()
+        public async Task<ActionResult<DailyBookingResponse>> GetWeeklyBookings()
         {
-            var result = await _bookingService.GetWeeklyBookingsAsync();
-            return Ok(new { data = result.Item1, total = result.Item2 });
+            var (weeklyCount, changePercentage) = await _bookingService.GetWeeklyBookingsAsync();
+
+            var response = new DailyBookingResponse
+            {
+                TodayCount = weeklyCount,
+                ChangePercentage = changePercentage
+            };
+
+            return Ok(response);
         }
 
-       
+
     }
 }

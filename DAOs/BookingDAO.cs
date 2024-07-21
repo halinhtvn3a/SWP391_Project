@@ -238,47 +238,68 @@ namespace DAOs
             return bookings;
         }
 
-        public async Task<(IEnumerable<BookingResponse>,int count)> GetDailyBookings()
+        public async Task<(int todayCount, double changePercentage)> GetDailyBookings()
         {
             var today = DateTime.Today;
-            var endDate = today.AddDays(1);
+            var tomorrow = today.AddDays(1);
+            var yesterday = today.AddDays(-1);
 
-            var dailyBooking = await _courtCallerDbContext.Bookings
-                .Where(m => m.BookingDate >= today && m.BookingDate < endDate) // Chỉ so sánh phần ngày của BookingDate
-                .GroupBy(b => new { b.BookingDate.Year, b.BookingDate.Month, b.BookingDate.Day })
-                .Select(g => new BookingResponse
-                {
-                    BookingDate = new DateTime(g.Key.Year, g.Key.Month, g.Key.Day),
-                    TotalPrice = g.Sum(b => b.TotalPrice)
-                })
-                .ToListAsync();
-            int count = dailyBooking.Count();
-            return (dailyBooking,count);
+            
+            var todayBookingCount = await _courtCallerDbContext.Bookings
+                .Where(m => m.BookingDate >= today && m.BookingDate < tomorrow)
+                .CountAsync();
+
+           
+            var yesterdayBookingCount = await _courtCallerDbContext.Bookings
+                .Where(m => m.BookingDate >= yesterday && m.BookingDate < today)
+                .CountAsync();
+            double changePercentage = 0;
+            if (yesterdayBookingCount > 0)
+            {
+                changePercentage = ((double)(todayBookingCount - yesterdayBookingCount) / yesterdayBookingCount) * 100;
+            }
+            else if (todayBookingCount > 0)
+            {
+                changePercentage = 100;
+            }
+            return (todayBookingCount, changePercentage);
         }
 
 
-        public async Task<(IEnumerable<WeeklyBookingResponse>, decimal)> GetWeeklyBookingsAsync()
+        public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync()
         {
             var today = DateTime.Today;
             var startOfWeek = today.AddDays(-(int)today.DayOfWeek);
             var endOfWeek = startOfWeek.AddDays(7);
+            var startOfLastWeek = startOfWeek.AddDays(-7);
+            var endOfLastWeek = startOfWeek;
 
-            var bookings = await _courtCallerDbContext.Bookings
+            
+            var currentWeekBookings = await _courtCallerDbContext.Bookings
                 .Where(m => m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek)
                 .ToListAsync();
 
-            var weeklyBooking = bookings
-                .GroupBy(b => b.BookingDate.DayOfWeek)
-                .Select(g => new WeeklyBookingResponse
-                {
-                    DayOfWeek = g.Key.ToString(),
-                    TotalPrice = g.Sum(b => b.TotalPrice)
-                })
-                .ToList();
+            
+            var lastWeekBookings = await _courtCallerDbContext.Bookings
+                .Where(m => m.BookingDate >= startOfLastWeek && m.BookingDate < endOfLastWeek)
+                .ToListAsync();
 
-            decimal total = weeklyBooking.Sum(w => w.TotalPrice);
-            return (weeklyBooking, total);
+            int currentWeekCount = currentWeekBookings.Count();
+            int lastWeekCount = lastWeekBookings.Count();
+
+            double changePercentage = 0;
+            if (lastWeekCount > 0)
+            {
+                changePercentage = ((double)(currentWeekCount - lastWeekCount) / lastWeekCount) * 100;
+            }
+            else if (currentWeekCount > 0)
+            {
+                changePercentage = 100; 
+            }
+
+            return (currentWeekCount, changePercentage);
         }
+
 
 
         public async Task<List<Booking>> GetBookingsForLastWeekAsync()

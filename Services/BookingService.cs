@@ -78,8 +78,8 @@ namespace Services
 
         public (string, int) NumberOfSlotsAvailable(string userId, string branchId) => _bookingRepository.NumberOfSlotsAvailable(userId, branchId);
 
-        public async Task<(IEnumerable<BookingResponse>, int count)> GetDailyBookings() => await _bookingRepository.GetDailyBookings();
+        public async Task<(int todayCount, double changePercentage)> GetDailyBookings() => await _bookingRepository.GetDailyBookings();
 
-        public async Task<(IEnumerable<WeeklyBookingResponse>, decimal)> GetWeeklyBookingsAsync() => await _bookingRepository.GetWeeklyBookingsAsync();
+        public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync() => await _bookingRepository.GetWeeklyBookingsAsync();
     }
 }
