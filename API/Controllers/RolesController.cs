@@ -41,7 +41,7 @@ namespace API.Controllers
         }
 
         [HttpGet("userId/{userId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<ActionResult<string[]>> GetRoleNameByUserId(string userId)
         {
             var Role = _roleService.GetRoleNameByUserId(userId);

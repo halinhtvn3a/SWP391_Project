@@ -35,7 +35,7 @@ namespace API.Controllers
 
         // GET: api/Bookings
         [HttpGet]
-        [Authorize]
+        [Authorize(Roles = "Admin,Staff")]
         public async Task<ActionResult<PagingResponse<Booking>>> GetBookings([FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10,
            [FromQuery] string searchQuery = null)
