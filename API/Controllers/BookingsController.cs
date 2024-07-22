@@ -182,20 +182,27 @@ namespace API.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
-
-        [HttpDelete("cancelBooking/{bookingId}")]
-        [Authorize]
+        [HttpDelete("cancel/{bookingId}")]
         public async Task<IActionResult> CancelBooking(string bookingId)
         {
-            if (string.IsNullOrEmpty(bookingId))
+            try
             {
-                return BadRequest("Invalid booking id.");
+                await _bookingService.CancelBooking(bookingId);
+                return Ok(new { message = "Booking cancelled successfully." });
             }
-
-            _bookingService.CancelBooking(bookingId);
-
-            return Ok("Booking cancelled successfully.");
+            catch (InvalidOperationException ex)
+            {
+                // Log the exception details here if necessary
+                return BadRequest(new { error = ex.Message });
+            }
+            catch (Exception ex)
+            {
+                // Handle other unexpected exceptions
+                return StatusCode(500, new { error = "An error occurred while cancelling the booking." });
+            }
         }
+
+
 
         [HttpDelete("delete/{bookingId}")]
         [Authorize]

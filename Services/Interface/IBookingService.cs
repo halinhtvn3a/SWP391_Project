@@ -22,7 +22,7 @@ namespace Services.Interface
         Booking ReserveSlotAsyncV2(SlotModel[] slotModels, string userId);
         Task<Booking> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel[] timeSlotModel, string userId, string branchId);
         Task DeleteBookingAndSetTimeSlotAsync(string bookingId);
-        void CancelBooking(string bookingId);
+        Task CancelBooking(string bookingId);
         Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult);
         (string, int) NumberOfSlotsAvailable(string userId, string branchId);
         Task<(int todayCount, double changePercentage)> GetDailyBookings();

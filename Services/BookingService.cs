@@ -72,7 +72,10 @@ namespace Services
 
         public async Task DeleteBookingAndSetTimeSlotAsync(string bookingId) => await _bookingRepository.DeleteBookingAndSetTimeSlotAsync(bookingId);
 
-        public void CancelBooking(string bookingId) => _bookingRepository.CancelBooking(bookingId);
+        public async Task CancelBooking(string bookingId)
+        {
+            await _bookingRepository.CancelBooking(bookingId);
+        }
 
         public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult) => await _bookingRepository.SortBookings(sortBy, isAsc, pageResult);
 

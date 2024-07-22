@@ -478,19 +478,32 @@ namespace Repositories
             return booking;
         }
 
-        public async void CancelBooking(string bookingId)
+        public async Task CancelBooking(string bookingId)
         {
+            var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            var nowUtc = DateTime.UtcNow;
+            var localTime = TimeZoneInfo.ConvertTimeFromUtc(nowUtc, timeZone);
+
+            var localDate = DateOnly.FromDateTime(localTime);
+            var localTimeOnly = TimeOnly.FromDateTime(localTime);
+
             List<TimeSlot> timeSlots = _timeSlotDao.GetTimeSlotsByBookingId(bookingId);
+
+            // Check if any slot has expired
             bool isExpired = timeSlots.Any(timeSlot =>
-                timeSlot.SlotDate.CompareTo(DateOnly.FromDateTime(DateTime.Now)) < 0 ||
-                (timeSlot.SlotDate.Equals(DateOnly.FromDateTime(DateTime.Now)) &&
-                 timeSlot.SlotStartTime.CompareTo(TimeOnly.FromDateTime(DateTime.Now)) < 0));
-            if (!isExpired)
+                timeSlot.SlotDate.CompareTo(localDate) < 0 ||
+                (timeSlot.SlotDate.Equals(localDate) && timeSlot.SlotStartTime.CompareTo(localTimeOnly) < 0));
+
+            // If any slot has expired, do not proceed with cancellation
+            if (isExpired)
             {
-                foreach (var timeSlot in timeSlots)
-                {
-                    _timeSlotDao.DeleteTimeSlot(timeSlot.SlotId);
-                }
+                throw new InvalidOperationException("Cannot cancel booking as one or more slots have expired.");
+            }
+
+            // Proceed with cancellation as no slots have expired
+            foreach (var timeSlot in timeSlots)
+            {
+                _timeSlotDao.DeleteTimeSlot(timeSlot.SlotId);
             }
 
             IdentityUser user = _userDao.GetUserByBookingId(bookingId);
@@ -503,6 +516,8 @@ namespace Repositories
             _userDetailDao.UpdateUserDetail(userDetail);
             _bookingDao.DeleteBooking(bookingId);
         }
+
+
 
         public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult) => await _bookingDao.SortBookings(sortBy, isAsc, pageResult);
 
