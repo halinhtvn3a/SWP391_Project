@@ -147,11 +147,11 @@ namespace API.Controllers
                     return NotFound($"User with email {userEmail} not found.");
                 }
 
-                return  user;
+                return user;
             }
             catch (Exception ex)
             {
-                
+
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
@@ -168,6 +168,19 @@ namespace API.Controllers
             };
 
             return await _userDetailService.SortUserDetail(sortBy, isAsc, pageResult);
+        }
+        [HttpGet("CountUser")]
+        [Authorize]
+        public int CountUser()
+        {
+            try
+            {
+                return _userDetailService.CountUser();
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
         }
     }
 }

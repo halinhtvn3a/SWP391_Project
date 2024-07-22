@@ -35,5 +35,6 @@ namespace Services
 
 
         public async Task<List<UserDetail>> SortUserDetail(string? sortBy, bool isAsc, PageResult pageResult) => await _userDetailRepository.SortUserDetail(sortBy, isAsc, pageResult);
+        public int CountUser() => _userDetailRepository.CountUser();
     }
 }

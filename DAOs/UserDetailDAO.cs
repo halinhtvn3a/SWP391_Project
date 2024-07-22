@@ -191,5 +191,9 @@ namespace DAOs
             return userDetails;
         }
 
+        public int CountUser()
+        {
+            return _dbContext.Users.Count();
+        }
     }
 }
