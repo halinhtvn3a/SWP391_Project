@@ -71,7 +71,9 @@ Feel free to reach out via [courtcallers@gmail.com](mailto:courtcallers@gmail.co
 
 ## 🌟 Acknowledgements
 
-- [halinhtvn3a](https://github.com/halinhtvn3a) - Project Lead
+- [halinhtvn3a](https://github.com/halinhtvn3a) (Leader) - Backend development and database management
 - [th3y3m](https://github.com/th3y3m) - Backend development and database management
+- [LeThanhNhan91](https://github.com/LeThanhNhan91) - Frontend development
+- [ttd11204](https://github.com/ttd11204) - Frontend development
 
 Special thanks to [Freepik](https://www.freepik.com) for providing the icons used in this project.
