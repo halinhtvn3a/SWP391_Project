@@ -33,6 +33,14 @@ namespace Services.Interface
         Task<int[]> GetWeeklyBookingsFromStartOfMonth(string? branchId);
         Task<int[]> GetMonthlyBookingsFromStartOfYear(string? branchId);
 
+        Task<(decimal todayRevenue, decimal changePercentage)> GetDailyRevenue(string? branchId);
+        Task<(decimal todayRevenue, decimal changePercentage)> GetMonthlyRevenueAsync(string? branchId);
+        Task<(decimal todayRevenue, decimal changePercentage)> GetWeeklyRevenueAsync(string? branchId);
+        Task<decimal[]> GetRevenueFromStartOfWeek(string? branchId);
+
+        Task<decimal[]> GetWeeklyRevenueFromStartOfMonth(string? branchId);
+
+        Task<decimal[]> GetMonthlyRevenueFromStartOfYear(string? branchId);
 
     }
 }

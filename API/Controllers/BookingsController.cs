@@ -376,7 +376,7 @@ namespace API.Controllers
             }
         }
         [HttpGet("weekly-bookings-from-start-of-month")]
-      
+
         public async Task<IActionResult> GetWeeklyBookingsFromStartOfMonth(string? branchId)
         {
             try
@@ -405,5 +405,97 @@ namespace API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+        [HttpGet("daily-revenue")]
+        [Authorize]
+        public async Task<ActionResult<RevenueResponse>> GetDailyRevenue(string? branchId)
+        {
+            var (todayRevenue, changePercentage) = await _bookingService.GetDailyRevenue(branchId);
+
+            var response = new RevenueResponse
+            {
+                Revenue = todayRevenue,
+                ChangePercentage = changePercentage
+            };
+
+            return Ok(response);
+        }
+
+        [HttpGet("weekly-revenue")]
+        [Authorize]
+        public async Task<ActionResult<RevenueResponse>> GetWeeklyRevenue(string? branchId)
+        {
+            var (weeklyRevenue, changePercentage) = await _bookingService.GetWeeklyRevenueAsync(branchId);
+
+            var response = new RevenueResponse
+            {
+                Revenue = weeklyRevenue,
+                ChangePercentage = changePercentage
+            };
+
+            return Ok(response);
+        }
+
+        [HttpGet("monthly-revenue")]
+        [Authorize]
+        public async Task<ActionResult<RevenueResponse>> GetMonthlyRevenue(string? branchId)
+        {
+            var (monthlyRevenue, changePercentage) = await _bookingService.GetMonthlyRevenueAsync(branchId);
+
+            var response = new RevenueResponse
+            {
+                Revenue = monthlyRevenue,
+                ChangePercentage = changePercentage
+            };
+
+            return Ok(response);
+        }
+
+        [HttpGet("revenue-from-start-of-week")]
+        [Authorize]
+        public async Task<IActionResult> GetRevenueFromStartOfWeek(string? branchId)
+        {
+            try
+            {
+                var result = await _bookingService.GetRevenueFromStartOfWeek(branchId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet("weekly-revenue-from-start-of-month")]
+        [Authorize]
+        public async Task<IActionResult> GetWeeklyRevenueFromStartOfMonth(string? branchId)
+        {
+            try
+            {
+                var result = await _bookingService.GetWeeklyRevenueFromStartOfMonth(branchId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet("monthly-revenue-from-start-of-year")]
+        [Authorize]
+        public async Task<IActionResult> GetMonthlyRevenueFromStartOfYear(string? branchId)
+        {
+            try
+            {
+                var result = await _bookingService.GetMonthlyRevenueFromStartOfYear(branchId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+
     }
 }

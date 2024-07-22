@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DAOs.Models;
 using DAOs.Helper;
 using Services.Interface;
+using DAOs;
 
 namespace Services
 {
@@ -88,6 +89,15 @@ namespace Services
         public async Task<int[]> GetBookingsFromStartOfWeek(string? branchId) => await _bookingRepository.GetBookingsFromStartOfWeek(branchId);
         public async Task<int[]> GetWeeklyBookingsFromStartOfMonth(string? branchId) => await _bookingRepository.GetWeeklyBookingsFromStartOfMonth(branchId);
         public async Task<int[]> GetMonthlyBookingsFromStartOfYear(string? branchId) => await _bookingRepository.GetMonthlyBookingsFromStartOfYear(branchId);
+
+        public async Task<(decimal todayRevenue, decimal changePercentage)> GetDailyRevenue(string? branchId) => await _bookingRepository.GetDailyRevenue(branchId);
+        public async Task<(decimal todayRevenue, decimal changePercentage)> GetWeeklyRevenueAsync(string? branchId) => await _bookingRepository.GetWeeklyRevenueAsync(branchId);
+        public async Task<(decimal todayRevenue, decimal changePercentage)> GetMonthlyRevenueAsync(string? branchId) => await _bookingRepository.GetMonthlyRevenueAsync(branchId);
+        public async Task<decimal[]> GetRevenueFromStartOfWeek(string? branchId) => await _bookingRepository.GetRevenueFromStartOfWeek(branchId);
+        public async Task<decimal[]> GetWeeklyRevenueFromStartOfMonth(string? branchId) => await _bookingRepository.GetWeeklyRevenueFromStartOfMonth(branchId);
+        public async Task<decimal[]> GetMonthlyRevenueFromStartOfYear(string? branchId) => await _bookingRepository.GetMonthlyRevenueFromStartOfYear(branchId);
+
+
 
     }
 }

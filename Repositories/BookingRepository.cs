@@ -532,6 +532,16 @@ namespace Repositories
         public async Task<int[]> GetBookingsFromStartOfWeek(string? branchId) => await _bookingDao.GetBookingsFromStartOfWeek(branchId);
         public async Task<int[]> GetWeeklyBookingsFromStartOfMonth(string? branchId) => await _bookingDao.GetWeeklyBookingsFromStartOfMonth(branchId);
         public async Task<int[]> GetMonthlyBookingsFromStartOfYear(string? branchId) => await _bookingDao.GetMonthlyBookingsFromStartOfYear(branchId);
+
+
+        public async Task<(decimal todayRevenue, decimal changePercentage)> GetDailyRevenue(string? branchId) => await _bookingDao.GetDailyRevenue(branchId);
+        public async Task<(decimal weeklyRevenue, decimal changePercentage)> GetWeeklyRevenueAsync(string? branchId) => await _bookingDao.GetWeeklyRevenueAsync(branchId);
+        public async Task<(decimal monthlyRevenue, decimal changePercentage)> GetMonthlyRevenueAsync(string? branchId) => await _bookingDao.GetMonthlyRevenueAsync(branchId);
+
+        public async Task<decimal[]> GetRevenueFromStartOfWeek(string? branchId) => await _bookingDao.GetRevenueFromStartOfWeek(branchId);
+        public async Task<decimal[]> GetWeeklyRevenueFromStartOfMonth(string? branchId) => await _bookingDao.GetWeeklyRevenuesFromStartOfMonth(branchId);
+        public async Task<decimal[]> GetMonthlyRevenueFromStartOfYear(string? branchId) => await _bookingDao.GetMonthlyRevenueFromStartOfYear(branchId);
+
     }
- 
+
 }
