@@ -522,13 +522,16 @@ namespace Repositories
         public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult) => await _bookingDao.SortBookings(sortBy, isAsc, pageResult);
 
 
-        public async Task<(int todayCount, double changePercentage)> GetDailyBookings() => await _bookingDao.GetDailyBookings();
+        public async Task<(int todayCount, double changePercentage)> GetDailyBookings(string? branchId) => await _bookingDao.GetDailyBookings(branchId);
 
-        public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync() => await _bookingDao.GetWeeklyBookingsAsync();
+        public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync(string? branchId) => await _bookingDao.GetWeeklyBookingsAsync(branchId);
+        public async Task<(int weeklyCount, double changePercentage)> GetMonthlyBookingsAsync(string? branchId) => await _bookingDao.GetMonthlyBookingsAsync(branchId);
+
 
         public async Task<List<Booking>> GetBookingsForLastWeekAsync() => await _bookingDao.GetBookingsForLastWeekAsync();
-        public async Task<int[]> GetBookingsFromStartOfWeek() => await _bookingDao.GetBookingsFromStartOfWeek();
-        public async Task<int[]> GetWeeklyBookingsFromStartOfMonth() => await _bookingDao.GetWeeklyBookingsFromStartOfMonth();
+        public async Task<int[]> GetBookingsFromStartOfWeek(string? branchId) => await _bookingDao.GetBookingsFromStartOfWeek(branchId);
+        public async Task<int[]> GetWeeklyBookingsFromStartOfMonth(string? branchId) => await _bookingDao.GetWeeklyBookingsFromStartOfMonth(branchId);
+        public async Task<int[]> GetMonthlyBookingsFromStartOfYear(string? branchId) => await _bookingDao.GetMonthlyBookingsFromStartOfYear(branchId);
     }
  
 }

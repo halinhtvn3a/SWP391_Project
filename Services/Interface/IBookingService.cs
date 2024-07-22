@@ -25,10 +25,13 @@ namespace Services.Interface
         Task CancelBooking(string bookingId);
         Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult);
         (string, int) NumberOfSlotsAvailable(string userId, string branchId);
-        Task<(int todayCount, double changePercentage)> GetDailyBookings();
-        Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync();
-        Task<int[]> GetBookingsFromStartOfWeek();
-        Task<int[]> GetWeeklyBookingsFromStartOfMonth();
+        Task<(int todayCount, double changePercentage)> GetDailyBookings(string? branchId);
+        Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync(string? branchId);
+        Task<(int weeklyCount, double changePercentage)> GetMonthlyBookingsAsync(string? branchId);
+
+        Task<int[]> GetBookingsFromStartOfWeek(string? branchId);
+        Task<int[]> GetWeeklyBookingsFromStartOfMonth(string? branchId);
+        Task<int[]> GetMonthlyBookingsFromStartOfYear(string? branchId);
 
 
     }

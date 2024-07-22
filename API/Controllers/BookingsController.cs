@@ -317,9 +317,9 @@ namespace API.Controllers
         [HttpGet("daily-bookings")]
         [Authorize]
 
-        public async Task<ActionResult<DailyBookingResponse>> GetDailyBookings()
+        public async Task<ActionResult<DailyBookingResponse>> GetDailyBookings(string? branchId)
         {
-            var (todayCount, changePercentage) = await _bookingService.GetDailyBookings();
+            var (todayCount, changePercentage) = await _bookingService.GetDailyBookings(branchId);
 
             var response = new DailyBookingResponse
             {
@@ -333,9 +333,9 @@ namespace API.Controllers
 
         [HttpGet("weekly-bookings")]
         [Authorize]
-        public async Task<ActionResult<DailyBookingResponse>> GetWeeklyBookings()
+        public async Task<ActionResult<DailyBookingResponse>> GetWeeklyBookings(string? branchId)
         {
-            var (weeklyCount, changePercentage) = await _bookingService.GetWeeklyBookingsAsync();
+            var (weeklyCount, changePercentage) = await _bookingService.GetWeeklyBookingsAsync(branchId);
 
             var response = new DailyBookingResponse
             {
@@ -346,13 +346,28 @@ namespace API.Controllers
             return Ok(response);
         }
 
+        [HttpGet("monthly-bookings")]
+        [Authorize]
+        public async Task<ActionResult<DailyBookingResponse>> GetMonthlyBookings(string? branchId)
+        {
+            var (monthlyCount, changePercentage) = await _bookingService.GetMonthlyBookingsAsync(branchId);
+
+            var response = new DailyBookingResponse
+            {
+                TodayCount = monthlyCount,
+                ChangePercentage = changePercentage
+            };
+
+            return Ok(response);
+        }
+
         [HttpGet("bookings-from-start-of-week")]
         [Authorize]
-        public async Task<IActionResult> GetBookingsFromStartOfWeek()
+        public async Task<IActionResult> GetBookingsFromStartOfWeek(string? branchId)
         {
             try
             {
-                var result = await _bookingService.GetBookingsFromStartOfWeek();
+                var result = await _bookingService.GetBookingsFromStartOfWeek(branchId);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -362,16 +377,31 @@ namespace API.Controllers
         }
         [HttpGet("weekly-bookings-from-start-of-month")]
       
-        public async Task<IActionResult> GetWeeklyBookingsFromStartOfMonth()
+        public async Task<IActionResult> GetWeeklyBookingsFromStartOfMonth(string? branchId)
         {
             try
             {
-                var result = await _bookingService.GetWeeklyBookingsFromStartOfMonth();
+                var result = await _bookingService.GetWeeklyBookingsFromStartOfMonth(branchId);
                 return Ok(result);
             }
             catch (Exception ex)
             {
 
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet("monthly-bookings-from-start-of-year")]
+        [Authorize]
+        public async Task<IActionResult> GetMonthlyBookingsFromStartOfYear(string? branchId)
+        {
+            try
+            {
+                var result = await _bookingService.GetMonthlyBookingsFromStartOfYear(branchId);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
                 return StatusCode(500, "Internal server error");
             }
         }
