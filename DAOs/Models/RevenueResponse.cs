@@ -8,7 +8,7 @@ namespace DAOs.Models
 {
     public class RevenueResponse
     {
-        public int TodayCount { get; set; }
-        public double ChangePercentage { get; set; }
+        public decimal Revenue { get; set; }
+        public decimal ChangePercentage { get; set; }
     }
 }

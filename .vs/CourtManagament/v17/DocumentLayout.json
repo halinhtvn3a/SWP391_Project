@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "E:\\12-7\\SWP391_Project\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\12-7\\swp391_project\\testloginandauthen\\servicetests\\bookingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\servicetests\\bookingservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|e:\\12-7\\swp391_project\\testloginandauthen\\controllertests\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EA2F50E-1B7A-4722-A75D-612DC6470D35}|TestLoginAndAuthen\\UnitTests.csproj|solutionrelative:testloginandauthen\\controllertests\\authservicetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|e:\\12-7\\swp391_project\\api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{994C4531-032B-4181-8AC7-DFA991C89FC7}|API\\API.csproj|solutionrelative:api\\controllers\\bookingscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -69,16 +77,42 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BookingServiceTests.cs",
+              "DocumentMoniker": "E:\\12-7\\SWP391_Project\\TestLoginAndAuthen\\ServiceTests\\BookingServiceTests.cs",
+              "RelativeDocumentMoniker": "TestLoginAndAuthen\\ServiceTests\\BookingServiceTests.cs",
+              "ToolTip": "E:\\12-7\\SWP391_Project\\TestLoginAndAuthen\\ServiceTests\\BookingServiceTests.cs",
+              "RelativeToolTip": "TestLoginAndAuthen\\ServiceTests\\BookingServiceTests.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAgwBsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T12:46:15.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AuthServiceTests.cs",
+              "DocumentMoniker": "E:\\12-7\\SWP391_Project\\TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
+              "RelativeDocumentMoniker": "TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
+              "ToolTip": "E:\\12-7\\SWP391_Project\\TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
+              "RelativeToolTip": "TestLoginAndAuthen\\ControllerTests\\AuthServiceTests.cs",
+              "ViewState": "AQIAADQAAAAAAAAAAAAAADsAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-22T12:45:35.287Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "RevenueResponse.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\DAOs\\Models\\RevenueResponse.cs",
               "RelativeDocumentMoniker": "DAOs\\Models\\RevenueResponse.cs",
-              "ToolTip": "E:\\12-7\\SWP391_Project\\DAOs\\Models\\RevenueResponse.cs*",
-              "RelativeToolTip": "DAOs\\Models\\RevenueResponse.cs*",
+              "ToolTip": "E:\\12-7\\SWP391_Project\\DAOs\\Models\\RevenueResponse.cs",
+              "RelativeToolTip": "DAOs\\Models\\RevenueResponse.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-22T12:41:19.418Z",
@@ -86,7 +120,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "BookingService.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\Services\\BookingService.cs",
               "RelativeDocumentMoniker": "Services\\BookingService.cs",
@@ -99,7 +133,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "BookingRepository.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\Repositories\\BookingRepository.cs",
               "RelativeDocumentMoniker": "Repositories\\BookingRepository.cs",
@@ -112,7 +146,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "BookingDAO.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\DAOs\\BookingDAO.cs",
               "RelativeDocumentMoniker": "DAOs\\BookingDAO.cs",
@@ -125,7 +159,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "IBookingService.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\Services\\Interface\\IBookingService.cs",
               "RelativeDocumentMoniker": "Services\\Interface\\IBookingService.cs",
@@ -138,7 +172,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "BookingsController.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\API\\Controllers\\BookingsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BookingsController.cs",
@@ -151,7 +185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "VnpayService.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\Services\\VnpayService.cs",
               "RelativeDocumentMoniker": "Services\\VnpayService.cs",
@@ -164,7 +198,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "dbo.Payments [Data]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/MSI_SQLEXPRESS/CourtCallerDb/sa/SqlTable/dbo.Payments.sql",
               "ToolTip": "dbo.Payments [Data]",
@@ -174,7 +208,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "TokenService.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\Services\\TokenService.cs",
               "RelativeDocumentMoniker": "Services\\TokenService.cs",
@@ -187,7 +221,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Program.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\API\\Program.cs",
               "RelativeDocumentMoniker": "API\\Program.cs",
@@ -200,7 +234,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "dbo.Bookings [Data]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/MSI_SQLEXPRESS/CourtCallerDb/sa/SqlTable/dbo.Bookings.sql",
               "ToolTip": "dbo.Bookings [Data]",
@@ -210,7 +244,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "BranchesController.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\API\\Controllers\\BranchesController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\BranchesController.cs",
@@ -223,7 +257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "dbo.TimeSlots [Data]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/MSI_SQLEXPRESS/CourtCallerDb/sa/SqlTable/dbo.TimeSlots.sql",
               "ToolTip": "dbo.TimeSlots [Data]",
@@ -232,7 +266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "dbo.Courts [Data]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/MSI_SQLEXPRESS/CourtCallerDb/sa/SqlTable/dbo.Courts.sql",
               "ToolTip": "dbo.Courts [Data]",
@@ -241,7 +275,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "dbo.AspNetUsers [Data]",
               "DocumentMoniker": "ViewDataWindow_MSSQL__/MSI_SQLEXPRESS/CourtCallerDb/sa/SqlTable/dbo.AspNetUsers.sql",
               "ToolTip": "dbo.AspNetUsers [Data]",
@@ -250,7 +284,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "appsettings.json",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\API\\appsettings.json",
               "RelativeDocumentMoniker": "API\\appsettings.json",
