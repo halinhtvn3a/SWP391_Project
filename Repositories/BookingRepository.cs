@@ -312,8 +312,10 @@ namespace Repositories
             var bookings = _bookingDao.GetBookingTypeFlex(userId);
             foreach (var booking in bookings)
             {
-                if (booking.NumberOfSlot > _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId) &&
-                    booking.BranchId == branchId
+                if (
+                    booking.BranchId == branchId &&
+                    booking.Status == "Complete" &&
+                    booking.NumberOfSlot > _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId)
                     )
                 {
                     return booking;
