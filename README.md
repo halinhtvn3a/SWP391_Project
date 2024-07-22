@@ -1,4 +1,4 @@
-[![Court Callers Project (CI/CD applied)](https://github.com/halinhtvn3a/SWP391_Project/actions/workflows/ci-script.yml/badge.svg)](https://github.com/halinhtvn3a/SWP391_Project/actions/workflows/ci-script.yml)
+[![Court Callers Project (CI applied)](https://github.com/halinhtvn3a/SWP391_Project/actions/workflows/ci-script.yml/badge.svg)](https://github.com/halinhtvn3a/SWP391_Project/actions/workflows/ci-script.yml)
 ![MIT License](https://img.shields.io/badge/License-MIT-yellow.svg)
 
 
@@ -71,7 +71,9 @@ Feel free to reach out via [courtcallers@gmail.com](mailto:courtcallers@gmail.co
 
 ## 🌟 Acknowledgements
 
-- [halinhtvn3a](https://github.com/halinhtvn3a) - Project Lead
+- [halinhtvn3a](https://github.com/halinhtvn3a) (Leader) - Backend development and database management
 - [th3y3m](https://github.com/th3y3m) - Backend development and database management
+- [LeThanhNhan91](https://github.com/LeThanhNhan91) - Frontend development
+- [ttd11204](https://github.com/ttd11204) - Frontend development
 
 Special thanks to [Freepik](https://www.freepik.com) for providing the icons used in this project.
