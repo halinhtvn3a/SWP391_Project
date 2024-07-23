@@ -41,6 +41,7 @@
     {
       "AbsoluteMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|e:\\12-7\\swp391_project\\repositories\\userdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{94A1637A-9A86-4E1B-AD09-F99815634599}|Repositories\\Repositories.csproj|solutionrelative:repositories\\userdetailrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+
     }
   ],
   "DocumentGroupContainers": [
@@ -63,6 +64,7 @@
               "ViewState": "AQIAAAMBAAAAAAAAAAAkwBQBAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-23T01:28:16.586Z",
+
               "EditorCaption": ""
             },
             {
@@ -76,6 +78,7 @@
               "ViewState": "AQIAAEgAAAAAAAAAAAAtwFIAAACAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-23T01:28:11.149Z",
+
               "EditorCaption": ""
             },
             {
@@ -89,6 +92,7 @@
               "ViewState": "AQIAACgBAAAAAAAAAADwvzgBAAAtAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-23T01:11:27.875Z",
+
               "EditorCaption": ""
             },
             {
@@ -102,6 +106,7 @@
               "ViewState": "AQIAAA0AAAAAAAAAAAAYwAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-23T01:07:08.315Z",
+
               "EditorCaption": ""
             },
             {
@@ -168,12 +173,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 5,
+
               "Title": "UserDetailsController.cs",
               "DocumentMoniker": "E:\\12-7\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
               "RelativeDocumentMoniker": "API\\Controllers\\UserDetailsController.cs",
               "ToolTip": "E:\\12-7\\SWP391_Project\\API\\Controllers\\UserDetailsController.cs",
               "RelativeToolTip": "API\\Controllers\\UserDetailsController.cs",
               "ViewState": "AQIAAJkAAAAAAAAAAAAAAKwAAAATAAAA",
+
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-22T19:43:34.703Z",
               "EditorCaption": ""
