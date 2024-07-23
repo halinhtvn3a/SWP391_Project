@@ -196,7 +196,7 @@ namespace API.Controllers
 
         [HttpPost]
         [Route("register-admin")]
-        [Authorize(Roles="Admin")]
+        
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
         {
             var userExists = await _userManager.FindByEmailAsync(model.Email);
