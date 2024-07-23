@@ -314,7 +314,7 @@ namespace Repositories
             {
                 if (
                     booking.BranchId == branchId &&
-                    booking.Status == "Complete" &&
+                    (booking.Status == "Complete" || booking.Status == "Pending") &&
                     booking.NumberOfSlot > _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId)
                     )
                 {
