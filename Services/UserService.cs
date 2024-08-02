@@ -39,10 +39,10 @@ namespace Services
 		{
             if (_db == null)
             {
-                throw new InvalidOperationException("Redis database has not been initialized. Call InitializeRedis first.");
+                throw new InvalidOperationException("Redis database has not been initialized.");
             }
-            const string cacheKey = "all_user";
-            var cachedUsers = await _db.StringGetAsync(cacheKey);
+            string key = $"all_users_pageNum_{page.PageNumber}_pageSize_{page.PageSize}_Search_{searchQuery}";
+            var cachedUsers = await _db.StringGetAsync(key);
             List<IdentityUser> users;
             int total;
 
@@ -58,10 +58,10 @@ namespace Services
                 users = userList.Item1;
                 total = userList.Item2;
 
-                // Lưu vào Redis cache
-                await _db.StringSetAsync(cacheKey, JsonConvert.SerializeObject((users, total)));
+                // Lưu vào Redis
+                await _db.StringSetAsync(key, JsonConvert.SerializeObject((users, total)));
             }
-            // Lưu vào Redis cache
+           
 
             return (users,total);
 		}
