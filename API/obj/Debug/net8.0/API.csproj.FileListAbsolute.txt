@@ -5399,3 +5399,8 @@ C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\runtimes\osx-x64\native\libLdaNa
 C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\runtimes\win-arm64\native\LdaNative.dll
 C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\runtimes\win-x64\native\LdaNative.dll
 C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\runtimes\win-x86\native\LdaNative.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\Pipelines.Sockets.Unofficial.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Debug\net8.0\StackExchange.Redis.dll
