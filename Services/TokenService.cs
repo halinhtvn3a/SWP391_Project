@@ -22,6 +22,16 @@ namespace Services
             _roleManager = roleManager;
         }
 
+        public string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[32];
+            using (var rng = new System.Security.Cryptography.RNGCryptoServiceProvider())
+            {
+                rng.GetBytes(randomNumber);
+                return Convert.ToBase64String(randomNumber);
+            }
+        }
+
         //public async Task<string> GenerateJwtToken(IEnumerable<string> userRoles)
         //{
         //    var authClaims = new List<Claim>();
@@ -66,7 +76,7 @@ namespace Services
                     new Claim(ClaimTypes.Role, role),
                     //new Claim(ClaimTypes.NameIdentifier, user.UserName)
                 }),
-                Expires = DateTime.UtcNow.AddHours(10),
+                Expires = DateTime.UtcNow.AddMinutes(5),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 

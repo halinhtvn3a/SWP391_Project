@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using StackExchange.Redis;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Newtonsoft.Json.Linq;
 
 namespace Services
 {
@@ -43,6 +45,7 @@ namespace Services
             }
             string key = $"all_users_pageNum_{page.PageNumber}_pageSize_{page.PageSize}_Search_{searchQuery}";
             var cachedUsers = await _db.StringGetAsync(key);
+           await _db.KeyExpireAsync(key, TimeSpan.FromMinutes(1));
             List<IdentityUser> users;
             int total;
 
@@ -71,6 +74,26 @@ namespace Services
 		public void UnBanUser(string id) => _userRepository.UnBanUser(id);
 
         public List<IdentityUser> SearchUserByEmail(string searchValue) => _userRepository.SearchUserByEmail(searchValue);
+
+        public void SendJwtToRedis(string jwt)
+        {
+            string key = "sess";
+            TimeSpan expiredTime = TimeSpan.FromMinutes(30);
+
+            _db.StringSet(key, jwt, expiredTime);
+        }
+
+        public void AddToBlackList(string jwt, string refreshToken)
+        {
+            _db.StringSet(jwt, "BlackList", TimeSpan.FromMinutes(60));
+            _db.StringSet(refreshToken, "BlackList", TimeSpan.FromMinutes(60));
+        }
+        public bool IsBlacklisted(string token, string refreshToken)
+        {
+           bool isBlackListed = _db.StringGet(token) == "BlackList" || _db.StringGet(refreshToken) == "BlackList";
+
+            return isBlackListed;
+        }
 
     }
 }

@@ -15,6 +15,7 @@ using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pag
 using NuGet.Common;
 using System.Net;
 using Microsoft.AspNetCore.WebUtilities;
+using StackExchange.Redis;
 
 
 
@@ -37,13 +38,14 @@ namespace API.Controllers
         private readonly IMailService _mailService;
 
 
-        public AuthenticationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IMailService mailService, ITokenService tokenService)
+        public AuthenticationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IMailService mailService, ITokenService tokenService, IConnectionMultiplexer redis)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
             _tokenService = tokenService;
             _mailService = mailService;
+            _userService.InitializeRedis(redis);
         }
 
         [HttpPost]
@@ -78,9 +80,12 @@ namespace API.Controllers
                     {
                         var roles = await _userManager.GetRolesAsync(user);
                         var userRole = roles.FirstOrDefault();
+                        string token = _tokenService.GenerateToken(user, userRole);
+                        _userService.SendJwtToRedis(token);
                         return Ok(new
                         {
-                            Token = _tokenService.GenerateToken(user, userRole)
+                            Token = token,
+                            RefreshToken = _tokenService.GenerateRefreshToken()
                         });
                     }
                     else
@@ -445,6 +450,44 @@ namespace API.Controllers
 
             return Ok(new ResponseModel { Status = "Complele", Message = "Confirmed" });
         }
+        [HttpPost("refresh")]
+        public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenModel model)
+        {
+            try
+            {
+                var handler = new JwtSecurityTokenHandler();
+                var jsonToken = handler.ReadToken(model.Token) as JwtSecurityToken;
+                var emailClaim = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Email);
+                var email = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == "email").ToString();
+                if (_userService.IsBlacklisted(model.Token, model.RefreshToken))
+                {
+                    var mailRequest = new MailRequest
+                    {
+                        ToEmail = email,
+                        Subject = "Court Callers Warning Email",
+                        Body = API.Helper.FormEmail.WarningLogin(email)
+                    };
+                    return BadRequest(new { Message = "Warning Email" });
+                }
+                _userService.AddToBlackList(model.Token, model.RefreshToken);
 
+                var user = await _userManager.FindByEmailAsync(email);
+                if (user == null)
+                    return BadRequest();
+                var roles = await _userManager.GetRolesAsync(user);
+                var userRole = roles.FirstOrDefault();
+                var token = _tokenService.GenerateToken(user, userRole);
+                var refreshToken = _tokenService.GenerateRefreshToken();
+                return Ok(new
+                {
+                    Token = token,
+                    RefreshToken = refreshToken
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

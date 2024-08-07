@@ -2206,3 +2206,8 @@ E:\25-6\SWP391_Project\API\obj\Release\net8.0\refint\API.dll
 E:\25-6\SWP391_Project\API\obj\Release\net8.0\API.pdb
 E:\25-6\SWP391_Project\API\obj\Release\net8.0\API.genruntimeconfig.cache
 E:\25-6\SWP391_Project\API\obj\Release\net8.0\ref\API.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\Pipelines.Sockets.Unofficial.dll
+C:\FPTUNI\5\SWP391_Project\API\bin\Release\net8.0\StackExchange.Redis.dll
