@@ -52,7 +52,7 @@ namespace API
                 .AddEntityFrameworkStores<CourtCallerDbContext>()
                 .AddDefaultTokenProviders();
             builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
-      options.TokenLifespan = TimeSpan.FromHours(24));
+      options.TokenLifespan = TimeSpan.FromSeconds(24));
 
 
             // Configure Hangfire
@@ -119,6 +119,7 @@ namespace API
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
+                    ClockSkew = TimeSpan.Zero,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
                 };
             });

@@ -78,7 +78,7 @@ namespace Services
         public void SendJwtToRedis(string jwt)
         {
             string key = "sess";
-            TimeSpan expiredTime = TimeSpan.FromMinutes(30);
+            TimeSpan expiredTime = TimeSpan.FromSeconds(40);
 
             _db.StringSet(key, jwt, expiredTime);
         }

@@ -63,8 +63,12 @@ namespace Services
         //    return new JwtSecurityTokenHandler().WriteToken(token);
         //}
 
-        public string GenerateToken(IdentityUser user, string role)
+        public (string,DateTime) GenerateToken(IdentityUser user, string role)
         {
+            var nowUtc = DateTime.UtcNow;
+            var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+            var expirationTimeInLocal = TimeZoneInfo.ConvertTimeFromUtc(nowUtc, timeZone).AddSeconds(45);
+            var expirationTimeUtc = TimeZoneInfo.ConvertTimeToUtc(expirationTimeInLocal, timeZone);
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]);
             var tokenDescriptor = new SecurityTokenDescriptor
@@ -76,12 +80,13 @@ namespace Services
                     new Claim(ClaimTypes.Role, role),
                     //new Claim(ClaimTypes.NameIdentifier, user.UserName)
                 }),
-                Expires = DateTime.UtcNow.AddMinutes(5),
+                Expires = expirationTimeUtc,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
-            return jwtTokenHandler.WriteToken(token);
+            var ExpiredTime = tokenDescriptor.Expires.Value;
+            return (jwtTokenHandler.WriteToken(token),ExpiredTime);
         }
     }
 

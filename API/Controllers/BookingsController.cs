@@ -17,7 +17,7 @@ using Qr = API.Helper;
 using API.Helper;
 using Microsoft.AspNetCore.Identity;
 using Services.Interface;
-
+using System.IdentityModel.Tokens.Jwt;
 namespace API.Controllers
 {
     [Route("api/[controller]")]
@@ -33,6 +33,33 @@ namespace API.Controllers
             _bookingService = new BookingService();
         }
 
+        [HttpGet("current-time")]
+        public IActionResult GetCurrentTime()
+        {
+            var currentUtcTime = DateTime.UtcNow;
+            var currentLocalTime = DateTime.Now; // Thời gian cục bộ trên máy chủ
+
+            return Ok(new
+            {
+                UtcTime = currentUtcTime,
+                LocalTime = currentLocalTime,
+                TimeZone = TimeZoneInfo.Local.StandardName
+            });
+        }
+
+
+        [HttpGet("CheckAuthor")]
+        [Authorize(Roles = "Staff")]
+        public IActionResult GetProtectedData()
+        {
+            var claims = User.Claims;
+            var expiryClaim = claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Exp)?.Value;
+
+            // Logging expiration claim
+            Console.WriteLine($"Token Expiry: {expiryClaim}");
+
+            return Ok("This is protected data.");
+        }
         // GET: api/Bookings
         [HttpGet]
         [Authorize(Roles = "Admin,Staff")]
@@ -40,6 +67,7 @@ namespace API.Controllers
             [FromQuery] int pageSize = 10,
            [FromQuery] string searchQuery = null)
         {
+
             var pageResult = new Page.PageResult
             {
                 PageSize = pageSize,

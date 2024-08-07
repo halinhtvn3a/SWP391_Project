@@ -30,8 +30,6 @@ namespace API.Controllers
 
         // GET: api/Users
         [HttpGet]
-   
-
         public async Task<ActionResult<PagingResponse<IdentityUser>>> GetUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult

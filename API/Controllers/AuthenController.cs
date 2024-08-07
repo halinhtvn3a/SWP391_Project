@@ -80,12 +80,15 @@ namespace API.Controllers
                     {
                         var roles = await _userManager.GetRolesAsync(user);
                         var userRole = roles.FirstOrDefault();
-                        string token = _tokenService.GenerateToken(user, userRole);
+                        var generateToken = _tokenService.GenerateToken(user, userRole);
+                        string token = generateToken.Item1;
+                        DateTime dateTime = generateToken.Item2;
                         _userService.SendJwtToRedis(token);
                         return Ok(new
                         {
                             Token = token,
-                            RefreshToken = _tokenService.GenerateRefreshToken()
+                            RefreshToken = _tokenService.GenerateRefreshToken(),
+                            ExpiredTime = dateTime
                         });
                     }
                     else
@@ -459,29 +462,33 @@ namespace API.Controllers
                 var jsonToken = handler.ReadToken(model.Token) as JwtSecurityToken;
                 var emailClaim = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Email);
                 var email = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == "email").ToString();
+                var cleanEmail = email.Replace("email: ", "").Trim();
                 if (_userService.IsBlacklisted(model.Token, model.RefreshToken))
                 {
                     var mailRequest = new MailRequest
                     {
-                        ToEmail = email,
+                        ToEmail = cleanEmail,
                         Subject = "Court Callers Warning Email",
-                        Body = API.Helper.FormEmail.WarningLogin(email)
+                        Body = API.Helper.FormEmail.WarningLogin(cleanEmail)
                     };
                     return BadRequest(new { Message = "Warning Email" });
                 }
                 _userService.AddToBlackList(model.Token, model.RefreshToken);
 
-                var user = await _userManager.FindByEmailAsync(email);
+                var user = await _userManager.FindByEmailAsync(cleanEmail);
                 if (user == null)
                     return BadRequest();
                 var roles = await _userManager.GetRolesAsync(user);
                 var userRole = roles.FirstOrDefault();
-                var token = _tokenService.GenerateToken(user, userRole);
+                var generateToken = _tokenService.GenerateToken(user, userRole);
+                string token = generateToken.Item1;
+                DateTime expiredTime = generateToken.Item2;
                 var refreshToken = _tokenService.GenerateRefreshToken();
                 return Ok(new
                 {
                     Token = token,
-                    RefreshToken = refreshToken
+                    RefreshToken = refreshToken,
+                    ExpiredTime = expiredTime
                 });
             }
             catch (Exception ex)
