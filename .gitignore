@@ -749,6 +749,10 @@ mono_crash.*
 # Mono Auto Generated Files
 mono_crash.*
 
+# Environment variables
+appsettings.json
+appsettings.*.json
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
