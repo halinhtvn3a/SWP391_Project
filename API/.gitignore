@@ -632,7 +632,7 @@ sketch
 # except build/, which is used as an MSBuild target.
 # Uncomment if necessary however generally it will be regenerated when needed
 # NuGet v3's project.json files produces more ignorable files
-appsettings.json
+
 # Microsoft Azure Build Output
 
 # Microsoft Azure Emulator
@@ -728,6 +728,10 @@ appsettings.json
 # Windows Installer files from build outputs
 
 # JetBrains Rider
+# Environment variables
+appsettings.json
+appsettings.*.json
+
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
