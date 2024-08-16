@@ -728,6 +728,9 @@ sketch
 # Windows Installer files from build outputs
 
 # JetBrains Rider
+# Environment variables
+appsettings.json
+appsettings.*.json
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio

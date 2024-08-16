@@ -689,6 +689,10 @@ sketch
 
 # Python Tools for Visual Studio (PTVS)
 
+# Environment variables
+appsettings.json
+appsettings.*.json
+
 # Cake - Uncomment if you are using it
 # tools/**
 # !tools/packages.config
