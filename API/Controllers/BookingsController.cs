@@ -195,65 +195,40 @@ namespace API.Controllers
         [Authorize]
         public async Task<IActionResult> ReserveSlotV2(SlotModel[] slotModels, string userId)
         {
-            try
-            {
-                var booking = _bookingService.ReserveSlotAsyncV2(slotModels, userId);
-                return booking != null ? Ok(booking) : BadRequest("Failed to reserve slot.");
-            }
-            catch (ArgumentException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                // Log the exception (if logging is set up)
-                return StatusCode(500, ex.Message);
-            }
+            var response = await _bookingService.ReserveSlotResponse(slotModels, userId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
+
         [HttpDelete("cancel/{bookingId}")]
         public async Task<IActionResult> CancelBooking(string bookingId)
         {
-            try
-            {
-                await _bookingService.CancelBooking(bookingId);
-                return Ok(new { message = "Booking cancelled successfully." });
-            }
-            catch (InvalidOperationException ex)
-            {
-                // Log the exception details here if necessary
-                return BadRequest(new { error = ex.Message });
-            }
-            catch (Exception ex)
-            {
-                // Handle other unexpected exceptions
-                return StatusCode(500, new { error = "An error occurred while cancelling the booking." });
-            }
+            var response = await _bookingService.CancelBookingResponse(bookingId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
-
-
 
         [HttpDelete("delete/{bookingId}")]
         [Authorize]
         public async Task<IActionResult> DeleteBookingAndSetTimeSlot(string bookingId)
         {
-            if (string.IsNullOrEmpty(bookingId))
-            {
-                return BadRequest("Invalid booking id.");
-            }
-
-            await _bookingService.DeleteBookingAndSetTimeSlotAsync(bookingId);
-
-            return Ok("Booking deleted successfully.");
+            var response = await _bookingService.DeleteBookingResponse(bookingId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         //post booking type flex
         [HttpPost("flex")]
         [Authorize]
-        public async Task<ActionResult<Booking>> PostBookingTypeFlex(string userId, int numberOfSlot, string branchId)
+        public async Task<IActionResult> PostBookingTypeFlex(string userId, int numberOfSlot, string branchId)
         {
-
-            var booking = _bookingService.AddBookingTypeFlex(userId, numberOfSlot, branchId);
-            return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
+            var response = await _bookingService.AddBookingTypeFlexResponse(userId, numberOfSlot, branchId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpPost("fix-slot")]
@@ -262,9 +237,10 @@ namespace API.Controllers
             [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel[] timeSlotModel,
             [FromQuery] string userId, string branchId)
         {
-            var booking = await _bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId,
-                branchId);
-            return booking is not null ? Ok(booking) : BadRequest("Fail to reserve slot type fix");
+            var response = await _bookingService.AddBookingTypeFixResponse(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId, branchId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpGet("sortBooking/{sortBy}")]
@@ -314,79 +290,48 @@ namespace API.Controllers
 
         // public int NumberOfSlotsAvailable(string userId,string bookingId)
 
-        [Route("qrcode/{bookingId}")]
-        [HttpGet]
+        [HttpGet("qrcode/{bookingId}")]
         public async Task<IActionResult> GetQRCode(string bookingId)
         {
-            var booking = _bookingService.GetBooking(bookingId);
-            if (booking == null)
+            var response = await _bookingService.GetQRCodeResponse(bookingId);
+            if (response.Status == "Success")
             {
-                return NotFound("Booking not found.");
+                // Generate QR code from the JSON string returned by service
+                string qrCodeBase64 = Qr.QrCode.GenerateQRCode(response.Message);
+                return Ok(new ResponseModel { Status = "Success", Message = qrCodeBase64 });
             }
-
-
-            //              "bookingId": "12345",
-            //"userId": "67890",
-            //"branchId": "B001",
-            //"courtId": "C002",
-            //"slotDate": "2024-07-01", nên tạo các thứ này
-
-            var qrData = new
-            {
-                BookingId = booking.Result.BookingId,
-
-            };
-            string qrString = JsonConvert.SerializeObject(qrData);
-            string qrCodeBase64 = Qr.QrCode.GenerateQRCode(qrString);
-
-            return Ok(new { qrCodeBase64 });
+            return NotFound(response);
         }
 
         [HttpGet("daily-bookings")]
         [Authorize]
-
-        public async Task<ActionResult<DailyBookingResponse>> GetDailyBookings(string? branchId)
+        public async Task<IActionResult> GetDailyBookings(string? branchId)
         {
-            var (todayCount, changePercentage) = await _bookingService.GetDailyBookings(branchId);
-
-            var response = new DailyBookingResponse
-            {
-                TodayCount = todayCount,
-                ChangePercentage = changePercentage
-            };
-
-            return Ok(response);
+            var response = await _bookingService.GetDailyBookingsResponse(branchId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return StatusCode(500, response);
         }
 
 
         [HttpGet("weekly-bookings")]
         [Authorize]
-        public async Task<ActionResult<DailyBookingResponse>> GetWeeklyBookings(string? branchId)
+        public async Task<IActionResult> GetWeeklyBookings(string? branchId)
         {
-            var (weeklyCount, changePercentage) = await _bookingService.GetWeeklyBookingsAsync(branchId);
-
-            var response = new DailyBookingResponse
-            {
-                TodayCount = weeklyCount,
-                ChangePercentage = changePercentage
-            };
-
-            return Ok(response);
+            var response = await _bookingService.GetWeeklyBookingsResponse(branchId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return StatusCode(500, response);
         }
 
         [HttpGet("monthly-bookings")]
         [Authorize]
-        public async Task<ActionResult<DailyBookingResponse>> GetMonthlyBookings(string? branchId)
+        public async Task<IActionResult> GetMonthlyBookings(string? branchId)
         {
-            var (monthlyCount, changePercentage) = await _bookingService.GetMonthlyBookingsAsync(branchId);
-
-            var response = new DailyBookingResponse
-            {
-                TodayCount = monthlyCount,
-                ChangePercentage = changePercentage
-            };
-
-            return Ok(response);
+            var response = await _bookingService.GetMonthlyBookingsResponse(branchId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return StatusCode(500, response);
         }
 
         [HttpGet("bookings-from-start-of-week")]
@@ -436,47 +381,32 @@ namespace API.Controllers
 
         [HttpGet("daily-revenue")]
         [Authorize]
-        public async Task<ActionResult<RevenueResponse>> GetDailyRevenue(string? branchId)
+        public async Task<IActionResult> GetDailyRevenue(string? branchId)
         {
-            var (todayRevenue, changePercentage) = await _bookingService.GetDailyRevenue(branchId);
-
-            var response = new RevenueResponse
-            {
-                Revenue = todayRevenue,
-                ChangePercentage = changePercentage
-            };
-
-            return Ok(response);
+            var response = await _bookingService.GetDailyRevenueResponse(branchId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return StatusCode(500, response);
         }
 
         [HttpGet("weekly-revenue")]
         [Authorize]
-        public async Task<ActionResult<RevenueResponse>> GetWeeklyRevenue(string? branchId)
+        public async Task<IActionResult> GetWeeklyRevenue(string? branchId)
         {
-            var (weeklyRevenue, changePercentage) = await _bookingService.GetWeeklyRevenueAsync(branchId);
-
-            var response = new RevenueResponse
-            {
-                Revenue = weeklyRevenue,
-                ChangePercentage = changePercentage
-            };
-
-            return Ok(response);
+            var response = await _bookingService.GetWeeklyRevenueResponse(branchId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return StatusCode(500, response);
         }
 
         [HttpGet("monthly-revenue")]
         [Authorize]
-        public async Task<ActionResult<RevenueResponse>> GetMonthlyRevenue(string? branchId)
+        public async Task<IActionResult> GetMonthlyRevenue(string? branchId)
         {
-            var (monthlyRevenue, changePercentage) = await _bookingService.GetMonthlyRevenueAsync(branchId);
-
-            var response = new RevenueResponse
-            {
-                Revenue = monthlyRevenue,
-                ChangePercentage = changePercentage
-            };
-
-            return Ok(response);
+            var response = await _bookingService.GetMonthlyRevenueResponse(branchId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return StatusCode(500, response);
         }
 
         [HttpGet("revenue-from-start-of-week")]

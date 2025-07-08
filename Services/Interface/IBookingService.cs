@@ -42,5 +42,17 @@ namespace Services.Interface
 
         Task<decimal[]> GetMonthlyRevenueFromStartOfYear(string? branchId);
 
+        Task<ResponseModel> GetDailyBookingsResponse(string? branchId);
+        Task<ResponseModel> GetQRCodeResponse(string bookingId);
+        Task<ResponseModel> ReserveSlotResponse(SlotModel[] slotModels, string userId);
+        Task<ResponseModel> AddBookingTypeFlexResponse(string userId, int numberOfSlot, string branchId);
+        Task<ResponseModel> AddBookingTypeFixResponse(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel[] timeSlotModel, string userId, string branchId);
+        Task<ResponseModel> CancelBookingResponse(string bookingId);
+        Task<ResponseModel> DeleteBookingResponse(string bookingId);
+        Task<ResponseModel> GetDailyRevenueResponse(string? branchId);
+        Task<ResponseModel> GetWeeklyRevenueResponse(string? branchId);
+        Task<ResponseModel> GetMonthlyRevenueResponse(string? branchId);
+        Task<ResponseModel> GetWeeklyBookingsResponse(string? branchId);
+        Task<ResponseModel> GetMonthlyBookingsResponse(string? branchId);
     }
 }

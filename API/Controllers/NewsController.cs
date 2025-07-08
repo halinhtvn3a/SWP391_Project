@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
 using System.Text.Json;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
@@ -21,113 +22,79 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PagingResponse<News>>> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<IActionResult> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-            var (news, total) = await newsService.GetNews(pageResult, searchQuery);
-            var response = new PagingResponse<News>
-            {
-                Data = news,
-                Total = total
-            };
-            return Ok(response);
+            var response = await newsService.GetNewsResponse(pageResult, searchQuery);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpGet("NewsPage")]
-        public async Task<ActionResult<PagingResponse<News>>> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] bool IsHomepageSlideshow = true, [FromQuery] string status = "Active", [FromQuery] string searchQuery = null)
+        public async Task<IActionResult> GetNewsPage([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] bool IsHomepageSlideshow = true, [FromQuery] string status = "Active", [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-            var (news, total) = await newsService.GetNews(pageResult, IsHomepageSlideshow, status, searchQuery);
-            var response = new PagingResponse<News>
-            {
-                Data = news,
-                Total = total
-            };
-            return Ok(response);
+            var response = await newsService.GetNewsResponse(pageResult, IsHomepageSlideshow, status, searchQuery);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpGet("SlideShowImage")]
-        public ActionResult<List<News>> ShowSlideShowImage()
+        public IActionResult ShowSlideShowImage()
         {
-            var slideShowImages = newsService.ShowSlideShowImage();
-            return Ok(slideShowImages);
+            var response = newsService.ShowSlideShowImageResponse();
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<News>> GetNew(string id)
+        public IActionResult GetNew(string id)
         {
-            var news = newsService.GetNew(id);
-
-            if (news == null)
-            {
-                return NotFound();
-            }
-
-            return news;
+            var response = newsService.GetNewResponse(id);
+            if (response.Status == "Success")
+                return Ok(response);
+            return NotFound(response);
         }
 
         [HttpPut("EditNews")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PutNew(string id, NewsModel news)
         {
-            var file = news.NewsImage;
-
-            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-            using (var stream = file.OpenReadStream())
-            {
-                var task = new FirebaseStorage("court-callers.appspot.com")
-                    .Child("NewsImages")
-                    .Child(fileName)
-                    .PutAsync(stream);
-
-                var downloadUrl = await task;
-                news.Image = downloadUrl; // Directly assign the URL
-            }
-
-            var updatedNews = newsService.UpdateNew(id, news);
-            return Ok(updatedNews);
+            var response = await newsService.UpdateNewResponseAsync(id, news);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<News>> PostNew(NewsModel newsModel)
+        public async Task<IActionResult> PostNew(NewsModel newsModel)
         {
-
-            var file = newsModel.NewsImage;
-
-            var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-            using (var stream = file.OpenReadStream())
-            {
-                var task = new FirebaseStorage("court-callers.appspot.com")
-                    .Child("NewsImages")
-                    .Child(fileName)
-                    .PutAsync(stream);
-
-                var downloadUrl = await task;
-                newsModel.Image = downloadUrl; // Directly assign the URL
-            }
-
-            var newNews = newsService.AddNew(newsModel);
-            return CreatedAtAction("GetNew", new { id = newNews.NewId }, newNews);
-
+            var response = await newsService.AddNewResponseAsync(newsModel);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteNew(string id)
+        public IActionResult DeleteNew(string id)
         {
-            newsService.DeleteNew(id);
-            return NoContent();
+            var response = newsService.DeleteNewResponse(id);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
-
-
     }
 }

@@ -20,7 +20,7 @@ namespace API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UserService _userService;
-        
+
 
         public UsersController(UserService userService, IConnectionMultiplexer redis)
         {
@@ -30,23 +30,17 @@ namespace API.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<PagingResponse<IdentityUser>>> GetUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<IActionResult> GetUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-
-            var (users,total) = await _userService.GetUsers(pageResult,searchQuery);
-
-            var response = new PagingResponse<IdentityUser>
-            {
-                Data = users,
-                Total = total
-            };
-
-            return Ok(response);
+            var response = await _userService.GetUsersResponse(pageResult, searchQuery);
+            if (response.Status == "Success")
+                return Ok(response);
+            return StatusCode(500, response);
         }
 
 
@@ -64,17 +58,12 @@ namespace API.Controllers
         // GET: api/Users/5
         [HttpGet("{id}")]
         [Authorize]
-
-        public async Task<ActionResult<IdentityUser>> GetUser(string id)
+        public IActionResult GetUser(string id)
         {
-            var user = _userService.GetUser(id);
-
-            if (user == null)
-            {
-                return NotFound();
-            }
-
-            return user;
+            var response = _userService.GetUserResponse(id);
+            if (response.Status == "Success")
+                return Ok(response);
+            return NotFound(response);
         }
 
         // PUT: api/Users/5
@@ -124,55 +113,35 @@ namespace API.Controllers
 
         [HttpPut("{id}/ban")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> BanUser(string id)
+        public IActionResult BanUser(string id)
         {
-            
-            IdentityUser user = _userService.GetUser(id);
-            if (id != user.Id)
-                return BadRequest();
-            else _userService.BanUser(id);
-
-            return NoContent();
+            var response = _userService.BanUserResponse(id);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
 
         [HttpPut("{id}/unban")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UnbanUser(string id)
+        public IActionResult UnbanUser(string id)
         {
-            IdentityUser user = _userService.GetUser(id);
-            if (id != user.Id)
-                return BadRequest();
-            else _userService.UnBanUser(id);
-
-            return NoContent();
+            var response = _userService.UnBanUserResponse(id);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpGet("GetUserDetailByUserEmail/{userEmail}")]
         [Authorize]
-
-        public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUserByEmail(string userEmail)
+        public IActionResult GetUserByEmail(string userEmail)
         {
-            if (string.IsNullOrEmpty(userEmail))
-            {
-                return BadRequest("User email cannot be null or empty.");
-            }
-
-            try
-            {
-                List<IdentityUser> user = _userService.SearchUserByEmail(userEmail);
-                if (user == null)
-                {
-                    return NotFound($"User with email {userEmail} not found.");
-                }
-
-                return user;
-            }
-            catch (Exception ex)
-            {
-                // Log the exception here
-                return StatusCode(500, $"Internal server error: {ex}");
-            }
+            var response = _userService.SearchUserByEmailResponse(userEmail);
+            if (response.Status == "Success")
+                return Ok(response);
+            if (response.Message.Contains("not found"))
+                return NotFound(response);
+            return BadRequest(response);
         }
 
 

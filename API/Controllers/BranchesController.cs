@@ -16,12 +16,13 @@ using Firebase.Auth;
 using System.Text.Json;
 using MailKit.Search;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-  
+
     public class BranchesController : ControllerBase
     {
         private readonly BranchService _branchService;
@@ -32,9 +33,9 @@ namespace API.Controllers
         }
 
         // GET: api/Branches
-      
+
         [HttpGet]
-        public async Task<ActionResult<PagingResponse<Branch>>> GetBranches([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<IActionResult> GetBranches([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
@@ -42,19 +43,13 @@ namespace API.Controllers
                 PageSize = pageSize
             };
 
-            var (branches,total) = await _branchService.GetBranches(pageResult,searchQuery);
-
-            var response =  new PagingResponse<Branch>
-            {
-                Data = branches,
-                Total = total
-            };
-            
-
-            return Ok(response);
+            var response = await _branchService.GetBranchesResponse(pageResult, searchQuery);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
         [HttpGet("HomePage")]
-        public async Task<ActionResult<PagingResponse<Branch>>> GetBranches([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string status = "Active", [FromQuery] string searchQuery = null)
+        public async Task<IActionResult> GetBranchesHomePage([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string status = "Active", [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
@@ -62,86 +57,34 @@ namespace API.Controllers
                 PageSize = pageSize
             };
 
-            var (branches,total) = await _branchService.GetBranches(pageResult, status, searchQuery);
-
-            var response =  new PagingResponse<Branch>
-            {
-                Data = branches,
-                Total = total
-            };
-            
-
-            return Ok(response);
+            var response = await _branchService.GetBranchesResponse(pageResult, status, searchQuery);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         // GET: api/Branches/5
-       
+
         [HttpGet("{id}")]
-        public async Task<ActionResult<Branch>> GetBranch(string id)
+        public IActionResult GetBranch(string id)
         {
-            var branch = _branchService.GetBranch(id);
-
-            if (branch == null)
-            {
-                return NotFound();
-            }
-
-            return branch;
+            var response = _branchService.GetBranchResponse(id);
+            if (response.Status == "Success")
+                return Ok(response);
+            return NotFound(response);
         }
 
         // PUT: api/Branches/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 
         [HttpPut("{id}")]
-        [Authorize(Roles="Admin")]
-        public async Task<IActionResult> PutBranch(string id, [FromForm] PutBranch branchModel, [FromForm] List<string> ExistingImages)
+        [Authorize(Roles = "Admin")]
+        public IActionResult PutBranch(string id, [FromForm] PutBranch branchModel)
         {
-            var branch = _branchService.GetBranch(id);
-            if (branch == null)
-            {
-                return NotFound();
-            }
-
-           
-            Console.WriteLine("Existing Images: " + string.Join(", ", ExistingImages ?? new List<string>()));
-
-            
-            var existingImageUrls = ExistingImages ?? new List<string>();
-            var imageUrls = new List<string>(existingImageUrls);
-
-            // Upload new images and add their URLs to the list
-            //foreach (var file in branchModel.BranchPictures)
-            //{
-            //    if (file.Length > 0)
-            //    {
-            //        var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-            //        using (var stream = file.OpenReadStream())
-            //        {
-            //            var task = new FirebaseStorage("court-callers.appspot.com")
-            //                .Child("BranchImage")
-            //                .Child(fileName)
-            //                .PutAsync(stream);
-
-            //            var downloadUrl = await task;
-            //            imageUrls.Add(downloadUrl);
-            //        }
-            //    }
-            //}
-
-            // Log để kiểm tra các URL ảnh kết hợp
-            Console.WriteLine("Combined Image URLs: " + string.Join(", ", imageUrls));
-
-            // Serialize combined image URLs
-            branchModel.BranchPicture = JsonSerializer.Serialize(imageUrls);
-
-            if (id != branch.BranchId)
-            {
-                return BadRequest();
-            }
-
-            _branchService.UpdateBranch(id, branchModel);
-
-            return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
+            var response = _branchService.UpdateBranchResponse(id, branchModel);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
 
@@ -159,43 +102,23 @@ namespace API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<Branch>> PostBranch([FromForm] BranchModel branchModel)
+        public async Task<IActionResult> PostBranch([FromForm] BranchModel branchModel)
         {
-            var imageUrls = new List<string>();
-
-            foreach (var file in branchModel.BranchPictures)
-            {
-                var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
-                using (var stream = file.OpenReadStream())
-                {
-                    var task = new FirebaseStorage("court-callers.appspot.com")
-                        .Child("BranchImage")
-                        .Child(fileName)
-                        .PutAsync(stream);
-
-                    var downloadUrl = await task;
-                    imageUrls.Add(downloadUrl);
-                }
-            }
-
-            branchModel.BranchPicture = JsonSerializer.Serialize(imageUrls);
-            var branch = _branchService.AddBranch(branchModel);
-
-            return CreatedAtAction("GetBranch", new { id = branch.BranchId }, branch);
+            var response = await _branchService.AddBranchResponseAsync(branchModel);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         // DELETE: api/Branches/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteBranch(string id)
+        public IActionResult DeleteBranch(string id)
         {
-            var branch = _branchService.GetBranch(id);
-            if (branch == null)
-            {
-                return NotFound();
-            }
-            _branchService.DeleteBranch(id);
-            return NoContent();
+            var response = _branchService.DeleteBranchResponse(id);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         //private bool BranchExists(string id)

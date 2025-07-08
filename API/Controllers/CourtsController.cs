@@ -29,81 +29,62 @@ namespace API.Controllers
 
         // GET: api/Courts
         [HttpGet]
-        public async Task<ActionResult<PagingResponse<Court>>> GetCourts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null) 
+        public async Task<IActionResult> GetCourts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-
-            var (court,total) = await _courtService.GetCourts(pageResult, searchQuery);
-            var response = new PagingResponse<Court>
-            {
-                Data = court,
-                Total = total
-
-            };
-            return Ok(response);
+            var response = await _courtService.GetCourtsResponse(pageResult, searchQuery);
+            if (response.Status == "Success")
+                return Ok(response);
+            return StatusCode(500, response);
         }
 
         // GET: api/Courts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Court>> GetCourt(string id)
+        public IActionResult GetCourt(string id)
         {
-            var court = _courtService.GetCourt(id);
-
-            if (court == null)
-            {
-                return NotFound();
-            }
-
-            return court;
+            var response = _courtService.GetCourtResponse(id);
+            if (response.Status == "Success")
+                return Ok(response);
+            return NotFound(response);
         }
 
         // PUT: api/Courts/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> PutCourt(string id, CourtModel courtModel)
+        public IActionResult PutCourt(string id, CourtModel courtModel)
         {
-            var court = _courtService.GetCourt(id);
-            if (id != court.CourtId)
-            {
-                return BadRequest();
-            }
-
-            _courtService.UpdateCourt(id, courtModel);
-
-            return CreatedAtAction("GetCourt", new { id = court.CourtId }, court);
+            var response = _courtService.UpdateCourtResponse(id, courtModel);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         // POST: api/Courts
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult<Court>> PostCourt(CourtModel courtModel)
+        public IActionResult PostCourt(CourtModel courtModel)
         {
-
-            var court = _courtService.AddCourt(courtModel);
-
-            return CreatedAtAction("GetCourt", new { id = court.CourtId }, court);
+            var response = _courtService.AddCourtResponse(courtModel);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         // DELETE: api/Courts/5
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> DeleteCourt(string id)
+        public IActionResult DeleteCourt(string id)
         {
-            var court = _courtService.GetCourt(id);
-            if (court == null)
-            {
-                return NotFound();
-            }
-
-            _courtService.DeleteCourt(id);
-
-            return NoContent();
+            var response = _courtService.DeleteCourtResponse(id);
+            if (response.Status == "Success")
+                return Ok(response);
+            return NotFound(response);
         }
 
         //private bool CourtExists(string id)
@@ -111,62 +92,59 @@ namespace API.Controllers
         //    return courtService.GetCourts().Any(e => e.CourtId == id);
         //}
 
-        [HttpGet("{status}")]
-        public async Task<ActionResult<IEnumerable<Court>>> GetCourtsByStatus(string status)
+        [HttpGet("status/{status}")]
+        public IActionResult GetCourtsByStatus(string status)
         {
-            return _courtService.GetCourtsByStatus(status);
+            var response = _courtService.GetCourtsByStatusResponse(status);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
-        [HttpGet("{sortBy}")]
-        public async Task<ActionResult<IEnumerable<Court>>> SortCourt(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        [HttpGet("sort/{sortBy}")]
+        public async Task<IActionResult> SortCourt(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
         {
             var pageResult = new PageResult
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-            return await _courtService.SortCourt(sortBy, isAsc, pageResult);
+            var response = await _courtService.SortCourtResponse(sortBy, isAsc, pageResult);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpGet("/numberOfCourt/{branchId}")]
-        public async Task<ActionResult<int>> GetNumberOfCourtsByBranchId(string branchId)
+        public IActionResult GetNumberOfCourtsByBranchId(string branchId)
         {
-            if (branchId == null)
-            {
-                return BadRequest();
-            }
-            return Ok(_courtService.GetNumberOfCourtsByBranchId(branchId));
+            var response = _courtService.GetNumberOfCourtsByBranchIdResponse(branchId);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpPost("AvailableCourts")]
-        public ActionResult<IEnumerable<Court>> AvailableCourts([FromBody] SlotModel slotModel)
+        public IActionResult AvailableCourts([FromBody] SlotModel slotModel)
         {
-            try
-            {
-                return Ok(_courtService.AvailableCourts(slotModel));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var response = _courtService.AvailableCourtsResponse(slotModel);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
         [HttpGet("GetCourtsByBranchId")]
-        public async Task<ActionResult<PagingResponse<Court>>> GetCourtsByBranchId([FromQuery] string branchId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<IActionResult> GetCourtsByBranchId([FromQuery] string branchId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
         {
             var pageResult = new PageResult
             {
                 PageNumber = pageNumber,
                 PageSize = pageSize
             };
-            var (court,total) = await _courtService.GetCourtsByBranchId(branchId, pageResult, searchQuery);
-            var response = new PagingResponse<Court>
-            {
-                Data = court,
-                Total = total
-            };
-                
-            return Ok(response);
+            var response = await _courtService.GetCourtsByBranchIdResponse(branchId, pageResult, searchQuery);
+            if (response.Status == "Success")
+                return Ok(response);
+            return BadRequest(response);
         }
 
     }
