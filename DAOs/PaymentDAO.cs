@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
+using CourtCaller.Persistence;
 
 namespace DAOs
 {

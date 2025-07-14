@@ -1,4 +1,5 @@
 ﻿using BusinessObjects;
+using CourtCaller.Persistence;
 using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
@@ -64,7 +65,7 @@ namespace DAOs
             oNews.Image = news.Image;
             oNews.Status = news.Status;
             oNews.IsHomepageSlideshow = news.IsHomepageSlideshow;
-            
+
             if (oNews != null)
             {
                 _courtCallerDbContext.Update(oNews);

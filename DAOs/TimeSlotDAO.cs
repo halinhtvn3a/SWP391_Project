@@ -10,6 +10,7 @@ using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using PageResult = DAOs.Helper.PageResult;
+using CourtCaller.Persistence;
 
 
 
@@ -57,7 +58,7 @@ namespace DAOs
             List<TimeSlot> timeSlots = await pagination.GetListAsync<TimeSlot>(query, pageResult);
             return timeSlots;
         }
-        
+
         public async Task<List<TimeSlot>> GetTimeSlotsByCourtId(string courtId, PageResult pageResult, string searchQuery = null)
         {
             var query = _dbContext.TimeSlots.Where(t => t.CourtId.Equals(courtId)).AsQueryable();
@@ -78,7 +79,7 @@ namespace DAOs
 
         public TimeSlot GetTimeSlot(string id)
         {
-            TimeSlot timeslots = _dbContext.TimeSlots.Where(t => t.SlotId.Equals(id)).FirstOrDefault(); 
+            TimeSlot timeslots = _dbContext.TimeSlots.Where(t => t.SlotId.Equals(id)).FirstOrDefault();
             return timeslots;
         }
 
@@ -105,10 +106,10 @@ namespace DAOs
 
         public async Task UpdateTimeSlotWithObject(TimeSlot timeSlot)
         {
-           
+
             _dbContext.TimeSlots.Update(timeSlot);
             _dbContext.SaveChanges();
-           
+
         }
 
         public async Task<TimeSlot> UpdateTimeSlot(string slotId, SlotModel slotModel)
@@ -398,14 +399,14 @@ namespace DAOs
             return timeSlots;
         }
 
-        
+
         public int CountTimeSlot(SlotCheckModel slotCheckModel)
         {
-            var count = _dbContext.Courts.Count(c => c.BranchId == slotCheckModel.BranchId) - _dbContext.TimeSlots.Count(ts => ts.Court.BranchId == slotCheckModel.BranchId && ts.SlotDate == slotCheckModel.SlotDate && ts.SlotStartTime == slotCheckModel.TimeSlot.SlotStartTime && ts.SlotEndTime == slotCheckModel.TimeSlot.SlotEndTime);  
+            var count = _dbContext.Courts.Count(c => c.BranchId == slotCheckModel.BranchId) - _dbContext.TimeSlots.Count(ts => ts.Court.BranchId == slotCheckModel.BranchId && ts.SlotDate == slotCheckModel.SlotDate && ts.SlotStartTime == slotCheckModel.TimeSlot.SlotStartTime && ts.SlotEndTime == slotCheckModel.TimeSlot.SlotEndTime);
             return count;
         }
 
-        
+
         public List<TimeSlotModel> UnavailableSlot(DateOnly date, string branchId)
         {
             var courtIds = _dbContext.Courts
@@ -446,7 +447,7 @@ namespace DAOs
                     };
                     if (CountTimeSlot(slotCheckModel) <= 0)
                     {
-                        if (!unavailableSlots.Any(us => us.SlotStartTime == timeslot.SlotStartTime && us.SlotEndTime == timeslot.SlotEndTime && us.SlotDate  == timeslot.SlotDate))
+                        if (!unavailableSlots.Any(us => us.SlotStartTime == timeslot.SlotStartTime && us.SlotEndTime == timeslot.SlotEndTime && us.SlotDate == timeslot.SlotDate))
                         {
                             unavailableSlots.Add(timeslot);
                         }

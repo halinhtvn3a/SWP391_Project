@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using DAOs.Models;
 using DAOs.Helper;
 using Microsoft.AspNetCore.Identity;
+using CourtCaller.Persistence;
 
 namespace DAOs
 {

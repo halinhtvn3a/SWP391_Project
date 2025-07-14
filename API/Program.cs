@@ -1,6 +1,7 @@
 ﻿using Hangfire;
 using System.Text;
 using DAOs;
+
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,8 @@ using Microsoft.Extensions.Logging;
 using System.Text.Json.Serialization;
 using Services.MLModels;
 using StackExchange.Redis;
+using CourtCaller.Persistence;
+using CourtCaller.Persistence.Extensions;
 
 
 
@@ -30,25 +33,24 @@ namespace API
             ConfigurationManager configuration = builder.Configuration;
 
             // Configure DbContext
-            builder.Services.AddDbContext<CourtCallerDbContext>(options =>
-            {
-                var connectionString = configuration.GetConnectionString("CourtCallerDb");
-                options.UseSqlServer(connectionString);
-            });
+            builder.Services.AddPersistence(configuration);
 
             builder.Services.AddSignalR();
 
+            // Configure logging for seeding visibility
             builder.Services.AddLogging(logging =>
             {
                 logging.ClearProviders();
                 logging.AddConsole();
                 logging.AddDebug();
+                logging.SetMinimumLevel(LogLevel.Information);
             });
 
             // Configure Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<CourtCallerDbContext>()
+                .AddEntityFrameworkStores<CourtCaller.Persistence.CourtCallerDbContext>()
                 .AddDefaultTokenProviders();
+
             builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
       options.TokenLifespan = TimeSpan.FromSeconds(24));
 

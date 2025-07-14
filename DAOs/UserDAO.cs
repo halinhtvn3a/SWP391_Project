@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using DAOs.Helper;
 using Microsoft.EntityFrameworkCore;
+using CourtCaller.Persistence;
 
 namespace DAOs
 {

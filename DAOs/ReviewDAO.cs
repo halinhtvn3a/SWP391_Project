@@ -9,6 +9,7 @@ using DAOs.Helper;
 using Microsoft.AspNetCore.Identity;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
+using CourtCaller.Persistence;
 
 namespace DAOs
 {
@@ -28,7 +29,7 @@ namespace DAOs
             _courtCallerDbContext = dbContext;
         }
 
-        public async Task<(List<Review>,int total)> GetReview(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<Review>, int total)> GetReview(PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Reviews.AsQueryable();
             var total = await _courtCallerDbContext.Reviews.CountAsync();
@@ -46,7 +47,7 @@ namespace DAOs
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Review> reviews = await pagination.GetListAsync<Review>(query, pageResult);
-            return (reviews,total);
+            return (reviews, total);
         }
 
         public Review GetReview(string id)
@@ -66,7 +67,7 @@ namespace DAOs
                 Id = reviewModel.UserId
             };
             _courtCallerDbContext.Reviews.Add(review);
-             _courtCallerDbContext.SaveChanges();
+            _courtCallerDbContext.SaveChanges();
             return review;
         }
 
@@ -144,7 +145,8 @@ namespace DAOs
                 return 0;
             }
             double total = 0;
-            foreach (Review review in reviews) {
+            foreach (Review review in reviews)
+            {
                 total += review.Rating.Value;
             }
             return total / reviews.Count;

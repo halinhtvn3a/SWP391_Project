@@ -9,6 +9,7 @@ using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using CourtCaller.Persistence;
 
 namespace DAOs
 {
@@ -33,7 +34,7 @@ namespace DAOs
 
 
 
-        public async Task<(List<Branch>,int total)> GetBranches(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<Branch>, int total)> GetBranches(PageResult pageResult, string searchQuery = null)
         {
             var query = _courtCallerDbContext.Branches.AsQueryable();
             var total = await _courtCallerDbContext.Branches.CountAsync();
@@ -50,13 +51,13 @@ namespace DAOs
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
-            return (branches,total);
+            return (branches, total);
         }
 
-        public async Task<(List<Branch>,int total)> GetBranches(PageResult pageResult, string status = "Active", string searchQuery = null)
+        public async Task<(List<Branch>, int total)> GetBranches(PageResult pageResult, string status = "Active", string searchQuery = null)
         {
 
-            var query = 
+            var query =
                 _courtCallerDbContext.Branches.Where(m => m.Status == status).AsQueryable();
 
             var total = await _courtCallerDbContext.Branches.CountAsync();
@@ -73,7 +74,7 @@ namespace DAOs
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
-            return (branches,total);
+            return (branches, total);
         }
 
 
@@ -155,7 +156,7 @@ namespace DAOs
                 c.SlotPrice <= maxPrice && c.IsWeekend == true
             )).ToList();
         }
-        
+
         public async Task<(List<Branch>, int total)> GetBranchByPrice(decimal minPrice, decimal maxPrice, PageResult pageResult)
         {
             var query = _courtCallerDbContext.Branches.Where(m => m.Prices.Any(c =>
@@ -208,13 +209,13 @@ namespace DAOs
                     break;
                 case "closetime":
                     query = isAsc ? query.OrderBy(b => b.CloseTime) : query.OrderByDescending(b => b.CloseTime);
-                    break;                
+                    break;
                 case "opentime":
                     query = isAsc ? query.OrderBy(b => b.OpenTime) : query.OrderByDescending(b => b.OpenTime);
-                    break;                
+                    break;
                 case "openday":
                     query = isAsc ? query.OrderBy(b => b.OpenDay) : query.OrderByDescending(b => b.OpenDay);
-                    break;                
+                    break;
                 case "description":
                     query = isAsc ? query.OrderBy(b => b.Description) : query.OrderByDescending(b => b.Description);
                     break;

@@ -12,6 +12,8 @@
     <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
       <Private>True</Private>
     </ProjectReference>
+  
+    <ProjectReference Include="..\CourtCaller.Persistence\CourtCaller.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

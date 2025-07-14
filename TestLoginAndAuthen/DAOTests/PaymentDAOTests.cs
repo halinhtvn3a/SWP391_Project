@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CourtCaller.Persistence;
 
 namespace UnitTests.DAOTests
 {
@@ -72,7 +73,8 @@ namespace UnitTests.DAOTests
         }
 
         [Fact]
-        public void SearchByDate_ReturnsSearchByDate() {
+        public void SearchByDate_ReturnsSearchByDate()
+        {
             var dao = new PaymentDAO(mockContext.Object);
             var payments = dao.SearchByDate(DateTime.Now.AddDays(2), DateTime.Now.AddDays(6));
             Assert.Equal(2, payments.Count);

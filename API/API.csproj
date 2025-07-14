@@ -36,6 +36,7 @@
     <ProjectReference Include="..\Services\Services.csproj">
       <Private>True</Private>
     </ProjectReference>
+    <ProjectReference Include="..\CourtCaller.Persistence\CourtCaller.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
