@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Repositories;
+using CourtCaller.Persistence;
 
 namespace UnitTests.RepositoryTests
 {

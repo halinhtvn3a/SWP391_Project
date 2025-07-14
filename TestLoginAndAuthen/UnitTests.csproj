@@ -32,6 +32,7 @@
     <ProjectReference Include="..\DAOs\DAOs.csproj" />
     <ProjectReference Include="..\Repositories\Repositories.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
+    <ProjectReference Include="..\CourtCaller.Persistence\CourtCaller.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>
