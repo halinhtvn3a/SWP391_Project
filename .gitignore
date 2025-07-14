@@ -411,3 +411,5 @@ FodyWeavers.xsd
 src/Services/STEMify-Backend/STEMify-Backend.AppHost/appsettings.json
 src/Services/STEMify-Backend/STEMify-Backend.AppHost/appsettings.json
 docs/*
+.vs/*
+API/appsettings.json

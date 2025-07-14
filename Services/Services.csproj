@@ -9,7 +9,8 @@
 
   <ItemGroup>
   <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.7" />
-  <PackageReference Include="Microsoft.ML" Version="3.0.1" />
+  <PackageReference Include="Microsoft.ML" Version="4.0.2" />
+  <PackageReference Include="Microsoft.ML.LightGbm" Version="4.0.2" />
   <PackageReference Include="QRCoder" Version="1.4.2" />
   <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.6.2" />
 

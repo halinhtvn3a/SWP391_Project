@@ -36,9 +36,7 @@ namespace API
                 options.UseSqlServer(connectionString);
             });
 
-            // Configure Azure SignalR
-            builder.Services.AddSignalR()
-                .AddAzureSignalR(configuration.GetConnectionString("AzureSignalRConnectionString"));
+            builder.Services.AddSignalR();
 
             builder.Services.AddLogging(logging =>
             {
@@ -169,7 +167,7 @@ namespace API
             builder.Services.AddScoped<PaymentRepository>();
             builder.Services.AddScoped<TimeslotCleanupManager>();
             builder.Services.AddScoped<TrainingService>();
-            builder.Services.AddScoped<IBookingService , BookingService>();
+            builder.Services.AddScoped<IBookingService, BookingService>();
             // VNPay Service
             builder.Services.AddScoped<VnpayService>();
 
@@ -183,7 +181,7 @@ namespace API
                 options.AddPolicy("AllowSpecificOrigin",
                     policy =>
                     {
-                        policy.WithOrigins("https://localhost:3000", "https://courtcaller.azurewebsites.net", "https://localhost:7104", "https://court-caller-deploy-git-master-lethanhnhan91s-projects.vercel.app", "https://react-admin-lilac.vercel.app", "https://court-caller-deploy.vercel.app", "https://court-caller.vercel.app" , "https://court-caller-git-master-lethanhnhan91s-projects.vercel.app/")
+                        policy.WithOrigins("https://localhost:3000", "https://courtcaller.azurewebsites.net", "https://localhost:7104", "https://court-caller-deploy-git-master-lethanhnhan91s-projects.vercel.app", "https://react-admin-lilac.vercel.app", "https://court-caller-deploy.vercel.app", "https://court-caller.vercel.app", "https://court-caller-git-master-lethanhnhan91s-projects.vercel.app/")
                               .AllowAnyHeader()
                               .AllowAnyMethod()
                               .AllowCredentials();
@@ -202,7 +200,7 @@ namespace API
             app.UseCors("AllowSpecificOrigin");
             app.UseAuthentication();
 
-           
+
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -224,7 +222,10 @@ namespace API
             RecurringJob.AddOrUpdate<TimeslotCleanupManager>(
                 manager => manager.CleanupPendingTimeslots(),
                 Cron.Minutely);
-
+            RecurringJob.AddOrUpdate<ModelTrainingService>(
+                service => service.TrainAndSaveModel(),
+                Cron.Weekly
+);
             app.Run();
         }
     }
