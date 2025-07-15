@@ -1,13 +1,14 @@
-﻿using BusinessObjects;
-using DAOs;
-using DAOs.Models;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
+using DAOs;
+using DAOs.Models;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 
 namespace UnitTests.DAOTests
 {
@@ -24,22 +25,64 @@ namespace UnitTests.DAOTests
             mockContext = new Mock<CourtCallerDbContext>();
             reviewList = new List<Review>
             {
-                new Review { ReviewId = "R00001", BranchId = "B0001", Rating = 5, ReviewText = "Good", ReviewDate = DateTime.Now, Id = "U001" },
-                new Review { ReviewId = "R00002", BranchId = "B0001", Rating = 4, ReviewText = "Not bad", ReviewDate = DateTime.Now, Id = "U002" },
-                new Review { ReviewId = "R00003", BranchId = "B0001", Rating = 3, ReviewText = "Normal", ReviewDate = DateTime.Now, Id = "U003" },
-                new Review { ReviewId = "R00004", BranchId = "B0001", Rating = 2, ReviewText = "Bad", ReviewDate = DateTime.Now, Id = "U004" },
-                new Review { ReviewId = "R00005", BranchId = "B0005", Rating = 1, ReviewText = "Very bad", ReviewDate = DateTime.Now, Id = "U005" }
+                new Review
+                {
+                    ReviewId = "R00001",
+                    BranchId = "B0001",
+                    Rating = 5,
+                    ReviewText = "Good",
+                    ReviewDate = DateTime.Now,
+                    Id = "U001",
+                },
+                new Review
+                {
+                    ReviewId = "R00002",
+                    BranchId = "B0001",
+                    Rating = 4,
+                    ReviewText = "Not bad",
+                    ReviewDate = DateTime.Now,
+                    Id = "U002",
+                },
+                new Review
+                {
+                    ReviewId = "R00003",
+                    BranchId = "B0001",
+                    Rating = 3,
+                    ReviewText = "Normal",
+                    ReviewDate = DateTime.Now,
+                    Id = "U003",
+                },
+                new Review
+                {
+                    ReviewId = "R00004",
+                    BranchId = "B0001",
+                    Rating = 2,
+                    ReviewText = "Bad",
+                    ReviewDate = DateTime.Now,
+                    Id = "U004",
+                },
+                new Review
+                {
+                    ReviewId = "R00005",
+                    BranchId = "B0005",
+                    Rating = 1,
+                    ReviewText = "Very bad",
+                    ReviewDate = DateTime.Now,
+                    Id = "U005",
+                },
             };
             var data = reviewList.AsQueryable();
 
             mockSet.As<IQueryable<Review>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<Review>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Review>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Review>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<Review>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Reviews).Returns(mockSet.Object);
         }
-
 
         //[Fact]
         //public void GetReviews_ReturnsReviews()
@@ -55,6 +98,7 @@ namespace UnitTests.DAOTests
             var review = dao.GetReview("R00001");
             Assert.NotNull(review);
         }
+
         [Fact]
         public void AddReview_ReturnsReview()
         {
@@ -64,11 +108,12 @@ namespace UnitTests.DAOTests
                 BranchId = "B0001",
                 Rating = 5,
                 ReviewText = "Good",
-                UserId = "U001"
+                UserId = "U001",
             };
             var result = dao.AddReview(review);
             Assert.NotNull(result);
         }
+
         [Fact]
         public void UpdateReview_ReturnsReview()
         {
@@ -78,11 +123,12 @@ namespace UnitTests.DAOTests
                 BranchId = "B0001",
                 Rating = 5,
                 ReviewText = "Good",
-                UserId = "U001"
+                UserId = "U001",
             };
             var result = dao.UpdateReview("R00001", review);
             Assert.NotNull(result);
         }
+
         [Fact]
         public void DeleteReview_ReturnsReview()
         {
@@ -90,6 +136,7 @@ namespace UnitTests.DAOTests
             dao.DeleteReview("R00001");
             Assert.NotNull(dao.GetReview("R00001"));
         }
+
         [Fact]
         public void GetReviewsByBranch_ReturnsReviews()
         {
@@ -97,6 +144,7 @@ namespace UnitTests.DAOTests
             var reviews = dao.GetReviewsByBranch("B0001");
             Assert.Equal(4, reviews.Count);
         }
+
         [Fact]
         public void SearchByDate_ReturnsReviews()
         {
@@ -104,6 +152,7 @@ namespace UnitTests.DAOTests
             var reviews = dao.SearchByDate(DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1));
             Assert.Equal(5, reviews.Count);
         }
+
         [Fact]
         public void SearchByRating_ReturnsReviews()
         {
@@ -111,6 +160,7 @@ namespace UnitTests.DAOTests
             var reviews = dao.SearchByRating(5);
             Assert.Equal(1, reviews.Count);
         }
+
         [Fact]
         public void SearchByUser_ReturnsReviews()
         {
@@ -118,6 +168,7 @@ namespace UnitTests.DAOTests
             var reviews = dao.SearchByUser("U001");
             Assert.Single(reviews);
         }
+
         [Fact]
         public void SearchByUser_ReturnsEmpty()
         {
@@ -125,7 +176,5 @@ namespace UnitTests.DAOTests
             var reviews = dao.SearchByUser("U006");
             Assert.Empty(reviews);
         }
-
-
     }
 }

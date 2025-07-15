@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
-using Services;
-using Microsoft.AspNetCore.Identity;
 using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Services;
 using StackExchange.Redis;
 
 namespace API.Controllers
@@ -20,7 +20,6 @@ namespace API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly UserService _userService;
-        
 
         public UsersController(UserService userService, IConnectionMultiplexer redis)
         {
@@ -30,30 +29,20 @@ namespace API.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<PagingResponse<IdentityUser>>> GetUsers([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<PagingResponse<IdentityUser>>> GetUsers(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string searchQuery = null
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
 
-            var (users,total) = await _userService.GetUsers(pageResult,searchQuery);
+            var (users, total) = await _userService.GetUsers(pageResult, searchQuery);
 
-            var response = new PagingResponse<IdentityUser>
-            {
-                Data = users,
-                Total = total
-            };
+            var response = new PagingResponse<IdentityUser> { Data = users, Total = total };
 
             return Ok(response);
         }
-
-
-
-
-
-
 
         //[HttpGet]
         //public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUsers()
@@ -64,7 +53,6 @@ namespace API.Controllers
         // GET: api/Users/5
         [HttpGet("{id}")]
         [Authorize]
-
         public async Task<ActionResult<IdentityUser>> GetUser(string id)
         {
             var user = _userService.GetUser(id);
@@ -126,15 +114,14 @@ namespace API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> BanUser(string id)
         {
-            
             IdentityUser user = _userService.GetUser(id);
             if (id != user.Id)
                 return BadRequest();
-            else _userService.BanUser(id);
+            else
+                _userService.BanUser(id);
 
             return NoContent();
         }
-
 
         [HttpPut("{id}/unban")]
         [Authorize(Roles = "Admin")]
@@ -143,14 +130,14 @@ namespace API.Controllers
             IdentityUser user = _userService.GetUser(id);
             if (id != user.Id)
                 return BadRequest();
-            else _userService.UnBanUser(id);
+            else
+                _userService.UnBanUser(id);
 
             return NoContent();
         }
 
         [HttpGet("GetUserDetailByUserEmail/{userEmail}")]
         [Authorize]
-
         public async Task<ActionResult<IEnumerable<IdentityUser>>> GetUserByEmail(string userEmail)
         {
             if (string.IsNullOrEmpty(userEmail))
@@ -174,7 +161,5 @@ namespace API.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
-
-
     }
 }

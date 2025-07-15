@@ -1,29 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using API.Helper;
 using BusinessObjects;
 using DAOs.Models;
-using Services;
 using Microsoft.AspNetCore.Authorization;
-using QRCoder;
-using Page = DAOs.Helper;
-using Repositories;
-using Newtonsoft.Json;
-using Qr = API.Helper;
-using API.Helper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using QRCoder;
+using Repositories;
+using Services;
 using Services.Interface;
-using System.IdentityModel.Tokens.Jwt;
+using Page = DAOs.Helper;
+using Qr = API.Helper;
+
 namespace API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-
-
     public class BookingsController : ControllerBase
     {
         private readonly IBookingService _bookingService;
@@ -39,47 +38,44 @@ namespace API.Controllers
             var currentUtcTime = DateTime.UtcNow;
             var currentLocalTime = DateTime.Now; // Thời gian cục bộ trên máy chủ
 
-            return Ok(new
-            {
-                UtcTime = currentUtcTime,
-                LocalTime = currentLocalTime,
-                TimeZone = TimeZoneInfo.Local.StandardName
-            });
+            return Ok(
+                new
+                {
+                    UtcTime = currentUtcTime,
+                    LocalTime = currentLocalTime,
+                    TimeZone = TimeZoneInfo.Local.StandardName,
+                }
+            );
         }
-
 
         [HttpGet("CheckAuthor")]
         [Authorize(Roles = "Staff")]
         public IActionResult GetProtectedData()
         {
             var claims = User.Claims;
-            var expiryClaim = claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Exp)?.Value;
+            var expiryClaim = claims
+                .FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Exp)
+                ?.Value;
 
             // Logging expiration claim
             Console.WriteLine($"Token Expiry: {expiryClaim}");
 
             return Ok("This is protected data.");
         }
+
         // GET: api/Bookings
         [HttpGet]
         [Authorize(Roles = "Admin,Staff")]
-        public async Task<ActionResult<PagingResponse<Booking>>> GetBookings([FromQuery] int pageNumber = 1,
+        public async Task<ActionResult<PagingResponse<Booking>>> GetBookings(
+            [FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10,
-           [FromQuery] string searchQuery = null)
+            [FromQuery] string searchQuery = null
+        )
         {
-
-            var pageResult = new Page.PageResult
-            {
-                PageSize = pageSize,
-                PageNumber = pageNumber,
-            };
+            var pageResult = new Page.PageResult { PageSize = pageSize, PageNumber = pageNumber };
             var (bookings, total) = await _bookingService.GetBookings(pageResult, searchQuery);
 
-            var response = new PagingResponse<Booking>
-            {
-                Data = bookings,
-                Total = total
-            };
+            var response = new PagingResponse<Booking> { Data = bookings, Total = total };
             return Ok(response);
         }
 
@@ -130,9 +126,6 @@ namespace API.Controllers
         // POST: api/Bookings
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
 
-
-
-
         // DELETE: api/Bookings/5
         [HttpDelete("{id}")]
         [Authorize]
@@ -163,27 +156,28 @@ namespace API.Controllers
 
         [HttpGet("search/{start}/{end}")]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Booking>>> SearchBookingsByTime(DateTime start, DateTime end)
+        public async Task<ActionResult<IEnumerable<Booking>>> SearchBookingsByTime(
+            DateTime start,
+            DateTime end
+        )
         {
             return _bookingService.SearchBookingsByTime(start, end).ToList();
         }
 
         [HttpGet("search/{userId}")]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByUser(string userId,
-            [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookingsByUser(
+            string userId,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-            var pageResult = new Page.PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new Page.PageResult { PageNumber = pageNumber, PageSize = pageSize };
 
             List<Booking> bookings = await _bookingService.GetBookingsByUserId(userId, pageResult);
 
             return Ok(bookings);
         }
-
 
         //[HttpPost("reserve")]
         //public async Task<IActionResult> ReserveSlot(string[] slotId, string userId)
@@ -210,6 +204,7 @@ namespace API.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
         [HttpDelete("cancel/{bookingId}")]
         public async Task<IActionResult> CancelBooking(string bookingId)
         {
@@ -226,11 +221,12 @@ namespace API.Controllers
             catch (Exception ex)
             {
                 // Handle other unexpected exceptions
-                return StatusCode(500, new { error = "An error occurred while cancelling the booking." });
+                return StatusCode(
+                    500,
+                    new { error = "An error occurred while cancelling the booking." }
+                );
             }
         }
-
-
 
         [HttpDelete("delete/{bookingId}")]
         [Authorize]
@@ -249,33 +245,48 @@ namespace API.Controllers
         //post booking type flex
         [HttpPost("flex")]
         [Authorize]
-        public async Task<ActionResult<Booking>> PostBookingTypeFlex(string userId, int numberOfSlot, string branchId)
+        public async Task<ActionResult<Booking>> PostBookingTypeFlex(
+            string userId,
+            int numberOfSlot,
+            string branchId
+        )
         {
-
             var booking = _bookingService.AddBookingTypeFlex(userId, numberOfSlot, branchId);
             return CreatedAtAction("GetBooking", new { id = booking.BookingId }, booking);
         }
 
         [HttpPost("fix-slot")]
         [Authorize]
-        public async Task<IActionResult> PostBookingTypeFix([FromQuery] int numberOfMonths,
-            [FromQuery] string[] dayOfWeek, [FromQuery] DateOnly startDate, [FromBody] TimeSlotModel[] timeSlotModel,
-            [FromQuery] string userId, string branchId)
+        public async Task<IActionResult> PostBookingTypeFix(
+            [FromQuery] int numberOfMonths,
+            [FromQuery] string[] dayOfWeek,
+            [FromQuery] DateOnly startDate,
+            [FromBody] TimeSlotModel[] timeSlotModel,
+            [FromQuery] string userId,
+            string branchId
+        )
         {
-            var booking = await _bookingService.AddBookingTypeFix(numberOfMonths, dayOfWeek, startDate, timeSlotModel, userId,
-                branchId);
+            var booking = await _bookingService.AddBookingTypeFix(
+                numberOfMonths,
+                dayOfWeek,
+                startDate,
+                timeSlotModel,
+                userId,
+                branchId
+            );
             return booking is not null ? Ok(booking) : BadRequest("Fail to reserve slot type fix");
         }
 
         [HttpGet("sortBooking/{sortBy}")]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Booking>>> SortBookings(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Booking>>> SortBookings(
+            string sortBy,
+            bool isAsc,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-            var pageResult = new Page.PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new Page.PageResult { PageNumber = pageNumber, PageSize = pageSize };
 
             List<Booking> bookings = await _bookingService.SortBookings(sortBy, isAsc, pageResult);
 
@@ -300,13 +311,16 @@ namespace API.Controllers
 
         [HttpGet("checkbookingtypeflex")]
         [Authorize]
-        public ActionResult<CheckBookingTypeFlexModel> CheckAvaiableSlotsFromBookingTypeFlex(string userId, string branchId)
+        public ActionResult<CheckBookingTypeFlexModel> CheckAvaiableSlotsFromBookingTypeFlex(
+            string userId,
+            string branchId
+        )
         {
             var bookingFlexModel = _bookingService.NumberOfSlotsAvailable(userId, branchId);
             var result = new CheckBookingTypeFlexModel
             {
                 bookingId = bookingFlexModel.Item1,
-                numberOfSlot = bookingFlexModel.Item2
+                numberOfSlot = bookingFlexModel.Item2,
             };
 
             return Ok(result);
@@ -324,18 +338,13 @@ namespace API.Controllers
                 return NotFound("Booking not found.");
             }
 
-
             //              "bookingId": "12345",
             //"userId": "67890",
             //"branchId": "B001",
             //"courtId": "C002",
             //"slotDate": "2024-07-01", nên tạo các thứ này
 
-            var qrData = new
-            {
-                BookingId = booking.Result.BookingId,
-
-            };
+            var qrData = new { BookingId = booking.Result.BookingId };
             string qrString = JsonConvert.SerializeObject(qrData);
             string qrCodeBase64 = Qr.QrCode.GenerateQRCode(qrString);
 
@@ -344,7 +353,6 @@ namespace API.Controllers
 
         [HttpGet("daily-bookings")]
         [Authorize]
-
         public async Task<ActionResult<DailyBookingResponse>> GetDailyBookings(string? branchId)
         {
             var (todayCount, changePercentage) = await _bookingService.GetDailyBookings(branchId);
@@ -352,23 +360,24 @@ namespace API.Controllers
             var response = new DailyBookingResponse
             {
                 TodayCount = todayCount,
-                ChangePercentage = changePercentage
+                ChangePercentage = changePercentage,
             };
 
             return Ok(response);
         }
 
-
         [HttpGet("weekly-bookings")]
         [Authorize]
         public async Task<ActionResult<DailyBookingResponse>> GetWeeklyBookings(string? branchId)
         {
-            var (weeklyCount, changePercentage) = await _bookingService.GetWeeklyBookingsAsync(branchId);
+            var (weeklyCount, changePercentage) = await _bookingService.GetWeeklyBookingsAsync(
+                branchId
+            );
 
             var response = new DailyBookingResponse
             {
                 TodayCount = weeklyCount,
-                ChangePercentage = changePercentage
+                ChangePercentage = changePercentage,
             };
 
             return Ok(response);
@@ -378,12 +387,14 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<DailyBookingResponse>> GetMonthlyBookings(string? branchId)
         {
-            var (monthlyCount, changePercentage) = await _bookingService.GetMonthlyBookingsAsync(branchId);
+            var (monthlyCount, changePercentage) = await _bookingService.GetMonthlyBookingsAsync(
+                branchId
+            );
 
             var response = new DailyBookingResponse
             {
                 TodayCount = monthlyCount,
-                ChangePercentage = changePercentage
+                ChangePercentage = changePercentage,
             };
 
             return Ok(response);
@@ -403,8 +414,8 @@ namespace API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-        [HttpGet("weekly-bookings-from-start-of-month")]
 
+        [HttpGet("weekly-bookings-from-start-of-month")]
         public async Task<IActionResult> GetWeeklyBookingsFromStartOfMonth(string? branchId)
         {
             try
@@ -414,7 +425,6 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -443,7 +453,7 @@ namespace API.Controllers
             var response = new RevenueResponse
             {
                 Revenue = todayRevenue,
-                ChangePercentage = changePercentage
+                ChangePercentage = changePercentage,
             };
 
             return Ok(response);
@@ -453,12 +463,14 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<RevenueResponse>> GetWeeklyRevenue(string? branchId)
         {
-            var (weeklyRevenue, changePercentage) = await _bookingService.GetWeeklyRevenueAsync(branchId);
+            var (weeklyRevenue, changePercentage) = await _bookingService.GetWeeklyRevenueAsync(
+                branchId
+            );
 
             var response = new RevenueResponse
             {
                 Revenue = weeklyRevenue,
-                ChangePercentage = changePercentage
+                ChangePercentage = changePercentage,
             };
 
             return Ok(response);
@@ -468,12 +480,14 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<RevenueResponse>> GetMonthlyRevenue(string? branchId)
         {
-            var (monthlyRevenue, changePercentage) = await _bookingService.GetMonthlyRevenueAsync(branchId);
+            var (monthlyRevenue, changePercentage) = await _bookingService.GetMonthlyRevenueAsync(
+                branchId
+            );
 
             var response = new RevenueResponse
             {
                 Revenue = monthlyRevenue,
-                ChangePercentage = changePercentage
+                ChangePercentage = changePercentage,
             };
 
             return Ok(response);
@@ -523,7 +537,5 @@ namespace API.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-
-
     }
 }

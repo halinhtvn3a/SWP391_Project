@@ -1,0 +1,42 @@
+[
+	{
+		"ReviewId": "RV001",
+		"ReviewText": "Excellent facilities and professional service at Orchard branch. The courts are well-maintained and the staff is very helpful. Great location in the heart of Singapore!",
+		"ReviewDate": "2024-01-15T15:30:00",
+		"Rating": 5,
+		"Id": "user1@example.com",
+		"BranchId": "BR001"
+	},
+	{
+		"ReviewId": "RV002",
+		"ReviewText": "Amazing experience at Marina Bay branch! The booking process was smooth and the court quality exceeded my expectations. Beautiful view of the Singapore skyline.",
+		"ReviewDate": "2024-01-16T12:45:00",
+		"Rating": 4,
+		"Id": "user2@example.com",
+		"BranchId": "BR002"
+	},
+	{
+		"ReviewId": "RV003",
+		"ReviewText": "Very good value for money at Sentosa branch. The facilities are clean and the staff is friendly. Perfect for a family outing on the island.",
+		"ReviewDate": "2024-01-17T18:20:00",
+		"Rating": 4,
+		"Id": "user3@example.com",
+		"BranchId": "BR003"
+	},
+	{
+		"ReviewId": "RV004",
+		"ReviewText": "The court at Clarke Quay branch was in good condition but the lighting could be better. Overall satisfied with the service and convenient location.",
+		"ReviewDate": "2024-01-18T20:15:00",
+		"Rating": 3,
+		"Id": "user4@example.com",
+		"BranchId": "BR004"
+	},
+	{
+		"ReviewId": "RV005",
+		"ReviewText": "Premium quality courts and excellent customer service at Bugis branch. Highly recommended for serious players. Great facilities in a vibrant neighborhood.",
+		"ReviewDate": "2024-01-19T14:10:00",
+		"Rating": 5,
+		"Id": "user5@example.com",
+		"BranchId": "BR005"
+	}
+]

@@ -52,9 +52,11 @@ namespace Services.MLModels
                 if (!File.Exists(_trainDataPath))
                 {
                     Console.WriteLine($"Training data file not found: {_trainDataPath}");
-                    throw new FileNotFoundException("Training data file not found.", _trainDataPath);
+                    throw new FileNotFoundException(
+                        "Training data file not found.",
+                        _trainDataPath
+                    );
                 }
-
 
                 string baseDir = Path.GetDirectoryName(_modelPath);
                 string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
@@ -64,30 +66,54 @@ namespace Services.MLModels
                 string metricsPath = Path.Combine(runDir, "ModelMetrics.txt");
 
                 // Load data
-                IDataView dataView = _mlContext.Data.LoadFromTextFile<BookingData>(_trainDataPath, hasHeader: true, separatorChar: ',');
+                IDataView dataView = _mlContext.Data.LoadFromTextFile<BookingData>(
+                    _trainDataPath,
+                    hasHeader: true,
+                    separatorChar: ','
+                );
                 var rowCount = dataView.GetRowCount();
                 Console.WriteLine("Number of rows in training data: " + rowCount);
                 if (rowCount == 0)
                 {
-                    throw new InvalidOperationException("Training set has 0 instances, aborting training.");
+                    throw new InvalidOperationException(
+                        "Training set has 0 instances, aborting training."
+                    );
                 }
 
                 // Build pipeline with normalization
-                var pipeline = _mlContext.Transforms.CopyColumns(outputColumnName: "Label", inputColumnName: "BookingCount")
-                    .Append(_mlContext.Transforms.Concatenate("Features", "DayOfWeek", "TimeOfDay", "Court", "NumberOfSlot"))
+                var pipeline = _mlContext
+                    .Transforms.CopyColumns(
+                        outputColumnName: "Label",
+                        inputColumnName: "BookingCount"
+                    )
+                    .Append(
+                        _mlContext.Transforms.Concatenate(
+                            "Features",
+                            "DayOfWeek",
+                            "TimeOfDay",
+                            "Court",
+                            "NumberOfSlot"
+                        )
+                    )
                     .Append(_mlContext.Transforms.NormalizeMinMax("Features", "Features"))
                     .AppendCacheCheckpoint(_mlContext)
-                    .Append(_mlContext.Regression.Trainers.LightGbm(new Microsoft.ML.Trainers.LightGbm.LightGbmRegressionTrainer.Options
-                    {
-                        NumberOfIterations = 100,
-                        LearningRate = 0.1,
-                        NumberOfLeaves = 31,
-                        MinimumExampleCountPerLeaf = 10
-                    }));
+                    .Append(
+                        _mlContext.Regression.Trainers.LightGbm(
+                            new Microsoft.ML.Trainers.LightGbm.LightGbmRegressionTrainer.Options
+                            {
+                                NumberOfIterations = 100,
+                                LearningRate = 0.1,
+                                NumberOfLeaves = 31,
+                                MinimumExampleCountPerLeaf = 10,
+                            }
+                        )
+                    );
 
                 // Split data: 80% train, 20% test
                 var split = _mlContext.Data.TrainTestSplit(dataView, testFraction: 0.2);
-                Console.WriteLine($"Train set: {split.TrainSet.GetRowCount()} rows, Test set: {split.TestSet.GetRowCount()} rows");
+                Console.WriteLine(
+                    $"Train set: {split.TrainSet.GetRowCount()} rows, Test set: {split.TestSet.GetRowCount()} rows"
+                );
 
                 // Train model on train set
                 var model = pipeline.Fit(split.TrainSet);
@@ -101,7 +127,11 @@ namespace Services.MLModels
 
                 // K-fold cross-validation
                 Console.WriteLine("--- K-Fold Cross-Validation (5 folds) ---");
-                var cvResults = _mlContext.Regression.CrossValidate(dataView, pipeline, numberOfFolds: 5);
+                var cvResults = _mlContext.Regression.CrossValidate(
+                    dataView,
+                    pipeline,
+                    numberOfFolds: 5
+                );
                 double avgR2 = cvResults.Average(fold => fold.Metrics.RSquared);
                 double avgRMSE = cvResults.Average(fold => fold.Metrics.RootMeanSquaredError);
 
@@ -114,7 +144,9 @@ namespace Services.MLModels
                 metricsReport.AppendLine($"K-Fold Cross-Validation (5 folds):");
                 for (int i = 0; i < cvResults.Count; i++)
                 {
-                    metricsReport.AppendLine($"Fold {i + 1}: R^2 = {cvResults[i].Metrics.RSquared:0.###}, RMSE = {cvResults[i].Metrics.RootMeanSquaredError:0.###}");
+                    metricsReport.AppendLine(
+                        $"Fold {i + 1}: R^2 = {cvResults[i].Metrics.RSquared:0.###}, RMSE = {cvResults[i].Metrics.RootMeanSquaredError:0.###}"
+                    );
                 }
                 metricsReport.AppendLine($"Average R^2: {avgR2:0.###}");
                 metricsReport.AppendLine($"Average RMSE: {avgRMSE:0.###}");
@@ -150,14 +182,20 @@ namespace Services.MLModels
             double avgRMSE = cvResults.Average(fold => fold.Metrics.RootMeanSquaredError);
             for (int i = 0; i < cvResults.Count; i++)
             {
-                Console.WriteLine($"Fold {i + 1}: R^2 = {cvResults[i].Metrics.RSquared:0.###}, RMSE = {cvResults[i].Metrics.RootMeanSquaredError:0.###}");
+                Console.WriteLine(
+                    $"Fold {i + 1}: R^2 = {cvResults[i].Metrics.RSquared:0.###}, RMSE = {cvResults[i].Metrics.RootMeanSquaredError:0.###}"
+                );
             }
-            Console.WriteLine($"K-Fold Cross-Validation ({k} folds): Avg R^2 = {avgR2:0.###}, Avg RMSE = {avgRMSE:0.###}");
+            Console.WriteLine(
+                $"K-Fold Cross-Validation ({k} folds): Avg R^2 = {avgR2:0.###}, Avg RMSE = {avgRMSE:0.###}"
+            );
         }
 
         private void SaveModel(ITransformer model, DataViewSchema schema, string path)
         {
-            using (var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write))
+            using (
+                var fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.Write)
+            )
             {
                 _mlContext.Model.Save(model, schema, fs);
             }

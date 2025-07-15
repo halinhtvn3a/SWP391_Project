@@ -8,7 +8,7 @@ namespace DAOs.Models
 {
     public class MachineResponse
     {
-        public float predictedCount {  get; set; }
-        public float growthRate {  get; set; }
+        public float predictedCount { get; set; }
+        public float growthRate { get; set; }
     }
 }

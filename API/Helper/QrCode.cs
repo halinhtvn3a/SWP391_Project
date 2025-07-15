@@ -1,6 +1,6 @@
-﻿using QRCoder;
+﻿using System.Drawing;
 using System.Drawing.Imaging;
-using System.Drawing;
+using QRCoder;
 
 namespace API.Helper
 {

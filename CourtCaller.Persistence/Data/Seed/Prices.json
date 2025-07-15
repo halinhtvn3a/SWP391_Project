@@ -1,0 +1,72 @@
+[
+	{
+		"PriceId": "PR001",
+		"BranchId": "BR001",
+		"Type": "Weekday",
+		"IsWeekend": false,
+		"SlotPrice": 25.00
+	},
+	{
+		"PriceId": "PR002",
+		"BranchId": "BR001",
+		"Type": "Weekend",
+		"IsWeekend": true,
+		"SlotPrice": 35.00
+	},
+	{
+		"PriceId": "PR003",
+		"BranchId": "BR002",
+		"Type": "Weekday",
+		"IsWeekend": false,
+		"SlotPrice": 30.00
+	},
+	{
+		"PriceId": "PR004",
+		"BranchId": "BR002",
+		"Type": "Weekend",
+		"IsWeekend": true,
+		"SlotPrice": 45.00
+	},
+	{
+		"PriceId": "PR005",
+		"BranchId": "BR003",
+		"Type": "Weekday",
+		"IsWeekend": false,
+		"SlotPrice": 20.00
+	},
+	{
+		"PriceId": "PR006",
+		"BranchId": "BR003",
+		"Type": "Weekend",
+		"IsWeekend": true,
+		"SlotPrice": 30.00
+	},
+	{
+		"PriceId": "PR007",
+		"BranchId": "BR004",
+		"Type": "Weekday",
+		"IsWeekend": false,
+		"SlotPrice": 28.00
+	},
+	{
+		"PriceId": "PR008",
+		"BranchId": "BR004",
+		"Type": "Weekend",
+		"IsWeekend": true,
+		"SlotPrice": 38.00
+	},
+	{
+		"PriceId": "PR009",
+		"BranchId": "BR005",
+		"Type": "Weekday",
+		"IsWeekend": false,
+		"SlotPrice": 35.00
+	},
+	{
+		"PriceId": "PR010",
+		"BranchId": "BR005",
+		"Type": "Weekend",
+		"IsWeekend": true,
+		"SlotPrice": 50.00
+	}
+]

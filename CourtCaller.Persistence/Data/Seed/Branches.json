@@ -1,0 +1,62 @@
+[
+	{
+		"BranchId": "BR001",
+		"BranchAddress": "123 Orchard Road, #01-01, Singapore 238859",
+		"BranchName": "CourtCaller Orchard",
+		"BranchPhone": "+65-6123-4567",
+		"Description": "Modern sports complex with multiple courts in the heart of Orchard",
+		"BranchPicture": "https://example.com/images/branch1.jpg",
+		"OpenTime": "06:00:00",
+		"CloseTime": "22:00:00",
+		"OpenDay": "Monday-Sunday",
+		"Status": "Active"
+	},
+	{
+		"BranchId": "BR002",
+		"BranchAddress": "456 Marina Bay Sands, #02-15, Singapore 018956",
+		"BranchName": "CourtCaller Marina Bay",
+		"BranchPhone": "+65-6234-5678",
+		"Description": "Premium sports facility with professional courts overlooking Marina Bay",
+		"BranchPicture": "https://example.com/images/branch2.jpg",
+		"OpenTime": "07:00:00",
+		"CloseTime": "23:00:00",
+		"OpenDay": "Monday-Sunday",
+		"Status": "Active"
+	},
+	{
+		"BranchId": "BR003",
+		"BranchAddress": "789 Sentosa Gateway, #03-20, Singapore 098138",
+		"BranchName": "CourtCaller Sentosa",
+		"BranchPhone": "+65-6345-6789",
+		"Description": "Family-friendly sports center on Sentosa Island",
+		"BranchPicture": "https://example.com/images/branch3.jpg",
+		"OpenTime": "06:30:00",
+		"CloseTime": "21:30:00",
+		"OpenDay": "Monday-Sunday",
+		"Status": "Active"
+	},
+	{
+		"BranchId": "BR004",
+		"BranchAddress": "321 Clarke Quay, #01-08, Singapore 059371",
+		"BranchName": "CourtCaller Clarke Quay",
+		"BranchPhone": "+65-6456-7890",
+		"Description": "Downtown sports complex near Clarke Quay",
+		"BranchPicture": "https://example.com/images/branch4.jpg",
+		"OpenTime": "08:00:00",
+		"CloseTime": "22:00:00",
+		"OpenDay": "Monday-Sunday",
+		"Status": "Active"
+	},
+	{
+		"BranchId": "BR005",
+		"BranchAddress": "654 Bugis Junction, #04-12, Singapore 188065",
+		"BranchName": "CourtCaller Bugis",
+		"BranchPhone": "+65-6567-8901",
+		"Description": "Elite sports facility with advanced amenities in Bugis",
+		"BranchPicture": "https://example.com/images/branch5.jpg",
+		"OpenTime": "06:00:00",
+		"CloseTime": "23:00:00",
+		"OpenDay": "Monday-Sunday",
+		"Status": "Active"
+	}
+]

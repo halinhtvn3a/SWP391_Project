@@ -1,0 +1,47 @@
+[
+	{
+		"PaymentId": "PAY001",
+		"BookingId": "BK001",
+		"PaymentAmount": 50.00,
+		"PaymentDate": "2024-01-15T10:30:00",
+		"PaymentMessage": "Payment successful for booking BK001",
+		"PaymentStatus": "Success",
+		"PaymentSignature": "signature_001"
+	},
+	{
+		"PaymentId": "PAY002",
+		"BookingId": "BK002",
+		"PaymentAmount": 30.00,
+		"PaymentDate": "2024-01-16T14:20:00",
+		"PaymentMessage": "Payment pending for booking BK002",
+		"PaymentStatus": "Pending",
+		"PaymentSignature": null
+	},
+	{
+		"PaymentId": "PAY003",
+		"BookingId": "BK003",
+		"PaymentAmount": 60.00,
+		"PaymentDate": "2024-01-17T09:15:00",
+		"PaymentMessage": "Payment successful for booking BK003",
+		"PaymentStatus": "Success",
+		"PaymentSignature": "signature_003"
+	},
+	{
+		"PaymentId": "PAY004",
+		"BookingId": "BK004",
+		"PaymentAmount": 28.00,
+		"PaymentDate": "2024-01-18T16:45:00",
+		"PaymentMessage": "Payment cancelled for booking BK004",
+		"PaymentStatus": "Cancelled",
+		"PaymentSignature": null
+	},
+	{
+		"PaymentId": "PAY005",
+		"BookingId": "BK005",
+		"PaymentAmount": 70.00,
+		"PaymentDate": "2024-01-19T11:00:00",
+		"PaymentMessage": "Payment successful for booking BK005",
+		"PaymentStatus": "Success",
+		"PaymentSignature": "signature_005"
+	}
+]

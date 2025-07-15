@@ -1,13 +1,14 @@
-﻿using DAOs;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CourtCaller.Persistence;
+using DAOs;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using Repositories;
 
 namespace UnitTests.RepositoryTests
 {
@@ -26,18 +27,55 @@ namespace UnitTests.RepositoryTests
             mockContext = new Mock<CourtCallerDbContext>();
             userList = new List<IdentityUser>
             {
-                new IdentityUser { Id = "U00001", UserName = "user1", Email = "abc1@gmail.com", PhoneNumber = "12345678", LockoutEnabled = true  },
-                new IdentityUser { Id = "U00002", UserName = "user2", Email = "abc2@gmail.com", PhoneNumber = "23321231", LockoutEnabled = false  },
-                new IdentityUser { Id = "U00003", UserName = "user3", Email = "abc3@gmail.com", PhoneNumber = "546445678", LockoutEnabled = true  },
-                new IdentityUser { Id = "U00004", UserName = "user4", Email = "abc4@gmail.com", PhoneNumber = "8676765", LockoutEnabled = false  },
+                new IdentityUser
+                {
+                    Id = "U00001",
+                    UserName = "user1",
+                    Email = "abc1@gmail.com",
+                    PhoneNumber = "12345678",
+                    LockoutEnabled = true,
+                },
+                new IdentityUser
+                {
+                    Id = "U00002",
+                    UserName = "user2",
+                    Email = "abc2@gmail.com",
+                    PhoneNumber = "23321231",
+                    LockoutEnabled = false,
+                },
+                new IdentityUser
+                {
+                    Id = "U00003",
+                    UserName = "user3",
+                    Email = "abc3@gmail.com",
+                    PhoneNumber = "546445678",
+                    LockoutEnabled = true,
+                },
+                new IdentityUser
+                {
+                    Id = "U00004",
+                    UserName = "user4",
+                    Email = "abc4@gmail.com",
+                    PhoneNumber = "8676765",
+                    LockoutEnabled = false,
+                },
             };
 
             var data = userList.AsQueryable();
 
             mockSet.As<IQueryable<IdentityUser>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<IdentityUser>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<IdentityUser>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<IdentityUser>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<IdentityUser>>()
+                .Setup(m => m.Expression)
+                .Returns(data.Expression);
+            mockSet
+                .As<IQueryable<IdentityUser>>()
+                .Setup(m => m.ElementType)
+                .Returns(data.ElementType);
+            mockSet
+                .As<IQueryable<IdentityUser>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Users).Returns(mockSet.Object);
 
@@ -50,7 +88,6 @@ namespace UnitTests.RepositoryTests
         [InlineData("U00002")]
         public void GetUser_ReturnsUser(string userId)
         {
-            
             var user = userRepository.GetUser(userId);
             Assert.Equal(user.Id, userId);
         }
@@ -60,7 +97,6 @@ namespace UnitTests.RepositoryTests
         [InlineData("U00010")]
         public void GetUser_ReturnsNull(string userId)
         {
-            
             var user = userRepository.GetUser(userId);
             Assert.Null(user);
         }
@@ -68,7 +104,6 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void AddUser_ReturnsUser()
         {
-            
             var user = new IdentityUser { Id = "U00005" };
             userRepository.AddUser(user);
             mockSet.Verify(m => m.Add(It.IsAny<IdentityUser>()), Times.Once());
@@ -78,7 +113,6 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void BanUser_ReturnsUser()
         {
-            
             userRepository.BanUser("U00001");
             IdentityUser user = userRepository.GetUser("U00001");
             Assert.False(user.LockoutEnabled);
@@ -88,7 +122,6 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void UnBanUser_ReturnsUser()
         {
-            
             userRepository.UnBanUser("U00002");
             IdentityUser user = userRepository.GetUser("U00001");
             Assert.True(user.LockoutEnabled);
@@ -102,7 +135,7 @@ namespace UnitTests.RepositoryTests
 
         //public void SearchUserByEmail_ReturnsUser(string searchValue, int count)
         //{
-            
+
         //    var user = userRepository.SearchUserByEmail(searchValue);
         //    Assert.Equal(count, user.Count);
         //}

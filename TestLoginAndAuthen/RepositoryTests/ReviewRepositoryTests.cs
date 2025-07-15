@@ -1,15 +1,16 @@
-﻿using BusinessObjects;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
 using DAOs;
 using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTests.RepositoryTests
 {
@@ -28,12 +29,60 @@ namespace UnitTests.RepositoryTests
             mockContext = new Mock<CourtCallerDbContext>();
             reviewList = new List<Review>
             {
-                new Review { ReviewId = "R00001", ReviewText = "Test Review 1", Rating = 5, ReviewDate = DateTime.Now, BranchId = "B00001", Id = "U00001"},
-                new Review { ReviewId = "R00002", ReviewText = "Test Review 2", Rating = 1, ReviewDate = DateTime.Now, BranchId = "B00001", Id = "U00001" },
-                new Review { ReviewId = "R00003", ReviewText = "Test Review 3", Rating = 2, ReviewDate = DateTime.Now, BranchId = "B00001", Id = "U00002" },
-                new Review { ReviewId = "R00004", ReviewText = "Test Review 4", Rating = 3, ReviewDate = DateTime.Now, BranchId = "B00001", Id = "U00003" },
-                new Review { ReviewId = "R00005", ReviewText = "Test Review 5", Rating = 4, ReviewDate = DateTime.Now, BranchId = "B00001", Id = "U00004"},
-                new Review { ReviewId = "R00006", ReviewText = "Test Review 6", Rating = 5, ReviewDate = DateTime.Now, BranchId = "B00001", Id = "U00005"},
+                new Review
+                {
+                    ReviewId = "R00001",
+                    ReviewText = "Test Review 1",
+                    Rating = 5,
+                    ReviewDate = DateTime.Now,
+                    BranchId = "B00001",
+                    Id = "U00001",
+                },
+                new Review
+                {
+                    ReviewId = "R00002",
+                    ReviewText = "Test Review 2",
+                    Rating = 1,
+                    ReviewDate = DateTime.Now,
+                    BranchId = "B00001",
+                    Id = "U00001",
+                },
+                new Review
+                {
+                    ReviewId = "R00003",
+                    ReviewText = "Test Review 3",
+                    Rating = 2,
+                    ReviewDate = DateTime.Now,
+                    BranchId = "B00001",
+                    Id = "U00002",
+                },
+                new Review
+                {
+                    ReviewId = "R00004",
+                    ReviewText = "Test Review 4",
+                    Rating = 3,
+                    ReviewDate = DateTime.Now,
+                    BranchId = "B00001",
+                    Id = "U00003",
+                },
+                new Review
+                {
+                    ReviewId = "R00005",
+                    ReviewText = "Test Review 5",
+                    Rating = 4,
+                    ReviewDate = DateTime.Now,
+                    BranchId = "B00001",
+                    Id = "U00004",
+                },
+                new Review
+                {
+                    ReviewId = "R00006",
+                    ReviewText = "Test Review 6",
+                    Rating = 5,
+                    ReviewDate = DateTime.Now,
+                    BranchId = "B00001",
+                    Id = "U00005",
+                },
             };
 
             var data = reviewList.AsQueryable();
@@ -41,7 +90,10 @@ namespace UnitTests.RepositoryTests
             mockSet.As<IQueryable<Review>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<Review>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Review>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Review>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<Review>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Reviews).Returns(mockSet.Object);
 
@@ -75,7 +127,7 @@ namespace UnitTests.RepositoryTests
                 ReviewText = "Test Review 7",
                 Rating = 5,
                 BranchId = "B00001",
-                UserId= "U00001"
+                UserId = "U00001",
             };
 
             Review review = reviewRepository.AddReview(reviewModel);
@@ -114,7 +166,6 @@ namespace UnitTests.RepositoryTests
         [InlineData("U00004", 1)]
         [InlineData("U00005", 1)]
         [InlineData("U00009", 0)]
-
         public void SearchByUser_ReturnsWell(string userId, int count)
         {
             List<Review> reviews = reviewRepository.SearchByUser(userId);
@@ -122,14 +173,19 @@ namespace UnitTests.RepositoryTests
             Assert.NotNull(reviews);
             Assert.Equal(count, reviews.Count);
         }
+
         [Fact]
         public void SearchByDate_ReturnsWell()
         {
-            List<Review> reviews = reviewRepository.SearchByDate(DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1));
+            List<Review> reviews = reviewRepository.SearchByDate(
+                DateTime.Now.AddDays(-1),
+                DateTime.Now.AddDays(1)
+            );
 
             Assert.NotNull(reviews);
             Assert.Equal(6, reviews.Count);
         }
+
         [Fact]
         public void SearchByRating_ReturnsWell()
         {
@@ -140,13 +196,14 @@ namespace UnitTests.RepositoryTests
         }
 
         [Fact]
-        public void UpdateReview_ReturnsWell() {
+        public void UpdateReview_ReturnsWell()
+        {
             ReviewModel reviewModel = new ReviewModel
             {
                 ReviewText = "Test Review 1 Updated",
                 Rating = 1,
                 BranchId = "B00001",
-                UserId = "U00001"
+                UserId = "U00001",
             };
 
             Review review = reviewRepository.UpdateReview("R00001", reviewModel);
@@ -156,6 +213,7 @@ namespace UnitTests.RepositoryTests
             Assert.Equal(1, review.Rating);
             Assert.Equal("B00001", review.BranchId);
         }
+
         [Fact]
         public void GetReview_ReturnsNull()
         {
@@ -163,6 +221,7 @@ namespace UnitTests.RepositoryTests
 
             Assert.Null(review);
         }
+
         [Fact]
         public void DeleteReview_ReturnsNull()
         {
@@ -172,6 +231,5 @@ namespace UnitTests.RepositoryTests
 
             Assert.Null(review);
         }
-
     }
 }

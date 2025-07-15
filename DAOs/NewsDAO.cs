@@ -1,12 +1,13 @@
-﻿using BusinessObjects;
-using DAOs.Helper;
-using DAOs.Models;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
+using DAOs.Helper;
+using DAOs.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
@@ -21,22 +22,26 @@ namespace DAOs
                 _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
+
         //public NewsDAO(CourtCallerDbContext dbContext)
         //{
         //    _courtCallerDbContext = dbContext;
         //}
 
-        public async Task<(List<News>, int total)> GetNews(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<News>, int total)> GetNews(
+            PageResult pageResult,
+            string searchQuery = null
+        )
         {
-            var query = _courtCallerDbContext.News.OrderByDescending(News => News.PublicationDate).AsQueryable();
+            var query = _courtCallerDbContext
+                .News.OrderByDescending(News => News.PublicationDate)
+                .AsQueryable();
 
             var total = await _courtCallerDbContext.News.CountAsync();
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 query = query.Where(News => News.Content.Contains(searchQuery));
             }
-
-
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<News> reviews = await pagination.GetListAsync<News>(query, pageResult);
@@ -64,7 +69,7 @@ namespace DAOs
             oNews.Image = news.Image;
             oNews.Status = news.Status;
             oNews.IsHomepageSlideshow = news.IsHomepageSlideshow;
-            
+
             if (oNews != null)
             {
                 _courtCallerDbContext.Update(oNews);
@@ -84,19 +89,28 @@ namespace DAOs
             }
         }
 
-        public async Task<(List<News>, int total)> GetNews(PageResult pageResult, bool IsHomepageSlideshow, string status, string searchQuery = null)
+        public async Task<(List<News>, int total)> GetNews(
+            PageResult pageResult,
+            bool IsHomepageSlideshow,
+            string status,
+            string searchQuery = null
+        )
         {
+            var query = _courtCallerDbContext
+                .News.Where(m => m.IsHomepageSlideshow == IsHomepageSlideshow && m.Status == status)
+                .OrderByDescending(News => News.PublicationDate)
+                .AsQueryable();
 
-            var query = _courtCallerDbContext.News.Where(m => m.IsHomepageSlideshow == IsHomepageSlideshow && m.Status == status).OrderByDescending(News => News.PublicationDate).AsQueryable();
-
-            var total = await _courtCallerDbContext.News.Where(m => m.IsHomepageSlideshow == IsHomepageSlideshow && m.Status == status).OrderByDescending(News => News.PublicationDate).CountAsync();
+            var total = await _courtCallerDbContext
+                .News.Where(m => m.IsHomepageSlideshow == IsHomepageSlideshow && m.Status == status)
+                .OrderByDescending(News => News.PublicationDate)
+                .CountAsync();
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                query = query.Where(news => news.Content.Contains(searchQuery) ||
-                                            news.Title.Contains(searchQuery));
+                query = query.Where(news =>
+                    news.Content.Contains(searchQuery) || news.Title.Contains(searchQuery)
+                );
             }
-
-
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<News> reviews = await pagination.GetListAsync<News>(query, pageResult);
@@ -105,7 +119,9 @@ namespace DAOs
 
         public List<News> ShowSlideShowImage()
         {
-            return _courtCallerDbContext.News.Where(m => m.IsHomepageSlideshow == true && m.Status == "Active").ToList();
+            return _courtCallerDbContext
+                .News.Where(m => m.IsHomepageSlideshow == true && m.Status == "Active")
+                .ToList();
         }
     }
 }

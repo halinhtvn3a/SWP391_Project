@@ -1,17 +1,16 @@
-﻿using Xunit;
-using Moq;
-using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 using API.Controllers;
-using DAOs.Models;
 using BusinessObjects;
+using DAOs.Models;
+using Microsoft.AspNetCore.Mvc;
+using Moq;
 using Services;
-using System.Collections.Generic;
-using System.Reflection;
+using Xunit;
 
 namespace UnitTests.ServiceTests
 {
-
     public class BookingServiceTests
     {
         private readonly Mock<BookingService> _bookingServiceMock;
@@ -22,7 +21,10 @@ namespace UnitTests.ServiceTests
             _bookingServiceMock = new Mock<BookingService> { CallBase = true };
             _bookingController = new BookingsController(_bookingServiceMock.Object);
 
-            var field = typeof(BookingsController).GetField("_bookingService", BindingFlags.NonPublic | BindingFlags.Instance);
+            var field = typeof(BookingsController).GetField(
+                "_bookingService",
+                BindingFlags.NonPublic | BindingFlags.Instance
+            );
             field.SetValue(_bookingController, _bookingServiceMock.Object);
         }
 

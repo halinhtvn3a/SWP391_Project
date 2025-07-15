@@ -1,23 +1,22 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
-using Repositories.Helper;
-using Services.Interface;
-using MimeKit;
 using MailKit.Net.Smtp;
 using MailKit.Security;
-
-
+using Microsoft.Extensions.Options;
+using MimeKit;
+using Repositories.Helper;
+using Services.Interface;
 
 namespace Services
 {
     public class MailService : IMailService
     {
-
         private readonly MailSettings _mailSettings;
+
         public MailService(IOptions<MailSettings> mailSettings)
         {
             _mailSettings = mailSettings.Value;
         }
+
         public async Task SendEmailAsync(MailRequest mailRequest)
         {
             //Setup mail
@@ -40,7 +39,11 @@ namespace Services
                             file.CopyTo(ms);
                             fileBytes = ms.ToArray();
                         }
-                        builder.Attachments.Add(file.FileName, fileBytes, ContentType.Parse(file.ContentType));
+                        builder.Attachments.Add(
+                            file.FileName,
+                            fileBytes,
+                            ContentType.Parse(file.ContentType)
+                        );
                     }
                 }
             }

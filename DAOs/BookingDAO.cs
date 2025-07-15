@@ -1,23 +1,23 @@
-﻿using BusinessObjects;
-using DAOs;
-using DAOs.Helper;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using PageResult = DAOs.Helper.PageResult;
-using System.ComponentModel.DataAnnotations;
+using BusinessObjects;
+using CourtCaller.Persistence;
+using DAOs;
+using DAOs.Helper;
 using DAOs.Models;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using PageResult = DAOs.Helper.PageResult;
 
 namespace DAOs
 {
     public class BookingDAO
     {
-
         private readonly CourtCallerDbContext _courtCallerDbContext = null;
 
         public BookingDAO()
@@ -27,30 +27,31 @@ namespace DAOs
                 _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
+
         public BookingDAO(CourtCallerDbContext context)
         {
             _courtCallerDbContext = context;
         }
 
-        public async Task<(List<Booking>, int total)> GetBookings(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<Booking>, int total)> GetBookings(
+            PageResult pageResult,
+            string searchQuery = null
+        )
         {
-            var query = _courtCallerDbContext.Bookings
-                .Include(b => b.User)
-                .AsQueryable();
+            var query = _courtCallerDbContext.Bookings.Include(b => b.User).AsQueryable();
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 query = query.Where(b =>
-                    b.BookingId.ToString().Contains(searchQuery) ||
-                    b.User.Id.ToString().Contains(searchQuery) ||
-                    b.BookingDate.ToString().Contains(searchQuery) ||
-                    b.Status.Contains(searchQuery) ||
-                    b.TotalPrice.ToString().Contains(searchQuery) ||
-                    b.BookingType.Contains(searchQuery) ||
-                    b.NumberOfSlot.ToString().Contains(searchQuery)
+                    b.BookingId.ToString().Contains(searchQuery)
+                    || b.User.Id.ToString().Contains(searchQuery)
+                    || b.BookingDate.ToString().Contains(searchQuery)
+                    || b.Status.Contains(searchQuery)
+                    || b.TotalPrice.ToString().Contains(searchQuery)
+                    || b.BookingType.Contains(searchQuery)
+                    || b.NumberOfSlot.ToString().Contains(searchQuery)
                 );
             }
-
 
             var total = await query.CountAsync();
 
@@ -66,7 +67,7 @@ namespace DAOs
                     Status = b.Status,
                     TotalPrice = b.TotalPrice,
                     BookingType = b.BookingType,
-                    NumberOfSlot = b.NumberOfSlot
+                    NumberOfSlot = b.NumberOfSlot,
                 });
 
             var bookings = await pagedQuery.ToListAsync();
@@ -74,31 +75,32 @@ namespace DAOs
             return (bookings, total);
         }
 
-
-
-
         public async Task<Booking> GetBooking(string id)
         {
-            var booking = await _courtCallerDbContext.Bookings.FirstOrDefaultAsync(m => m.BookingId.Equals(id));
+            var booking = await _courtCallerDbContext.Bookings.FirstOrDefaultAsync(m =>
+                m.BookingId.Equals(id)
+            );
 
             return booking;
         }
 
         public async Task<TimeSlot> AddBookingTransaction(string slotId)
         {
-            var test = await _courtCallerDbContext.TimeSlots
-                 .FromSqlRaw($"SELECT * FROM TimeSlots WITH (UPDLOCK) WHERE SlotId = '{slotId}' AND IsAvailable = 1")
-                 .FirstOrDefaultAsync();
+            var timeSlot = await _courtCallerDbContext
+                .TimeSlots.FromSqlInterpolated(
+                    $"SELECT * FROM TimeSlots WITH (UPDLOCK) WHERE SlotId = {slotId} AND IsAvailable = 1"
+                )
+                .FirstOrDefaultAsync();
 
-            return test;
+            return timeSlot;
         }
-
 
         public void AddBooking(Booking booking)
         {
             _courtCallerDbContext.Bookings.Add(booking);
             _courtCallerDbContext.SaveChanges();
         }
+
         public async Task SaveChangesAsync()
         {
             await _courtCallerDbContext.SaveChangesAsync();
@@ -112,11 +114,9 @@ namespace DAOs
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
-
 
         public async Task RollbackTransactionAsync()
         {
@@ -126,7 +126,6 @@ namespace DAOs
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
@@ -167,7 +166,9 @@ namespace DAOs
 
         public List<Booking> SearchBookingsByTime(DateTime start, DateTime end)
         {
-            return _courtCallerDbContext.Bookings.Where(m => m.BookingDate >= start && m.BookingDate <= end).ToList();
+            return _courtCallerDbContext
+                .Bookings.Where(m => m.BookingDate >= start && m.BookingDate <= end)
+                .ToList();
         }
 
         public async Task<List<Booking>> GetBookingsByUserId(string userId, PageResult pageResult)
@@ -179,7 +180,6 @@ namespace DAOs
             return bookings;
         }
 
-
         public async Task BeginTransactionAsync()
         {
             try
@@ -188,14 +188,15 @@ namespace DAOs
             }
             catch (Exception ex)
             {
-
                 throw;
             }
         }
 
         public List<Booking> GetBookingTypeFlex(string userId)
         {
-            return _courtCallerDbContext.Bookings.Where(m => m.BookingType.Equals("Flex") && m.Id.Equals(userId)).ToList();
+            return _courtCallerDbContext
+                .Bookings.Where(m => m.BookingType.Equals("Flex") && m.Id.Equals(userId))
+                .ToList();
         }
 
         public List<Booking> GetBookingsByUserId(string userId)
@@ -203,32 +204,48 @@ namespace DAOs
             return _courtCallerDbContext.Bookings.Where(m => m.Id.Equals(userId)).ToList();
         }
 
-        public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult)
+        public async Task<List<Booking>> SortBookings(
+            string? sortBy,
+            bool isAsc,
+            PageResult pageResult
+        )
         {
             IQueryable<Booking> query = _courtCallerDbContext.Bookings;
 
             switch (sortBy?.ToLower())
             {
                 case "bookingid":
-                    query = isAsc ? query.OrderBy(b => b.BookingId) : query.OrderByDescending(b => b.BookingId);
+                    query = isAsc
+                        ? query.OrderBy(b => b.BookingId)
+                        : query.OrderByDescending(b => b.BookingId);
                     break;
                 case "id":
                     query = isAsc ? query.OrderBy(b => b.Id) : query.OrderByDescending(b => b.Id);
                     break;
                 case "bookingdate":
-                    query = isAsc ? query.OrderBy(b => b.BookingDate) : query.OrderByDescending(b => b.BookingDate);
+                    query = isAsc
+                        ? query.OrderBy(b => b.BookingDate)
+                        : query.OrderByDescending(b => b.BookingDate);
                     break;
                 case "bookingtype":
-                    query = isAsc ? query.OrderBy(b => b.BookingType) : query.OrderByDescending(b => b.BookingType);
+                    query = isAsc
+                        ? query.OrderBy(b => b.BookingType)
+                        : query.OrderByDescending(b => b.BookingType);
                     break;
                 case "numberofslot":
-                    query = isAsc ? query.OrderBy(b => b.NumberOfSlot) : query.OrderByDescending(b => b.NumberOfSlot);
+                    query = isAsc
+                        ? query.OrderBy(b => b.NumberOfSlot)
+                        : query.OrderByDescending(b => b.NumberOfSlot);
                     break;
                 case "status":
-                    query = isAsc ? query.OrderBy(b => b.Status) : query.OrderByDescending(b => b.Status);
+                    query = isAsc
+                        ? query.OrderBy(b => b.Status)
+                        : query.OrderByDescending(b => b.Status);
                     break;
                 case "totalprice":
-                    query = isAsc ? query.OrderBy(b => b.TotalPrice) : query.OrderByDescending(b => b.TotalPrice);
+                    query = isAsc
+                        ? query.OrderBy(b => b.TotalPrice)
+                        : query.OrderByDescending(b => b.TotalPrice);
                     break;
                 default:
                     break;
@@ -238,7 +255,9 @@ namespace DAOs
             return bookings;
         }
 
-        public async Task<(int todayCount, double changePercentage)> GetDailyBookings(string? branchId)
+        public async Task<(int todayCount, double changePercentage)> GetDailyBookings(
+            string? branchId
+        )
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
             var nowUtc = DateTime.UtcNow;
@@ -251,29 +270,37 @@ namespace DAOs
 
             if (branchId != null)
             {
-                todayBookingCount = await _courtCallerDbContext.Bookings
-                .Where(m => m.BranchId == branchId && m.BookingDate >= today && m.BookingDate < tomorrow)
-                .CountAsync();
+                todayBookingCount = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId && m.BookingDate >= today && m.BookingDate < tomorrow
+                    )
+                    .CountAsync();
 
-                yesterdayBookingCount = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BranchId == branchId && m.BookingDate >= yesterday && m.BookingDate < today)
+                yesterdayBookingCount = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= yesterday
+                        && m.BookingDate < today
+                    )
                     .CountAsync();
             }
             else
             {
-                todayBookingCount = await _courtCallerDbContext.Bookings
-                .Where(m => m.BookingDate >= today && m.BookingDate < tomorrow)
-                .CountAsync();
+                todayBookingCount = await _courtCallerDbContext
+                    .Bookings.Where(m => m.BookingDate >= today && m.BookingDate < tomorrow)
+                    .CountAsync();
 
-                yesterdayBookingCount = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= yesterday && m.BookingDate < today)
+                yesterdayBookingCount = await _courtCallerDbContext
+                    .Bookings.Where(m => m.BookingDate >= yesterday && m.BookingDate < today)
                     .CountAsync();
             }
 
             double changePercentage = 0;
             if (yesterdayBookingCount > 0)
             {
-                changePercentage = ((double)(todayBookingCount - yesterdayBookingCount) / yesterdayBookingCount) * 100;
+                changePercentage =
+                    ((double)(todayBookingCount - yesterdayBookingCount) / yesterdayBookingCount)
+                    * 100;
             }
             else if (todayBookingCount > 0)
             {
@@ -282,8 +309,9 @@ namespace DAOs
             return (todayBookingCount, changePercentage);
         }
 
-
-        public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync(string? branchId)
+        public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync(
+            string? branchId
+        )
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
             var nowUtc = DateTime.UtcNow;
@@ -299,13 +327,20 @@ namespace DAOs
 
             if (branchId != null)
             {
-                var currentWeekBookings = await _courtCallerDbContext.Bookings
-                .Where(m => m.BranchId == branchId && m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek)
-                .ToListAsync();
+                var currentWeekBookings = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= startOfWeek
+                        && m.BookingDate < endOfWeek
+                    )
+                    .ToListAsync();
 
-
-                var lastWeekBookings = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BranchId == branchId && m.BookingDate >= startOfLastWeek && m.BookingDate < endOfLastWeek)
+                var lastWeekBookings = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= startOfLastWeek
+                        && m.BookingDate < endOfLastWeek
+                    )
                     .ToListAsync();
 
                 currentWeekCount = currentWeekBookings.Count();
@@ -313,12 +348,14 @@ namespace DAOs
             }
             else
             {
-                var currentWeekBookings = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek)
+                var currentWeekBookings = await _courtCallerDbContext
+                    .Bookings.Where(m => m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek)
                     .ToListAsync();
 
-                var lastWeekBookings = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= startOfLastWeek && m.BookingDate < endOfLastWeek)
+                var lastWeekBookings = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BookingDate >= startOfLastWeek && m.BookingDate < endOfLastWeek
+                    )
                     .ToListAsync();
 
                 currentWeekCount = currentWeekBookings.Count();
@@ -328,7 +365,8 @@ namespace DAOs
             double changePercentage = 0;
             if (lastWeekCount > 0)
             {
-                changePercentage = ((double)(currentWeekCount - lastWeekCount) / lastWeekCount) * 100;
+                changePercentage =
+                    ((double)(currentWeekCount - lastWeekCount) / lastWeekCount) * 100;
             }
             else if (currentWeekCount > 0)
             {
@@ -337,7 +375,10 @@ namespace DAOs
 
             return (currentWeekCount, changePercentage);
         }
-        public async Task<(int monthlyCount, double changePercentage)> GetMonthlyBookingsAsync(string? branchId)
+
+        public async Task<(int monthlyCount, double changePercentage)> GetMonthlyBookingsAsync(
+            string? branchId
+        )
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
             var nowUtc = DateTime.UtcNow;
@@ -351,12 +392,20 @@ namespace DAOs
 
             if (branchId != null)
             {
-                var currentMonthBookings = await _courtCallerDbContext.Bookings
-                .Where(m => m.BranchId == branchId && m.BookingDate >= startOfMonth && m.BookingDate < startOfNextMonth)
-                .ToListAsync();
+                var currentMonthBookings = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= startOfMonth
+                        && m.BookingDate < startOfNextMonth
+                    )
+                    .ToListAsync();
 
-                var lastMonthBookings = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BranchId == branchId && m.BookingDate >= startOfLastMonth && m.BookingDate < startOfMonth)
+                var lastMonthBookings = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= startOfLastMonth
+                        && m.BookingDate < startOfMonth
+                    )
                     .ToListAsync();
 
                 currentMonthCount = currentMonthBookings.Count;
@@ -364,12 +413,16 @@ namespace DAOs
             }
             else
             {
-                var currentMonthBookings = await _courtCallerDbContext.Bookings
-                .Where(m => m.BookingDate >= startOfMonth && m.BookingDate < startOfNextMonth)
-                .ToListAsync();
+                var currentMonthBookings = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BookingDate >= startOfMonth && m.BookingDate < startOfNextMonth
+                    )
+                    .ToListAsync();
 
-                var lastMonthBookings = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= startOfLastMonth && m.BookingDate < startOfMonth)
+                var lastMonthBookings = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BookingDate >= startOfLastMonth && m.BookingDate < startOfMonth
+                    )
                     .ToListAsync();
 
                 currentMonthCount = currentMonthBookings.Count;
@@ -379,7 +432,8 @@ namespace DAOs
             double changePercentage = 0;
             if (lastMonthCount > 0)
             {
-                changePercentage = ((double)(currentMonthCount - lastMonthCount) / lastMonthCount) * 100;
+                changePercentage =
+                    ((double)(currentMonthCount - lastMonthCount) / lastMonthCount) * 100;
             }
             else if (currentMonthCount > 0)
             {
@@ -388,7 +442,10 @@ namespace DAOs
 
             return (currentMonthCount, changePercentage);
         }
-        public async Task<(decimal todayRevenue, decimal changePercentage)> GetDailyRevenue(string? branchId)
+
+        public async Task<(decimal todayRevenue, decimal changePercentage)> GetDailyRevenue(
+            string? branchId
+        )
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
             var nowUtc = DateTime.UtcNow;
@@ -401,31 +458,46 @@ namespace DAOs
 
             if (branchId != null)
             {
-                todayRevenue = await _courtCallerDbContext.Bookings
-                .Where(m => m.BranchId == branchId && m.BookingDate >= today && m.BookingDate < tomorrow && m.Status == "Complete")
-                .SumAsync(m => m.TotalPrice);
+                todayRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= today
+                        && m.BookingDate < tomorrow
+                        && m.Status == "Complete"
+                    )
+                    .SumAsync(m => m.TotalPrice);
 
-                yesterdayRevenue = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BranchId == branchId && m.BookingDate >= yesterday && m.BookingDate < today && m.Status == "Complete")
+                yesterdayRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= yesterday
+                        && m.BookingDate < today
+                        && m.Status == "Complete"
+                    )
                     .SumAsync(m => m.TotalPrice);
             }
             else
             {
-                todayRevenue = await _courtCallerDbContext.Bookings
-                .Where(m => m.BookingDate >= today && m.BookingDate < tomorrow && m.Status == "Complete")
-                .SumAsync(m => m.TotalPrice);
+                todayRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BookingDate >= today && m.BookingDate < tomorrow && m.Status == "Complete"
+                    )
+                    .SumAsync(m => m.TotalPrice);
 
-                yesterdayRevenue = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= yesterday && m.BookingDate < today && m.Status == "Complete")
+                yesterdayRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BookingDate >= yesterday
+                        && m.BookingDate < today
+                        && m.Status == "Complete"
+                    )
                     .SumAsync(m => m.TotalPrice);
             }
-
-
 
             decimal changePercentage = 0;
             if (yesterdayRevenue > 0)
             {
-                changePercentage = ((decimal)(todayRevenue - yesterdayRevenue) / yesterdayRevenue) * 100;
+                changePercentage =
+                    ((decimal)(todayRevenue - yesterdayRevenue) / yesterdayRevenue) * 100;
             }
             else if (todayRevenue > 0)
             {
@@ -434,9 +506,9 @@ namespace DAOs
             return (todayRevenue, changePercentage);
         }
 
-
-
-        public async Task<(decimal weeklyCount, decimal changePercentage)> GetWeeklyRevenueAsync(string? branchId)
+        public async Task<(decimal weeklyCount, decimal changePercentage)> GetWeeklyRevenueAsync(
+            string? branchId
+        )
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
             var nowUtc = DateTime.UtcNow;
@@ -452,31 +524,48 @@ namespace DAOs
 
             if (branchId != null)
             {
-                currentWeekRevenue = await _courtCallerDbContext.Bookings
-                .Where(m => m.BranchId == branchId && m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek && m.Status == "Complete")
-                .SumAsync(m => m.TotalPrice);
+                currentWeekRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= startOfWeek
+                        && m.BookingDate < endOfWeek
+                        && m.Status == "Complete"
+                    )
+                    .SumAsync(m => m.TotalPrice);
 
-                lastWeekRevenue = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BranchId == branchId && m.BookingDate >= startOfLastWeek && m.BookingDate < endOfLastWeek && m.Status == "Complete")
+                lastWeekRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= startOfLastWeek
+                        && m.BookingDate < endOfLastWeek
+                        && m.Status == "Complete"
+                    )
                     .SumAsync(m => m.TotalPrice);
             }
             else
             {
-                currentWeekRevenue = await _courtCallerDbContext.Bookings
-                .Where(m => m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek && m.Status == "Complete")
-                .SumAsync(m => m.TotalPrice);
+                currentWeekRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BookingDate >= startOfWeek
+                        && m.BookingDate < endOfWeek
+                        && m.Status == "Complete"
+                    )
+                    .SumAsync(m => m.TotalPrice);
 
-                lastWeekRevenue = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= startOfLastWeek && m.BookingDate < endOfLastWeek && m.Status == "Complete")
+                lastWeekRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BookingDate >= startOfLastWeek
+                        && m.BookingDate < endOfLastWeek
+                        && m.Status == "Complete"
+                    )
                     .SumAsync(m => m.TotalPrice);
             }
-
-
 
             decimal changePercentage = 0;
             if (lastWeekRevenue > 0)
             {
-                changePercentage = ((decimal)(currentWeekRevenue - lastWeekRevenue) / lastWeekRevenue) * 100;
+                changePercentage =
+                    ((decimal)(currentWeekRevenue - lastWeekRevenue) / lastWeekRevenue) * 100;
             }
             else if (currentWeekRevenue > 0)
             {
@@ -486,8 +575,9 @@ namespace DAOs
             return (currentWeekRevenue, changePercentage);
         }
 
-
-        public async Task<(decimal monthlyCount, decimal changePercentage)> GetMonthlyRevenueAsync(string? branchId)
+        public async Task<(decimal monthlyCount, decimal changePercentage)> GetMonthlyRevenueAsync(
+            string? branchId
+        )
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
             var nowUtc = DateTime.UtcNow;
@@ -501,29 +591,48 @@ namespace DAOs
 
             if (branchId != null)
             {
-                currentMonthRevenue = await _courtCallerDbContext.Bookings
-                .Where(m => m.BranchId == branchId && m.BookingDate >= startOfMonth && m.BookingDate < startOfNextMonth && m.Status == "Complete")
-                .SumAsync(m => m.TotalPrice);
+                currentMonthRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= startOfMonth
+                        && m.BookingDate < startOfNextMonth
+                        && m.Status == "Complete"
+                    )
+                    .SumAsync(m => m.TotalPrice);
 
-                lastMonthRevenue = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BranchId == branchId && m.BookingDate >= startOfLastMonth && m.BookingDate < startOfMonth && m.Status == "Complete")
+                lastMonthRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BranchId == branchId
+                        && m.BookingDate >= startOfLastMonth
+                        && m.BookingDate < startOfMonth
+                        && m.Status == "Complete"
+                    )
                     .SumAsync(m => m.TotalPrice);
             }
             else
             {
-                currentMonthRevenue = await _courtCallerDbContext.Bookings
-                .Where(m => m.BookingDate >= startOfMonth && m.BookingDate < startOfNextMonth && m.Status == "Complete")
-                .SumAsync(m => m.TotalPrice);
+                currentMonthRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BookingDate >= startOfMonth
+                        && m.BookingDate < startOfNextMonth
+                        && m.Status == "Complete"
+                    )
+                    .SumAsync(m => m.TotalPrice);
 
-                lastMonthRevenue = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= startOfLastMonth && m.BookingDate < startOfMonth && m.Status == "Complete")
+                lastMonthRevenue = await _courtCallerDbContext
+                    .Bookings.Where(m =>
+                        m.BookingDate >= startOfLastMonth
+                        && m.BookingDate < startOfMonth
+                        && m.Status == "Complete"
+                    )
                     .SumAsync(m => m.TotalPrice);
             }
 
             decimal changePercentage = 0;
             if (lastMonthRevenue > 0)
             {
-                changePercentage = ((decimal)(currentMonthRevenue - lastMonthRevenue) / lastMonthRevenue) * 100;
+                changePercentage =
+                    ((decimal)(currentMonthRevenue - lastMonthRevenue) / lastMonthRevenue) * 100;
             }
             else if (currentMonthRevenue > 0)
             {
@@ -533,14 +642,11 @@ namespace DAOs
             return (currentMonthRevenue, changePercentage);
         }
 
-
-
-
         public async Task<List<Booking>> GetBookingsForLastWeekAsync()
         {
             var lastWeek = DateTime.Today.AddDays(-7);
-            return await _courtCallerDbContext.Bookings
-                .Where(b => b.BookingDate >= lastWeek)
+            return await _courtCallerDbContext
+                .Bookings.Where(b => b.BookingDate >= lastWeek)
                 .Include(b => b.TimeSlots)
                 .ToListAsync();
         }
@@ -561,15 +667,19 @@ namespace DAOs
                 int count = 0;
                 if (branchId != null)
                 {
-                    count = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BranchId == branchId && m.BookingDate >= date && m.BookingDate < nextDate)
-                    .CountAsync();
+                    count = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BranchId == branchId
+                            && m.BookingDate >= date
+                            && m.BookingDate < nextDate
+                        )
+                        .CountAsync();
                 }
                 else
                 {
-                    count = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= date && m.BookingDate < nextDate)
-                    .CountAsync();
+                    count = await _courtCallerDbContext
+                        .Bookings.Where(m => m.BookingDate >= date && m.BookingDate < nextDate)
+                        .CountAsync();
                 }
 
                 bookingCounts.Add(count);
@@ -577,6 +687,7 @@ namespace DAOs
 
             return bookingCounts.ToArray();
         }
+
         public async Task<int[]> GetWeeklyBookingsFromStartOfMonth(string? branchId)
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
@@ -588,24 +699,34 @@ namespace DAOs
 
             var bookingCounts = new List<int>();
 
-            for (var startOfWeek = firstDayOfMonth.AddDays(-(int)firstDayOfMonth.DayOfWeek).AddDays(1);
-                 startOfWeek <= startOfCurrentWeek;
-                 startOfWeek = startOfWeek.AddDays(7))
+            for (
+                var startOfWeek = firstDayOfMonth
+                    .AddDays(-(int)firstDayOfMonth.DayOfWeek)
+                    .AddDays(1);
+                startOfWeek <= startOfCurrentWeek;
+                startOfWeek = startOfWeek.AddDays(7)
+            )
             {
                 var endOfWeek = startOfWeek.AddDays(7);
 
                 int count = 0;
                 if (branchId != null)
                 {
-                    count = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BranchId == branchId && m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek)
-                    .CountAsync();
+                    count = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BranchId == branchId
+                            && m.BookingDate >= startOfWeek
+                            && m.BookingDate < endOfWeek
+                        )
+                        .CountAsync();
                 }
                 else
                 {
-                    count = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek)
-                    .CountAsync();
+                    count = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek
+                        )
+                        .CountAsync();
                 }
 
                 bookingCounts.Add(count);
@@ -613,6 +734,7 @@ namespace DAOs
 
             return bookingCounts.ToArray();
         }
+
         public async Task<int[]> GetMonthlyBookingsFromStartOfYear(string? branchId)
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
@@ -630,15 +752,21 @@ namespace DAOs
                 int count = 0;
                 if (branchId != null)
                 {
-                    count = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BranchId == branchId && m.BookingDate >= startOfMonth && m.BookingDate < endOfMonth)
-                    .CountAsync();
+                    count = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BranchId == branchId
+                            && m.BookingDate >= startOfMonth
+                            && m.BookingDate < endOfMonth
+                        )
+                        .CountAsync();
                 }
                 else
                 {
-                    count = await _courtCallerDbContext.Bookings
-                    .Where(m => m.BookingDate >= startOfMonth && m.BookingDate < endOfMonth)
-                    .CountAsync();
+                    count = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BookingDate >= startOfMonth && m.BookingDate < endOfMonth
+                        )
+                        .CountAsync();
                 }
 
                 bookingCounts.Add(count);
@@ -646,6 +774,7 @@ namespace DAOs
 
             return bookingCounts.ToArray();
         }
+
         public async Task<decimal[]> GetRevenueFromStartOfWeek(string? branchId)
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
@@ -663,11 +792,24 @@ namespace DAOs
 
                 if (branchId != null)
                 {
-                    revenue = await _courtCallerDbContext.Bookings.Where(m => m.BranchId == branchId && m.BookingDate >= date && m.BookingDate < nextDate && m.Status == "Complete").SumAsync(m => m.TotalPrice);
+                    revenue = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BranchId == branchId
+                            && m.BookingDate >= date
+                            && m.BookingDate < nextDate
+                            && m.Status == "Complete"
+                        )
+                        .SumAsync(m => m.TotalPrice);
                 }
                 else
                 {
-                    revenue = await _courtCallerDbContext.Bookings.Where(m => m.BookingDate >= date && m.BookingDate < nextDate && m.Status == "Complete").SumAsync(m => m.TotalPrice);
+                    revenue = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BookingDate >= date
+                            && m.BookingDate < nextDate
+                            && m.Status == "Complete"
+                        )
+                        .SumAsync(m => m.TotalPrice);
                 }
 
                 bookingRevenues.Add(revenue);
@@ -675,6 +817,7 @@ namespace DAOs
 
             return bookingRevenues.ToArray();
         }
+
         public async Task<decimal[]> GetWeeklyRevenuesFromStartOfMonth(string? branchId)
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
@@ -686,21 +829,37 @@ namespace DAOs
 
             var bookingCounts = new List<decimal>();
 
-            for (var startOfWeek = firstDayOfMonth.AddDays(-(int)firstDayOfMonth.DayOfWeek).AddDays(1);
-                 startOfWeek <= startOfCurrentWeek;
-                 startOfWeek = startOfWeek.AddDays(7))
+            for (
+                var startOfWeek = firstDayOfMonth
+                    .AddDays(-(int)firstDayOfMonth.DayOfWeek)
+                    .AddDays(1);
+                startOfWeek <= startOfCurrentWeek;
+                startOfWeek = startOfWeek.AddDays(7)
+            )
             {
                 var endOfWeek = startOfWeek.AddDays(7);
                 decimal revenue = 0;
 
                 if (branchId != null)
                 {
-                    revenue = await _courtCallerDbContext.Bookings.Where(m => m.BranchId == branchId && m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek && m.Status == "Complete").SumAsync(m => m.TotalPrice);
-
+                    revenue = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BranchId == branchId
+                            && m.BookingDate >= startOfWeek
+                            && m.BookingDate < endOfWeek
+                            && m.Status == "Complete"
+                        )
+                        .SumAsync(m => m.TotalPrice);
                 }
                 else
                 {
-                    revenue = await _courtCallerDbContext.Bookings.Where(m => m.BookingDate >= startOfWeek && m.BookingDate < endOfWeek && m.Status == "Complete").SumAsync(m => m.TotalPrice);
+                    revenue = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BookingDate >= startOfWeek
+                            && m.BookingDate < endOfWeek
+                            && m.Status == "Complete"
+                        )
+                        .SumAsync(m => m.TotalPrice);
                 }
 
                 bookingCounts.Add(revenue);
@@ -708,6 +867,7 @@ namespace DAOs
 
             return bookingCounts.ToArray();
         }
+
         public async Task<decimal[]> GetMonthlyRevenueFromStartOfYear(string? branchId)
         {
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
@@ -725,15 +885,20 @@ namespace DAOs
 
                 if (branchId != null)
                 {
-                    revenue = await _courtCallerDbContext.Bookings
-                        .Where(m => m.BranchId == branchId && m.BookingDate >= startOfMonth && m.BookingDate < endOfMonth)
+                    revenue = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BranchId == branchId
+                            && m.BookingDate >= startOfMonth
+                            && m.BookingDate < endOfMonth
+                        )
                         .SumAsync(m => m.TotalPrice);
-
                 }
                 else
                 {
-                    revenue = await _courtCallerDbContext.Bookings
-                        .Where(m => m.BookingDate >= startOfMonth && m.BookingDate < endOfMonth)
+                    revenue = await _courtCallerDbContext
+                        .Bookings.Where(m =>
+                            m.BookingDate >= startOfMonth && m.BookingDate < endOfMonth
+                        )
                         .SumAsync(m => m.TotalPrice);
                 }
 

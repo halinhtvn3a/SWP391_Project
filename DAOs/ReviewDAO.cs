@@ -1,13 +1,14 @@
-﻿using DAOs;
-using BusinessObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
+using DAOs;
 using DAOs.Helper;
-using Microsoft.AspNetCore.Identity;
 using DAOs.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
@@ -23,30 +24,43 @@ namespace DAOs
                 _courtCallerDbContext = new CourtCallerDbContext();
             }
         }
+
         public ReviewDAO(CourtCallerDbContext dbContext)
         {
             _courtCallerDbContext = dbContext;
         }
 
-        public async Task<(List<Review>,int total)> GetReview(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<Review>, int total)> GetReview(PageResult pageResult) =>
+            await GetReview(pageResult, null);
+
+        public async Task<(List<Review>, int total)> GetReview(
+            PageResult pageResult,
+            string? searchQuery
+        )
         {
             var query = _courtCallerDbContext.Reviews.AsQueryable();
             var total = await _courtCallerDbContext.Reviews.CountAsync();
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                query = query.Where(review => review.User.Email.Contains(searchQuery) ||
-                                               review.Branch.BranchName.Contains(searchQuery) ||
-                                               review.ReviewId.Contains(searchQuery) ||
-                                               review.ReviewText.Contains(searchQuery) ||
-                                               (review.ReviewDate.HasValue && review.ReviewDate.Value.ToString().Contains(searchQuery)) ||
-                                               (review.Rating.HasValue && review.Rating.Value.ToString().Contains(searchQuery)));
+                query = query.Where(review =>
+                    review.User.Email.Contains(searchQuery)
+                    || review.Branch.BranchName.Contains(searchQuery)
+                    || review.ReviewId.Contains(searchQuery)
+                    || review.ReviewText.Contains(searchQuery)
+                    || (
+                        review.ReviewDate.HasValue
+                        && review.ReviewDate.Value.ToString().Contains(searchQuery)
+                    )
+                    || (
+                        review.Rating.HasValue
+                        && review.Rating.Value.ToString().Contains(searchQuery)
+                    )
+                );
             }
-
-
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Review> reviews = await pagination.GetListAsync<Review>(query, pageResult);
-            return (reviews,total);
+            return (reviews, total);
         }
 
         public Review GetReview(string id)
@@ -63,10 +77,10 @@ namespace DAOs
                 Rating = reviewModel.Rating,
                 ReviewDate = DateTime.Now,
                 BranchId = reviewModel.BranchId,
-                Id = reviewModel.UserId
+                Id = reviewModel.UserId,
             };
             _courtCallerDbContext.Reviews.Add(review);
-             _courtCallerDbContext.SaveChanges();
+            _courtCallerDbContext.SaveChanges();
             return review;
         }
 
@@ -94,39 +108,57 @@ namespace DAOs
             }
         }
 
-        public List<Review> SearchByDate(DateTime start, DateTime end) => _courtCallerDbContext.Reviews.Where(m => m.ReviewDate >= start && m.ReviewDate <= end).ToList();
+        public List<Review> SearchByDate(DateTime start, DateTime end) =>
+            _courtCallerDbContext
+                .Reviews.Where(m => m.ReviewDate >= start && m.ReviewDate <= end)
+                .ToList();
 
+        public List<Review> SearchByRating(int rating) =>
+            _courtCallerDbContext.Reviews.Where(m => m.Rating == rating).ToList();
 
-        public List<Review> SearchByRating(int rating) => _courtCallerDbContext.Reviews.Where(m => m.Rating == rating).ToList();
+        public List<Review> SearchByUser(string id) =>
+            _courtCallerDbContext.Reviews.Where(m => m.Id == id).ToList();
 
-        public List<Review> SearchByUser(string id) => _courtCallerDbContext.Reviews.Where(m => m.Id == id).ToList();
+        public List<Review> GetReviewsByBranch(string id) =>
+            _courtCallerDbContext.Reviews.Where(m => m.BranchId == id).ToList();
 
-
-        public List<Review> GetReviewsByBranch(string id) => _courtCallerDbContext.Reviews.Where(m => m.BranchId == id).ToList();
-
-        public async Task<List<Review>> SortReview(string? sortBy, bool isAsc, PageResult pageResult)
+        public async Task<List<Review>> SortReview(
+            string? sortBy,
+            bool isAsc,
+            PageResult pageResult
+        )
         {
             IQueryable<Review> query = _courtCallerDbContext.Reviews;
 
             switch (sortBy?.ToLower())
             {
                 case "branchid":
-                    query = isAsc ? query.OrderBy(b => b.BranchId) : query.OrderByDescending(b => b.BranchId);
+                    query = isAsc
+                        ? query.OrderBy(b => b.BranchId)
+                        : query.OrderByDescending(b => b.BranchId);
                     break;
                 case "userid":
                     query = isAsc ? query.OrderBy(b => b.Id) : query.OrderByDescending(b => b.Id);
                     break;
                 case "reviewid":
-                    query = isAsc ? query.OrderBy(b => b.ReviewId) : query.OrderByDescending(b => b.ReviewId);
+                    query = isAsc
+                        ? query.OrderBy(b => b.ReviewId)
+                        : query.OrderByDescending(b => b.ReviewId);
                     break;
                 case "rating":
-                    query = isAsc ? query.OrderBy(b => b.Rating) : query.OrderByDescending(b => b.Rating);
+                    query = isAsc
+                        ? query.OrderBy(b => b.Rating)
+                        : query.OrderByDescending(b => b.Rating);
                     break;
                 case "reviewdate":
-                    query = isAsc ? query.OrderBy(b => b.ReviewDate) : query.OrderByDescending(b => b.ReviewDate);
+                    query = isAsc
+                        ? query.OrderBy(b => b.ReviewDate)
+                        : query.OrderByDescending(b => b.ReviewDate);
                     break;
                 case "reviewtext":
-                    query = isAsc ? query.OrderBy(b => b.ReviewText) : query.OrderByDescending(b => b.ReviewText);
+                    query = isAsc
+                        ? query.OrderBy(b => b.ReviewText)
+                        : query.OrderByDescending(b => b.ReviewText);
                     break;
                 default:
                     break;
@@ -144,7 +176,8 @@ namespace DAOs
                 return 0;
             }
             double total = 0;
-            foreach (Review review in reviews) {
+            foreach (Review review in reviews)
+            {
                 total += review.Rating.Value;
             }
             return total / reviews.Count;

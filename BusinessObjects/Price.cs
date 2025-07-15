@@ -22,11 +22,10 @@ namespace BusinessObjects
         public string Type { get; set; }
 
         public bool? IsWeekend { get; set; }
-        
+
         [Required]
         public decimal SlotPrice { get; set; }
 
         public virtual Branch? Branch { get; set; }
-
     }
 }

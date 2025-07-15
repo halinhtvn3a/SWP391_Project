@@ -1,10 +1,11 @@
-﻿using DAOs;
-using BusinessObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
+using DAOs;
 using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
@@ -31,52 +32,59 @@ namespace DAOs
 
         public List<Branch> GetBranches() => _courtCallerDbContext.Branches.ToList();
 
+        public async Task<(List<Branch>, int total)> GetBranches(PageResult pageResult) =>
+            await GetBranches(pageResult, (string?)null);
 
-
-        public async Task<(List<Branch>,int total)> GetBranches(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult,
+            string? searchQuery
+        )
         {
             var query = _courtCallerDbContext.Branches.AsQueryable();
             var total = await _courtCallerDbContext.Branches.CountAsync();
-
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                query = query.Where(branch => branch.BranchId.Contains(searchQuery) ||
-                                              branch.BranchName.Contains(searchQuery) ||
-                                              branch.BranchAddress.Contains(searchQuery) ||
-                                              branch.BranchPhone.Contains(searchQuery) ||
-                                              branch.Description.Contains(searchQuery) ||
-                                              branch.Status.Contains(searchQuery));
+                query = query.Where(branch =>
+                    branch.BranchId.Contains(searchQuery)
+                    || branch.BranchName.Contains(searchQuery)
+                    || branch.BranchAddress.Contains(searchQuery)
+                    || branch.BranchPhone.Contains(searchQuery)
+                    || branch.Description.Contains(searchQuery)
+                    || branch.Status.Contains(searchQuery)
+                );
             }
-
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
-            return (branches,total);
+            return (branches, total);
         }
 
-        public async Task<(List<Branch>,int total)> GetBranches(PageResult pageResult, string status = "Active", string searchQuery = null)
+        // overload with status and optional searchQuery
+        public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult,
+            string status,
+            string? searchQuery
+        )
         {
-
-            var query = 
-                _courtCallerDbContext.Branches.Where(m => m.Status == status).AsQueryable();
+            var query = _courtCallerDbContext.Branches.Where(m => m.Status == status).AsQueryable();
 
             var total = await _courtCallerDbContext.Branches.CountAsync();
 
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                query = query.Where(branch => branch.BranchId.Contains(searchQuery) ||
-                                              branch.BranchName.Contains(searchQuery) ||
-                                              branch.BranchAddress.Contains(searchQuery) ||
-                                              branch.BranchPhone.Contains(searchQuery) ||
-                                              branch.Description.Contains(searchQuery) ||
-                                              branch.Status.Contains(searchQuery));
+                query = query.Where(branch =>
+                    branch.BranchId.Contains(searchQuery)
+                    || branch.BranchName.Contains(searchQuery)
+                    || branch.BranchAddress.Contains(searchQuery)
+                    || branch.BranchPhone.Contains(searchQuery)
+                    || branch.Description.Contains(searchQuery)
+                    || branch.Status.Contains(searchQuery)
+                );
             }
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
-            return (branches,total);
+            return (branches, total);
         }
-
-
 
         public Branch GetBranch(string id)
         {
@@ -96,7 +104,7 @@ namespace DAOs
                 OpenTime = branchModel.OpenTime,
                 CloseTime = branchModel.CloseTime,
                 OpenDay = branchModel.OpenDay,
-                Status = branchModel.Status
+                Status = branchModel.Status,
             };
             _courtCallerDbContext.Branches.Add(branch);
             _courtCallerDbContext.SaveChanges();
@@ -123,7 +131,6 @@ namespace DAOs
             return oBranch;
         }
 
-
         public void DeleteBranch(string id)
         {
             Branch oBranch = GetBranch(id);
@@ -142,27 +149,35 @@ namespace DAOs
 
         public List<Branch> GetBranchesByCourtId(string courtId)
         {
-            return _courtCallerDbContext.Branches.Where(m => m.Courts.Any(c => c.CourtId == courtId)).ToList();
+            return _courtCallerDbContext
+                .Branches.Where(m => m.Courts.Any(c => c.CourtId == courtId))
+                .ToList();
         }
 
         public List<Branch> GetBranchByPrice(decimal minPrice, decimal maxPrice)
         {
-
-            List<Branch> branches = _courtCallerDbContext.Branches.Where(m => m.Prices.Any(c =>
-                c.SlotPrice >= minPrice && c.IsWeekend == false
-            )).ToList();
-            return branches.Where(m => m.Prices.Any(c =>
-                c.SlotPrice <= maxPrice && c.IsWeekend == true
-            )).ToList();
+            List<Branch> branches = _courtCallerDbContext
+                .Branches.Where(m =>
+                    m.Prices.Any(c => c.SlotPrice >= minPrice && c.IsWeekend == false)
+                )
+                .ToList();
+            return branches
+                .Where(m => m.Prices.Any(c => c.SlotPrice <= maxPrice && c.IsWeekend == true))
+                .ToList();
         }
-        
-        public async Task<(List<Branch>, int total)> GetBranchByPrice(decimal minPrice, decimal maxPrice, PageResult pageResult)
+
+        public async Task<(List<Branch>, int total)> GetBranchByPrice(
+            decimal minPrice,
+            decimal maxPrice,
+            PageResult pageResult
+        )
         {
-            var query = _courtCallerDbContext.Branches.Where(m => m.Prices.Any(c =>
-                c.SlotPrice >= minPrice && c.IsWeekend == false
-            )).Where(m => m.Prices.Any(c =>
-                c.SlotPrice <= maxPrice && c.IsWeekend == true
-            )).AsQueryable();
+            var query = _courtCallerDbContext
+                .Branches.Where(m =>
+                    m.Prices.Any(c => c.SlotPrice >= minPrice && c.IsWeekend == false)
+                )
+                .Where(m => m.Prices.Any(c => c.SlotPrice <= maxPrice && c.IsWeekend == true))
+                .AsQueryable();
             var total = await _courtCallerDbContext.Branches.CountAsync();
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
@@ -170,11 +185,14 @@ namespace DAOs
             return (branches, total);
         }
 
-        public async Task<(List<Branch>, int total)> GetBranchByRating(int rating, PageResult pageResult)
+        public async Task<(List<Branch>, int total)> GetBranchByRating(
+            int rating,
+            PageResult pageResult
+        )
         {
-            var query = _courtCallerDbContext.Branches.Where(m => m.Reviews.Any(c =>
-                c.Rating == rating
-            )).AsQueryable();
+            var query = _courtCallerDbContext
+                .Branches.Where(m => m.Reviews.Any(c => c.Rating == rating))
+                .AsQueryable();
             var total = await _courtCallerDbContext.Branches.CountAsync();
 
             Pagination pagination = new Pagination(_courtCallerDbContext);
@@ -182,41 +200,65 @@ namespace DAOs
             return (branches, total);
         }
 
-        public async Task<List<Branch>> SortBranch(string? sortBy, bool isAsc, PageResult pageResult)
+        public async Task<List<Branch>> SortBranch(
+            string? sortBy,
+            bool isAsc,
+            PageResult pageResult
+        )
         {
             IQueryable<Branch> query = _courtCallerDbContext.Branches;
 
             switch (sortBy?.ToLower())
             {
                 case "branchid":
-                    query = isAsc ? query.OrderBy(b => b.BranchId) : query.OrderByDescending(b => b.BranchId);
+                    query = isAsc
+                        ? query.OrderBy(b => b.BranchId)
+                        : query.OrderByDescending(b => b.BranchId);
                     break;
                 case "branchaddress":
-                    query = isAsc ? query.OrderBy(b => b.BranchAddress) : query.OrderByDescending(b => b.BranchAddress);
+                    query = isAsc
+                        ? query.OrderBy(b => b.BranchAddress)
+                        : query.OrderByDescending(b => b.BranchAddress);
                     break;
                 case "branchname":
-                    query = isAsc ? query.OrderBy(b => b.BranchName) : query.OrderByDescending(b => b.BranchName);
+                    query = isAsc
+                        ? query.OrderBy(b => b.BranchName)
+                        : query.OrderByDescending(b => b.BranchName);
                     break;
                 case "branchphone":
-                    query = isAsc ? query.OrderBy(b => b.BranchPhone) : query.OrderByDescending(b => b.BranchPhone);
+                    query = isAsc
+                        ? query.OrderBy(b => b.BranchPhone)
+                        : query.OrderByDescending(b => b.BranchPhone);
                     break;
                 case "branchpicture":
-                    query = isAsc ? query.OrderBy(b => b.BranchPicture) : query.OrderByDescending(b => b.BranchPicture);
+                    query = isAsc
+                        ? query.OrderBy(b => b.BranchPicture)
+                        : query.OrderByDescending(b => b.BranchPicture);
                     break;
                 case "status":
-                    query = isAsc ? query.OrderBy(b => b.Status) : query.OrderByDescending(b => b.Status);
+                    query = isAsc
+                        ? query.OrderBy(b => b.Status)
+                        : query.OrderByDescending(b => b.Status);
                     break;
                 case "closetime":
-                    query = isAsc ? query.OrderBy(b => b.CloseTime) : query.OrderByDescending(b => b.CloseTime);
-                    break;                
+                    query = isAsc
+                        ? query.OrderBy(b => b.CloseTime)
+                        : query.OrderByDescending(b => b.CloseTime);
+                    break;
                 case "opentime":
-                    query = isAsc ? query.OrderBy(b => b.OpenTime) : query.OrderByDescending(b => b.OpenTime);
-                    break;                
+                    query = isAsc
+                        ? query.OrderBy(b => b.OpenTime)
+                        : query.OrderByDescending(b => b.OpenTime);
+                    break;
                 case "openday":
-                    query = isAsc ? query.OrderBy(b => b.OpenDay) : query.OrderByDescending(b => b.OpenDay);
-                    break;                
+                    query = isAsc
+                        ? query.OrderBy(b => b.OpenDay)
+                        : query.OrderByDescending(b => b.OpenDay);
+                    break;
                 case "description":
-                    query = isAsc ? query.OrderBy(b => b.Description) : query.OrderByDescending(b => b.Description);
+                    query = isAsc
+                        ? query.OrderBy(b => b.Description)
+                        : query.OrderByDescending(b => b.Description);
                     break;
                 default:
                     break;
@@ -226,7 +268,10 @@ namespace DAOs
             return branches;
         }
 
-        public async Task<(List<BranchDistance>, int total)> SortBranchByDistance(LocationModel user, PageResult pageResult)
+        public async Task<(List<BranchDistance>, int total)> SortBranchByDistance(
+            LocationModel user,
+            PageResult pageResult
+        )
         {
             // Ensure GetBranches is awaited and correctly fetches branches asynchronously
             var branches = GetBranches(); // Assuming GetBranchesAsync is the correct async method
@@ -254,6 +299,5 @@ namespace DAOs
 
             return (paginatedBranchDistances, total);
         }
-
     }
 }

@@ -1,11 +1,11 @@
-﻿using BusinessObjects;
+﻿using System.Text.Json;
+using BusinessObjects;
 using DAOs.Helper;
 using DAOs.Models;
 using Firebase.Storage;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services;
-using System.Text.Json;
 
 namespace API.Controllers
 {
@@ -21,36 +21,35 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<PagingResponse<News>>> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<PagingResponse<News>>> GetNews(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string searchQuery = null
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
             var (news, total) = await newsService.GetNews(pageResult, searchQuery);
-            var response = new PagingResponse<News>
-            {
-                Data = news,
-                Total = total
-            };
+            var response = new PagingResponse<News> { Data = news, Total = total };
             return Ok(response);
         }
 
         [HttpGet("NewsPage")]
-        public async Task<ActionResult<PagingResponse<News>>> GetNews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] bool IsHomepageSlideshow = true, [FromQuery] string status = "Active", [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<PagingResponse<News>>> GetNews(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] bool IsHomepageSlideshow = true,
+            [FromQuery] string status = "Active",
+            [FromQuery] string searchQuery = null
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
-            var (news, total) = await newsService.GetNews(pageResult, IsHomepageSlideshow, status, searchQuery);
-            var response = new PagingResponse<News>
-            {
-                Data = news,
-                Total = total
-            };
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
+            var (news, total) = await newsService.GetNews(
+                pageResult,
+                IsHomepageSlideshow,
+                status,
+                searchQuery
+            );
+            var response = new PagingResponse<News> { Data = news, Total = total };
             return Ok(response);
         }
 
@@ -100,7 +99,6 @@ namespace API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<News>> PostNew(NewsModel newsModel)
         {
-
             var file = newsModel.NewsImage;
 
             var fileName = Guid.NewGuid() + Path.GetExtension(file.FileName);
@@ -117,7 +115,6 @@ namespace API.Controllers
 
             var newNews = newsService.AddNew(newsModel);
             return CreatedAtAction("GetNew", new { id = newNews.NewId }, newNews);
-
         }
 
         [HttpDelete("{id}")]
@@ -127,7 +124,5 @@ namespace API.Controllers
             newsService.DeleteNew(id);
             return NoContent();
         }
-
-
     }
 }

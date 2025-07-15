@@ -1,13 +1,14 @@
-﻿using BusinessObjects;
-using DAOs;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
+using DAOs;
+using Microsoft.EntityFrameworkCore;
+using Moq;
+using Repositories;
 
 namespace UnitTests.RepositoryTests
 {
@@ -26,16 +27,40 @@ namespace UnitTests.RepositoryTests
             mockContext = new Mock<CourtCallerDbContext>();
             paymentList = new List<Payment>
             {
-                new Payment { PaymentId = "P00001", BookingId = "B00001", PaymentDate = DateTime.Now, PaymentAmount = 1000, PaymentStatus = "Completed"},
-                new Payment { PaymentId = "P00002", BookingId = "B00001", PaymentDate = DateTime.Now, PaymentAmount = 21000, PaymentStatus = "Cancel"},
-                new Payment { PaymentId = "P00003", BookingId = "B00001", PaymentDate = DateTime.Now, PaymentAmount = 4000, PaymentStatus = "Cancel"},
+                new Payment
+                {
+                    PaymentId = "P00001",
+                    BookingId = "B00001",
+                    PaymentDate = DateTime.Now,
+                    PaymentAmount = 1000,
+                    PaymentStatus = "Completed",
+                },
+                new Payment
+                {
+                    PaymentId = "P00002",
+                    BookingId = "B00001",
+                    PaymentDate = DateTime.Now,
+                    PaymentAmount = 21000,
+                    PaymentStatus = "Cancel",
+                },
+                new Payment
+                {
+                    PaymentId = "P00003",
+                    BookingId = "B00001",
+                    PaymentDate = DateTime.Now,
+                    PaymentAmount = 4000,
+                    PaymentStatus = "Cancel",
+                },
             };
             var data = paymentList.AsQueryable();
 
             mockSet.As<IQueryable<Payment>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<Payment>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Payment>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Payment>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<Payment>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Payments).Returns(mockSet.Object);
 
@@ -46,7 +71,13 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void AddPayment_ReturnsWell()
         {
-            Payment payment = new Payment { BookingId = "B00001", PaymentDate = DateTime.Now, PaymentAmount = 1000, PaymentStatus = "Cancel" };
+            Payment payment = new Payment
+            {
+                BookingId = "B00001",
+                PaymentDate = DateTime.Now,
+                PaymentAmount = 1000,
+                PaymentStatus = "Cancel",
+            };
 
             Payment result = paymentRepository.AddPayment(payment);
 
@@ -60,7 +91,6 @@ namespace UnitTests.RepositoryTests
 
             Payment payment = paymentRepository.GetPayment("P00001");
             Assert.Equal("Cancel", payment.PaymentStatus);
-            
         }
 
         [Fact]
@@ -70,6 +100,7 @@ namespace UnitTests.RepositoryTests
 
             Assert.NotNull(result);
         }
+
         [Fact]
         public void GetPayment_ReturnsWell()
         {

@@ -1,0 +1,200 @@
+[
+	{
+		"SlotId": "TS001",
+		"CourtId": "CT001",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 25.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS002",
+		"CourtId": "CT001",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 25.00,
+		"SlotStartTime": "07:00:00",
+		"SlotEndTime": "08:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS003",
+		"CourtId": "CT001",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 25.00,
+		"SlotStartTime": "08:00:00",
+		"SlotEndTime": "09:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS004",
+		"CourtId": "CT002",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 25.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS005",
+		"CourtId": "CT002",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 25.00,
+		"SlotStartTime": "07:00:00",
+		"SlotEndTime": "08:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS006",
+		"CourtId": "CT003",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 25.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS007",
+		"CourtId": "CT004",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 30.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS008",
+		"CourtId": "CT004",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 30.00,
+		"SlotStartTime": "07:00:00",
+		"SlotEndTime": "08:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS009",
+		"CourtId": "CT005",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 30.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS010",
+		"CourtId": "CT006",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 30.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS011",
+		"CourtId": "CT007",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 20.00,
+		"SlotStartTime": "06:30:00",
+		"SlotEndTime": "07:30:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS012",
+		"CourtId": "CT008",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 20.00,
+		"SlotStartTime": "06:30:00",
+		"SlotEndTime": "07:30:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS013",
+		"CourtId": "CT009",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 28.00,
+		"SlotStartTime": "08:00:00",
+		"SlotEndTime": "09:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS014",
+		"CourtId": "CT010",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 28.00,
+		"SlotStartTime": "08:00:00",
+		"SlotEndTime": "09:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS015",
+		"CourtId": "CT011",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 35.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS016",
+		"CourtId": "CT012",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 35.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS017",
+		"CourtId": "CT013",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 35.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	},
+	{
+		"SlotId": "TS018",
+		"CourtId": "CT014",
+		"BookingId": null,
+		"SlotDate": "2024-01-15",
+		"Price": 35.00,
+		"SlotStartTime": "06:00:00",
+		"SlotEndTime": "07:00:00",
+		"Status": "Available",
+		"Created_at": "2024-01-01T00:00:00"
+	}
+]
