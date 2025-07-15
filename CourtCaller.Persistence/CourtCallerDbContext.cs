@@ -57,29 +57,29 @@ namespace CourtCaller.Persistence
             base.OnModelCreating(modelBuilder);
 
             // Seed roles
-            modelBuilder.Entity<IdentityRole>().HasData(
-                new IdentityRole
-                {
-                    Id = "R001",
-                    Name = "Admin",
-                    NormalizedName = "ADMIN",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
-                },
-                new IdentityRole
-                {
-                    Id = "R002",
-                    Name = "Staff",
-                    NormalizedName = "STAFF",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
-                },
-                new IdentityRole
-                {
-                    Id = "R003",
-                    Name = "Customer",
-                    NormalizedName = "CUSTOMER",
-                    ConcurrencyStamp = Guid.NewGuid().ToString()
-                }
-            );
+            // modelBuilder.Entity<IdentityRole>().HasData(
+            //     new IdentityRole
+            //     {
+            //         Id = "R001",
+            //         Name = "Admin",
+            //         NormalizedName = "ADMIN",
+            //         ConcurrencyStamp = Guid.NewGuid().ToString()
+            //     },
+            //     new IdentityRole
+            //     {
+            //         Id = "R002",
+            //         Name = "Staff",
+            //         NormalizedName = "STAFF",
+            //         ConcurrencyStamp = Guid.NewGuid().ToString()
+            //     },
+            //     new IdentityRole
+            //     {
+            //         Id = "R003",
+            //         Name = "Customer",
+            //         NormalizedName = "CUSTOMER",
+            //         ConcurrencyStamp = Guid.NewGuid().ToString()
+            //     }
+            // );
             // Apply all entity configurations
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(CourtCallerDbContext).Assembly);
         }

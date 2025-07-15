@@ -17,6 +17,9 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+	<None Update="Data/Seed/*.json">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  	</None>
   </ItemGroup>
 
 	<ItemGroup>
