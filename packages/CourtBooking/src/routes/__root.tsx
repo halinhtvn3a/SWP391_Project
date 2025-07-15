@@ -10,6 +10,7 @@ import {
 
 import appCss from '../../styles/app.css?url';
 import type { ReactNode } from 'react';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 export const Route = createRootRoute({
   head: () => ({
@@ -45,7 +46,10 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <HeadContent />
       </head>
       <body>
+              <GoogleOAuthProvider clientId="">
+
         {children}
+              </GoogleOAuthProvider>
         <Scripts />
       </body>
     </html>
