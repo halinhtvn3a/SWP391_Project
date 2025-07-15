@@ -5,7 +5,7 @@ import {
   type PathsWithMethod,
 } from 'openapi-typescript-helpers';
 import { type FetchOptions } from 'openapi-fetch';
-import type { paths } from './types'; // Example of importing paths from types (will depend on BE OpenAPI spec)
+import type { paths } from './types';
 import { type UseMutationOptions as RQUseMutationOptions } from '@tanstack/react-query';
 import { type UseQueryOptions as RQUseQueryOptions } from '@tanstack/react-query';
 

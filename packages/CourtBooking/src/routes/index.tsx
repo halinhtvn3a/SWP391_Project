@@ -1,10 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router';
-import Login from '../features/auth/components/login';
-
+import { useGetQuery } from '../api/hook';
 export const Route = createFileRoute('/')({
-  component: Index,
+  component: Home,
 });
 
-function Index() {
-  return <div><Login/></div>;
+function Home() {
+  const booking = useGetQuery('/api/Bookings/current-time', {
+    baseUrl: '/api',
+  });
+  console.log('Current Booking Time:', booking);
+  return (
+    <div className='p-2'>
+      <h3>Welcome Home!!!</h3>
+    </div>
+  );
 }
