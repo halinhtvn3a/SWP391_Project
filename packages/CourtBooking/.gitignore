@@ -36,8 +36,13 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 # Finder (MacOS) folder config
 .DS_Store
 
-# Ignore TanStack Router temp
-.tanstack/tmp/
+# Nitro
+.output/
+.nitro/
+
+# TanStack Start 
+.tanstack/
+
 
 # Ignore Vite cache
 .vite/
