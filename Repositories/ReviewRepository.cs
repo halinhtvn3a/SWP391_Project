@@ -33,9 +33,8 @@ namespace Repositories
 
         public Review GetReview(string id) => _reviewDao.GetReview(id);
 
-        public async Task<(List<Review>, int total)> GetReview(
-            PageResult pageResult
-        ) => await _reviewDao.GetReview(pageResult);
+        public async Task<(List<Review>, int total)> GetReview(PageResult pageResult) =>
+            await _reviewDao.GetReview(pageResult);
 
         public async Task<(List<Review>, int total)> GetReview(
             PageResult pageResult,

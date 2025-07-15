@@ -32,9 +32,8 @@ namespace DAOs
 
         public List<Branch> GetBranches() => _courtCallerDbContext.Branches.ToList();
 
-        public async Task<(List<Branch>, int total)> GetBranches(
-            PageResult pageResult
-        ) => await GetBranches(pageResult, (string?)null);
+        public async Task<(List<Branch>, int total)> GetBranches(PageResult pageResult) =>
+            await GetBranches(pageResult, (string?)null);
 
         public async Task<(List<Branch>, int total)> GetBranches(
             PageResult pageResult,

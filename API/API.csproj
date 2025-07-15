@@ -9,10 +9,7 @@
     <PackageReference Include="Hangfire" Version="1.8.14" />
     <PackageReference Include="Hangfire.SqlServer" Version="1.8.14" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
-    <PackageReference
-      Include="Microsoft.Azure.WebJobs.Extensions.SignalRService"
-      Version="1.14.0"
-    />
+    <PackageReference Include="Microsoft.Azure.WebJobs.Extensions.SignalRService" Version="1.14.0" />
     <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="8.0.7" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="7.6.2" />
     <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="7.6.2" />
@@ -31,6 +28,7 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BuildingBlocks\BuildingBlocks.Logging\BuildingBlocks.Logging.csproj" />
     <ProjectReference Include="..\Services\Services.csproj">
       <Private>True</Private>
     </ProjectReference>

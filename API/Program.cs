@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json.Serialization;
 using API.Helper;
+using BuildingBlocks.Logging.Extensions;
 using CourtCaller.Persistence;
 using CourtCaller.Persistence.Extensions;
 using DAOs;
@@ -31,6 +32,8 @@ namespace API
 
             // Configure DbContext
             builder.Services.AddPersistence(configuration);
+
+            builder.AddCustomSerilog();
 
             builder.Services.AddSignalR();
 

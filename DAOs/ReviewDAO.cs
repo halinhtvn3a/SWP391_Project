@@ -30,9 +30,8 @@ namespace DAOs
             _courtCallerDbContext = dbContext;
         }
 
-        public async Task<(List<Review>, int total)> GetReview(
-            PageResult pageResult
-        ) => await GetReview(pageResult, null);
+        public async Task<(List<Review>, int total)> GetReview(PageResult pageResult) =>
+            await GetReview(pageResult, null);
 
         public async Task<(List<Review>, int total)> GetReview(
             PageResult pageResult,

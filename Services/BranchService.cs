@@ -28,9 +28,8 @@ namespace Services
             string? searchQuery
         ) => await _branchRepository.GetBranches(pageResult, status, searchQuery);
 
-        public async Task<(List<Branch>, int total)> GetBranches(
-            PageResult pageResult
-        ) => await _branchRepository.GetBranches(pageResult);
+        public async Task<(List<Branch>, int total)> GetBranches(PageResult pageResult) =>
+            await _branchRepository.GetBranches(pageResult);
 
         public async Task<(List<Branch>, int total)> GetBranches(
             PageResult pageResult,

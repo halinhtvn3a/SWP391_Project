@@ -62,7 +62,6 @@ namespace BuildingBlocks.Core.Data
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -91,7 +90,10 @@ namespace BuildingBlocks.Core.Data
             }
             catch (Exception ex)
             {
-                throw new InvalidOperationException($"An error occurred while seeding data: {ex.Message}", ex);
+                throw new InvalidOperationException(
+                    $"An error occurred while seeding data: {ex.Message}",
+                    ex
+                );
             }
         }
     }
