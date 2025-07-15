@@ -87,7 +87,7 @@ namespace DAOs
         public async Task<TimeSlot> AddBookingTransaction(string slotId)
         {
             var test = await _courtCallerDbContext
-                .TimeSlots.FromSqlRaw(
+                .TimeSlots.FromSqlInterpolated(
                     $"SELECT * FROM TimeSlots WITH (UPDLOCK) WHERE SlotId = '{slotId}' AND IsAvailable = 1"
                 )
                 .FirstOrDefaultAsync();

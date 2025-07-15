@@ -31,19 +31,19 @@ namespace BuildingBlocks.Core.Files
 
                 return await readerStream.ReadToEndAsync();
             }
-            catch (FileNotFoundException ex)
+            catch (FileNotFoundException)
             {
-                // Handle file not found exception specifically
-                throw new Exception(ex.Message);
+                // Preserve original FileNotFoundException details
+                throw;
             }
-            catch (UnauthorizedAccessException ex)
+            catch (UnauthorizedAccessException)
             {
-                // Handle permission-related issues
-                throw new Exception($"Access to the file at {filePath} is denied.", ex);
+                // Preserve original UnauthorizedAccessException details
+                throw;
             }
             catch (Exception ex)
             {
-                throw new Exception("An error occurred while reading the file.", ex);
+                throw new IOException("An error occurred while reading the file.", ex);
             }
         }
     }

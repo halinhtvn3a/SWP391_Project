@@ -144,7 +144,7 @@ namespace Repositories.Helper
 
                 if (
                     string.IsNullOrEmpty(ipAddress)
-                    || (ipAddress.ToLower() == "unknown")
+                    || (ipAddress.ToLowerInvariant() == "unknown")
                     || ipAddress.Length > 45
                 )
                     ipAddress = httpContext.Connection.RemoteIpAddress.ToString();

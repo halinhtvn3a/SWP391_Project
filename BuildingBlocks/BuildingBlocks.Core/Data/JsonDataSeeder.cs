@@ -60,9 +60,10 @@ namespace BuildingBlocks.Core.Data
                     ?? Enumerable.Empty<T>();
                 return data;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw new Exception(ex.Message);
+
+                throw;
             }
         }
 
@@ -90,7 +91,7 @@ namespace BuildingBlocks.Core.Data
             }
             catch (Exception ex)
             {
-                throw new Exception($"An error occurred while seeding data: {ex.Message}", ex);
+                throw new InvalidOperationException($"An error occurred while seeding data: {ex.Message}", ex);
             }
         }
     }
