@@ -1,13 +1,13 @@
-﻿using DAOs;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CourtCaller.Persistence;
+using DAOs;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 
 namespace UnitTests.DAOTests
 {
@@ -24,21 +24,59 @@ namespace UnitTests.DAOTests
             mockContext = new Mock<CourtCallerDbContext>();
             userList = new List<IdentityUser>
             {
-                new IdentityUser { Id = "U00001", UserName = "user1", Email = "abc1@gmail.com", PhoneNumber = "12345678", LockoutEnabled = true  },
-                new IdentityUser { Id = "U00002", UserName = "user2", Email = "abc2@gmail.com", PhoneNumber = "23321231", LockoutEnabled = false  },
-                new IdentityUser { Id = "U00003", UserName = "user3", Email = "abc3@gmail.com", PhoneNumber = "546445678", LockoutEnabled = true  },
-                new IdentityUser { Id = "U00004", UserName = "user4", Email = "abc4@gmail.com", PhoneNumber = "8676765", LockoutEnabled = false  },
+                new IdentityUser
+                {
+                    Id = "U00001",
+                    UserName = "user1",
+                    Email = "abc1@gmail.com",
+                    PhoneNumber = "12345678",
+                    LockoutEnabled = true,
+                },
+                new IdentityUser
+                {
+                    Id = "U00002",
+                    UserName = "user2",
+                    Email = "abc2@gmail.com",
+                    PhoneNumber = "23321231",
+                    LockoutEnabled = false,
+                },
+                new IdentityUser
+                {
+                    Id = "U00003",
+                    UserName = "user3",
+                    Email = "abc3@gmail.com",
+                    PhoneNumber = "546445678",
+                    LockoutEnabled = true,
+                },
+                new IdentityUser
+                {
+                    Id = "U00004",
+                    UserName = "user4",
+                    Email = "abc4@gmail.com",
+                    PhoneNumber = "8676765",
+                    LockoutEnabled = false,
+                },
             };
 
             var data = userList.AsQueryable();
 
             mockSet.As<IQueryable<IdentityUser>>().Setup(m => m.Provider).Returns(data.Provider);
-            mockSet.As<IQueryable<IdentityUser>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<IdentityUser>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<IdentityUser>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<IdentityUser>>()
+                .Setup(m => m.Expression)
+                .Returns(data.Expression);
+            mockSet
+                .As<IQueryable<IdentityUser>>()
+                .Setup(m => m.ElementType)
+                .Returns(data.ElementType);
+            mockSet
+                .As<IQueryable<IdentityUser>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Users).Returns(mockSet.Object);
         }
+
         [Theory]
         [InlineData("U00001")]
         [InlineData("U00002")]

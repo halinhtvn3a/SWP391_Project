@@ -8,8 +8,7 @@ using Repositories.Helper;
 namespace Services.Interface
 {
     public interface IMailService
-    { 
+    {
         public Task SendEmailAsync(MailRequest mailRequest);
-
     }
 }

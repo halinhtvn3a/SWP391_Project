@@ -18,5 +18,4 @@ namespace DAOs.Models
         public string DayOfWeek { get; set; }
         public decimal TotalPrice { get; set; }
     }
-
 }

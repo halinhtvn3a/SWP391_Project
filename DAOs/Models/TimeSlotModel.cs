@@ -10,6 +10,7 @@ namespace DAOs.Models
     public class TimeSlotModel
     {
         public DateOnly? SlotDate { get; set; }
+
         [Required]
         public TimeOnly SlotStartTime { get; set; }
 

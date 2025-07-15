@@ -11,7 +11,5 @@ using Microsoft.Extensions.Options;
 
 namespace CourtCaller.Persistence.Extensions
 {
-	public static class SeedingDependencyInjection
-	{
-	}
+    public static class SeedingDependencyInjection { }
 }

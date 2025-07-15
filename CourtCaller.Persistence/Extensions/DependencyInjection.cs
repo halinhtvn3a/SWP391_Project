@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +8,9 @@ using BuildingBlocks.Core.Files;
 using CourtCaller.Persistence.Seeding;
 using CourtCaller.Persistence.Seeding.Strategies;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -19,7 +19,10 @@ namespace CourtCaller.Persistence.Extensions
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddPersistence(
+            this IServiceCollection services,
+            IConfiguration configuration
+        )
         {
             services.AddDbContext<IApplicationDbContext, CourtCallerDbContext>(options =>
             {
@@ -35,10 +38,13 @@ namespace CourtCaller.Persistence.Extensions
 
         public static IServiceCollection AddEnterpriseSeeding(
             this IServiceCollection services,
-            IConfiguration configuration)
+            IConfiguration configuration
+        )
         {
             // Register configuration
-            services.Configure<SeedingConfiguration>(configuration.GetSection(SeedingConfiguration.SectionName));
+            services.Configure<SeedingConfiguration>(
+                configuration.GetSection(SeedingConfiguration.SectionName)
+            );
 
             // Register core seeding services
             services.AddScoped<IFileReader, FileReader>();
@@ -54,7 +60,7 @@ namespace CourtCaller.Persistence.Extensions
         }
 
         private static IServiceCollection AddSeedingStrategy<T>(this IServiceCollection services)
-                where T : class, ISeedingStrategy
+            where T : class, ISeedingStrategy
         {
             services.AddScoped<ISeedingStrategy>(provider =>
             {
@@ -67,22 +73,42 @@ namespace CourtCaller.Persistence.Extensions
 
                 return typeof(T).Name switch
                 {
-                    nameof(CoreDataSeedingStrategy) => new CoreDataSeedingStrategy(context, loggerFactory.CreateLogger<CoreDataSeedingStrategy>(), config),
-                    nameof(ReferenceDataSeedingStrategy) => new ReferenceDataSeedingStrategy(context, fileReader, loggerFactory.CreateLogger<ReferenceDataSeedingStrategy>(), loggerFactory, config, seedFilesPath),
-                    nameof(TestDataSeedingStrategy) => new TestDataSeedingStrategy(context, fileReader, loggerFactory.CreateLogger<TestDataSeedingStrategy>(), loggerFactory, config, seedFilesPath),
-                    _ => throw new ArgumentException($"Unknown seeding strategy: {typeof(T).Name}")
+                    nameof(CoreDataSeedingStrategy) => new CoreDataSeedingStrategy(
+                        context,
+                        loggerFactory.CreateLogger<CoreDataSeedingStrategy>(),
+                        config
+                    ),
+                    nameof(ReferenceDataSeedingStrategy) => new ReferenceDataSeedingStrategy(
+                        context,
+                        fileReader,
+                        loggerFactory.CreateLogger<ReferenceDataSeedingStrategy>(),
+                        loggerFactory,
+                        config,
+                        seedFilesPath
+                    ),
+                    nameof(TestDataSeedingStrategy) => new TestDataSeedingStrategy(
+                        context,
+                        fileReader,
+                        loggerFactory.CreateLogger<TestDataSeedingStrategy>(),
+                        loggerFactory,
+                        config,
+                        seedFilesPath
+                    ),
+                    _ => throw new ArgumentException($"Unknown seeding strategy: {typeof(T).Name}"),
                 };
             });
 
             return services;
         }
+
         /// <summary>
         /// Execute database seeding during application startup
         /// </summary>
         public static async Task<IHost> ExecuteSeedingAsync(this IHost host)
         {
             using var scope = host.Services.CreateScope();
-            var seedingManager = scope.ServiceProvider.GetRequiredService<IEnterpriseSeedingManager>();
+            var seedingManager =
+                scope.ServiceProvider.GetRequiredService<IEnterpriseSeedingManager>();
             var loggerFactory = scope.ServiceProvider.GetRequiredService<ILoggerFactory>();
             var logger = loggerFactory.CreateLogger("DatabaseSeeding");
 
@@ -94,11 +120,17 @@ namespace CourtCaller.Persistence.Extensions
 
                 if (result.IsSuccess)
                 {
-                    logger.LogInformation("Database seeding completed successfully. Total records: {RecordsSeeded}", result.RecordsSeeded);
+                    logger.LogInformation(
+                        "Database seeding completed successfully. Total records: {RecordsSeeded}",
+                        result.RecordsSeeded
+                    );
                 }
                 else
                 {
-                    logger.LogError("Database seeding failed with errors: {Errors}", string.Join("; ", result.Errors));
+                    logger.LogError(
+                        "Database seeding failed with errors: {Errors}",
+                        string.Join("; ", result.Errors)
+                    );
                 }
             }
             catch (Exception ex)
@@ -115,7 +147,9 @@ namespace CourtCaller.Persistence.Extensions
         public static async Task<IHost> ExecuteSeedingIfEnabledAsync(this IHost host)
         {
             using var scope = host.Services.CreateScope();
-            var config = scope.ServiceProvider.GetRequiredService<IOptions<SeedingConfiguration>>().Value;
+            var config = scope
+                .ServiceProvider.GetRequiredService<IOptions<SeedingConfiguration>>()
+                .Value;
 
             if (!config.Enabled)
             {

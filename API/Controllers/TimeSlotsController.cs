@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using DAOs.Models;
-using Services;
-using Page = DAOs.Helper;
-using Newtonsoft.Json;
-using Microsoft.AspNetCore.SignalR;
-using Services.SignalRHub;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Services;
+using Services.SignalRHub;
+using Page = DAOs.Helper;
 
 namespace API.Controllers
 {
@@ -23,8 +23,10 @@ namespace API.Controllers
         private readonly TimeSlotService _timeSlotService;
         private readonly IHubContext<TimeSlotHub> _hubContext;
 
-
-        public TimeSlotsController(TimeSlotService timeSlotService, IHubContext<TimeSlotHub> hubContext)
+        public TimeSlotsController(
+            TimeSlotService timeSlotService,
+            IHubContext<TimeSlotHub> hubContext
+        )
         {
             _timeSlotService = timeSlotService;
             _hubContext = hubContext;
@@ -38,34 +40,37 @@ namespace API.Controllers
         }
 
         [HttpGet("page/")]
-        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsPage([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsPage(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string searchQuery = null
+        )
         {
-            var pageResult = new Page.PageResult
-            {
-                PageSize = pageSize,
-                PageNumber = pageNumber,
-            };
+            var pageResult = new Page.PageResult { PageSize = pageSize, PageNumber = pageNumber };
             List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlots(pageResult, searchQuery);
             return Ok(timeSlots);
         }
-        
-        [HttpGet("GetTimeSlotsByCourtId")]
-        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsByCourtId([FromQuery] string courtId ,[FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
-        {
 
-            var pageResult = new Page.PageResult
-            {
-                PageSize = pageSize,
-                PageNumber = pageNumber,
-            };
-            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlotsByCourtId(courtId, pageResult, searchQuery);
+        [HttpGet("GetTimeSlotsByCourtId")]
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsByCourtId(
+            [FromQuery] string courtId,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string searchQuery = null
+        )
+        {
+            var pageResult = new Page.PageResult { PageSize = pageSize, PageNumber = pageNumber };
+            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlotsByCourtId(
+                courtId,
+                pageResult,
+                searchQuery
+            );
             return Ok(timeSlots);
         }
 
         // GET: api/TimeSlots/5
         [HttpGet("{id}")]
         [Authorize]
-
         public async Task<ActionResult<TimeSlot>> GetTimeSlot(string id)
         {
             var timeSlot = _timeSlotService.GetTimeSlot(id);
@@ -80,8 +85,9 @@ namespace API.Controllers
 
         [HttpGet("bookingId/{bookingId}")]
         [Authorize]
-
-        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotByBookingId(string bookingId)
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotByBookingId(
+            string bookingId
+        )
         {
             var timeSlot = _timeSlotService.GetTimeSlotsByBookingId(bookingId);
 
@@ -97,7 +103,6 @@ namespace API.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [Authorize]
-
         public async Task<IActionResult> PutTimeSlot(string id, SlotModel slotModel)
         {
             var timeSlot = _timeSlotService.GetTimeSlot(id);
@@ -115,7 +120,6 @@ namespace API.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Authorize]
-
         public async Task<ActionResult<TimeSlot>> PostTimeSlot(TimeSlot timeSlot)
         {
             _timeSlotService.AddTimeSlot(timeSlot);
@@ -151,52 +155,55 @@ namespace API.Controllers
         {
             TimeSlot timeSlot = _timeSlotService.ChangeSlot(slotModel, slotId);
 
-            return Ok(new TimeSlot()
-            {
-                SlotId = timeSlot.SlotId,
-                CourtId = timeSlot.CourtId,
-                BookingId = timeSlot.BookingId,
-                SlotDate = timeSlot.SlotDate,
-                SlotStartTime = timeSlot.SlotStartTime,
-                SlotEndTime = timeSlot.SlotEndTime,
-                Price = timeSlot.Price,
-                Status = timeSlot.Status
-            });
+            return Ok(
+                new TimeSlot()
+                {
+                    SlotId = timeSlot.SlotId,
+                    CourtId = timeSlot.CourtId,
+                    BookingId = timeSlot.BookingId,
+                    SlotDate = timeSlot.SlotDate,
+                    SlotStartTime = timeSlot.SlotStartTime,
+                    SlotEndTime = timeSlot.SlotEndTime,
+                    Price = timeSlot.Price,
+                    Status = timeSlot.Status,
+                }
+            );
         }
 
         [HttpGet("userId/{userId}")]
         [Authorize]
-
-        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsByUserId(string userId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> GetTimeSlotsByUserId(
+            string userId,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-            var pageResult = new Page.PageResult
-            {
-                PageSize = pageSize,
-                PageNumber = pageNumber,
-            };
-            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlotsByUserId(userId, pageResult);
+            var pageResult = new Page.PageResult { PageSize = pageSize, PageNumber = pageNumber };
+            List<TimeSlot> timeSlots = await _timeSlotService.GetTimeSlotsByUserId(
+                userId,
+                pageResult
+            );
             return Ok(timeSlots);
         }
 
         [HttpGet("sortSlot/{sortBy}")]
         [Authorize]
-
-        public async Task<ActionResult<IEnumerable<TimeSlot>>> SortTimeSlot(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<TimeSlot>>> SortTimeSlot(
+            string sortBy,
+            bool isAsc,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-            var pageResult = new Page.PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new Page.PageResult { PageNumber = pageNumber, PageSize = pageSize };
 
             return await _timeSlotService.SortTimeSlot(sortBy, isAsc, pageResult);
         }
+
         private bool TimeSlotExists(string id)
         {
             return _timeSlotService.GetTimeSlots().Any(e => e.SlotId == id);
         }
-
-        
 
         [HttpPost("checkin/qr")]
         public async Task<IActionResult> CheckInWithQR([FromBody] QRCheckInModel request)
@@ -210,33 +217,34 @@ namespace API.Controllers
 
             var allTimeSlot = _timeSlotService.GetTimeSlotsByBookingId(qrData.BookingId);
             bool check = false;
-            foreach (var timeSlot in allTimeSlot) {
-               if (timeSlot != null && timeSlot.Status == "Reserved" && timeSlot.BookingId == qrData.BookingId)
+            foreach (var timeSlot in allTimeSlot)
+            {
+                if (
+                    timeSlot != null
+                    && timeSlot.Status == "Reserved"
+                    && timeSlot.BookingId == qrData.BookingId
+                )
                 {
                     //cần phải checked-in tất cả time slot ngày hôm đó luôn chứ không phải chỉ 1 time slot
 
-
-                    _timeSlotService.GetTimeSlotsByDate(timeSlot.SlotDate).ForEach(async t =>
-                    {
-                        t.Status = "checked-in";
-                        await _timeSlotService.UpdateTimeSlotWithObject(t);
-                        check = true;
-                    });
-                    
+                    _timeSlotService
+                        .GetTimeSlotsByDate(timeSlot.SlotDate)
+                        .ForEach(async t =>
+                        {
+                            t.Status = "checked-in";
+                            await _timeSlotService.UpdateTimeSlotWithObject(t);
+                            check = true;
+                        });
                 }
-
-
             }
             if (check)
                 return Ok("Check-in successful.");
             return BadRequest("Invalid QR code or timeslot.");
         }
 
-
         [HttpPost("lock")]
         public async Task<IActionResult> LockSlot([FromBody] SlotModel slotInfo)
         {
-
             if (slotInfo == null)
             {
                 return BadRequest("Invalid slot information.");
@@ -272,9 +280,11 @@ namespace API.Controllers
         }
 
         [HttpGet("unavailable_slot")]
-        public ActionResult<List<TimeSlotModel>> UnavailableSlot([FromQuery] DateOnly date, [FromQuery] string branchId)
+        public ActionResult<List<TimeSlotModel>> UnavailableSlot(
+            [FromQuery] DateOnly date,
+            [FromQuery] string branchId
+        )
         {
-
             var result = _timeSlotService.UnavailableSlot(date, branchId);
             if (result == null)
             {
@@ -282,6 +292,7 @@ namespace API.Controllers
             }
             return Ok(result);
         }
+
         //[HttpPost("checkSlotAvailability")]
         //public async Task<IActionResult> CheckSlotAvailability([FromBody] List<SlotCheckModel> slotCheckModels)
         //{
@@ -300,7 +311,10 @@ namespace API.Controllers
         //}
 
         [HttpPost("add_timeslot_if_exist_booking")]
-        public ActionResult<List<TimeSlot>> AddSlotToBooking(SlotModel[] slotModel, string bookingId)
+        public ActionResult<List<TimeSlot>> AddSlotToBooking(
+            SlotModel[] slotModel,
+            string bookingId
+        )
         {
             try
             {
@@ -311,7 +325,6 @@ namespace API.Controllers
                 return BadRequest(e.Message);
             }
         }
-
 
         private QRData DecryptQRCode(string qrCodeData)
         {
@@ -324,6 +337,5 @@ namespace API.Controllers
             public string BookingId { get; set; }
             public string UserId { get; set; }
         }
-
     }
 }

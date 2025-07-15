@@ -1,12 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-
-using System.Security.Claims;
-using System.IdentityModel.Tokens.Jwt;
-using System.Text;
-
 using Services.Interface;
 
 namespace Services
@@ -63,33 +61,39 @@ namespace Services
         //    return new JwtSecurityTokenHandler().WriteToken(token);
         //}
 
-        public (string,DateTime) GenerateToken(IdentityUser user, string role)
+        public (string, DateTime) GenerateToken(IdentityUser user, string role)
         {
             var nowUtc = DateTime.UtcNow;
             var timeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
-            var expirationTimeInLocal = TimeZoneInfo.ConvertTimeFromUtc(nowUtc, timeZone).AddSeconds(45);
+            var expirationTimeInLocal = TimeZoneInfo
+                .ConvertTimeFromUtc(nowUtc, timeZone)
+                .AddSeconds(45);
             var expirationTimeUtc = TimeZoneInfo.ConvertTimeToUtc(expirationTimeInLocal, timeZone);
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[]
-                {
-                    new Claim("Id", user.Id),
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.Role, role),
-                    //new Claim(ClaimTypes.NameIdentifier, user.UserName)
-                }),
+                Subject = new ClaimsIdentity(
+                    new[]
+                    {
+                        new Claim("Id", user.Id),
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.Role, role),
+                        //new Claim(ClaimTypes.NameIdentifier, user.UserName)
+                    }
+                ),
                 Expires = expirationTimeUtc,
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature
+                ),
             };
 
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
             var ExpiredTime = tokenDescriptor.Expires.Value;
-            return (jwtTokenHandler.WriteToken(token),ExpiredTime);
+            return (jwtTokenHandler.WriteToken(token), ExpiredTime);
         }
     }
-
 
     public class TokenSettings
     {
@@ -111,12 +115,12 @@ namespace Services
             var key = Encoding.ASCII.GetBytes(_secretKey);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                new Claim("BookingId", bookingId)
-                }),
-                Expires = DateTime.UtcNow.AddMinutes(10), 
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                Subject = new ClaimsIdentity(new Claim[] { new Claim("BookingId", bookingId) }),
+                Expires = DateTime.UtcNow.AddMinutes(10),
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature
+                ),
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
@@ -126,14 +130,18 @@ namespace Services
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_secretKey);
-            tokenHandler.ValidateToken(token, new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-                ClockSkew = TimeSpan.Zero
-            }, out SecurityToken validatedToken);
+            tokenHandler.ValidateToken(
+                token,
+                new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero,
+                },
+                out SecurityToken validatedToken
+            );
 
             var jwtToken = (JwtSecurityToken)validatedToken;
             var bookingId = jwtToken.Claims.First(x => x.Type == "BookingId").Value;

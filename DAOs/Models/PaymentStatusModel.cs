@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace DAOs.Models
 {
-
     public class PaymentStatusModel
     {
         public bool IsSuccessful { get; set; }

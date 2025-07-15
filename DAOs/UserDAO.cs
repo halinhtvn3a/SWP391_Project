@@ -1,63 +1,68 @@
-﻿using BusinessObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-using DAOs.Helper;
-using Microsoft.EntityFrameworkCore;
+using BusinessObjects;
 using CourtCaller.Persistence;
+using DAOs.Helper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
-	public class UserDAO
-	{
-		private readonly CourtCallerDbContext _dbContext = null;
-        Guid guid =Guid.NewGuid();
+    public class UserDAO
+    {
+        private readonly CourtCallerDbContext _dbContext = null;
+        Guid guid = Guid.NewGuid();
 
         public UserDAO()
-		{
-			if (_dbContext == null)
-			{
-				_dbContext = new CourtCallerDbContext();
-			}
-		}
+        {
+            if (_dbContext == null)
+            {
+                _dbContext = new CourtCallerDbContext();
+            }
+        }
 
         public UserDAO(CourtCallerDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-
         //public string GenerateUserId ()
         //{
-        //    return "U" + guid.ToString(); 
+        //    return "U" + guid.ToString();
         //}
 
-        public async Task<(List<IdentityUser>,int total)> GetUsers(PageResult pageResult, string searchQuery = null)
+        public async Task<(List<IdentityUser>, int total)> GetUsers(
+            PageResult pageResult,
+            string searchQuery = null
+        )
         {
             var query = _dbContext.Users.AsQueryable();
             int total = await _dbContext.Users.CountAsync();
             if (!string.IsNullOrEmpty(searchQuery))
             {
-                query = from user in query
-                        join userRole in _dbContext.UserRoles on user.Id equals userRole.UserId
-                        join role in _dbContext.Roles on userRole.RoleId equals role.Id
-                        where user.Id.Contains(searchQuery) ||
-                              user.Email.Contains(searchQuery) ||
-                              user.UserName.Contains(searchQuery) ||
-                              user.PhoneNumber.Contains(searchQuery) ||
-                              role.Name.Contains(searchQuery)
-                        select user;
+                query =
+                    from user in query
+                    join userRole in _dbContext.UserRoles on user.Id equals userRole.UserId
+                    join role in _dbContext.Roles on userRole.RoleId equals role.Id
+                    where
+                        user.Id.Contains(searchQuery)
+                        || user.Email.Contains(searchQuery)
+                        || user.UserName.Contains(searchQuery)
+                        || user.PhoneNumber.Contains(searchQuery)
+                        || role.Name.Contains(searchQuery)
+                    select user;
             }
 
-
             Pagination pagination = new Pagination(_dbContext);
-            List<IdentityUser> identityUsers = await pagination.GetListAsync<IdentityUser>(query, pageResult);
-            return (identityUsers,total);
+            List<IdentityUser> identityUsers = await pagination.GetListAsync<IdentityUser>(
+                query,
+                pageResult
+            );
+            return (identityUsers, total);
         }
-
 
         //public List<IdentityUser> GetUsers()
         //{
@@ -90,23 +95,21 @@ namespace DAOs
         //}
 
         public IdentityUser GetUser(string id)
-		{
-			return _dbContext.Users.FirstOrDefault(m => m.Id.Equals(id));
-		}
+        {
+            return _dbContext.Users.FirstOrDefault(m => m.Id.Equals(id));
+        }
 
-		public IdentityUser AddUser(IdentityUser IdentityUser)
-		{
-			_dbContext.Users.Add(IdentityUser);
-			_dbContext.SaveChanges();
-			return IdentityUser;
-		}
+        public IdentityUser AddUser(IdentityUser IdentityUser)
+        {
+            _dbContext.Users.Add(IdentityUser);
+            _dbContext.SaveChanges();
+            return IdentityUser;
+        }
 
         public void UpdateIdentityUser(IdentityUser IdentityUser)
         {
-
-                _dbContext.Update(IdentityUser);
-                _dbContext.SaveChanges();
-            
+            _dbContext.Update(IdentityUser);
+            _dbContext.SaveChanges();
         }
 
         public void DeleteUser(string id)
@@ -132,7 +135,6 @@ namespace DAOs
             return oUser;
         }
 
-
         public IdentityUser UnBanUser(string id)
         {
             IdentityUser oUser = GetUser(id);
@@ -145,7 +147,8 @@ namespace DAOs
             return oUser;
         }
 
-        public List<IdentityUser> SearchUserByEmail(string searchValue) => _dbContext.Users.Where(m => m.Email.Equals(searchValue)).ToList();
+        public List<IdentityUser> SearchUserByEmail(string searchValue) =>
+            _dbContext.Users.Where(m => m.Email.Equals(searchValue)).ToList();
 
         public IdentityUser GetUserByBookingId(string bookingId)
         {

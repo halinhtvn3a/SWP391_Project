@@ -13,7 +13,6 @@ namespace UnitTests.ControllerTests
         private readonly Mock<IBookingService> _mockBookingService;
         private readonly BookingsController _controller;
 
-
         public BookingsControllerTests()
         {
             _mockBookingService = new Mock<IBookingService>();
@@ -55,9 +54,7 @@ namespace UnitTests.ControllerTests
         //    _mockBookingService.Setup(service => service.ReserveSlotAsyncV2(It.IsAny<SlotModel[]>(), It.IsAny<string>()))
         //        .Returns(booking);
 
-
         //    var result = await _controller.ReserveSlotV2(slotModels, userId);
-
 
         //    var okResult = Assert.IsType<OkObjectResult>(result);
         //    var returnedBooking = Assert.IsType<Booking>(okResult.Value);
@@ -89,7 +86,6 @@ namespace UnitTests.ControllerTests
 
         //    var result = await _controller.ReserveSlotV2(slotModels, userId);
 
-
         //    var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
         //    Assert.Equal("Failed to reserve slot.", badRequestResult.Value);
         //}
@@ -97,16 +93,14 @@ namespace UnitTests.ControllerTests
         [Fact]
         public async Task ReserveSlotV2_ReturnsBadRequest_WhenSlotModelsAreNull()
         {
-
             SlotModel[] slotModels = null;
             string userId = "26191b56-76f4-4379-ae05-3356c6dacc16";
 
-            _mockBookingService.Setup(service => service.ReserveSlotAsyncV2(slotModels, userId))
+            _mockBookingService
+                .Setup(service => service.ReserveSlotAsyncV2(slotModels, userId))
                 .Returns((Booking)null);
 
-
             var result = await _controller.ReserveSlotV2(slotModels, userId);
-
 
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
             Assert.Equal("SlotModels is not null or empty", badRequestResult.Value);
@@ -115,16 +109,14 @@ namespace UnitTests.ControllerTests
         [Fact]
         public async Task ReserveSlotV2_ReturnsBadRequest_WhenSlotModelsAreEmpty()
         {
-
             var slotModels = new SlotModel[] { };
             string userId = "26191b56-76f4-4379-ae05-3356c6dacc16";
 
-            _mockBookingService.Setup(service => service.ReserveSlotAsyncV2(slotModels, userId))
+            _mockBookingService
+                .Setup(service => service.ReserveSlotAsyncV2(slotModels, userId))
                 .Returns((Booking)null);
 
-
             var result = await _controller.ReserveSlotV2(slotModels, userId);
-
 
             var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
             Assert.Equal("SlotModels is not null or empty", badRequestResult.Value);
@@ -153,9 +145,7 @@ namespace UnitTests.ControllerTests
         //    _mockBookingService.Setup(service => service.ReserveSlotAsyncV2(slotModels, userId))
         //        .Returns((Booking)null);
 
-
         //    var result = await _controller.ReserveSlotV2(slotModels, userId);
-
 
         //    var badRequestResult = Assert.IsType<BadRequestObjectResult>(result);
         //    Assert.Equal("userId is not null and having this user in system", badRequestResult.Value);

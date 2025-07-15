@@ -10,8 +10,12 @@ namespace Repositories.Helper
     public class PayLib
     {
         public const string VERSION = "2.1.0";
-        private SortedList<String, String> _requestData = new SortedList<String, String>(new VnPayCompare());
-        private SortedList<String, String> _responseData = new SortedList<String, String>(new VnPayCompare());
+        private SortedList<String, String> _requestData = new SortedList<String, String>(
+            new VnPayCompare()
+        );
+        private SortedList<String, String> _responseData = new SortedList<String, String>(
+            new VnPayCompare()
+        );
 
         public void AddRequestData(string key, string value)
         {
@@ -51,7 +55,9 @@ namespace Repositories.Helper
             {
                 if (!String.IsNullOrEmpty(kv.Value))
                 {
-                    data.Append(WebUtility.UrlEncode(kv.Key) + "=" + WebUtility.UrlEncode(kv.Value) + "&");
+                    data.Append(
+                        WebUtility.UrlEncode(kv.Key) + "=" + WebUtility.UrlEncode(kv.Value) + "&"
+                    );
                 }
             }
             string queryString = data.ToString();
@@ -60,7 +66,6 @@ namespace Repositories.Helper
             String signData = queryString;
             if (signData.Length > 0)
             {
-
                 signData = signData.Remove(data.Length - 1, 1);
             }
             string vnp_SecureHash = Utils.HmacSHA512(vnp_HashSecret, signData);
@@ -68,8 +73,6 @@ namespace Repositories.Helper
 
             return baseUrl;
         }
-
-
 
         #endregion
 
@@ -81,9 +84,9 @@ namespace Repositories.Helper
             string myChecksum = Utils.HmacSHA512(secretKey, rspRaw);
             return myChecksum.Equals(inputHash, StringComparison.InvariantCultureIgnoreCase);
         }
+
         private string GetResponseData()
         {
-
             StringBuilder data = new StringBuilder();
             if (_responseData.ContainsKey("vnp_SecureHashType"))
             {
@@ -97,7 +100,9 @@ namespace Repositories.Helper
             {
                 if (!String.IsNullOrEmpty(kv.Value))
                 {
-                    data.Append(WebUtility.UrlEncode(kv.Key) + "=" + WebUtility.UrlEncode(kv.Value) + "&");
+                    data.Append(
+                        WebUtility.UrlEncode(kv.Key) + "=" + WebUtility.UrlEncode(kv.Value) + "&"
+                    );
                 }
             }
             //remove last '&'
@@ -113,8 +118,6 @@ namespace Repositories.Helper
 
     public class Utils
     {
-
-
         public static String HmacSHA512(string key, String inputData)
         {
             var hash = new StringBuilder();
@@ -131,6 +134,7 @@ namespace Repositories.Helper
 
             return hash.ToString();
         }
+
         public static string GetIpAddress(HttpContext httpContext)
         {
             string ipAddress;
@@ -138,7 +142,11 @@ namespace Repositories.Helper
             {
                 ipAddress = httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
 
-                if (string.IsNullOrEmpty(ipAddress) || (ipAddress.ToLower() == "unknown") || ipAddress.Length > 45)
+                if (
+                    string.IsNullOrEmpty(ipAddress)
+                    || (ipAddress.ToLower() == "unknown")
+                    || ipAddress.Length > 45
+                )
                     ipAddress = httpContext.Connection.RemoteIpAddress.ToString();
             }
             catch (Exception ex)
@@ -148,16 +156,18 @@ namespace Repositories.Helper
 
             return ipAddress;
         }
-
     }
 
     public class VnPayCompare : IComparer<string>
     {
         public int Compare(string x, string y)
         {
-            if (x == y) return 0;
-            if (x == null) return -1;
-            if (y == null) return 1;
+            if (x == y)
+                return 0;
+            if (x == null)
+                return -1;
+            if (y == null)
+                return 1;
             var vnpCompare = CompareInfo.GetCompareInfo("en-US");
             return vnpCompare.Compare(x, y, CompareOptions.Ordinal);
         }

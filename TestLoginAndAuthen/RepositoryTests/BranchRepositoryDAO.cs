@@ -1,15 +1,15 @@
-﻿using BusinessObjects;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BusinessObjects;
 using CourtCaller.Persistence;
 using DAOs;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTests.RepositoryTests
 {
@@ -39,14 +39,36 @@ namespace UnitTests.RepositoryTests
                     Status = "Active",
                     Courts = new List<Court>
                     {
-                        new Court { CourtId = "C001", CourtName = "Court 1", BranchId = "B00001" },
-                        new Court { CourtId = "C002", CourtName = "Court 2", BranchId = "B00001" }
+                        new Court
+                        {
+                            CourtId = "C001",
+                            CourtName = "Court 1",
+                            BranchId = "B00001",
+                        },
+                        new Court
+                        {
+                            CourtId = "C002",
+                            CourtName = "Court 2",
+                            BranchId = "B00001",
+                        },
                     },
                     Prices = new List<Price>
                     {
-                        new Price { PriceId = "P001", SlotPrice = 100, BranchId = "B00001", IsWeekend = false },
-                        new Price { PriceId = "P002", SlotPrice = 150, BranchId = "B00001", IsWeekend = true }
-                    }
+                        new Price
+                        {
+                            PriceId = "P001",
+                            SlotPrice = 100,
+                            BranchId = "B00001",
+                            IsWeekend = false,
+                        },
+                        new Price
+                        {
+                            PriceId = "P002",
+                            SlotPrice = 150,
+                            BranchId = "B00001",
+                            IsWeekend = true,
+                        },
+                    },
                 },
                 new Branch
                 {
@@ -56,14 +78,36 @@ namespace UnitTests.RepositoryTests
                     Status = "Active",
                     Courts = new List<Court>
                     {
-                        new Court { CourtId = "C003", CourtName = "Court 3", BranchId = "B00002" },
-                        new Court { CourtId = "C004", CourtName = "Court 4", BranchId = "B00002" }
+                        new Court
+                        {
+                            CourtId = "C003",
+                            CourtName = "Court 3",
+                            BranchId = "B00002",
+                        },
+                        new Court
+                        {
+                            CourtId = "C004",
+                            CourtName = "Court 4",
+                            BranchId = "B00002",
+                        },
                     },
                     Prices = new List<Price>
                     {
-                        new Price { PriceId = "P003", SlotPrice = 120, BranchId = "B00002", IsWeekend = false },
-                        new Price { PriceId = "P004", SlotPrice = 180, BranchId = "B00002", IsWeekend = true }
-                    }
+                        new Price
+                        {
+                            PriceId = "P003",
+                            SlotPrice = 120,
+                            BranchId = "B00002",
+                            IsWeekend = false,
+                        },
+                        new Price
+                        {
+                            PriceId = "P004",
+                            SlotPrice = 180,
+                            BranchId = "B00002",
+                            IsWeekend = true,
+                        },
+                    },
                 },
                 new Branch
                 {
@@ -73,15 +117,37 @@ namespace UnitTests.RepositoryTests
                     Status = "Inactive",
                     Courts = new List<Court>
                     {
-                        new Court { CourtId = "C005", CourtName = "Court 5", BranchId = "B00003" },
-                        new Court { CourtId = "C006", CourtName = "Court 6", BranchId = "B00003" }
+                        new Court
+                        {
+                            CourtId = "C005",
+                            CourtName = "Court 5",
+                            BranchId = "B00003",
+                        },
+                        new Court
+                        {
+                            CourtId = "C006",
+                            CourtName = "Court 6",
+                            BranchId = "B00003",
+                        },
                     },
                     Prices = new List<Price>
                     {
-                        new Price { PriceId = "P005", SlotPrice = 130, BranchId = "B00003", IsWeekend = false },
-                        new Price { PriceId = "P006", SlotPrice = 190, BranchId = "B00003", IsWeekend = true }
-                    }
-                }
+                        new Price
+                        {
+                            PriceId = "P005",
+                            SlotPrice = 130,
+                            BranchId = "B00003",
+                            IsWeekend = false,
+                        },
+                        new Price
+                        {
+                            PriceId = "P006",
+                            SlotPrice = 190,
+                            BranchId = "B00003",
+                            IsWeekend = true,
+                        },
+                    },
+                },
             };
 
             var data = branchList.AsQueryable();
@@ -89,7 +155,10 @@ namespace UnitTests.RepositoryTests
             mockSet.As<IQueryable<Branch>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<Branch>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Branch>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Branch>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<Branch>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Branches).Returns(mockSet.Object);
 
@@ -119,12 +188,14 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void AddBranch_ReturnsBranch()
         {
-            branchRepository.AddBranch(new BranchModel()
-            {
-                BranchAddress = "Q2",
-                BranchName = "B",
-                BranchPhone = "0001"
-            });
+            branchRepository.AddBranch(
+                new BranchModel()
+                {
+                    BranchAddress = "Q2",
+                    BranchName = "B",
+                    BranchPhone = "0001",
+                }
+            );
             mockSet.Verify(m => m.Add(It.IsAny<Branch>()), Times.Once());
             mockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
@@ -135,15 +206,12 @@ namespace UnitTests.RepositoryTests
             branchRepository.DeleteBranch("B00001");
             var branch = branchRepository.GetBranch("B00001");
             Assert.Equal("Inactive", branch.Status);
-
         }
+
         [Fact]
         public void UpdateBranch_ReturnsBranch()
         {
-            branchRepository.UpdateBranch("B00001", new PutBranch()
-            {
-                BranchAddress = "HCM",
-            });
+            branchRepository.UpdateBranch("B00001", new PutBranch() { BranchAddress = "HCM" });
             var branch = branchRepository.GetBranch("B00001");
             Assert.Equal("HCM", branch.BranchAddress);
         }
@@ -152,7 +220,6 @@ namespace UnitTests.RepositoryTests
         [InlineData("Active", 2)]
         [InlineData("Inactive", 1)]
         [InlineData("Maintaining", 0)]
-
         public void GetBranchesByStatus_ReturnsBranches(string status, int count)
         {
             var branches = branchRepository.GetBranchesByStatus(status);

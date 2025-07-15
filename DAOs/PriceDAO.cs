@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAOs.Models;
 using BusinessObjects;
-using DAOs.Helper;
-using Microsoft.EntityFrameworkCore;
 using CourtCaller.Persistence;
+using DAOs.Helper;
+using DAOs.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DAOs
 {
@@ -22,19 +22,19 @@ namespace DAOs
                 _dbContext = new CourtCallerDbContext();
             }
         }
-        
+
         public PriceDAO(CourtCallerDbContext dbContext)
         {
             _dbContext = dbContext;
         }
-        
+
         public List<Price> GetPrices() => _dbContext.Prices.ToList();
-        
 
         public Price GetPrice(string id)
         {
             return _dbContext.Prices.FirstOrDefault(m => m.PriceId.Equals(id));
         }
+
         public Price AddPrice(PriceModel priceModel)
         {
             Price price = new Price()
@@ -43,17 +43,22 @@ namespace DAOs
                 BranchId = priceModel.BranchId,
                 Type = priceModel.Type,
                 IsWeekend = priceModel.IsWeekend,
-                SlotPrice = priceModel.SlotPrice
+                SlotPrice = priceModel.SlotPrice,
             };
             _dbContext.Prices.Add(price);
             _dbContext.SaveChanges();
             return price;
         }
+
         public List<decimal> ShowPrice(string branchId)
         {
-            var weekdayPricing = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.IsWeekend == false);
-            var weekendPricing = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.IsWeekend == true);
-            
+            var weekdayPricing = _dbContext.Prices.FirstOrDefault(p =>
+                p.BranchId == branchId && p.IsWeekend == false
+            );
+            var weekendPricing = _dbContext.Prices.FirstOrDefault(p =>
+                p.BranchId == branchId && p.IsWeekend == true
+            );
+
             decimal weekdayPrice = weekdayPricing?.SlotPrice ?? 0;
             decimal weekendPrice = weekendPricing?.SlotPrice ?? 0;
             var hehe = new List<decimal>();
@@ -62,8 +67,6 @@ namespace DAOs
 
             return hehe;
         }
-
-       
 
         public Price UpdatePrice(string id, PriceModel price)
         {
@@ -95,7 +98,9 @@ namespace DAOs
 
         public Price GetPriceByBranchAndWeekend(string branchId, bool isWeekend)
         {
-            return _dbContext.Prices.FirstOrDefault(m => m.BranchId.Equals(branchId) && m.IsWeekend == isWeekend);
+            return _dbContext.Prices.FirstOrDefault(m =>
+                m.BranchId.Equals(branchId) && m.IsWeekend == isWeekend
+            );
         }
 
         public async Task<List<Price>> SortPrice(string? sortBy, bool isAsc, PageResult pageResult)
@@ -105,16 +110,24 @@ namespace DAOs
             switch (sortBy?.ToLower())
             {
                 case "priceid":
-                    query = isAsc ? query.OrderBy(m => m.PriceId) : query.OrderByDescending(m => m.PriceId);
+                    query = isAsc
+                        ? query.OrderBy(m => m.PriceId)
+                        : query.OrderByDescending(m => m.PriceId);
                     break;
                 case "branchid":
-                    query = isAsc ? query.OrderBy(m => m.BranchId) : query.OrderByDescending(m => m.BranchId);
+                    query = isAsc
+                        ? query.OrderBy(m => m.BranchId)
+                        : query.OrderByDescending(m => m.BranchId);
                     break;
                 case "slotprice":
-                    query = isAsc ? query.OrderBy(m => m.SlotPrice) : query.OrderByDescending(m => m.SlotPrice);
+                    query = isAsc
+                        ? query.OrderBy(m => m.SlotPrice)
+                        : query.OrderByDescending(m => m.SlotPrice);
                     break;
                 case "isweekend":
-                    query = isAsc ? query.OrderBy(m => m.IsWeekend) : query.OrderByDescending(m => m.IsWeekend);
+                    query = isAsc
+                        ? query.OrderBy(m => m.IsWeekend)
+                        : query.OrderByDescending(m => m.IsWeekend);
                     break;
                 default:
                     break;
@@ -127,35 +140,48 @@ namespace DAOs
 
         public decimal GetSlotPriceOfBookingFlex(string branchId)
         {
-            var price = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.Type == "Flex");
+            var price = _dbContext.Prices.FirstOrDefault(p =>
+                p.BranchId == branchId && p.Type == "Flex"
+            );
             return price?.SlotPrice ?? 0;
         }
-        
+
         public decimal GetSlotPriceOfBookingFix(string branchId)
         {
-            var price = _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.Type == "Fix");
+            var price = _dbContext.Prices.FirstOrDefault(p =>
+                p.BranchId == branchId && p.Type == "Fix"
+            );
             return price?.SlotPrice ?? 0;
         }
 
         public decimal GetPriceByBranchAndType(string branchId, string type, bool? isWeekend)
         {
-            if(type == "Flex")
+            if (type == "Flex")
             {
                 return GetSlotPriceOfBookingFlex(branchId);
             }
-            else if(type == "Fix")
+            else if (type == "Fix")
             {
                 return GetSlotPriceOfBookingFix(branchId);
             }
             else
             {
-                return _dbContext.Prices.FirstOrDefault(p => p.BranchId == branchId && p.Type == "By day" && p.IsWeekend == isWeekend).SlotPrice;
+                return _dbContext
+                    .Prices.FirstOrDefault(p =>
+                        p.BranchId == branchId && p.Type == "By day" && p.IsWeekend == isWeekend
+                    )
+                    .SlotPrice;
             }
         }
 
         public Price UpdatePriceByPriceModel(PriceModel priceModel)
         {
-            Price price = GetPrices().FirstOrDefault(p => p.BranchId == priceModel.BranchId && p.Type == priceModel.Type && p.IsWeekend == priceModel.IsWeekend);
+            Price price = GetPrices()
+                .FirstOrDefault(p =>
+                    p.BranchId == priceModel.BranchId
+                    && p.Type == priceModel.Type
+                    && p.IsWeekend == priceModel.IsWeekend
+                );
             if (price != null)
             {
                 price.SlotPrice = priceModel.SlotPrice;

@@ -13,5 +13,4 @@ namespace DAOs.Models
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
     }
-
 }

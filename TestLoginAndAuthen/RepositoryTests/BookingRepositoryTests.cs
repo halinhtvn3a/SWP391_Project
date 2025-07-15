@@ -1,4 +1,9 @@
-﻿using BusinessObjects;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BusinessObjects;
 using CourtCaller.Persistence;
 using DAOs;
 using DAOs.Models;
@@ -6,11 +11,6 @@ using Firebase.Auth;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace UnitTests.RepositoryTests
@@ -36,7 +36,8 @@ namespace UnitTests.RepositoryTests
             mockContext = new Mock<CourtCallerDbContext>();
             bookingList = new List<Booking>
             {
-                new Booking {
+                new Booking
+                {
                     BookingId = "B00001",
                     Id = "U00001",
                     BranchId = "B00001",
@@ -45,7 +46,8 @@ namespace UnitTests.RepositoryTests
                     NumberOfSlot = 5,
                     Status = "Complete",
                     TotalPrice = 100,
-                    TimeSlots = new List<TimeSlot>{
+                    TimeSlots = new List<TimeSlot>
+                    {
                         new TimeSlot()
                         {
                             SlotId = "S00001",
@@ -60,11 +62,8 @@ namespace UnitTests.RepositoryTests
                                 CourtId = "C00001",
                                 CourtName = "Court 1",
                                 BranchId = "B00001",
-                                Branch = new Branch
-                                {
-                                    BranchId = "B00001",
-                                }
-                            }
+                                Branch = new Branch { BranchId = "B00001" },
+                            },
                         },
                         new TimeSlot
                         {
@@ -80,11 +79,8 @@ namespace UnitTests.RepositoryTests
                                 CourtId = "C00001",
                                 CourtName = "Court 1",
                                 BranchId = "B00001",
-                                Branch = new Branch
-                                {
-                                    BranchId = "B00001",
-                                }
-                            }
+                                Branch = new Branch { BranchId = "B00001" },
+                            },
                         },
                         new TimeSlot
                         {
@@ -100,14 +96,11 @@ namespace UnitTests.RepositoryTests
                                 CourtId = "C00001",
                                 CourtName = "Court 1",
                                 BranchId = "B00001",
-                                Branch = new Branch
-                                {
-                                    BranchId = "B00001",
-                                }
-                            }
+                                Branch = new Branch { BranchId = "B00001" },
+                            },
                         },
-                    }
-                }
+                    },
+                },
             };
 
             var data = bookingList.AsQueryable();
@@ -115,7 +108,10 @@ namespace UnitTests.RepositoryTests
             mockSet.As<IQueryable<Booking>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<Booking>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Booking>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Booking>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<Booking>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Bookings).Returns(mockSet.Object);
 
@@ -128,7 +124,15 @@ namespace UnitTests.RepositoryTests
             courtDAO = new CourtDAO(mockContext.Object);
             timeSlotRepository = new TimeSlotRepository(timeSlotDAO, courtDAO);
 
-            bookingRepository = new BookingRepository(bookingDAO, timeSlotDAO, priceDAO, timeSlotRepository, userDAO, userDetailDAO, branchDAO);
+            bookingRepository = new BookingRepository(
+                bookingDAO,
+                timeSlotDAO,
+                priceDAO,
+                timeSlotRepository,
+                userDAO,
+                userDetailDAO,
+                branchDAO
+            );
         }
 
         [Theory]
@@ -152,12 +156,11 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void SearchBookingsByTime_ReturnsBookings()
         {
-            var bookings = bookingRepository.SearchBookingsByTime(DateTime.Now.AddHours(-1), DateTime.Now.AddHours(1));
+            var bookings = bookingRepository.SearchBookingsByTime(
+                DateTime.Now.AddHours(-1),
+                DateTime.Now.AddHours(1)
+            );
             Assert.Equal(1, bookings.Count);
         }
-
-
-
-        
     }
 }

@@ -1,13 +1,13 @@
-﻿using BusinessObjects;
-using DAOs;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
 using CourtCaller.Persistence;
+using DAOs;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 
 namespace UnitTests.DAOTests
 {
@@ -24,11 +24,41 @@ namespace UnitTests.DAOTests
             mockContext = new Mock<CourtCallerDbContext>();
             paymentList = new List<Payment>
             {
-                new Payment { PaymentId = "P00001", BookingId = "B0001", PaymentAmount = 100, PaymentDate = DateTime.Now.AddDays(3) },
-                new Payment { PaymentId = "P00002", BookingId = "B0002", PaymentAmount = 200, PaymentDate = DateTime.Now.AddDays(5) },
-                new Payment { PaymentId = "P00003", BookingId = "B0003", PaymentAmount = 300, PaymentDate = DateTime.Now.AddDays(10) },
-                new Payment { PaymentId = "P00004", BookingId = "B0004", PaymentAmount = 400, PaymentDate = DateTime.Now },
-                new Payment { PaymentId = "P00005", BookingId = "B0005", PaymentAmount = 500, PaymentDate = DateTime.Now }
+                new Payment
+                {
+                    PaymentId = "P00001",
+                    BookingId = "B0001",
+                    PaymentAmount = 100,
+                    PaymentDate = DateTime.Now.AddDays(3),
+                },
+                new Payment
+                {
+                    PaymentId = "P00002",
+                    BookingId = "B0002",
+                    PaymentAmount = 200,
+                    PaymentDate = DateTime.Now.AddDays(5),
+                },
+                new Payment
+                {
+                    PaymentId = "P00003",
+                    BookingId = "B0003",
+                    PaymentAmount = 300,
+                    PaymentDate = DateTime.Now.AddDays(10),
+                },
+                new Payment
+                {
+                    PaymentId = "P00004",
+                    BookingId = "B0004",
+                    PaymentAmount = 400,
+                    PaymentDate = DateTime.Now,
+                },
+                new Payment
+                {
+                    PaymentId = "P00005",
+                    BookingId = "B0005",
+                    PaymentAmount = 500,
+                    PaymentDate = DateTime.Now,
+                },
             };
 
             var data = paymentList.AsQueryable();
@@ -36,7 +66,10 @@ namespace UnitTests.DAOTests
             mockSet.As<IQueryable<Payment>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<Payment>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Payment>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Payment>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<Payment>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Payments).Returns(mockSet.Object);
         }

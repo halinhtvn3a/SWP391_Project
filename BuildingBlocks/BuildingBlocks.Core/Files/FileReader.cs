@@ -1,10 +1,10 @@
-﻿using BuildingBlocks.Abstractions.Files;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
+using BuildingBlocks.Abstractions.Files;
 
 namespace BuildingBlocks.Core.Files
 {

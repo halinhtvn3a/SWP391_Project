@@ -9,21 +9,21 @@ namespace API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class RolesController : ControllerBase
-	{
-		private readonly RoleService _roleService;
+    {
+        private readonly RoleService _roleService;
 
-		public RolesController()
-		{
+        public RolesController()
+        {
             _roleService = new RoleService();
-		}
+        }
 
-		// GET: api/Roles
-		[HttpGet]
+        // GET: api/Roles
+        [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<IEnumerable<IdentityRole>>> GetRoles()
-		{
-			return _roleService.GetRoles();
-		}
+        {
+            return _roleService.GetRoles();
+        }
 
         // GET: api/Roles/5
         [HttpGet("roleId/{id}")]
@@ -54,18 +54,16 @@ namespace API.Controllers
             return Role;
         }
 
-        
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public IActionResult PutRole(string id,[FromBody] string role)
+        public IActionResult PutRole(string id, [FromBody] string role)
         {
-            var roleUser =  _roleService.GetRoleNameByUserId(id);
+            var roleUser = _roleService.GetRoleNameByUserId(id);
             try
             {
-                     _roleService.UpdateRole(id, role);
+                _roleService.UpdateRole(id, role);
 
-                    return Ok();
-                
+                return Ok();
             }
             catch (Exception ex)
             {

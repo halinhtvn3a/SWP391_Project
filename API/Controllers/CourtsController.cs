@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessObjects;
+using DAOs.Helper;
+using DAOs.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BusinessObjects;
 using Services;
-using Microsoft.AspNetCore.Authorization;
-using DAOs.Helper;
-using DAOs.Models;
-
-
-
 
 namespace API.Controllers
 {
@@ -29,21 +26,16 @@ namespace API.Controllers
 
         // GET: api/Courts
         [HttpGet]
-        public async Task<ActionResult<PagingResponse<Court>>> GetCourts([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null) 
+        public async Task<ActionResult<PagingResponse<Court>>> GetCourts(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string searchQuery = null
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
 
-            var (court,total) = await _courtService.GetCourts(pageResult, searchQuery);
-            var response = new PagingResponse<Court>
-            {
-                Data = court,
-                Total = total
-
-            };
+            var (court, total) = await _courtService.GetCourts(pageResult, searchQuery);
+            var response = new PagingResponse<Court> { Data = court, Total = total };
             return Ok(response);
         }
 
@@ -84,7 +76,6 @@ namespace API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<ActionResult<Court>> PostCourt(CourtModel courtModel)
         {
-
             var court = _courtService.AddCourt(courtModel);
 
             return CreatedAtAction("GetCourt", new { id = court.CourtId }, court);
@@ -118,13 +109,14 @@ namespace API.Controllers
         }
 
         [HttpGet("{sortBy}")]
-        public async Task<ActionResult<IEnumerable<Court>>> SortCourt(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Court>>> SortCourt(
+            string sortBy,
+            bool isAsc,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
             return await _courtService.SortCourt(sortBy, isAsc, pageResult);
         }
 
@@ -152,22 +144,22 @@ namespace API.Controllers
         }
 
         [HttpGet("GetCourtsByBranchId")]
-        public async Task<ActionResult<PagingResponse<Court>>> GetCourtsByBranchId([FromQuery] string branchId, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<PagingResponse<Court>>> GetCourtsByBranchId(
+            [FromQuery] string branchId,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string searchQuery = null
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
-            var (court,total) = await _courtService.GetCourtsByBranchId(branchId, pageResult, searchQuery);
-            var response = new PagingResponse<Court>
-            {
-                Data = court,
-                Total = total
-            };
-                
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
+            var (court, total) = await _courtService.GetCourtsByBranchId(
+                branchId,
+                pageResult,
+                searchQuery
+            );
+            var response = new PagingResponse<Court> { Data = court, Total = total };
+
             return Ok(response);
         }
-
     }
 }

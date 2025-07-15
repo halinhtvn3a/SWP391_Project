@@ -1,12 +1,12 @@
-﻿using BusinessObjects;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
 using System.Transactions;
+using BusinessObjects;
 using CourtCaller.Persistence;
+using Microsoft.AspNetCore.Identity;
 
 namespace DAOs
 {
@@ -26,6 +26,7 @@ namespace DAOs
         {
             _courtCallerDbContext = dbContext;
         }
+
         public List<IdentityRole> GetRoles()
         {
             return _courtCallerDbContext.Roles.ToList();
@@ -35,9 +36,6 @@ namespace DAOs
         {
             return _courtCallerDbContext.Roles.FirstOrDefault(m => m.Id.Equals(id));
         }
-
-
-
 
         public IdentityRole AddRole(IdentityRole IdentityRole)
         {
@@ -67,9 +65,12 @@ namespace DAOs
             {
                 try
                 {
-                    var identityRole = _courtCallerDbContext.Roles.Where(m => m.Name.Equals(role)).FirstOrDefault();
-                    var identityUserRole = _courtCallerDbContext.UserRoles.Where(m => m.UserId.Equals(id)).FirstOrDefault();
-
+                    var identityRole = _courtCallerDbContext
+                        .Roles.Where(m => m.Name.Equals(role))
+                        .FirstOrDefault();
+                    var identityUserRole = _courtCallerDbContext
+                        .UserRoles.Where(m => m.UserId.Equals(id))
+                        .FirstOrDefault();
 
                     if (identityRole is null && identityUserRole is null)
                     {
@@ -97,7 +98,6 @@ namespace DAOs
             }
         }
 
-
         public void DeleteRole(string id)
         {
             IdentityRole oIdentityRole = GetRole(id);
@@ -110,11 +110,15 @@ namespace DAOs
 
         public string[] GetRoleNameByUserId(string userId)
         {
-            var roles = _courtCallerDbContext.UserRoles.Where(m => m.UserId.Equals(userId)).ToList();
+            var roles = _courtCallerDbContext
+                .UserRoles.Where(m => m.UserId.Equals(userId))
+                .ToList();
             string[] roleNames = new string[roles.Count];
             for (int i = 0; i < roles.Count; i++)
             {
-                roleNames[i] = _courtCallerDbContext.Roles.FirstOrDefault(m => m.Id.Equals(roles[i].RoleId)).Name;
+                roleNames[i] = _courtCallerDbContext
+                    .Roles.FirstOrDefault(m => m.Id.Equals(roles[i].RoleId))
+                    .Name;
             }
 
             return roleNames;

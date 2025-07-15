@@ -1,15 +1,15 @@
-﻿using BusinessObjects;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
 using DAOs;
 using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CourtCaller.Persistence;
 
 namespace UnitTests.DAOTests
 {
@@ -34,14 +34,36 @@ namespace UnitTests.DAOTests
                     Status = "Active",
                     Courts = new List<Court>
                     {
-                        new Court { CourtId = "C001", CourtName = "Court 1", BranchId = "B00001" },
-                        new Court { CourtId = "C002", CourtName = "Court 2", BranchId = "B00001" }
+                        new Court
+                        {
+                            CourtId = "C001",
+                            CourtName = "Court 1",
+                            BranchId = "B00001",
+                        },
+                        new Court
+                        {
+                            CourtId = "C002",
+                            CourtName = "Court 2",
+                            BranchId = "B00001",
+                        },
                     },
                     Prices = new List<Price>
                     {
-                        new Price { PriceId = "P001", SlotPrice = 100, BranchId = "B00001", IsWeekend = false },
-                        new Price { PriceId = "P002", SlotPrice = 150, BranchId = "B00001", IsWeekend = true }
-                    }
+                        new Price
+                        {
+                            PriceId = "P001",
+                            SlotPrice = 100,
+                            BranchId = "B00001",
+                            IsWeekend = false,
+                        },
+                        new Price
+                        {
+                            PriceId = "P002",
+                            SlotPrice = 150,
+                            BranchId = "B00001",
+                            IsWeekend = true,
+                        },
+                    },
                 },
                 new Branch
                 {
@@ -51,14 +73,36 @@ namespace UnitTests.DAOTests
                     Status = "Active",
                     Courts = new List<Court>
                     {
-                        new Court { CourtId = "C003", CourtName = "Court 3", BranchId = "B00002" },
-                        new Court { CourtId = "C004", CourtName = "Court 4", BranchId = "B00002" }
+                        new Court
+                        {
+                            CourtId = "C003",
+                            CourtName = "Court 3",
+                            BranchId = "B00002",
+                        },
+                        new Court
+                        {
+                            CourtId = "C004",
+                            CourtName = "Court 4",
+                            BranchId = "B00002",
+                        },
                     },
                     Prices = new List<Price>
                     {
-                        new Price { PriceId = "P003", SlotPrice = 120, BranchId = "B00002", IsWeekend = false },
-                        new Price { PriceId = "P004", SlotPrice = 180, BranchId = "B00002", IsWeekend = true }
-                    }
+                        new Price
+                        {
+                            PriceId = "P003",
+                            SlotPrice = 120,
+                            BranchId = "B00002",
+                            IsWeekend = false,
+                        },
+                        new Price
+                        {
+                            PriceId = "P004",
+                            SlotPrice = 180,
+                            BranchId = "B00002",
+                            IsWeekend = true,
+                        },
+                    },
                 },
                 new Branch
                 {
@@ -68,15 +112,37 @@ namespace UnitTests.DAOTests
                     Status = "Inactive",
                     Courts = new List<Court>
                     {
-                        new Court { CourtId = "C005", CourtName = "Court 5", BranchId = "B00003" },
-                        new Court { CourtId = "C006", CourtName = "Court 6", BranchId = "B00003" }
+                        new Court
+                        {
+                            CourtId = "C005",
+                            CourtName = "Court 5",
+                            BranchId = "B00003",
+                        },
+                        new Court
+                        {
+                            CourtId = "C006",
+                            CourtName = "Court 6",
+                            BranchId = "B00003",
+                        },
                     },
                     Prices = new List<Price>
                     {
-                        new Price { PriceId = "P005", SlotPrice = 130, BranchId = "B00003", IsWeekend = false },
-                        new Price { PriceId = "P006", SlotPrice = 190, BranchId = "B00003", IsWeekend = true }
-                    }
-                }
+                        new Price
+                        {
+                            PriceId = "P005",
+                            SlotPrice = 130,
+                            BranchId = "B00003",
+                            IsWeekend = false,
+                        },
+                        new Price
+                        {
+                            PriceId = "P006",
+                            SlotPrice = 190,
+                            BranchId = "B00003",
+                            IsWeekend = true,
+                        },
+                    },
+                },
             };
 
             var data = branchList.AsQueryable();
@@ -84,7 +150,10 @@ namespace UnitTests.DAOTests
             mockSet.As<IQueryable<Branch>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<Branch>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Branch>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Branch>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<Branch>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Branches).Returns(mockSet.Object);
         }
@@ -161,15 +230,11 @@ namespace UnitTests.DAOTests
             Assert.Equal(branchModel.BranchAddress, result.BranchAddress);
         }
 
-
         [Fact]
         public void UpdateBranch_ReturnsBranch()
         {
             var dao = new BranchDAO(mockContext.Object);
-            var branchModel = new PutBranch
-            {
-                BranchName = "Test Branch 4",
-            };
+            var branchModel = new PutBranch { BranchName = "Test Branch 4" };
 
             var result = dao.UpdateBranch("B00001", branchModel);
 
@@ -223,10 +288,15 @@ namespace UnitTests.DAOTests
 
             Assert.Equal(expectedNum, result.Count);
         }
+
         [Theory]
         [InlineData(100, 150, 1)]
         [InlineData(120, 180, 1)]
-        public void GetBranchByPrice_ReturnsAllBranches(decimal minPrice, decimal maxPrice, int expectedNum)
+        public void GetBranchByPrice_ReturnsAllBranches(
+            decimal minPrice,
+            decimal maxPrice,
+            int expectedNum
+        )
         {
             var dao = new BranchDAO(mockContext.Object);
 
@@ -234,8 +304,6 @@ namespace UnitTests.DAOTests
 
             Assert.Equal(expectedNum, result.Count);
         }
-
-
 
         [Theory]
         [InlineData("C001", 1)]

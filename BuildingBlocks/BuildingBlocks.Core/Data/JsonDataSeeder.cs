@@ -1,18 +1,18 @@
-﻿using BuildingBlocks.Abstractions.Data;
-using BuildingBlocks.Abstractions.Files;
-using System;
-using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BuildingBlocks.Abstractions.Data;
+using BuildingBlocks.Abstractions.Files;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 
 namespace BuildingBlocks.Core.Data
 {
     public class JsonDataSeeder<T, TContext> : IDataSeeder
-       where T : class
-       where TContext : DbContext
+        where T : class
+        where TContext : DbContext
     {
         private readonly IFileReader _fileReader;
         private string _absoluteFilePathJson = default!;

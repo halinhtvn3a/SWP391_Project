@@ -1,13 +1,13 @@
-﻿using BusinessObjects;
-using CourtCaller.Persistence;
-using DAOs;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
+using DAOs;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 
 namespace UnitTests.DAOTests
 {
@@ -24,11 +24,51 @@ namespace UnitTests.DAOTests
             mockContext = new Mock<CourtCallerDbContext>();
             bookingList = new List<Booking>
             {
-                new Booking { BookingId = "B00001", BookingDate = DateTime.Now.AddDays(2), Status = "Pending", BookingType = "By day", NumberOfSlot = 5, Id = "C001" },
-                new Booking { BookingId = "B00002", BookingDate = DateTime.Now.AddDays(5), Status = "Pending", BookingType = "Fix", NumberOfSlot = 50, Id = "C001" },
-                new Booking { BookingId = "B00003", BookingDate = DateTime.Now.AddDays(10), Status = "Complete", BookingType = "Flex", NumberOfSlot = 3, Id = "C002" },
-                new Booking { BookingId = "B00003", BookingDate = DateTime.Now, Status = "Complete", BookingType = "Flex", NumberOfSlot = 3, Id = "C002" },
-                new Booking { BookingId = "B00003", BookingDate = DateTime.Now, Status = "Fail", BookingType = "Flex", NumberOfSlot = 3, Id = "C001" }
+                new Booking
+                {
+                    BookingId = "B00001",
+                    BookingDate = DateTime.Now.AddDays(2),
+                    Status = "Pending",
+                    BookingType = "By day",
+                    NumberOfSlot = 5,
+                    Id = "C001",
+                },
+                new Booking
+                {
+                    BookingId = "B00002",
+                    BookingDate = DateTime.Now.AddDays(5),
+                    Status = "Pending",
+                    BookingType = "Fix",
+                    NumberOfSlot = 50,
+                    Id = "C001",
+                },
+                new Booking
+                {
+                    BookingId = "B00003",
+                    BookingDate = DateTime.Now.AddDays(10),
+                    Status = "Complete",
+                    BookingType = "Flex",
+                    NumberOfSlot = 3,
+                    Id = "C002",
+                },
+                new Booking
+                {
+                    BookingId = "B00003",
+                    BookingDate = DateTime.Now,
+                    Status = "Complete",
+                    BookingType = "Flex",
+                    NumberOfSlot = 3,
+                    Id = "C002",
+                },
+                new Booking
+                {
+                    BookingId = "B00003",
+                    BookingDate = DateTime.Now,
+                    Status = "Fail",
+                    BookingType = "Flex",
+                    NumberOfSlot = 3,
+                    Id = "C001",
+                },
             };
 
             var data = bookingList.AsQueryable();
@@ -36,7 +76,10 @@ namespace UnitTests.DAOTests
             mockSet.As<IQueryable<Booking>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<Booking>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<Booking>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<Booking>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<Booking>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.Bookings).Returns(mockSet.Object);
         }
@@ -63,9 +106,11 @@ namespace UnitTests.DAOTests
         [Fact]
         public void SearchBookingsByTime_ReturnsBookings()
         {
-            var dao = new BookingDAO(mockContext.Object
+            var dao = new BookingDAO(mockContext.Object);
+            var bookings = dao.SearchBookingsByTime(
+                DateTime.Now.AddDays(1),
+                DateTime.Now.AddDays(11)
             );
-            var bookings = dao.SearchBookingsByTime(DateTime.Now.AddDays(1), DateTime.Now.AddDays(11));
             Assert.Equal(3, bookings.Count);
         }
 

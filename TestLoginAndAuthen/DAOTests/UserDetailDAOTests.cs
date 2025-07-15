@@ -1,15 +1,15 @@
-﻿using BusinessObjects;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
 using DAOs;
 using DAOs.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CourtCaller.Persistence;
 
 namespace UnitTests.DAOTests
 {
@@ -26,18 +26,52 @@ namespace UnitTests.DAOTests
             mockContext = new Mock<CourtCallerDbContext>();
             userList = new List<UserDetail>
             {
-                new UserDetail { UserId = "U00001", Address = "Q1", Balance = 10, FullName = "A", Point = 10  },
-                new UserDetail { UserId = "U00002", Address = "Q2", Balance = 20, FullName = "B", Point = 20  },
-                new UserDetail { UserId = "U00003", Address = "Q3", Balance = 30, FullName = "C", Point = 30  },
-                new UserDetail { UserId = "U00004", Address = "Q4", Balance = 40, FullName = "D", Point = 40  },
+                new UserDetail
+                {
+                    UserId = "U00001",
+                    Address = "Q1",
+                    Balance = 10,
+                    FullName = "A",
+                    Point = 10,
+                },
+                new UserDetail
+                {
+                    UserId = "U00002",
+                    Address = "Q2",
+                    Balance = 20,
+                    FullName = "B",
+                    Point = 20,
+                },
+                new UserDetail
+                {
+                    UserId = "U00003",
+                    Address = "Q3",
+                    Balance = 30,
+                    FullName = "C",
+                    Point = 30,
+                },
+                new UserDetail
+                {
+                    UserId = "U00004",
+                    Address = "Q4",
+                    Balance = 40,
+                    FullName = "D",
+                    Point = 40,
+                },
             };
 
             var data = userList.AsQueryable();
 
             mockSet.As<IQueryable<UserDetail>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<UserDetail>>().Setup(m => m.Expression).Returns(data.Expression);
-            mockSet.As<IQueryable<UserDetail>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<UserDetail>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<UserDetail>>()
+                .Setup(m => m.ElementType)
+                .Returns(data.ElementType);
+            mockSet
+                .As<IQueryable<UserDetail>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.UserDetails).Returns(mockSet.Object);
         }
@@ -66,7 +100,14 @@ namespace UnitTests.DAOTests
         public void AddUserDetail_ReturnsUserDetail()
         {
             var dao = new UserDetailDAO(mockContext.Object);
-            var user = new UserDetail { UserId = "U00005", Address = "Q5", Balance = 50, FullName = "E", Point = 50 };
+            var user = new UserDetail
+            {
+                UserId = "U00005",
+                Address = "Q5",
+                Balance = 50,
+                FullName = "E",
+                Point = 50,
+            };
             var result = dao.AddUserDetail(user);
             Assert.NotNull(result);
         }

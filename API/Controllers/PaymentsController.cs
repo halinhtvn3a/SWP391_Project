@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BusinessObjects;
+using DAOs.Helper;
+using DAOs.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BusinessObjects;
-using DAOs.Helper;
 using Services;
-using DAOs.Models;
 using Services.Interface;
-using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -23,7 +23,6 @@ namespace API.Controllers
 
         public PaymentsController(TokenForPayment tokenForPayment)
         {
-
             _tokenForPayment = tokenForPayment;
         }
 
@@ -37,56 +36,37 @@ namespace API.Controllers
 
         [HttpGet("GetPayments")]
         [Authorize]
-
-        public async Task<ActionResult<PagingResponse<Payment>>> GetPayments([FromQuery] int pageNumber = 1,
-            [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<PagingResponse<Payment>>> GetPayments(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-
-            var pageResult = new PageResult
-            {
-                PageSize = pageSize,
-                PageNumber = pageNumber,
-            };
+            var pageResult = new PageResult { PageSize = pageSize, PageNumber = pageNumber };
             var (payments, total) = await _paymentService.GetPayments(pageResult);
 
-            var response = new PagingResponse<Payment>
-            {
-                Data = payments,
-                Total = total
-            };
+            var response = new PagingResponse<Payment> { Data = payments, Total = total };
             return Ok(response);
         }
 
         [HttpGet("GetPaymentsByDate")]
         [Authorize]
         public async Task<ActionResult<PagingResponse<Payment>>> GetPaymentsByDate(
-            [FromQuery] int? day, 
-            [FromQuery] int? month, 
+            [FromQuery] int? day,
+            [FromQuery] int? month,
             [FromQuery] int? year,
-            [FromQuery] int pageNumber = 1, 
+            [FromQuery] int pageNumber = 1,
             [FromQuery] int pageSize = 10
-            )
+        )
         {
-
-            var pageResult = new PageResult
-            {
-                PageSize = pageSize,
-                PageNumber = pageNumber,
-            };
+            var pageResult = new PageResult { PageSize = pageSize, PageNumber = pageNumber };
             var (payments, total) = await _paymentService.GetPayments(pageResult, day, month, year);
 
-            var response = new PagingResponse<Payment>
-            {
-                Data = payments,
-                Total = total
-            };
+            var response = new PagingResponse<Payment> { Data = payments, Total = total };
             return Ok(response);
         }
 
-
         [HttpGet("bookingid/{bookingId}")]
         [Authorize]
-
         public async Task<ActionResult<Payment>> GetPaymentByBookingId(string bookingId)
         {
             var payment = _paymentService.GetPaymentByBookingId(bookingId);
@@ -102,7 +82,6 @@ namespace API.Controllers
         // GET: api/Payments/5
         [HttpGet("{id}")]
         [Authorize]
-
         public async Task<ActionResult<Payment>> GetPayment(string id)
         {
             var payment = _paymentService.GetPayment(id);
@@ -150,7 +129,6 @@ namespace API.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Authorize]
-
         public async Task<ActionResult<Payment>> PostPayment(Payment payment)
         {
             _paymentService.AddPayment(payment);
@@ -161,7 +139,6 @@ namespace API.Controllers
         // DELETE: api/Payments/5
         [HttpDelete("{id}")]
         [Authorize]
-
         public async Task<IActionResult> DeletePayment(string id)
         {
             var payment = _paymentService.GetPayment(id);
@@ -182,12 +159,13 @@ namespace API.Controllers
 
         [HttpGet("SearchByDate")]
         [Authorize]
-
-        public async Task<ActionResult<IEnumerable<Payment>>> SearchByDate(DateTime start, DateTime end)
+        public async Task<ActionResult<IEnumerable<Payment>>> SearchByDate(
+            DateTime start,
+            DateTime end
+        )
         {
             return _paymentService.SearchByDate(start, end);
         }
-
 
         [HttpGet("GeneratePaymentToken/{bookingId}")]
         public IActionResult GeneratePaymentToken(string bookingId)
@@ -197,7 +175,7 @@ namespace API.Controllers
         }
 
         [HttpPost("ProcessPayment")]
-        public async Task<ActionResult> ProcessPayment(string role ,string token)
+        public async Task<ActionResult> ProcessPayment(string role, string token)
         {
             //if (bookingId == null)
             //{
@@ -208,7 +186,7 @@ namespace API.Controllers
             //    });
             //}
             var bookingId = _tokenForPayment.ValidateToken(token);
-            var response = await _paymentService.ProcessBookingPayment(role,bookingId);
+            var response = await _paymentService.ProcessBookingPayment(role, bookingId);
             return Ok(response);
         }
 
@@ -217,7 +195,6 @@ namespace API.Controllers
         {
             try
             {
-
                 var bookingId = _tokenForPayment.ValidateToken(token);
                 var response = await _paymentService.ProcessBookingPaymentByBalance(bookingId);
                 if (response.Status == "Error")
@@ -225,7 +202,9 @@ namespace API.Controllers
                     return response.Message switch
                     {
                         "Booking information is required." => BadRequest(response.Message),
-                        "Error While Processing Balance(Not enough balance)" => BadRequest(response.Message),
+                        "Error While Processing Balance(Not enough balance)" => BadRequest(
+                            response.Message
+                        ),
                         _ => BadRequest(response.Message),
                     };
                 }
@@ -233,65 +212,56 @@ namespace API.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ResponseModel
-                {
-                    Status = "Error",
-                    Message = e.Message
-                });
+                return BadRequest(new ResponseModel { Status = "Error", Message = e.Message });
             }
         }
 
-
-
-
         [HttpGet("SortPayment/{sortBy}")]
         [Authorize]
-
-        public async Task<ActionResult<IEnumerable<Payment>> > SortPayment(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Payment>>> SortPayment(
+            string sortBy,
+            bool isAsc,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
             return await _paymentService.SortPayment(sortBy, isAsc, pageResult);
         }
 
         [HttpGet("GetDailyRevenue")]
         [Authorize]
-
         public async Task<ActionResult<decimal>> GetDailyRevenue()
         {
             try
             {
                 var date = DateTime.UtcNow;
-                TimeZoneInfo asianZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+                TimeZoneInfo asianZone = TimeZoneInfo.FindSystemTimeZoneById(
+                    "SE Asia Standard Time"
+                );
                 date = TimeZoneInfo.ConvertTimeFromUtc(date, asianZone);
-               Console.WriteLine(date);
+                Console.WriteLine(date);
                 return Ok(await _paymentService.GetDailyRevenue(date));
             }
             catch (Exception e)
             {
-                return BadRequest(new ResponseModel
-                {
-                    Status = "Error",
-                    Message = e.Message
-                });
+                return BadRequest(new ResponseModel { Status = "Error", Message = e.Message });
             }
         }
 
         [HttpGet("GetRevenueByDate")]
         [Authorize]
-
         public async Task<ActionResult<decimal>> GetRevenueByDate(DateTime start, DateTime end)
-        {   
+        {
             if (start > end)
             {
-                return BadRequest(new ResponseModel
-                {
-                    Status = "Error",
-                    Message = "Start date must be before end date"
-                });
+                return BadRequest(
+                    new ResponseModel
+                    {
+                        Status = "Error",
+                        Message = "Start date must be before end date",
+                    }
+                );
             }
             try
             {
@@ -299,13 +269,8 @@ namespace API.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(new ResponseModel
-                {
-                    Status = "Error",
-                    Message = e.Message
-                });
+                return BadRequest(new ResponseModel { Status = "Error", Message = e.Message });
             }
         }
-
     }
 }

@@ -1,27 +1,23 @@
-﻿using BusinessObjects;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace CourtCaller.Persistence
 {
     public class CourtCallerDbContext : IdentityDbContext, IApplicationDbContext
     {
         public CourtCallerDbContext(DbContextOptions<CourtCallerDbContext> options)
-            : base(options)
-        {
-        }
+            : base(options) { }
 
-        public CourtCallerDbContext()
-        {
-        }
+        public CourtCallerDbContext() { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

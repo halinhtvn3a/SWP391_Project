@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
 using DAOs.Helper;
-using Services;
-using Microsoft.AspNetCore.Identity;
 using DAOs.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Services;
 
 namespace API.Controllers
 {
@@ -28,7 +28,6 @@ namespace API.Controllers
         // GET: api/UserDetails
         [HttpGet]
         [Authorize]
-
         public async Task<ActionResult<IEnumerable<UserDetail>>> GetUserDetails()
         {
             return _userDetailService.GetUserDetails().ToList();
@@ -37,7 +36,6 @@ namespace API.Controllers
         // GET: api/UserDetails/5
         [HttpGet("{id}")]
         [Authorize]
-
         public async Task<ActionResult<UserDetail>> GetUser(string id)
         {
             var user = _userDetailService.GetUserDetail(id);
@@ -54,7 +52,6 @@ namespace API.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [Authorize]
-
         public async Task<IActionResult> PutUser(string id, UserDetailsModel userDetailsModel)
         {
             var user = _userDetailService.GetUserDetail(id);
@@ -70,7 +67,6 @@ namespace API.Controllers
 
         [HttpPut("foruser/{id}")]
         [Authorize]
-
         public async Task<IActionResult> PutUserDetail(string id, PutUserDetail userDetailsModel)
         {
             var user = _userDetailService.GetUserDetail(id);
@@ -116,7 +112,6 @@ namespace API.Controllers
 
         [HttpGet("GetUserDetailByUserId/{userId}")]
         [Authorize]
-
         public async Task<ActionResult<UserDetail>> GetUserDetailByUserId(string userId)
         {
             var user = _userDetailService.GetUserDetail(userId);
@@ -131,7 +126,6 @@ namespace API.Controllers
 
         [HttpGet("GetUserDetailByUserEmail/{userEmail}")]
         [Authorize]
-
         public async Task<ActionResult<List<UserDetail>>> GetUserByEmail(string userEmail)
         {
             if (string.IsNullOrEmpty(userEmail))
@@ -151,24 +145,24 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
 
         [HttpGet("SortUser/{sortBy}")]
         [Authorize]
-
-        public async Task<ActionResult<IEnumerable<UserDetail>>> SortReview(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<UserDetail>>> SortReview(
+            string sortBy,
+            bool isAsc,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
 
             return await _userDetailService.SortUserDetail(sortBy, isAsc, pageResult);
         }
+
         [HttpGet("CountUser")]
         [Authorize]
         public int CountUser()

@@ -1,5 +1,5 @@
-﻿using NuGet.Common;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using NuGet.Common;
 
 namespace API.Helper
 {
@@ -7,9 +7,8 @@ namespace API.Helper
     {
         public static string WarningLogin(string email)
         {
-
             string style =
-    @"
+                @"
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -132,14 +131,12 @@ namespace API.Helper
     </html>
     ";
             return body;
+        }
 
-
-        
-    }
         public static string EnailContent(string email, string token)
         {
             string style =
-    @"
+                @"
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -269,8 +266,6 @@ namespace API.Helper
     </html>
     ";
             return body;
-
-
         }
     }
 }

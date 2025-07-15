@@ -21,10 +21,7 @@
 //using Microsoft.EntityFrameworkCore.Storage;
 //using Xunit;
 
-
 //using Microsoft.EntityFrameworkCore;
-
-
 
 //namespace UnitTests.ControllerTests
 //{
@@ -39,7 +36,6 @@
 //        private readonly CourtCallerDbContext _dbContext;
 //        private readonly AuthenticationController _authController;
 
-
 //        public AuthServiceTests()
 //        {
 //            _userManagerMock = GetMockUserManager<IdentityUser>();
@@ -47,7 +43,6 @@
 //            _configurationMock = new Mock<IConfiguration>();
 //            _mailServiceMock = new Mock<IMailService>();
 //            _tokenServiceMock = new Mock<ITokenService>();
-
 
 //            _dbContextOptions = new DbContextOptionsBuilder<CourtCallerDbContext>()
 //                .UseInMemoryDatabase(databaseName: "TestDatabase")
@@ -63,8 +58,6 @@
 //                _tokenServiceMock.Object
 //            );
 //        }
-
-
 
 //        //lock-out en
 
@@ -90,20 +83,15 @@
 //        //    Assert.Equal("fake-jwt-token", tokenValue);
 //        //}
 
-
-
 //        [Fact]
 //        public async Task Login_InvalidUser_ReturnsUnauthorized()
 //        {
-
 
 //            var loginModel = new LoginModel { Email = "wrong@example.com", Password = "Passwd123!" };
 
 //            _userManagerMock.Setup(um => um.FindByNameAsync(loginModel.Email)).ReturnsAsync((IdentityUser)null);
 
-
 //            var result = await _authController.Login(loginModel);
-
 
 //            var statusCodeResult = Assert.IsType<ObjectResult>(result);
 //            Assert.Equal(StatusCodes.Status500InternalServerError, statusCodeResult.StatusCode);
@@ -140,7 +128,6 @@
 //        //    Assert.Equal("User registered successfully!", response.Message);
 //        //}
 
-     
 //        [Fact]
 //        public async Task Login_MissingEmail_ReturnsBadRequest()
 //        {
@@ -184,12 +171,11 @@
 
 //        //    var unauthorizedResult = Assert.IsType<ObjectResult>(result);
 //        //    Assert.Equal(StatusCodes.Status500InternalServerError, unauthorizedResult.StatusCode);
-           
+
 //        //    var responseModel = Assert.IsType<ResponseModel>(unauthorizedResult.Value);
 //        //    Assert.Equal("Error", responseModel.Status);
 //        //    Assert.Equal("User is banned!", responseModel.Message);
 //        //}
-
 
 //        //[Fact]
 //        //public async Task Register_ExistingUser_ReturnsError()
