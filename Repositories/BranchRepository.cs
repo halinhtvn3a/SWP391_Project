@@ -67,11 +67,6 @@ namespace Repositories
         ) => await _branchDao.GetBranches(pageResult, status, searchQuery);
 
         public async Task<(List<Branch>, int total)> GetBranches(
-            PageResult pageResult,
-            string status
-        ) => await _branchDao.GetBranches(pageResult, status);
-
-        public async Task<(List<Branch>, int total)> GetBranches(
             PageResult pageResult
         ) => await _branchDao.GetBranches(pageResult);
 

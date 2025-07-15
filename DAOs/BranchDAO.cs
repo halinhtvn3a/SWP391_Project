@@ -59,12 +59,7 @@ namespace DAOs
             return (branches, total);
         }
 
-        // overloads for status variants
-        public async Task<(List<Branch>, int total)> GetBranches(
-            PageResult pageResult,
-            string status
-        ) => await GetBranches(pageResult, status, null);
-
+        // overload with status and optional searchQuery
         public async Task<(List<Branch>, int total)> GetBranches(
             PageResult pageResult,
             string status,
