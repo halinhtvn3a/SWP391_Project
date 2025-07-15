@@ -1,9 +1,9 @@
-﻿using DAOs.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAOs.Models;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -19,7 +19,8 @@ namespace DAOs.Helper
             var userAgent = "CourtCallers/1.0 (courtcallers@gmail.com)"; // Replace with your app name and contact info
             client.DefaultRequestHeaders.UserAgent.ParseAdd(userAgent);
 
-            var url = $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(address)}&format=json&addressdetails=1&limit=1";
+            var url =
+                $"https://nominatim.openstreetmap.org/search?q={Uri.EscapeDataString(address)}&format=json&addressdetails=1&limit=1";
             var response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
@@ -34,7 +35,7 @@ namespace DAOs.Helper
                     LocationModel locationModel = new LocationModel
                     {
                         Latitude = latitude,
-                        Longitude = longitude
+                        Longitude = longitude,
                     };
                     return locationModel;
                 }
@@ -45,9 +46,10 @@ namespace DAOs.Helper
             }
             else
             {
-                throw new HttpRequestException($"Response status code does not indicate success: {(int)response.StatusCode} ({response.ReasonPhrase}).");
+                throw new HttpRequestException(
+                    $"Response status code does not indicate success: {(int)response.StatusCode} ({response.ReasonPhrase})."
+                );
             }
         }
     }
-
 }

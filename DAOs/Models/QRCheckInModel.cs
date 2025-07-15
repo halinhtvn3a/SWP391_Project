@@ -9,6 +9,5 @@ namespace DAOs.Models
     public class QRCheckInModel
     {
         public string QRCodeData { get; set; }
-        
     }
 }

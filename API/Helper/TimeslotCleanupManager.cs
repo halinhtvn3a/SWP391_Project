@@ -8,12 +8,10 @@ namespace API.Helper
     {
         private readonly string _connectionString;
 
-
         public TimeslotCleanupManager(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("CourtCallerDb");
         }
-
 
         public async Task CleanupPendingTimeslots()
         {
@@ -35,7 +33,9 @@ WHERE BookingId IN (
 UPDATE bookings
 SET status = 'cancel'
 WHERE status = 'pending' AND DATEDIFF(minute, BookingDate, @CurrentDateTime) > 15;",
-                            connection, transaction);
+                            connection,
+                            transaction
+                        );
 
                         int rowsAffected = await command.ExecuteNonQueryAsync();
                         Console.WriteLine($"{rowsAffected} pending timeslots have been deleted.");

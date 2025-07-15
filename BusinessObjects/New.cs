@@ -35,4 +35,3 @@ namespace BusinessObjects
         public bool IsHomepageSlideshow { get; set; }
     }
 }
-

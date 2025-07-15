@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Services;
 
-
 namespace VNPAYAPI.Areas.VNPayAPI.Controllers
 {
     [Area("VNPayAPI")]
@@ -52,8 +51,7 @@ namespace VNPAYAPI.Areas.VNPayAPI.Controllers
 
                     if (validationResult.IsSuccessful)
                     {
-
-                        return Redirect(validationResult.RedirectUrl); 
+                        return Redirect(validationResult.RedirectUrl);
                     }
                     else
                     {
@@ -69,6 +67,5 @@ namespace VNPAYAPI.Areas.VNPayAPI.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
-
     }
 }

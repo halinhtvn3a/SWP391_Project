@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using BusinessObjects;
-using Services;
-using Microsoft.AspNetCore.Identity;
 using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Services;
 
 namespace API.Controllers
 {
@@ -27,21 +27,17 @@ namespace API.Controllers
 
         // GET: api/Reviews
         [HttpGet]
-        public async Task<ActionResult<PagingResponse<Review>>> GetReviews([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10, [FromQuery] string searchQuery = null)
+        public async Task<ActionResult<PagingResponse<Review>>> GetReviews(
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10,
+            [FromQuery] string searchQuery = null
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
 
-            var  (review,total) = await _reviewService.GetReview(pageResult,searchQuery);
+            var (review, total) = await _reviewService.GetReview(pageResult, searchQuery);
 
-            var response = new PagingResponse<Review>
-            {
-                Data = review,
-                Total = total
-            };
+            var response = new PagingResponse<Review> { Data = review, Total = total };
 
             return Ok(response);
         }
@@ -64,7 +60,6 @@ namespace API.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         [Authorize]
-
         public async Task<IActionResult> PutReview(string id, ReviewModel reviewModel)
         {
             var review = _reviewService.GetReview(id);
@@ -82,7 +77,6 @@ namespace API.Controllers
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         [Authorize]
-
         public async Task<ActionResult<Review>> PostReview(ReviewModel reviewModel)
         {
             var review = _reviewService.AddReview(reviewModel);
@@ -93,7 +87,6 @@ namespace API.Controllers
         // DELETE: api/Reviews/5
         [HttpDelete("{id}")]
         [Authorize]
-
         public async Task<IActionResult> DeleteReview(string id)
         {
             var review = _reviewService.GetReview(id);
@@ -108,7 +101,6 @@ namespace API.Controllers
         //    return reviewService.GetReviews().Any(e => e.ReviewId == id);
         //}
 
-
         [HttpGet("GetReviewsByBranch/{id}")]
         public async Task<ActionResult<IEnumerable<Review>>> GetReviewsByBranch(string id)
         {
@@ -122,7 +114,10 @@ namespace API.Controllers
         }
 
         [HttpGet("SearchByDate/{start}/{end}")]
-        public async Task<ActionResult<IEnumerable<Review>>> SearchByDate(DateTime start, DateTime end)
+        public async Task<ActionResult<IEnumerable<Review>>> SearchByDate(
+            DateTime start,
+            DateTime end
+        )
         {
             return _reviewService.SearchByDate(start, end);
         }
@@ -133,15 +128,15 @@ namespace API.Controllers
             return _reviewService.SearchByRating(rating);
         }
 
-
         [HttpGet("SortReview/{sortBy}")]
-        public async Task<ActionResult<IEnumerable<Review>>> SortReview(string sortBy, bool isAsc, [FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 10)
+        public async Task<ActionResult<IEnumerable<Review>>> SortReview(
+            string sortBy,
+            bool isAsc,
+            [FromQuery] int pageNumber = 1,
+            [FromQuery] int pageSize = 10
+        )
         {
-            var pageResult = new PageResult
-            {
-                PageNumber = pageNumber,
-                PageSize = pageSize
-            };
+            var pageResult = new PageResult { PageNumber = pageNumber, PageSize = pageSize };
 
             return await _reviewService.SortReview(sortBy, isAsc, pageResult);
         }

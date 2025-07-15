@@ -1,0 +1,52 @@
+[
+	{
+		"BookingId": "BK001",
+		"Id": "user1@example.com",
+		"BranchId": "BR001",
+		"BookingDate": "2024-01-15T00:00:00",
+		"BookingType": "Fixed",
+		"NumberOfSlot": 2,
+		"Status": "Confirmed",
+		"TotalPrice": 50.00
+	},
+	{
+		"BookingId": "BK002",
+		"Id": "user2@example.com",
+		"BranchId": "BR002",
+		"BookingDate": "2024-01-16T00:00:00",
+		"BookingType": "Flexible",
+		"NumberOfSlot": 1,
+		"Status": "Pending",
+		"TotalPrice": 30.00
+	},
+	{
+		"BookingId": "BK003",
+		"Id": "user3@example.com",
+		"BranchId": "BR003",
+		"BookingDate": "2024-01-17T00:00:00",
+		"BookingType": "Fixed",
+		"NumberOfSlot": 3,
+		"Status": "Confirmed",
+		"TotalPrice": 60.00
+	},
+	{
+		"BookingId": "BK004",
+		"Id": "user4@example.com",
+		"BranchId": "BR004",
+		"BookingDate": "2024-01-18T00:00:00",
+		"BookingType": "Flexible",
+		"NumberOfSlot": 1,
+		"Status": "Cancelled",
+		"TotalPrice": 28.00
+	},
+	{
+		"BookingId": "BK005",
+		"Id": "user5@example.com",
+		"BranchId": "BR005",
+		"BookingDate": "2024-01-19T00:00:00",
+		"BookingType": "Fixed",
+		"NumberOfSlot": 2,
+		"Status": "Confirmed",
+		"TotalPrice": 70.00
+	}
+]

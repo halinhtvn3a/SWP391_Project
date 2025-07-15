@@ -1,18 +1,18 @@
-﻿using BusinessObjects;
-using DAOs.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Repositories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DAOs.Helper;
-using Microsoft.AspNetCore.Http.HttpResults;
-using MimeKit.Cryptography;
+using BusinessObjects;
 using DAOs;
+using DAOs.Helper;
+using DAOs.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using MimeKit.Cryptography;
+using Repositories;
 
 namespace Services
 {
@@ -23,6 +23,7 @@ namespace Services
         private readonly UserDetailService _userDetailService = null;
         private readonly VnpayService _vnpayService = null;
         private readonly ILogger<VnpayService> _logger;
+
         public PaymentService()
         {
             if (_paymentRepository == null)
@@ -41,22 +42,28 @@ namespace Services
             {
                 _userDetailService = new UserDetailService();
             }
-
         }
 
-        public async Task<(List<Payment>, int total)> GetPayments(PageResult pageResult) => await _paymentRepository.GetPayments(pageResult);
+        public async Task<(List<Payment>, int total)> GetPayments(PageResult pageResult) =>
+            await _paymentRepository.GetPayments(pageResult);
+
         public Payment AddPayment(Payment Payment) => _paymentRepository.AddPayment(Payment);
+
         public void DeletePayment(string id) => _paymentRepository.DeletePayment(id);
 
-        public Payment GetPaymentByBookingId(string bookingId) => _paymentRepository.GetPaymentByBookingId(bookingId);
+        public Payment GetPaymentByBookingId(string bookingId) =>
+            _paymentRepository.GetPaymentByBookingId(bookingId);
 
         public Payment GetPayment(string id) => _paymentRepository.GetPayment(id);
+
         public List<Payment> GetPayments() => _paymentRepository.GetPayments();
+
         //public Payment UpdatePayment(string id, Payment Payment) => PaymentRepository.UpdatePayment(id, Payment);
 
-        public List<Payment> SearchByDate(DateTime start, DateTime end) => _paymentRepository.SearchByDate(start, end);
+        public List<Payment> SearchByDate(DateTime start, DateTime end) =>
+            _paymentRepository.SearchByDate(start, end);
 
-        public async Task<string> ProcessBookingPayment(string role ,string bookingId)
+        public async Task<string> ProcessBookingPayment(string role, string bookingId)
         {
             var bookings = await _bookingRepository.GetBooking(bookingId);
             if (bookings == null)
@@ -64,11 +71,15 @@ namespace Services
                 return null;
             }
 
-            var paymentURL = _vnpayService.CreatePaymentUrl(bookings.TotalPrice,role,bookings.BookingId);
-
+            var paymentURL = _vnpayService.CreatePaymentUrl(
+                bookings.TotalPrice,
+                role,
+                bookings.BookingId
+            );
 
             return paymentURL;
         }
+
         public async Task<ResponseModel> ProcessBookingPaymentByBalance(string bookingId)
         {
             try
@@ -81,7 +92,7 @@ namespace Services
                     return new ResponseModel
                     {
                         Status = "Error",
-                        Message = "Booking information is required."
+                        Message = "Booking information is required.",
                     };
                 }
 
@@ -90,7 +101,7 @@ namespace Services
                     return new ResponseModel
                     {
                         Status = "Error",
-                        Message = "Error While Processing Balance(Not enough balance)"
+                        Message = "Error While Processing Balance(Not enough balance)",
                     };
                 }
                 user.Balance -= bookings.TotalPrice;
@@ -105,31 +116,33 @@ namespace Services
                     PaymentDate = DateTime.Now,
                     PaymentMessage = "Complete",
                     PaymentStatus = "True",
-
                 };
                 _paymentRepository.AddPayment(payment);
-                return new ResponseModel
-                {
-                    Status = "Success",
-                    Message = "Payment Success"
-                };
+                return new ResponseModel { Status = "Success", Message = "Payment Success" };
             }
             catch (Exception e)
             {
-                return new ResponseModel
-                {
-                    Status = "Error",
-                    Message = e.Message
-                };
+                return new ResponseModel { Status = "Error", Message = e.Message };
             }
         }
-        public async Task<List<Payment>> SortPayment(string? sortBy, bool isAsc, PageResult pageResult) => await _paymentRepository.SortPayment(sortBy, isAsc, pageResult);
 
-        public async Task<decimal> GetDailyRevenue(DateTime date) => await _paymentRepository.GetDailyRevenue(date);
+        public async Task<List<Payment>> SortPayment(
+            string? sortBy,
+            bool isAsc,
+            PageResult pageResult
+        ) => await _paymentRepository.SortPayment(sortBy, isAsc, pageResult);
 
-        public async Task<decimal> GetRevenueByDay(DateTime start, DateTime end) => await _paymentRepository.GetRevenueByDay(start, end);
+        public async Task<decimal> GetDailyRevenue(DateTime date) =>
+            await _paymentRepository.GetDailyRevenue(date);
 
-        public async Task<(List<Payment>, int total)> GetPayments(PageResult pageResult, int? day, int? month, int? year) => await _paymentRepository.GetPayments(pageResult, day, month, year);
+        public async Task<decimal> GetRevenueByDay(DateTime start, DateTime end) =>
+            await _paymentRepository.GetRevenueByDay(start, end);
 
+        public async Task<(List<Payment>, int total)> GetPayments(
+            PageResult pageResult,
+            int? day,
+            int? month,
+            int? year
+        ) => await _paymentRepository.GetPayments(pageResult, day, month, year);
     }
 }

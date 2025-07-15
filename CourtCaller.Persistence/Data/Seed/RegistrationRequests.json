@@ -1,0 +1,42 @@
+[
+	{
+		"Id": 1,
+		"Email": "newuser1@example.com",
+		"Password": "hashedpassword123",
+		"FullName": "Tan Wei Ming",
+		"Token": "token_001_abc123",
+		"TokenExpiration": "2024-02-01T00:00:00"
+	},
+	{
+		"Id": 2,
+		"Email": "newuser2@example.com",
+		"Password": "hashedpassword456",
+		"FullName": "Sarah Lim",
+		"Token": "token_002_def456",
+		"TokenExpiration": "2024-02-02T00:00:00"
+	},
+	{
+		"Id": 3,
+		"Email": "newuser3@example.com",
+		"Password": "hashedpassword789",
+		"FullName": "Raj Kumar",
+		"Token": "token_003_ghi789",
+		"TokenExpiration": "2024-02-03T00:00:00"
+	},
+	{
+		"Id": 4,
+		"Email": "newuser4@example.com",
+		"Password": "hashedpassword012",
+		"FullName": "Chen Mei Ling",
+		"Token": "token_004_jkl012",
+		"TokenExpiration": "2024-02-04T00:00:00"
+	},
+	{
+		"Id": 5,
+		"Email": "newuser5@example.com",
+		"Password": "hashedpassword345",
+		"FullName": "Ahmad bin Ismail",
+		"Token": "token_005_mno345",
+		"TokenExpiration": "2024-02-05T00:00:00"
+	}
+]

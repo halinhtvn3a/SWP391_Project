@@ -1,0 +1,100 @@
+[
+	{
+		"CourtId": "CT001",
+		"BranchId": "BR001",
+		"CourtName": "Court A1",
+		"CourtPicture": "https://example.com/images/court1.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT002",
+		"BranchId": "BR001",
+		"CourtName": "Court A2",
+		"CourtPicture": "https://example.com/images/court2.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT003",
+		"BranchId": "BR001",
+		"CourtName": "Court A3",
+		"CourtPicture": "https://example.com/images/court3.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT004",
+		"BranchId": "BR002",
+		"CourtName": "Court B1",
+		"CourtPicture": "https://example.com/images/court4.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT005",
+		"BranchId": "BR002",
+		"CourtName": "Court B2",
+		"CourtPicture": "https://example.com/images/court5.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT006",
+		"BranchId": "BR002",
+		"CourtName": "Court B3",
+		"CourtPicture": "https://example.com/images/court6.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT007",
+		"BranchId": "BR003",
+		"CourtName": "Court C1",
+		"CourtPicture": "https://example.com/images/court7.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT008",
+		"BranchId": "BR003",
+		"CourtName": "Court C2",
+		"CourtPicture": "https://example.com/images/court8.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT009",
+		"BranchId": "BR004",
+		"CourtName": "Court D1",
+		"CourtPicture": "https://example.com/images/court9.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT010",
+		"BranchId": "BR004",
+		"CourtName": "Court D2",
+		"CourtPicture": "https://example.com/images/court10.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT011",
+		"BranchId": "BR005",
+		"CourtName": "Court E1",
+		"CourtPicture": "https://example.com/images/court11.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT012",
+		"BranchId": "BR005",
+		"CourtName": "Court E2",
+		"CourtPicture": "https://example.com/images/court12.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT013",
+		"BranchId": "BR005",
+		"CourtName": "Court E3",
+		"CourtPicture": "https://example.com/images/court13.jpg",
+		"Status": "Active"
+	},
+	{
+		"CourtId": "CT014",
+		"BranchId": "BR005",
+		"CourtName": "Court E4",
+		"CourtPicture": "https://example.com/images/court14.jpg",
+		"Status": "Active"
+	}
+]

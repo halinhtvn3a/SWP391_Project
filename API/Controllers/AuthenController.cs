@@ -1,27 +1,21 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 using Azure;
 using BusinessObjects;
+using DAOs.Helper;
 using DAOs.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using DAOs.Helper;
-using Services;
-using Repositories.Helper;
-using Services.Interface;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
 using NuGet.Common;
-using System.Net;
-using Microsoft.AspNetCore.WebUtilities;
+using Repositories.Helper;
+using Services;
+using Services.Interface;
 using StackExchange.Redis;
-
-
-
-
-
-
 
 namespace API.Controllers
 {
@@ -37,8 +31,14 @@ namespace API.Controllers
         private readonly IConfiguration _configuration;
         private readonly IMailService _mailService;
 
-
-        public AuthenticationController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IMailService mailService, ITokenService tokenService, IConnectionMultiplexer redis)
+        public AuthenticationController(
+            UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager,
+            IConfiguration configuration,
+            IMailService mailService,
+            ITokenService tokenService,
+            IConnectionMultiplexer redis
+        )
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -53,24 +53,43 @@ namespace API.Controllers
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
             if (ValidatePassword.ValidatePass(model.Password) == false)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "Password format is incorrect." });
-            if (model.Email == null || model.Password == null || model.Email == "" || model.Password == "")
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "Email or password is empty." });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseModel
+                    {
+                        Status = "Error",
+                        Message = "Password format is incorrect.",
+                    }
+                );
+            if (
+                model.Email == null
+                || model.Password == null
+                || model.Email == ""
+                || model.Password == ""
+            )
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseModel { Status = "Error", Message = "Email or password is empty." }
+                );
             //var ip = Utils.GetIpAddress(HttpContext);
             var user = await _userManager.FindByEmailAsync(model.Email);
 
             if (user == null)
             {
-                return
-                    StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User not found!" });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseModel { Status = "Error", Message = "User not found!" }
+                );
             }
 
             //check if user is banned
             //if (BanList.BannedUsers.Contains(ip) || userDetail.Status == false)
             if (user.LockoutEnabled == false)
             {
-                return
-                    StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User is banned!" });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseModel { Status = "Error", Message = "User is banned!" }
+                );
             }
             else
             {
@@ -84,12 +103,14 @@ namespace API.Controllers
                         string token = generateToken.Item1;
                         DateTime dateTime = generateToken.Item2;
                         _userService.SendJwtToRedis(token);
-                        return Ok(new
-                        {
-                            Token = token,
-                            RefreshToken = _tokenService.GenerateRefreshToken(),
-                            ExpiredTime = dateTime
-                        });
+                        return Ok(
+                            new
+                            {
+                                Token = token,
+                                RefreshToken = _tokenService.GenerateRefreshToken(),
+                                ExpiredTime = dateTime,
+                            }
+                        );
                     }
                     else
                     {
@@ -117,19 +138,25 @@ namespace API.Controllers
         {
             var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User already exists!" });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseModel { Status = "Error", Message = "User already exists!" }
+                );
 
             IdentityUser user = new IdentityUser()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Email
+                UserName = model.Email,
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
-                return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = string.Join(" ", errors) });
+                return StatusCode(
+                    StatusCodes.Status400BadRequest,
+                    new ResponseModel { Status = "Error", Message = string.Join(" ", errors) }
+                );
             }
 
             if (!await _roleManager.RoleExistsAsync("Customer"))
@@ -162,13 +189,14 @@ namespace API.Controllers
                 UserId = user.Id,
                 Point = 0,
                 FullName = model.FullName,
-                ProfilePicture = $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/UserImage%2F2b24782f-6bef-439a-b46a-57feb2bd38f5?alt=media&token=54e5cc04-60ff-40d6-923d-1ccd3953a9b6"
-
+                ProfilePicture =
+                    $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/UserImage%2F2b24782f-6bef-439a-b46a-57feb2bd38f5?alt=media&token=54e5cc04-60ff-40d6-923d-1ccd3953a9b6",
             };
             _userDetailService.AddUserDetail(userDetail);
-            return Ok(new ResponseModel() { Status = "Success", Message = "User created successfully!" });
+            return Ok(
+                new ResponseModel() { Status = "Success", Message = "User created successfully!" }
+            );
         }
-
 
         [HttpGet]
         [Route("confirm-email")]
@@ -176,7 +204,10 @@ namespace API.Controllers
         {
             var user = await _userManager.FindByEmailAsync(email);
             if (user == null)
-                return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = "Invalid email." });
+                return StatusCode(
+                    StatusCodes.Status400BadRequest,
+                    new ResponseModel { Status = "Error", Message = "Invalid email." }
+                );
             var base64 = WebEncoders.Base64UrlDecode(token);
             var decodedToken = Encoding.UTF8.GetString(base64);
             Console.WriteLine("code nhận: " + token);
@@ -184,49 +215,59 @@ namespace API.Controllers
 
             var result = _userManager.ConfirmEmailAsync(user, decodedToken);
             if (!result.IsCompleted)
-                return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = "Email confirmation failed." });
+                return StatusCode(
+                    StatusCodes.Status400BadRequest,
+                    new ResponseModel { Status = "Error", Message = "Email confirmation failed." }
+                );
             await _userManager.AddToRoleAsync(user, "Customer");
             UserDetail userDetail = new UserDetail()
             {
                 UserId = user.Id,
                 Point = 0,
-                FullName = user.UserName,  // Replace with actual full name if available
-                ProfilePicture = $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/user.jpg?alt=media&token=3601d057-9503-4cc8-b203-2eb0b89f900d"
+                FullName = user.UserName, // Replace with actual full name if available
+                ProfilePicture =
+                    $"https://firebasestorage.googleapis.com/v0/b/court-callers.appspot.com/o/user.jpg?alt=media&token=3601d057-9503-4cc8-b203-2eb0b89f900d",
             };
             _userDetailService.AddUserDetail(userDetail);
 
-            return Ok(new ResponseModel() { Status = "Success", Message = "Email confirmed successfully!" });
-
+            return Ok(
+                new ResponseModel()
+                {
+                    Status = "Success",
+                    Message = "Email confirmed successfully!",
+                }
+            );
         }
-
-
-
 
         [HttpPost]
         [Route("register-admin")]
-        
         public async Task<IActionResult> RegisterAdmin([FromBody] RegisterModel model)
         {
             var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User already exists!" });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseModel { Status = "Error", Message = "User already exists!" }
+                );
 
             IdentityUser user = new IdentityUser()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Email
+                UserName = model.Email,
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
-                return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = string.Join(" ", errors) });
+                return StatusCode(
+                    StatusCodes.Status400BadRequest,
+                    new ResponseModel { Status = "Error", Message = string.Join(" ", errors) }
+                );
             }
 
             if (!await _roleManager.RoleExistsAsync("Admin"))
                 await _roleManager.CreateAsync(new IdentityRole("Admin"));
-
 
             await _userManager.AddToRoleAsync(user, "Admin");
 
@@ -235,16 +276,13 @@ namespace API.Controllers
                 UserId = user.Id,
                 Point = 0,
                 FullName = model.FullName,
-
             };
             _userDetailService.AddUserDetail(userDetail);
 
-            return Ok(new ResponseModel { Status = "Success", Message = "User created successfully!" });
+            return Ok(
+                new ResponseModel { Status = "Success", Message = "User created successfully!" }
+            );
         }
-
-
-
-
 
         [HttpPost]
         [Route("register-staff")]
@@ -252,19 +290,25 @@ namespace API.Controllers
         {
             var userExists = await _userManager.FindByEmailAsync(model.Email);
             if (userExists != null)
-                return StatusCode(StatusCodes.Status500InternalServerError, new ResponseModel { Status = "Error", Message = "User already exists!" });
+                return StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseModel { Status = "Error", Message = "User already exists!" }
+                );
 
             IdentityUser user = new IdentityUser()
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Email
+                UserName = model.Email,
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
             {
                 var errors = result.Errors.Select(e => e.Description);
-                return StatusCode(StatusCodes.Status400BadRequest, new ResponseModel { Status = "Error", Message = string.Join(" ", errors) });
+                return StatusCode(
+                    StatusCodes.Status400BadRequest,
+                    new ResponseModel { Status = "Error", Message = string.Join(" ", errors) }
+                );
             }
 
             if (!await _roleManager.RoleExistsAsync("Staff"))
@@ -277,14 +321,13 @@ namespace API.Controllers
                 UserId = user.Id,
                 Point = 0,
                 FullName = model.FullName,
-
             };
             _userDetailService.AddUserDetail(userDetail);
 
-            return Ok(new ResponseModel { Status = "Success", Message = "Staff created successfully!" });
+            return Ok(
+                new ResponseModel { Status = "Success", Message = "Staff created successfully!" }
+            );
         }
-
-
 
         [HttpPost]
         [Route("google-login")]
@@ -303,7 +346,7 @@ namespace API.Controllers
                 {
                     Email = email,
                     UserName = email,
-                    SecurityStamp = Guid.NewGuid().ToString()
+                    SecurityStamp = Guid.NewGuid().ToString(),
                 };
                 await _userManager.CreateAsync(user);
                 UserDetail userDetail = new UserDetail()
@@ -311,21 +354,17 @@ namespace API.Controllers
                     UserId = user.Id,
                     Point = 0,
                     FullName = name,
-                    ProfilePicture = picture
+                    ProfilePicture = picture,
                     //Id = user.Id
                 };
                 _userDetailService.AddUserDetail(userDetail);
                 await _userManager.AddToRoleAsync(user, "Customer");
-
             }
 
             var roles = await _userManager.GetRolesAsync(user);
             var userRole = roles.FirstOrDefault();
 
-            return Ok(new
-            {
-                Token = _tokenService.GenerateToken(user, userRole)
-            });
+            return Ok(new { Token = _tokenService.GenerateToken(user, userRole) });
         }
 
         //Facebook Login
@@ -346,7 +385,7 @@ namespace API.Controllers
                 {
                     Email = email,
                     UserName = email,
-                    SecurityStamp = Guid.NewGuid().ToString()
+                    SecurityStamp = Guid.NewGuid().ToString(),
                 };
                 await _userManager.CreateAsync(user);
                 UserDetail userDetail = new UserDetail()
@@ -354,24 +393,17 @@ namespace API.Controllers
                     UserId = user.Id,
                     Point = 0,
                     FullName = name,
-                    ProfilePicture = picture
+                    ProfilePicture = picture,
                 };
                 _userDetailService.AddUserDetail(userDetail);
                 await _userManager.AddToRoleAsync(user, "Customer");
-
             }
 
             var roles = await _userManager.GetRolesAsync(user);
             var userRole = roles.FirstOrDefault();
 
-            return Ok(new
-            {
-                Token = _tokenService.GenerateToken(user, userRole)
-            });
+            return Ok(new { Token = _tokenService.GenerateToken(user, userRole) });
         }
-
-
-
 
         //ForgetPassword
         [HttpPost]
@@ -380,22 +412,36 @@ namespace API.Controllers
         {
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
-                return StatusCode(StatusCodes.Status404NotFound, new ResponseModel { Status = "Error", Message = "User does not exist!" });
+                return StatusCode(
+                    StatusCodes.Status404NotFound,
+                    new ResponseModel { Status = "Error", Message = "User does not exist!" }
+                );
 
             var token = await _userManager.GeneratePasswordResetTokenAsync(user);
             var base64 = Encoding.UTF8.GetBytes(token);
             var encodeToken = WebEncoders.Base64UrlEncode(base64);
-            var callbackUrl = Url.Action("ResetPassword", "Authentication", new { token = encodeToken, email = user.Email }, Request.Scheme);
+            var callbackUrl = Url.Action(
+                "ResetPassword",
+                "Authentication",
+                new { token = encodeToken, email = user.Email },
+                Request.Scheme
+            );
 
             var mailRequest = new MailRequest
             {
                 ToEmail = user.Email,
                 Subject = "Court Caller Confirmation Email (Reset Password)",
-                Body = API.Helper.FormEmail.EnailContent(user.Email, callbackUrl)
+                Body = API.Helper.FormEmail.EnailContent(user.Email, callbackUrl),
             };
             await _mailService.SendEmailAsync(mailRequest);
 
-            return Ok(new ResponseModel { Status = "Success", Message = "Reset password link has been sent to your email address." });
+            return Ok(
+                new ResponseModel
+                {
+                    Status = "Success",
+                    Message = "Reset password link has been sent to your email address.",
+                }
+            );
         }
 
         [HttpGet]
@@ -420,27 +466,27 @@ namespace API.Controllers
             //}
 
             // Redirect to the React app's reset password page with token and email
-            var resetPasswordUrl = $"https://localhost:3000/reset-password?token={token}&email={email}";
+            var resetPasswordUrl =
+                $"https://localhost:3000/reset-password?token={token}&email={email}";
             return Redirect(resetPasswordUrl);
         }
-
-
 
         //ResetPassword
         [HttpPost]
         [Route("reset-password")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordModel model)
         {
-
-
             var user = await _userManager.FindByEmailAsync(model.Email);
             if (user == null)
                 return RedirectToAction("ResetPasswordConfirmation", "Authentication");
             var base64 = WebEncoders.Base64UrlDecode(model.Token);
             var decodedToken = Encoding.UTF8.GetString(base64);
 
-            var resetPassResult = await _userManager.ResetPasswordAsync(user, decodedToken, model.Password);
-
+            var resetPassResult = await _userManager.ResetPasswordAsync(
+                user,
+                decodedToken,
+                model.Password
+            );
 
             if (!resetPassResult.Succeeded)
             {
@@ -448,11 +494,18 @@ namespace API.Controllers
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
-                return BadRequest(new ResponseModel { Status = "Error", Message = "Something Wrong, Please Try Again" });
+                return BadRequest(
+                    new ResponseModel
+                    {
+                        Status = "Error",
+                        Message = "Something Wrong, Please Try Again",
+                    }
+                );
             }
 
             return Ok(new ResponseModel { Status = "Complele", Message = "Confirmed" });
         }
+
         [HttpPost("refresh")]
         public async Task<IActionResult> RefreshToken([FromBody] RefreshTokenModel model)
         {
@@ -460,8 +513,12 @@ namespace API.Controllers
             {
                 var handler = new JwtSecurityTokenHandler();
                 var jsonToken = handler.ReadToken(model.Token) as JwtSecurityToken;
-                var emailClaim = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Email);
-                var email = jsonToken?.Claims.FirstOrDefault(claim => claim.Type == "email").ToString();
+                var emailClaim = jsonToken?.Claims.FirstOrDefault(claim =>
+                    claim.Type == ClaimTypes.Email
+                );
+                var email = jsonToken
+                    ?.Claims.FirstOrDefault(claim => claim.Type == "email")
+                    .ToString();
                 var cleanEmail = email.Replace("email: ", "").Trim();
                 if (_userService.IsBlacklisted(model.Token, model.RefreshToken))
                 {
@@ -469,7 +526,7 @@ namespace API.Controllers
                     {
                         ToEmail = cleanEmail,
                         Subject = "Court Callers Warning Email",
-                        Body = API.Helper.FormEmail.WarningLogin(cleanEmail)
+                        Body = API.Helper.FormEmail.WarningLogin(cleanEmail),
                     };
                     return BadRequest(new { Message = "Warning Email" });
                 }
@@ -484,12 +541,14 @@ namespace API.Controllers
                 string token = generateToken.Item1;
                 DateTime expiredTime = generateToken.Item2;
                 var refreshToken = _tokenService.GenerateRefreshToken();
-                return Ok(new
-                {
-                    Token = token,
-                    RefreshToken = refreshToken,
-                    ExpiredTime = expiredTime
-                });
+                return Ok(
+                    new
+                    {
+                        Token = token,
+                        RefreshToken = refreshToken,
+                        ExpiredTime = expiredTime,
+                    }
+                );
             }
             catch (Exception ex)
             {

@@ -1,16 +1,16 @@
-﻿using BusinessObjects;
-using DAOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using DAOs;
+using DAOs.Helper;
+using DAOs.Helper;
 using DAOs.Models;
-using DAOs.Helper;
-using Microsoft.EntityFrameworkCore;
-using DAOs.Helper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Repositories
@@ -24,7 +24,6 @@ namespace Repositories
         private readonly UserDetailDAO _userDetailDao = null;
         private readonly TimeSlotRepository _timeSlotRepository = null;
         private readonly BranchDAO _branchDAO = null;
-
 
         public BookingRepository()
         {
@@ -64,8 +63,15 @@ namespace Repositories
             }
         }
 
-
-        public BookingRepository(BookingDAO bookingDAO, TimeSlotDAO timeSlotDAO, PriceDAO priceDAO, TimeSlotRepository timeSlotRepository, UserDAO user, UserDetailDAO userDetailDAO, BranchDAO branchDAO)
+        public BookingRepository(
+            BookingDAO bookingDAO,
+            TimeSlotDAO timeSlotDAO,
+            PriceDAO priceDAO,
+            TimeSlotRepository timeSlotRepository,
+            UserDAO user,
+            UserDetailDAO userDetailDAO,
+            BranchDAO branchDAO
+        )
         {
             _bookingDao = bookingDAO;
             _timeSlotDao = timeSlotDAO;
@@ -77,26 +83,33 @@ namespace Repositories
         }
 
         //public Booking AddBooking(Booking Booking) => BookingDAO.AddBooking(Booking);
-        public List<Booking> GetBookingsByUserId(string userId) => _bookingDao.GetBookingsByUserId(userId);
+        public List<Booking> GetBookingsByUserId(string userId) =>
+            _bookingDao.GetBookingsByUserId(userId);
 
-        public async Task UpdateBooking(Booking booking) => await _bookingDao.UpdateBooking(booking);
+        public async Task UpdateBooking(Booking booking) =>
+            await _bookingDao.UpdateBooking(booking);
 
         public void DeleteBooking(string id) => _bookingDao.DeleteBooking(id);
 
         public async Task<Booking> GetBooking(string id) => await _bookingDao.GetBooking(id);
 
+        public async Task<(List<Booking>, int total)> GetBookings(
+            PageResult pageResult,
+            string searchQuery = null
+        ) => await _bookingDao.GetBookings(pageResult, searchQuery);
 
-        public async Task<(List<Booking>, int total)> GetBookings(PageResult pageResult, string searchQuery = null) =>
-            await _bookingDao.GetBookings(pageResult, searchQuery);
-
-        public List<Booking> GetBookingsByStatus(string status) => _bookingDao.GetBookingsByStatus(status);
+        public List<Booking> GetBookingsByStatus(string status) =>
+            _bookingDao.GetBookingsByStatus(status);
 
         public async Task SaveChangesAsync() => await _bookingDao.SaveChangesAsync();
-        public List<Booking> SearchBookingsByTime(DateTime start, DateTime end) => _bookingDao.SearchBookingsByTime(start, end);
 
-        public async Task<List<Booking>> GetBookingsByUserId(string userId, PageResult pageResult) => await _bookingDao.GetBookingsByUserId(userId, pageResult);
+        public List<Booking> SearchBookingsByTime(DateTime start, DateTime end) =>
+            _bookingDao.SearchBookingsByTime(start, end);
 
-
+        public async Task<List<Booking>> GetBookingsByUserId(
+            string userId,
+            PageResult pageResult
+        ) => await _bookingDao.GetBookingsByUserId(userId, pageResult);
 
         public async Task<TimeSlot> AddBookingTransaction(string slotId)
         {
@@ -119,7 +132,6 @@ namespace Repositories
         //                return false;
         //            }
 
-
         //        }
 
         //        decimal paymentAmount = 0;
@@ -133,9 +145,6 @@ namespace Repositories
         //        }
 
         //        var generateBookingId = GenerateId.GenerateShortBookingId();
-
-
-
 
         //        // Tạo booking mới
         //        var booking = new Booking
@@ -169,9 +178,6 @@ namespace Repositories
         //        // // Cập nhật trạng thái slot
         //        // slot.IsAvailable = false;
         //        //_timeSlotDao.UpdateSlot(slot);
-
-
-
 
         //        // // Tạo booking mới
         //        // var booking = new Booking
@@ -212,13 +218,15 @@ namespace Repositories
             string branchId;
             try
             {
-                if(slotModels.IsNullOrEmpty())
+                if (slotModels.IsNullOrEmpty())
                 {
                     throw new ArgumentException("SlotModels is not null or empty");
                 }
                 if (userId.IsNullOrEmpty() || _userDao.GetUser(userId) is null)
                 {
-                    throw new ArgumentException("userId is not null and having this user in system");
+                    throw new ArgumentException(
+                        "userId is not null and having this user in system"
+                    );
                 }
                 foreach (var s in slotModels)
                 {
@@ -230,7 +238,10 @@ namespace Repositories
 
                 if (slotModels[0].CourtId != null)
                 {
-                    branchId = _branchDAO.GetBranchesByCourtId(slotModels[0].CourtId).FirstOrDefault().BranchId;
+                    branchId = _branchDAO
+                        .GetBranchesByCourtId(slotModels[0].CourtId)
+                        .FirstOrDefault()
+                        .BranchId;
                 }
                 else
                 {
@@ -239,7 +250,6 @@ namespace Repositories
 
                 if (CheckAvaiableSlotsFromBookingTypeFlex(userId, branchId) != null)
                 {
-
                     Booking booking = CheckAvaiableSlotsFromBookingTypeFlex(userId, branchId);
                     foreach (var s in slotModels)
                     {
@@ -262,7 +272,7 @@ namespace Repositories
                         Status = "Pending",
                         TotalPrice = 0,
                         BookingType = "By Day",
-                        NumberOfSlot = slotModels.Length
+                        NumberOfSlot = slotModels.Length,
                     };
                     _bookingDao.AddBooking(booking);
 
@@ -313,10 +323,10 @@ namespace Repositories
             foreach (var booking in bookings)
             {
                 if (
-                    booking.BranchId == branchId &&
-                    (booking.Status == "Complete" || booking.Status == "Pending") &&
-                    booking.NumberOfSlot > _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId)
-                    )
+                    booking.BranchId == branchId
+                    && (booking.Status == "Complete" || booking.Status == "Pending")
+                    && booking.NumberOfSlot > _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId)
+                )
                 {
                     return booking;
                 }
@@ -324,13 +334,16 @@ namespace Repositories
             return null;
         }
 
-        public (string , int) NumberOfSlotsAvailable(string userId,string branchId) {
+        public (string, int) NumberOfSlotsAvailable(string userId, string branchId)
+        {
             var booking = CheckAvaiableSlotsFromBookingTypeFlex(userId, branchId);
-            
-            if (booking is null || booking.BookingId is null ) return (null,0);
+
+            if (booking is null || booking.BookingId is null)
+                return (null, 0);
             string bookingId = booking.BookingId;
-            int numberOfSlotsAvailable = booking.NumberOfSlot - _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId);
-            return (bookingId, numberOfSlotsAvailable) ;
+            int numberOfSlotsAvailable =
+                booking.NumberOfSlot - _timeSlotDao.NumberOfSlotsInBooking(booking.BookingId);
+            return (bookingId, numberOfSlotsAvailable);
         }
 
         public Booking AddBookingTypeFlex(string userId, int numberOfSlot, string branchId)
@@ -405,7 +418,14 @@ namespace Repositories
 
         //    return true;
         //}
-        public async Task<Booking> AddBookingTypeFix(int numberOfMonths, string[] dayOfWeek, DateOnly startDate, TimeSlotModel[] timeSlotModels, string userId, string branchId)
+        public async Task<Booking> AddBookingTypeFix(
+            int numberOfMonths,
+            string[] dayOfWeek,
+            DateOnly startDate,
+            TimeSlotModel[] timeSlotModels,
+            string userId,
+            string branchId
+        )
         {
             DateOnly endDate = startDate.AddDays(numberOfMonths * 30 - 1);
             List<DateOnly> validDates = new List<DateOnly>();
@@ -425,14 +445,18 @@ namespace Repositories
                 foreach (var date in validDates)
                 {
                     // Assuming IsSlotBookedInBranch method can check a specific time slot for a given date
-                    if (_timeSlotRepository.IsSlotBookedInBranch(new SlotModel()
-                    {
-                        BranchId = branchId,
-                        SlotDate = date,
-                        // Assuming TimeSlotModel has properties that can be mapped to SlotModel or they are the same
-                        // You might need to adjust this part based on your actual model structure
-                        TimeSlot = timeSlotModel
-                    }))
+                    if (
+                        _timeSlotRepository.IsSlotBookedInBranch(
+                            new SlotModel()
+                            {
+                                BranchId = branchId,
+                                SlotDate = date,
+                                // Assuming TimeSlotModel has properties that can be mapped to SlotModel or they are the same
+                                // You might need to adjust this part based on your actual model structure
+                                TimeSlot = timeSlotModel,
+                            }
+                        )
+                    )
                     {
                         return null; // Found a booked slot, return null
                     }
@@ -454,7 +478,7 @@ namespace Repositories
                 BranchId = branchId,
                 TotalPrice = totalPrice,
                 BookingType = "Fix",
-                NumberOfSlot = numberOfSlots
+                NumberOfSlot = numberOfSlots,
             };
 
             _bookingDao.AddBooking(booking);
@@ -464,12 +488,15 @@ namespace Repositories
             {
                 foreach (var date in validDates)
                 {
-                    _timeSlotDao.AddSlotToBooking(new SlotModel()
-                    {
-                        BranchId = branchId,
-                        SlotDate = date,
-                        TimeSlot = timeSlotModel
-                    }, booking.BookingId);
+                    _timeSlotDao.AddSlotToBooking(
+                        new SlotModel()
+                        {
+                            BranchId = branchId,
+                            SlotDate = date,
+                            TimeSlot = timeSlotModel,
+                        },
+                        booking.BookingId
+                    );
                 }
             }
 
@@ -493,13 +520,19 @@ namespace Repositories
 
             // Check if any slot has expired
             bool isExpired = timeSlots.Any(timeSlot =>
-                timeSlot.SlotDate.CompareTo(localDate) < 0 ||
-                (timeSlot.SlotDate.Equals(localDate) && timeSlot.SlotStartTime.CompareTo(localTimeOnly) < 0));
+                timeSlot.SlotDate.CompareTo(localDate) < 0
+                || (
+                    timeSlot.SlotDate.Equals(localDate)
+                    && timeSlot.SlotStartTime.CompareTo(localTimeOnly) < 0
+                )
+            );
 
             // If any slot has expired, do not proceed with cancellation
             if (isExpired)
             {
-                throw new InvalidOperationException("Cannot cancel booking as one or more slots have expired.");
+                throw new InvalidOperationException(
+                    "Cannot cancel booking as one or more slots have expired."
+                );
             }
 
             // Proceed with cancellation as no slots have expired
@@ -519,31 +552,57 @@ namespace Repositories
             _bookingDao.DeleteBooking(bookingId);
         }
 
+        public async Task<List<Booking>> SortBookings(
+            string? sortBy,
+            bool isAsc,
+            PageResult pageResult
+        ) => await _bookingDao.SortBookings(sortBy, isAsc, pageResult);
 
+        public async Task<(int todayCount, double changePercentage)> GetDailyBookings(
+            string? branchId
+        ) => await _bookingDao.GetDailyBookings(branchId);
 
-        public async Task<List<Booking>> SortBookings(string? sortBy, bool isAsc, PageResult pageResult) => await _bookingDao.SortBookings(sortBy, isAsc, pageResult);
+        public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync(
+            string? branchId
+        ) => await _bookingDao.GetWeeklyBookingsAsync(branchId);
 
+        public async Task<(int weeklyCount, double changePercentage)> GetMonthlyBookingsAsync(
+            string? branchId
+        ) => await _bookingDao.GetMonthlyBookingsAsync(branchId);
 
-        public async Task<(int todayCount, double changePercentage)> GetDailyBookings(string? branchId) => await _bookingDao.GetDailyBookings(branchId);
+        public async Task<List<Booking>> GetBookingsForLastWeekAsync() =>
+            await _bookingDao.GetBookingsForLastWeekAsync();
 
-        public async Task<(int weeklyCount, double changePercentage)> GetWeeklyBookingsAsync(string? branchId) => await _bookingDao.GetWeeklyBookingsAsync(branchId);
-        public async Task<(int weeklyCount, double changePercentage)> GetMonthlyBookingsAsync(string? branchId) => await _bookingDao.GetMonthlyBookingsAsync(branchId);
+        public async Task<int[]> GetBookingsFromStartOfWeek(string? branchId) =>
+            await _bookingDao.GetBookingsFromStartOfWeek(branchId);
 
+        public async Task<int[]> GetWeeklyBookingsFromStartOfMonth(string? branchId) =>
+            await _bookingDao.GetWeeklyBookingsFromStartOfMonth(branchId);
 
-        public async Task<List<Booking>> GetBookingsForLastWeekAsync() => await _bookingDao.GetBookingsForLastWeekAsync();
-        public async Task<int[]> GetBookingsFromStartOfWeek(string? branchId) => await _bookingDao.GetBookingsFromStartOfWeek(branchId);
-        public async Task<int[]> GetWeeklyBookingsFromStartOfMonth(string? branchId) => await _bookingDao.GetWeeklyBookingsFromStartOfMonth(branchId);
-        public async Task<int[]> GetMonthlyBookingsFromStartOfYear(string? branchId) => await _bookingDao.GetMonthlyBookingsFromStartOfYear(branchId);
+        public async Task<int[]> GetMonthlyBookingsFromStartOfYear(string? branchId) =>
+            await _bookingDao.GetMonthlyBookingsFromStartOfYear(branchId);
 
+        public async Task<(decimal todayRevenue, decimal changePercentage)> GetDailyRevenue(
+            string? branchId
+        ) => await _bookingDao.GetDailyRevenue(branchId);
 
-        public async Task<(decimal todayRevenue, decimal changePercentage)> GetDailyRevenue(string? branchId) => await _bookingDao.GetDailyRevenue(branchId);
-        public async Task<(decimal weeklyRevenue, decimal changePercentage)> GetWeeklyRevenueAsync(string? branchId) => await _bookingDao.GetWeeklyRevenueAsync(branchId);
-        public async Task<(decimal monthlyRevenue, decimal changePercentage)> GetMonthlyRevenueAsync(string? branchId) => await _bookingDao.GetMonthlyRevenueAsync(branchId);
+        public async Task<(decimal weeklyRevenue, decimal changePercentage)> GetWeeklyRevenueAsync(
+            string? branchId
+        ) => await _bookingDao.GetWeeklyRevenueAsync(branchId);
 
-        public async Task<decimal[]> GetRevenueFromStartOfWeek(string? branchId) => await _bookingDao.GetRevenueFromStartOfWeek(branchId);
-        public async Task<decimal[]> GetWeeklyRevenueFromStartOfMonth(string? branchId) => await _bookingDao.GetWeeklyRevenuesFromStartOfMonth(branchId);
-        public async Task<decimal[]> GetMonthlyRevenueFromStartOfYear(string? branchId) => await _bookingDao.GetMonthlyRevenueFromStartOfYear(branchId);
+        public async Task<(
+            decimal monthlyRevenue,
+            decimal changePercentage
+        )> GetMonthlyRevenueAsync(string? branchId) =>
+            await _bookingDao.GetMonthlyRevenueAsync(branchId);
 
+        public async Task<decimal[]> GetRevenueFromStartOfWeek(string? branchId) =>
+            await _bookingDao.GetRevenueFromStartOfWeek(branchId);
+
+        public async Task<decimal[]> GetWeeklyRevenueFromStartOfMonth(string? branchId) =>
+            await _bookingDao.GetWeeklyRevenuesFromStartOfMonth(branchId);
+
+        public async Task<decimal[]> GetMonthlyRevenueFromStartOfYear(string? branchId) =>
+            await _bookingDao.GetMonthlyRevenueFromStartOfYear(branchId);
     }
-
 }

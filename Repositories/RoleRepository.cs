@@ -1,10 +1,10 @@
-﻿using BusinessObjects;
-using DAOs;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using DAOs;
 using Microsoft.AspNetCore.Identity;
 
 namespace Repositories
@@ -12,6 +12,7 @@ namespace Repositories
     public class RoleRepository
     {
         private readonly RoleDAO _roleDao = null;
+
         public RoleRepository()
         {
             if (_roleDao == null)
@@ -22,11 +23,8 @@ namespace Repositories
 
         public RoleRepository(RoleDAO roleDAO)
         {
-
             _roleDao = roleDAO;
-
         }
-
 
         public IdentityRole AddRole(IdentityRole role) => _roleDao.AddRole(role);
 
@@ -40,5 +38,4 @@ namespace Repositories
 
         public string[] GetRoleNameByUserId(string userId) => _roleDao.GetRoleNameByUserId(userId);
     }
-
 }

@@ -11,5 +11,4 @@ namespace DAOs.Models
         public int TodayCount { get; set; }
         public double ChangePercentage { get; set; }
     }
-
 }

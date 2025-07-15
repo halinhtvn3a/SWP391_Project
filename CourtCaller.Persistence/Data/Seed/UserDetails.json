@@ -1,0 +1,52 @@
+[
+	{
+		"UserId": "user1@example.com",
+		"Balance": 500.00,
+		"Point": 100.00,
+		"FullName": "Tan Wei Ming",
+		"Address": "123 Orchard Road, #12-34, Singapore 238859",
+		"ProfilePicture": "https://example.com/images/profile1.jpg",
+		"YearOfBirth": 1990,
+		"IsVip": true
+	},
+	{
+		"UserId": "user2@example.com",
+		"Balance": 250.00,
+		"Point": 50.00,
+		"FullName": "Sarah Lim",
+		"Address": "456 Marina Bay Sands, #05-67, Singapore 018956",
+		"ProfilePicture": "https://example.com/images/profile2.jpg",
+		"YearOfBirth": 1995,
+		"IsVip": false
+	},
+	{
+		"UserId": "user3@example.com",
+		"Balance": 750.00,
+		"Point": 200.00,
+		"FullName": "Raj Kumar",
+		"Address": "789 Sentosa Gateway, #08-90, Singapore 098138",
+		"ProfilePicture": "https://example.com/images/profile3.jpg",
+		"YearOfBirth": 1988,
+		"IsVip": true
+	},
+	{
+		"UserId": "user4@example.com",
+		"Balance": 100.00,
+		"Point": 25.00,
+		"FullName": "Chen Mei Ling",
+		"Address": "321 Clarke Quay, #15-23, Singapore 059371",
+		"ProfilePicture": "https://example.com/images/profile4.jpg",
+		"YearOfBirth": 1992,
+		"IsVip": false
+	},
+	{
+		"UserId": "user5@example.com",
+		"Balance": 1000.00,
+		"Point": 300.00,
+		"FullName": "Ahmad bin Ismail",
+		"Address": "654 Bugis Junction, #20-45, Singapore 188065",
+		"ProfilePicture": "https://example.com/images/profile5.jpg",
+		"YearOfBirth": 1985,
+		"IsVip": true
+	}
+]

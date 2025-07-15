@@ -1,13 +1,14 @@
-﻿using BusinessObjects;
-using DAOs.Models;
-using DAOs;
-using Microsoft.EntityFrameworkCore;
-using Moq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BusinessObjects;
+using CourtCaller.Persistence;
+using DAOs;
+using DAOs.Models;
+using Microsoft.EntityFrameworkCore;
+using Moq;
 using Repositories;
 
 namespace UnitTests.RepositoryTests
@@ -28,11 +29,56 @@ namespace UnitTests.RepositoryTests
             mockContext = new Mock<CourtCallerDbContext>();
             bookingList = new List<TimeSlot>
             {
-                new TimeSlot { SlotId = "S00001", SlotDate = DateOnly.FromDateTime(DateTime.Now), Status = "Reserved", CourtId = "C00001", BookingId = "B00001", SlotEndTime = new TimeOnly(8, 0), SlotStartTime = new TimeOnly(7, 0)  },
-                new TimeSlot { SlotId = "S00002", SlotDate = DateOnly.FromDateTime(DateTime.Now), Status = "Reserved", CourtId = "C00001", BookingId = "B00001", SlotEndTime = new TimeOnly(9, 0), SlotStartTime = new TimeOnly(8, 0)  },
-                new TimeSlot { SlotId = "S00003", SlotDate = DateOnly.FromDateTime(DateTime.Now), Status = "Reserved", CourtId = "C00001", BookingId = "B00001", SlotEndTime = new TimeOnly(10, 0), SlotStartTime = new TimeOnly(9, 0)  },
-                new TimeSlot { SlotId = "S00004", SlotDate = DateOnly.FromDateTime(DateTime.Now), Status = "Reserved", CourtId = "C00001", BookingId = "B00001", SlotEndTime = new TimeOnly(11, 0), SlotStartTime = new TimeOnly(10, 0)  },
-                new TimeSlot { SlotId = "S00005", SlotDate = DateOnly.FromDateTime(DateTime.Now), Status = "Reserved", CourtId = "C00001", BookingId = "B00001", SlotEndTime = new TimeOnly(12, 0), SlotStartTime = new TimeOnly(11, 0)  },
+                new TimeSlot
+                {
+                    SlotId = "S00001",
+                    SlotDate = DateOnly.FromDateTime(DateTime.Now),
+                    Status = "Reserved",
+                    CourtId = "C00001",
+                    BookingId = "B00001",
+                    SlotEndTime = new TimeOnly(8, 0),
+                    SlotStartTime = new TimeOnly(7, 0),
+                },
+                new TimeSlot
+                {
+                    SlotId = "S00002",
+                    SlotDate = DateOnly.FromDateTime(DateTime.Now),
+                    Status = "Reserved",
+                    CourtId = "C00001",
+                    BookingId = "B00001",
+                    SlotEndTime = new TimeOnly(9, 0),
+                    SlotStartTime = new TimeOnly(8, 0),
+                },
+                new TimeSlot
+                {
+                    SlotId = "S00003",
+                    SlotDate = DateOnly.FromDateTime(DateTime.Now),
+                    Status = "Reserved",
+                    CourtId = "C00001",
+                    BookingId = "B00001",
+                    SlotEndTime = new TimeOnly(10, 0),
+                    SlotStartTime = new TimeOnly(9, 0),
+                },
+                new TimeSlot
+                {
+                    SlotId = "S00004",
+                    SlotDate = DateOnly.FromDateTime(DateTime.Now),
+                    Status = "Reserved",
+                    CourtId = "C00001",
+                    BookingId = "B00001",
+                    SlotEndTime = new TimeOnly(11, 0),
+                    SlotStartTime = new TimeOnly(10, 0),
+                },
+                new TimeSlot
+                {
+                    SlotId = "S00005",
+                    SlotDate = DateOnly.FromDateTime(DateTime.Now),
+                    Status = "Reserved",
+                    CourtId = "C00001",
+                    BookingId = "B00001",
+                    SlotEndTime = new TimeOnly(12, 0),
+                    SlotStartTime = new TimeOnly(11, 0),
+                },
             };
 
             var data = bookingList.AsQueryable();
@@ -40,7 +86,10 @@ namespace UnitTests.RepositoryTests
             mockSet.As<IQueryable<TimeSlot>>().Setup(m => m.Provider).Returns(data.Provider);
             mockSet.As<IQueryable<TimeSlot>>().Setup(m => m.Expression).Returns(data.Expression);
             mockSet.As<IQueryable<TimeSlot>>().Setup(m => m.ElementType).Returns(data.ElementType);
-            mockSet.As<IQueryable<TimeSlot>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+            mockSet
+                .As<IQueryable<TimeSlot>>()
+                .Setup(m => m.GetEnumerator())
+                .Returns(data.GetEnumerator());
 
             mockContext.Setup(c => c.TimeSlots).Returns(mockSet.Object);
 
@@ -55,7 +104,6 @@ namespace UnitTests.RepositoryTests
         [InlineData("B00003", 0)]
         public void GetTimeSlotsByBookingId_ReturnsTimeSlots(string bookingId, int count)
         {
-            
             var timeSlots = timeSlotRepository.GetTimeSlotsByBookingId(bookingId);
             Assert.Equal(count, timeSlots.Count);
         }
@@ -63,7 +111,6 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void GetTimeSlot_ReturnsTimeSlot()
         {
-            
             var timeSlot = timeSlotRepository.GetTimeSlot("S00001");
             Assert.NotNull(timeSlot);
         }
@@ -71,7 +118,6 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void AddTimeSlot_ReturnsTimeSlot()
         {
-            
             var timeSlot = new TimeSlot
             {
                 SlotId = "S00006",
@@ -80,7 +126,7 @@ namespace UnitTests.RepositoryTests
                 CourtId = "C00001",
                 BookingId = "B00001",
                 SlotEndTime = new TimeOnly(13, 0),
-                SlotStartTime = new TimeOnly(12, 0)
+                SlotStartTime = new TimeOnly(12, 0),
             };
             var result = timeSlotRepository.AddTimeSlot(timeSlot);
             Assert.NotNull(result);
@@ -89,7 +135,6 @@ namespace UnitTests.RepositoryTests
         [Fact]
         public void UpdateTimeSlot_ReturnsTimeSlot()
         {
-            
             var timeSlot = new SlotModel
             {
                 SlotDate = DateOnly.FromDateTime(DateTime.Now),
@@ -97,19 +142,19 @@ namespace UnitTests.RepositoryTests
                 TimeSlot = new()
                 {
                     SlotEndTime = new TimeOnly(13, 0),
-                    SlotStartTime = new TimeOnly(12, 0)
-                }
+                    SlotStartTime = new TimeOnly(12, 0),
+                },
             };
             var result = timeSlotRepository.UpdateTimeSlot("S00001", timeSlot);
             Assert.NotNull(result);
         }
 
-
         [Fact]
         public void GetTimeSlotsByDate_ReturnsTimeSlots()
         {
-            
-            var timeSlots = timeSlotRepository.GetTimeSlotsByDate(DateOnly.FromDateTime(DateTime.Now));
+            var timeSlots = timeSlotRepository.GetTimeSlotsByDate(
+                DateOnly.FromDateTime(DateTime.Now)
+            );
             Assert.Equal(5, timeSlots.Count);
         }
 
@@ -124,8 +169,8 @@ namespace UnitTests.RepositoryTests
                 TimeSlot = new()
                 {
                     SlotEndTime = new TimeOnly(14, 0),
-                    SlotStartTime = new TimeOnly(13, 0)
-                }
+                    SlotStartTime = new TimeOnly(13, 0),
+                },
             };
             var result = timeSlotRepository.IsSlotBookedInBranch(slotModel);
             Assert.False(result);
@@ -142,8 +187,8 @@ namespace UnitTests.RepositoryTests
                 TimeSlot = new()
                 {
                     SlotEndTime = new TimeOnly(14, 0),
-                    SlotStartTime = new TimeOnly(13, 0)
-                }
+                    SlotStartTime = new TimeOnly(13, 0),
+                },
             };
             var result = timeSlotRepository.IsSlotBookedInBranchV2(slotModel);
             Assert.False(result);

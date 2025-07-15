@@ -1,13 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
-using Repositories.Helper;
-using System;
+﻿using System;
 using System.Net;
 using System.Web;
 using BusinessObjects;
-using Repositories;
 using DAOs.Helper;
 using DAOs.Models;
-
+using Microsoft.Extensions.Logging;
+using Repositories;
+using Repositories.Helper;
 
 namespace Services
 {
@@ -20,14 +19,19 @@ namespace Services
         public string hashSecret = "0D3EAMNJYSY9INENB5JYP8XW2U8MD8WE";
         private readonly BookingRepository _bookingRepository;
         private readonly PaymentRepository _paymentRepository;
-        public VnpayService(ILogger<VnpayService> logger,BookingRepository bookingRepository,PaymentRepository payment)
+
+        public VnpayService(
+            ILogger<VnpayService> logger,
+            BookingRepository bookingRepository,
+            PaymentRepository payment
+        )
         {
             _logger = logger;
             _bookingRepository = bookingRepository;
             _paymentRepository = payment;
         }
 
-        public string CreatePaymentUrl( decimal amount, string infor, string? orderinfor)
+        public string CreatePaymentUrl(decimal amount, string infor, string? orderinfor)
         {
             try
             {
@@ -59,8 +63,6 @@ namespace Services
             }
         }
 
-       
-
         public async Task<PaymentStatusModel> ValidatePaymentResponse(string queryString)
         {
             try
@@ -71,31 +73,34 @@ namespace Services
                 string vnp_ResponseCode = json["vnp_ResponseCode"].ToString();
                 string vnp_SecureHash = json["vnp_SecureHash"].ToString();
                 var pos = queryString.IndexOf("&vnp_SecureHash");
-                bool checkSignature = ValidateSignature(queryString.Substring(1, pos - 1), vnp_SecureHash, hashSecret);
+                bool checkSignature = ValidateSignature(
+                    queryString.Substring(1, pos - 1),
+                    vnp_SecureHash,
+                    hashSecret
+                );
 
                 if (booking.Status == "true" && booking != null)
                 {
                     return new PaymentStatusModel
                     {
                         IsSuccessful = false,
-                        RedirectUrl = "LINK_INVALID"
+                        RedirectUrl = "LINK_INVALID",
                     };
                 }
-
 
                 //này là link đúng
 
                 if (checkSignature && tmnCode == json["vnp_TmnCode"].ToString())
-                {   
+                {
                     var bookingid = json["vnp_TxnRef"].ToString();
-                   
+
                     if (vnp_ResponseCode == "00" && json["vnp_TransactionStatus"] == "00")
                     {
                         var payment = new Payment
                         {
                             PaymentId = "P" + GenerateId.GenerateShortBookingId(),
                             BookingId = bookingid,
-                            PaymentAmount = decimal.Parse(json["vnp_Amount"])/100000,
+                            PaymentAmount = decimal.Parse(json["vnp_Amount"]) / 100000,
                             PaymentDate = DateTime.Now,
                             PaymentMessage = "Complete",
                             PaymentStatus = "True",
@@ -103,58 +108,63 @@ namespace Services
                         };
                         _paymentRepository.AddPayment(payment);
 
-                        
                         booking.Status = "Complete";
                         await _bookingRepository.SaveChangesAsync();
-                        if (role == "Staff") {
+                        if (role == "Staff")
+                        {
                             var returnUrl = new PaymentStatusModel
                             {
                                 IsSuccessful = true,
-                                RedirectUrl = $"https://react-admin-lilac.vercel.app/confirm?vnp_TxnRef={json["vnp_TxnRef"].ToString()}"
-                            }; 
+                                RedirectUrl =
+                                    $"https://react-admin-lilac.vercel.app/confirm?vnp_TxnRef={json["vnp_TxnRef"].ToString()}",
+                            };
                             return returnUrl;
-                        } 
+                        }
                         return new PaymentStatusModel
                         {
                             IsSuccessful = true,
-                            RedirectUrl = $"https://court-caller.vercel.app/confirm?vnp_TxnRef={json["vnp_TxnRef"].ToString()}"
+                            RedirectUrl =
+                                $"https://court-caller.vercel.app/confirm?vnp_TxnRef={json["vnp_TxnRef"].ToString()}",
                         };
-
                     }
                     else
                     {
                         //link sai
                         var amount = decimal.Parse(json["vnp_Amount"]);
-                        if (json["vnp_BankTranNo"]?.ToString() != null || json["vnp_TxnRef"]?.ToString() != null)
+                        if (
+                            json["vnp_BankTranNo"]?.ToString() != null
+                            || json["vnp_TxnRef"]?.ToString() != null
+                        )
                         {
                             booking.Status = "Canceled";
                             _bookingRepository.UpdateBooking(booking);
 
-                        var payment = new Payment
-                        {
-                            PaymentId = "P" + GenerateId.GenerateShortBookingId(),
-                            BookingId = bookingid,
-                            PaymentAmount = amount / 100000,
-                            PaymentDate = DateTime.Now,
-                            PaymentMessage = "Fail",
-                            PaymentStatus = "False",
-                            
-                        };
-                        _paymentRepository.AddPayment(payment);
+                            var payment = new Payment
+                            {
+                                PaymentId = "P" + GenerateId.GenerateShortBookingId(),
+                                BookingId = bookingid,
+                                PaymentAmount = amount / 100000,
+                                PaymentDate = DateTime.Now,
+                                PaymentMessage = "Fail",
+                                PaymentStatus = "False",
+                            };
+                            _paymentRepository.AddPayment(payment);
                         }
                         if (role == "Staff")
                         {
                             var returnUrl = new PaymentStatusModel
                             {
                                 IsSuccessful = false,
-                                RedirectUrl = "https://react-admin-lilac.vercel.app/reject?vnp_TxnRef={json[\"vnp_TxnRef\"].ToString()}"
+                                RedirectUrl =
+                                    "https://react-admin-lilac.vercel.app/reject?vnp_TxnRef={json[\"vnp_TxnRef\"].ToString()}",
                             };
                             return returnUrl;
                         }
                         return new PaymentStatusModel
                         {
                             IsSuccessful = false,
-                            RedirectUrl = "https://court-caller.vercel.app/reject?vnp_TxnRef={json[\"vnp_TxnRef\"].ToString()}"
+                            RedirectUrl =
+                                "https://court-caller.vercel.app/reject?vnp_TxnRef={json[\"vnp_TxnRef\"].ToString()}",
                         };
                     }
                 }
@@ -164,22 +174,16 @@ namespace Services
                     return new PaymentStatusModel
                     {
                         IsSuccessful = false,
-                        RedirectUrl = "LINK_INVALID" 
+                        RedirectUrl = "LINK_INVALID",
                     };
                 }
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error in ValidatePaymentResponse method");
-                return new PaymentStatusModel
-                {
-                    IsSuccessful = false,
-                    RedirectUrl = "LINK_ERROR" 
-                };
+                return new PaymentStatusModel { IsSuccessful = false, RedirectUrl = "LINK_ERROR" };
             }
         }
-
-       
 
         private bool ValidateSignature(string rspraw, string inputHash, string secretKey)
         {

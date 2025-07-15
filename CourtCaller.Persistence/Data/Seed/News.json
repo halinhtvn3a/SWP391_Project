@@ -1,0 +1,47 @@
+[
+	{
+		"NewId": "NW001",
+		"Title": "Welcome to CourtCaller - Your Premier Sports Booking Platform in Singapore",
+		"Content": "CourtCaller is excited to announce the launch of our new sports booking platform in Singapore. We provide easy and convenient court booking services for all sports enthusiasts across the Lion City. Our state-of-the-art facilities are now available for booking through our user-friendly platform.",
+		"PublicationDate": "2024-01-01T00:00:00",
+		"Image": "https://example.com/images/news1.jpg",
+		"Status": "Active",
+		"IsHomepageSlideshow": true
+	},
+	{
+		"NewId": "NW002",
+		"Title": "New Courts Available at Orchard Branch",
+		"Content": "We are pleased to announce the addition of 3 new professional courts at our Orchard branch. These courts feature premium flooring and lighting systems, perfect for both casual players and professional training sessions in the heart of Singapore's shopping district.",
+		"PublicationDate": "2024-01-05T00:00:00",
+		"Image": "https://example.com/images/news2.jpg",
+		"Status": "Active",
+		"IsHomepageSlideshow": true
+	},
+	{
+		"NewId": "NW003",
+		"Title": "Weekend Special Rates - Save Up to 20%",
+		"Content": "Take advantage of our weekend special rates! Book your favorite courts during weekends and enjoy up to 20% discount on selected time slots. This offer is valid for all branches across Singapore and available for both new and existing customers.",
+		"PublicationDate": "2024-01-10T00:00:00",
+		"Image": "https://example.com/images/news3.jpg",
+		"Status": "Active",
+		"IsHomepageSlideshow": false
+	},
+	{
+		"NewId": "NW004",
+		"Title": "Singapore Sports Tournament Registration Now Open",
+		"Content": "Join our upcoming Singapore sports tournament! Registration is now open for players of all skill levels. The tournament will feature multiple categories and exciting prizes. Don't miss this opportunity to showcase your skills and compete with fellow sports enthusiasts from across the island.",
+		"PublicationDate": "2024-01-15T00:00:00",
+		"Image": "https://example.com/images/news4.jpg",
+		"Status": "Active",
+		"IsHomepageSlideshow": true
+	},
+	{
+		"NewId": "NW005",
+		"Title": "Maintenance Schedule - January 2024",
+		"Content": "Please be informed about our scheduled maintenance activities for January 2024 across all Singapore branches. Some courts will be temporarily unavailable for regular maintenance and upgrades. We apologize for any inconvenience and appreciate your understanding.",
+		"PublicationDate": "2024-01-20T00:00:00",
+		"Image": "https://example.com/images/news5.jpg",
+		"Status": "Active",
+		"IsHomepageSlideshow": false
+	}
+]
