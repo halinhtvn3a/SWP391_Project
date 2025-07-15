@@ -28,8 +28,12 @@ namespace Services
             _reviewRepository.UpdateReview(id, reviewModel);
 
         public async Task<(List<Review>, int total)> GetReview(
+            HelperResult.PageResult pageResult
+        ) => await _reviewRepository.GetReview(pageResult);
+
+        public async Task<(List<Review>, int total)> GetReview(
             HelperResult.PageResult pageResult,
-            string searchQuery = null
+            string? searchQuery
         ) => await _reviewRepository.GetReview(pageResult, searchQuery);
 
         public List<Review> GetReviewsByBranch(string id) =>

@@ -62,20 +62,29 @@ namespace Repositories
 
         public async Task<(List<Branch>, int total)> GetBranches(
             PageResult pageResult,
-            string status = "Active",
-            string searchQuery = null
+            string status,
+            string? searchQuery
         ) => await _branchDao.GetBranches(pageResult, status, searchQuery);
+
+        public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult,
+            string status
+        ) => await _branchDao.GetBranches(pageResult, status);
+
+        public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult
+        ) => await _branchDao.GetBranches(pageResult);
+
+        public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult,
+            string? searchQuery
+        ) => await _branchDao.GetBranches(pageResult, searchQuery);
 
         public Branch AddBranch(BranchModel branchModel) => _branchDao.AddBranch(branchModel);
 
         public void DeleteBranch(string id) => _branchDao.DeleteBranch(id);
 
         public Branch GetBranch(string id) => _branchDao.GetBranch(id);
-
-        public async Task<(List<Branch>, int total)> GetBranches(
-            PageResult pageResult,
-            string searchQuery = null
-        ) => await _branchDao.GetBranches(pageResult, searchQuery);
 
         public Branch UpdateBranch(string id, PutBranch branchModel) =>
             _branchDao.UpdateBranch(id, branchModel);

@@ -24,9 +24,23 @@ namespace Services
 
         public async Task<(List<Branch>, int total)> GetBranches(
             PageResult pageResult,
-            string status = "Active",
-            string searchQuery = null
+            string status,
+            string? searchQuery
         ) => await _branchRepository.GetBranches(pageResult, status, searchQuery);
+
+        public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult,
+            string status
+        ) => await _branchRepository.GetBranches(pageResult, status);
+
+        public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult
+        ) => await _branchRepository.GetBranches(pageResult);
+
+        public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult,
+            string? searchQuery
+        ) => await _branchRepository.GetBranches(pageResult, searchQuery);
 
         public Branch AddBranch(BranchModel branchModel) =>
             _branchRepository.AddBranch(branchModel);
@@ -34,11 +48,6 @@ namespace Services
         public void DeleteBranch(string id) => _branchRepository.DeleteBranch(id);
 
         public Branch GetBranch(string id) => _branchRepository.GetBranch(id);
-
-        public async Task<(List<Branch>, int total)> GetBranches(
-            PageResult pageResult,
-            string searchQuery = null
-        ) => await _branchRepository.GetBranches(pageResult, searchQuery);
 
         public Branch UpdateBranch(string id, PutBranch branchModel) =>
             _branchRepository.UpdateBranch(id, branchModel);

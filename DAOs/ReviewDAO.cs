@@ -31,8 +31,12 @@ namespace DAOs
         }
 
         public async Task<(List<Review>, int total)> GetReview(
+            PageResult pageResult
+        ) => await GetReview(pageResult, null);
+
+        public async Task<(List<Review>, int total)> GetReview(
             PageResult pageResult,
-            string searchQuery = null
+            string? searchQuery
         )
         {
             var query = _courtCallerDbContext.Reviews.AsQueryable();

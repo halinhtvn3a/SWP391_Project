@@ -4,7 +4,7 @@ namespace CourtCaller.Persistence.Seeding
 {
     public class SeedingConfiguration
     {
-        public const string SectionName = "Seeding";
+        public static readonly string SectionName = "Seeding";
 
         /// <summary>
         /// Enable or disable seeding entirely

@@ -33,13 +33,16 @@ namespace DAOs
         public List<Branch> GetBranches() => _courtCallerDbContext.Branches.ToList();
 
         public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult
+        ) => await GetBranches(pageResult, (string?)null);
+
+        public async Task<(List<Branch>, int total)> GetBranches(
             PageResult pageResult,
-            string searchQuery = null
+            string? searchQuery
         )
         {
             var query = _courtCallerDbContext.Branches.AsQueryable();
             var total = await _courtCallerDbContext.Branches.CountAsync();
-
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 query = query.Where(branch =>
@@ -51,16 +54,21 @@ namespace DAOs
                     || branch.Status.Contains(searchQuery)
                 );
             }
-
             Pagination pagination = new Pagination(_courtCallerDbContext);
             List<Branch> branches = await pagination.GetListAsync<Branch>(query, pageResult);
             return (branches, total);
         }
 
+        // overloads for status variants
         public async Task<(List<Branch>, int total)> GetBranches(
             PageResult pageResult,
-            string status = "Active",
-            string searchQuery = null
+            string status
+        ) => await GetBranches(pageResult, status, null);
+
+        public async Task<(List<Branch>, int total)> GetBranches(
+            PageResult pageResult,
+            string status,
+            string? searchQuery
         )
         {
             var query = _courtCallerDbContext.Branches.Where(m => m.Status == status).AsQueryable();
