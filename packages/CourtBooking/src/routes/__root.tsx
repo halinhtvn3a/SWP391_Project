@@ -6,7 +6,9 @@ import {
   HeadContent,
   Scripts,
 } from '@tanstack/react-router';
-import appCss from '../styles/app.css?url';
+// import '../styles/app.css';
+
+import appCss from '../../styles/app.css?url';
 import type { ReactNode } from 'react';
 
 export const Route = createRootRoute({
