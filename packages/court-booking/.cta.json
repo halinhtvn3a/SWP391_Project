@@ -1,0 +1,20 @@
+{
+  "projectName": "court-booking",
+  "mode": "file-router",
+  "typescript": true,
+  "tailwind": true,
+  "packageManager": "bun",
+  "git": true,
+  "version": 1,
+  "framework": "react-cra",
+  "chosenAddOns": [
+    "eslint",
+    "form",
+    "shadcn",
+    "start",
+    "store",
+    "table",
+    "tanstack-query",
+    "tanchat"
+  ]
+}
