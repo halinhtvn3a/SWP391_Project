@@ -8,10 +8,10 @@ import {
 } from '@tanstack/react-router';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import * as React from 'react';
-import type { QueryClient } from '@tanstack/react-query';
 import appCss from '../../styles/app.css?url';
 import { DefaultCatchBoundary } from '../components/DefaultCatchBoundary';
 import { NotFound } from '../components/NotFound';
+import { QueryClient } from '@tanstack/react-query';
 
 export const Route = createRootRouteWithContext<{
   queryClient: QueryClient;
@@ -32,18 +32,6 @@ export const Route = createRootRouteWithContext<{
         rel: 'apple-touch-icon',
         sizes: '180x180',
         href: '/apple-touch-icon.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        href: '/favicon-32x32.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        href: '/favicon-16x16.png',
       },
     ],
   }),
