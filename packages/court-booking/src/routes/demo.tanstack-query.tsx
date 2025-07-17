@@ -1,4 +1,4 @@
-import { useGetQuery } from '@/api/base/hook'
+import { useGetQuery } from '@/api/hook'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/demo/tanstack-query')({
