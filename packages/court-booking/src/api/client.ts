@@ -1,6 +1,6 @@
+import type { paths } from '@/api/types'
 import createClient from 'openapi-fetch'
 // import type { Middleware } from 'openapi-fetch'
-import type { paths } from './base/types.ts'
 
 // const githubToken = import.meta.env.VITE_GITHUB_TOKEN;
 // const baseUrl = 'https://api.github.com';
