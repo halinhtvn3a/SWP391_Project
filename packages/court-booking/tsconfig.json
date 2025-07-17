@@ -28,6 +28,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      // When install shadcn it will add components.json file and this will help to resolve the path
     }
   }
 }
