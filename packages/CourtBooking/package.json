@@ -4,16 +4,17 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "start": "vite start",
     "build": "vite build",
     "check": "tsc --noEmit && eslint",
-    "clean": "rm -rf dist bun.lockb"
+    "generate:types:dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 NODE_ENV=development bun src/scripts/generate-types.ts"
   },
   "devDependencies": {
     "@tanstack/router-plugin": "^1.127.5",
     "@types/bun": "latest",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
+    "openapi-typescript": "^7.8.0",
+    "openapi-typescript-helpers": "^0.0.15",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "peerDependencies": {
@@ -22,10 +23,15 @@
   "dependencies": {
     "@react-oauth/google": "^0.12.2",
     "@tailwindcss/vite": "^4.1.11",
+    "@tanstack/react-query": "^5.83.0",
+    "@tanstack/react-query-devtools": "^5.83.0",
     "@tanstack/react-router": "^1.127.3",
-    "@tanstack/react-router-devtools": "^1.127.3",
+    "@tanstack/react-router-with-query": "^1.127.8",
     "@tanstack/react-start": "^1.127.7",
+    "@types/express": "^5.0.3",
+    "express": "^5.1.0",
     "firebase": "^11.10.0",
+    "openapi-fetch": "^0.14.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",

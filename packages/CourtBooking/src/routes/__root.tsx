@@ -1,18 +1,21 @@
 /// <reference types="vite/client" />
-
 import {
-  Outlet,
-  createRootRoute,
   HeadContent,
+  Link,
+  Outlet,
   Scripts,
+  createRootRouteWithContext,
 } from '@tanstack/react-router';
-// import '../styles/app.css';
-
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import * as React from 'react';
 import appCss from '../../styles/app.css?url';
-import type { ReactNode } from 'react';
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { DefaultCatchBoundary } from '../components/DefaultCatchBoundary';
+import { NotFound } from '../components/NotFound';
+import { QueryClient } from '@tanstack/react-query';
 
-export const Route = createRootRoute({
+export const Route = createRootRouteWithContext<{
+  queryClient: QueryClient;
+}>()({
   head: () => ({
     meta: [
       {
@@ -22,12 +25,24 @@ export const Route = createRootRoute({
         name: 'viewport',
         content: 'width=device-width, initial-scale=1',
       },
+    ],
+    links: [
+      { rel: 'stylesheet', href: appCss },
       {
-        title: 'TanStack Start Starter',
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/apple-touch-icon.png',
       },
     ],
-    links: [{ rel: 'stylesheet', href: appCss }],
   }),
+  errorComponent: (props) => {
+    return (
+      <RootDocument>
+        <DefaultCatchBoundary {...props} />
+      </RootDocument>
+    );
+  },
+  notFoundComponent: () => <NotFound />,
   component: RootComponent,
 });
 
@@ -39,17 +54,35 @@ function RootComponent() {
   );
 }
 
-function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+function RootDocument({ children }: { children: React.ReactNode }) {
   return (
     <html>
       <head>
         <HeadContent />
       </head>
       <body>
-              <GoogleOAuthProvider clientId="">
-
+        <div className='p-2 flex gap-2 text-lg'>
+          <Link
+            to='/'
+            activeProps={{
+              className: 'font-bold',
+            }}
+            activeOptions={{ exact: true }}
+          >
+            Home
+          </Link>{' '}
+          <Link
+            to='/post'
+            activeProps={{
+              className: 'font-bold',
+            }}
+          >
+            Posts
+          </Link>
+        </div>
+        <hr />
         {children}
-              </GoogleOAuthProvider>
+        <ReactQueryDevtools buttonPosition='bottom-left' />
         <Scripts />
       </body>
     </html>

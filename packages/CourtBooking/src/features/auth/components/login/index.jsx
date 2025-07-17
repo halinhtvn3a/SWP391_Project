@@ -1,72 +1,75 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 // import "./loginTest.scss";
-import { FaGoogle, FaFacebookF } from "react-icons/fa";
+import { FaGoogle, FaFacebookF } from 'react-icons/fa';
 // import { loginApi } from "../../../user/api/usersApi";
 import {
   validateFullName,
   validateEmail,
   validatePassword,
   validateConfirmPassword,
-} from "../../../../components/shared/Validations/formValidation";
+} from '../../../../components/shared/Validations/formValidation';
 // import axios from "axios";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import { GoogleLogin } from "@react-oauth/google";
-import ClipLoader from "react-spinners/ClipLoader";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { GoogleLogin } from '@react-oauth/google';
+import ClipLoader from 'react-spinners/ClipLoader';
 // import { ROUTERS } from "utils/router";
-import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
-import { auth } from "../../../../firebase.js";
+import { FacebookAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../../../../firebase.js';
 // import { useAuth } from "../../AuthContext.jsx";
-import { jwtDecode } from "jwt-decode";
+import { jwtDecode } from 'jwt-decode';
+import { useGetQuery } from '../../../../api/hook.js';
 // import { fetchUserById, fetchRoleByUserId } from "api/userApi";
 
 const Login = () => {
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [email, setEmail] = useState('');
   const [isLogin, setIsLogin] = useState(true);
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState("");
+  const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState('');
   const [loading, setLoading] = useState(false);
   const [profile, setProfile] = useState(null);
+  const booking = useGetQuery('/api/Bookings/current-time', {});
+  console.log('Current Booking Time:', booking.data);
 
   const [fullNameValidation, setFullNameValidation] = useState({
     isValid: true,
-    message: "",
+    message: '',
   });
   const [emailValidation, setEmailValidation] = useState({
     isValid: true,
-    message: "",
+    message: '',
   });
   const [passwordValidation, setPasswordValidation] = useState({
     isValid: true,
-    message: "",
+    message: '',
   });
   const [confirmPasswordValidation, setConfirmPasswordValidation] = useState({
     isValid: true,
-    message: "",
+    message: '',
   });
 
   // const { login } = useAuth();
 
   useEffect(() => {
-    const container = document.getElementById("container");
-    const registerBtn = document.getElementById("register");
-    const loginBtn = document.getElementById("login");
+    const container = document.getElementById('container');
+    const registerBtn = document.getElementById('register');
+    const loginBtn = document.getElementById('login');
 
-    const addActiveClass = () => container.classList.add("active");
-    const removeActiveClass = () => container.classList.remove("active");
+    const addActiveClass = () => container.classList.add('active');
+    const removeActiveClass = () => container.classList.remove('active');
 
     if (registerBtn && loginBtn) {
-      registerBtn.addEventListener("click", addActiveClass);
-      loginBtn.addEventListener("click", removeActiveClass);
+      registerBtn.addEventListener('click', addActiveClass);
+      loginBtn.addEventListener('click', removeActiveClass);
     }
 
     return () => {
       if (registerBtn && loginBtn) {
-        registerBtn.removeEventListener("click", addActiveClass);
-        loginBtn.removeEventListener("click", removeActiveClass);
+        registerBtn.removeEventListener('click', addActiveClass);
+        loginBtn.removeEventListener('click', removeActiveClass);
       }
     };
   }, []);
@@ -179,16 +182,16 @@ const Login = () => {
 
   const loginGoogle = async (response) => {
     var token = response.credential;
-    console.log("Google Token:", token);
+    console.log('Google Token:', token);
 
     try {
       const res = await fetch(
-        "https://courtcaller.azurewebsites.net/api/authentication/google-login?token=" +
+        'https://courtcaller.azurewebsites.net/api/authentication/google-login?token=' +
           token,
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         }
       );
@@ -196,10 +199,10 @@ const Login = () => {
       const data = await res.json();
 
       if (res.ok) {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("ggToken", token);
+        localStorage.setItem('token', data.token);
+        localStorage.setItem('ggToken', token);
         var decode = jwtDecode(data.token);
-        localStorage.setItem("userRole", decode.role);
+        localStorage.setItem('userRole', decode.role);
         const userData = {
           email: decode.email,
           role: decode.role,
@@ -207,13 +210,13 @@ const Login = () => {
         login(userData);
         // navigate(ROUTERS.USER.HOME);
       } else {
-        console.error("Backend error:", data);
-        toast.error("Login Failed");
-        throw new Error(data.message || "Google login failed");
+        console.error('Backend error:', data);
+        toast.error('Login Failed');
+        throw new Error(data.message || 'Google login failed');
       }
     } catch (error) {
-      console.error("Error during login:", error);
-      toast.error("Login Failed");
+      console.error('Error during login:', error);
+      toast.error('Login Failed');
     }
   };
 
@@ -224,16 +227,16 @@ const Login = () => {
 
       const accessToken = result.user.stsTokenManager.accessToken;
 
-      console.log("Login successfully", result.user);
-      console.log("Access Token:", accessToken);
+      console.log('Login successfully', result.user);
+      console.log('Access Token:', accessToken);
 
       const res = await fetch(
-        "https://courtcaller.azurewebsites.net/api/authentication/facebook-login?token=" +
+        'https://courtcaller.azurewebsites.net/api/authentication/facebook-login?token=' +
           accessToken,
         {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         }
       );
@@ -241,8 +244,8 @@ const Login = () => {
       const data = await res.json();
 
       if (res.ok) {
-        console.log("Login successful:", data);
-        localStorage.setItem("token", accessToken);
+        console.log('Login successful:', data);
+        localStorage.setItem('token', accessToken);
         var decode = jwtDecode(accessToken);
 
         const userData = {
@@ -251,99 +254,99 @@ const Login = () => {
         login(userData);
         // navigate(ROUTERS.USER.HOME);
       } else {
-        console.error("Backend error:", data);
-        toast.error("Login Failed");
+        console.error('Backend error:', data);
+        toast.error('Login Failed');
       }
     } catch (error) {
-      console.error("Error:", error.message);
-      toast.error("Facebook login failed");
+      console.error('Error:', error.message);
+      toast.error('Facebook login failed');
     }
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-gray-100 to-green-200 flex items-center justify-center p-4 font-['Montserrat']">
       <div
-        className={`relative bg-white rounded-3xl shadow-lg overflow-hidden w-full max-w-4xl h-[520px] transition-all duration-600 ${!isLogin ? "active" : ""}`}
+        className={`relative bg-white rounded-3xl shadow-lg overflow-hidden w-full max-w-4xl h-[520px] transition-all duration-600 ${!isLogin ? 'active' : ''}`}
       >
         {/* Sign In Form */}
         <div
-          className={`absolute top-0 left-0 w-1/2 h-full transition-all duration-600 ease-in-out z-10 ${!isLogin ? "transform translate-x-full" : ""}`}
+          className={`absolute top-0 left-0 w-1/2 h-full transition-all duration-600 ease-in-out z-10 ${!isLogin ? 'transform translate-x-full' : ''}`}
         >
           {isLogin && (
-            <div className="bg-white flex items-center justify-center flex-col px-10 h-full">
-              <div className="flex flex-col items-center w-full">
-                <h1 className="text-2xl font-bold mb-6 text-black">LOG IN</h1>
+            <div className='bg-white flex items-center justify-center flex-col px-10 h-full'>
+              <div className='flex flex-col items-center w-full'>
+                <h1 className='text-2xl font-bold mb-6 text-black'>LOG IN</h1>
 
-                <div className="mb-5 w-full">
+                <div className='mb-5 w-full'>
                   <GoogleLogin
                     onSuccess={loginGoogle}
                     onError={() => {
-                      console.log("Login Failed");
+                      console.log('Login Failed');
                     }}
                   />
                   <button
-                    type="button"
+                    type='button'
                     onClick={loginFacebook}
-                    className="mt-4 flex items-center justify-center bg-blue-600 text-white rounded-md px-4 py-2 w-full hover:bg-blue-700 transition-colors"
+                    className='mt-4 flex items-center justify-center bg-blue-600 text-white rounded-md px-4 py-2 w-full hover:bg-blue-700 transition-colors'
                   >
-                    <FaFacebookF className="mr-2" />
+                    <FaFacebookF className='mr-2' />
                     Continue with Facebook
                   </button>
                 </div>
 
-                <span className="text-sm text-gray-600 mb-4">
+                <span className='text-sm text-gray-600 mb-4'>
                   or use your account for login
                 </span>
 
                 <input
-                  type="text"
+                  type='text'
                   value={email}
-                  placeholder="Email"
+                  placeholder='Email'
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className={`w-full bg-gray-100 text-black border-none rounded-lg px-4 py-3 text-sm mb-2 outline-none ${
-                    !emailValidation.isValid ? "shadow-red-500 shadow-md" : ""
+                    !emailValidation.isValid ? 'shadow-red-500 shadow-md' : ''
                   }`}
                 />
                 {emailValidation.message && (
-                  <p className="text-red-500 text-xs font-semibold mb-2">
+                  <p className='text-red-500 text-xs font-semibold mb-2'>
                     {emailValidation.message}
                   </p>
                 )}
 
                 <input
-                  type="password"
+                  type='password'
                   value={password}
-                  placeholder="Password"
+                  placeholder='Password'
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   className={`w-full bg-gray-100 text-black border-none rounded-lg px-4 py-3 text-sm mb-2 outline-none ${
                     !passwordValidation.isValid
-                      ? "shadow-red-500 shadow-md"
-                      : ""
+                      ? 'shadow-red-500 shadow-md'
+                      : ''
                   }`}
                 />
                 {passwordValidation.message && (
-                  <p className="text-red-500 text-xs font-semibold mb-2">
+                  <p className='text-red-500 text-xs font-semibold mb-2'>
                     {passwordValidation.message}
                   </p>
                 )}
 
-                <div className="mb-4">
-                  <a to="/forget-password">Forgot Password?</a>
+                <div className='mb-4'>
+                  <a to='/forget-password'>Forgot Password?</a>
                 </div>
 
                 <button
                   // onClick={handleLogin}
                   disabled={loading}
-                  className="bg-green-600 text-white text-xs font-semibold uppercase tracking-wider py-3 px-11 rounded-lg border border-transparent hover:bg-green-700 transition-colors disabled:opacity-50"
+                  className='bg-green-600 text-white text-xs font-semibold uppercase tracking-wider py-3 px-11 rounded-lg border border-transparent hover:bg-green-700 transition-colors disabled:opacity-50'
                 >
-                  {loading ? <ClipLoader size={15} color="#fff" /> : "Sign In"}
+                  {loading ? <ClipLoader size={15} color='#fff' /> : 'Sign In'}
                 </button>
 
                 {message && (
                   <p
-                    className={`mt-4 text-center ${messageType === "error" ? "text-red-500" : "text-green-500"}`}
+                    className={`mt-4 text-center ${messageType === 'error' ? 'text-red-500' : 'text-green-500'}`}
                   >
                     {message}
                   </p>
@@ -357,85 +360,87 @@ const Login = () => {
         <div
           className={`absolute top-0 left-0 w-1/2 h-full transition-all duration-600 ease-in-out z-0 ${
             !isLogin
-              ? "transform translate-x-full opacity-100 z-20 animate-pulse"
-              : "opacity-0 z-10"
+              ? 'transform translate-x-full opacity-100 z-20 animate-pulse'
+              : 'opacity-0 z-10'
           }`}
         >
           {!isLogin && (
-            <div className="bg-white flex items-center justify-center flex-col px-10 h-full">
-              <div className="flex flex-col items-center w-full">
-                <h1 className="text-2xl font-bold mb-6 text-black">Create Account</h1>
+            <div className='bg-white flex items-center justify-center flex-col px-10 h-full'>
+              <div className='flex flex-col items-center w-full'>
+                <h1 className='text-2xl font-bold mb-6 text-black'>
+                  Create Account
+                </h1>
 
-                <span className="text-sm text-gray-600 mb-4">
+                <span className='text-sm text-gray-600 mb-4'>
                   or use your email for registration
                 </span>
 
                 <input
-                  type="text"
+                  type='text'
                   value={fullName}
-                  placeholder="Full Name"
+                  placeholder='Full Name'
                   onChange={(e) => setFullName(e.target.value)}
                   required
                   className={`w-full bg-gray-100 text-black border-none rounded-lg px-4 py-3 text-sm mb-2 outline-none ${
                     !fullNameValidation.isValid
-                      ? "shadow-red-500 shadow-md"
-                      : ""
+                      ? 'shadow-red-500 shadow-md'
+                      : ''
                   }`}
                 />
                 {fullNameValidation.message && (
-                  <p className="text-red-500 text-xs font-semibold mb-2">
+                  <p className='text-red-500 text-xs font-semibold mb-2'>
                     {fullNameValidation.message}
                   </p>
                 )}
 
                 <input
-                  type="text"
+                  type='text'
                   value={email}
-                  placeholder="Email"
+                  placeholder='Email'
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className={`w-full bg-gray-100 text-black border-none rounded-lg px-4 py-3 text-sm mb-2 outline-none ${
-                    !emailValidation.isValid ? "shadow-red-500 shadow-md" : ""
+                    !emailValidation.isValid ? 'shadow-red-500 shadow-md' : ''
                   }`}
                 />
                 {emailValidation.message && (
-                  <p className="text-red-500 text-xs font-semibold mb-2">
+                  <p className='text-red-500 text-xs font-semibold mb-2'>
                     {emailValidation.message}
                   </p>
                 )}
 
                 <input
-                  type="password"
+                  type='password'
                   value={password}
-                  placeholder="Password"
+                  placeholder='Password'
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   className={`w-full bg-gray-100 text-black border-none rounded-lg px-4 py-3 text-sm mb-2 outline-none ${
                     !passwordValidation.isValid
-                      ? "shadow-red-500 shadow-md"
-                      : ""
+                      ? 'shadow-red-500 shadow-md'
+                      : ''
                   }`}
                 />
                 {passwordValidation.message && (
-                  <p className="text-red-500 text-xs font-semibold mb-2">
+                  <p className='text-red-500 text-xs font-semibold mb-2'>
                     {passwordValidation.message}
                   </p>
                 )}
 
                 <input
-                  type="password"
+                  type='password'
                   value={confirmPassword}
-                  placeholder="Confirm Password"
+                  placeholder='Confirm Password'
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   required
                   className={`w-full bg-gray-100 text-black border-none rounded-lg px-4 py-3 text-sm mb-2 outline-none ${
                     !confirmPasswordValidation.isValid
-                      ? "shadow-red-500 shadow-md"
-                      : ""
+                      ? 'shadow-red-500 shadow-md'
+                      : ''
                   }`}
                 />
                 {confirmPasswordValidation.message && (
-                  <p className="text-red-500 text-xs font-semibold mb-4">
+                  <p className='text-red-500 text-xs font-semibold mb-4'>
                     {confirmPasswordValidation.message}
                   </p>
                 )}
@@ -443,14 +448,14 @@ const Login = () => {
                 <button
                   // onClick={handleRegister}
                   disabled={loading}
-                  className="bg-blue-500 text-white text-xs font-semibold uppercase tracking-wider py-3 px-11 rounded-lg border border-transparent hover:bg-blue-600 transition-colors disabled:opacity-50"
+                  className='bg-blue-500 text-white text-xs font-semibold uppercase tracking-wider py-3 px-11 rounded-lg border border-transparent hover:bg-blue-600 transition-colors disabled:opacity-50'
                 >
-                  {loading ? <ClipLoader size={15} color="#fff" /> : "Sign Up"}
+                  {loading ? <ClipLoader size={15} color='#fff' /> : 'Sign Up'}
                 </button>
 
                 {message && (
                   <p
-                    className={`mt-4 text-center ${messageType === "error" ? "text-red-500" : "text-green-500"}`}
+                    className={`mt-4 text-center ${messageType === 'error' ? 'text-red-500' : 'text-green-500'}`}
                   >
                     {message}
                   </p>
@@ -464,32 +469,32 @@ const Login = () => {
         <div
           className={`absolute top-0 left-1/2 w-1/2 h-full overflow-hidden transition-all duration-600 ease-in-out z-50 ${
             !isLogin
-              ? "transform -translate-x-full rounded-r-full rounded-tl-none rounded-bl-none"
-              : "rounded-l-full rounded-tr-none rounded-br-none"
+              ? 'transform -translate-x-full rounded-r-full rounded-tl-none rounded-bl-none'
+              : 'rounded-l-full rounded-tr-none rounded-br-none'
           }`}
         >
           <div
             className={`relative bg-gradient-to-r from-blue-400 to-green-500 h-full text-white w-[200%] transition-all duration-600 ease-in-out ${
-              !isLogin ? "transform translate-x-1/2" : "transform translate-x-0"
+              !isLogin ? 'transform translate-x-1/2' : 'transform translate-x-0'
             } -left-full`}
           >
             {/* Toggle Left Panel */}
             <div
               className={`absolute w-1/2 h-full flex items-center justify-center flex-col px-8 text-center transition-all duration-600 ease-in-out ${
                 !isLogin
-                  ? "transform translate-x-0"
-                  : "transform -translate-x-full"
+                  ? 'transform translate-x-0'
+                  : 'transform -translate-x-full'
               }`}
             >
-              <h1 className="text-xl font-bold uppercase mb-4">
+              <h1 className='text-xl font-bold uppercase mb-4'>
                 badminton is joy
               </h1>
-              <p className="text-sm leading-5 tracking-wide mb-5 uppercase">
+              <p className='text-sm leading-5 tracking-wide mb-5 uppercase'>
                 Enter your username & password to schedule now!!
               </p>
               <button
                 onClick={() => setIsLogin(true)}
-                className="bg-transparent border border-white text-white text-xs font-semibold uppercase tracking-wider py-3 px-11 rounded-lg hover:bg-white hover:text-green-500 transition-colors"
+                className='bg-transparent border border-white text-white text-xs font-semibold uppercase tracking-wider py-3 px-11 rounded-lg hover:bg-white hover:text-green-500 transition-colors'
               >
                 Sign In
               </button>
@@ -499,20 +504,20 @@ const Login = () => {
             <div
               className={`absolute right-0 w-1/2 h-full flex items-center justify-center flex-col px-8 text-center transition-all duration-600 ease-in-out ${
                 !isLogin
-                  ? "transform translate-x-full"
-                  : "transform translate-x-0"
+                  ? 'transform translate-x-full'
+                  : 'transform translate-x-0'
               }`}
             >
-              <h1 className="text-xl font-bold uppercase mb-4">
+              <h1 className='text-xl font-bold uppercase mb-4'>
                 badminton is life
               </h1>
-              <p className="text-sm leading-5 tracking-wide mb-5 uppercase">
+              <p className='text-sm leading-5 tracking-wide mb-5 uppercase'>
                 Register with your personal details to use all of the site
                 features!!
               </p>
               <button
                 onClick={() => setIsLogin(false)}
-                className="bg-transparent border border-white text-white text-xs font-semibold uppercase tracking-wider py-3 px-11 rounded-lg hover:bg-white hover:text-blue-500 transition-colors"
+                className='bg-transparent border border-white text-white text-xs font-semibold uppercase tracking-wider py-3 px-11 rounded-lg hover:bg-white hover:text-blue-500 transition-colors'
               >
                 Sign Up
               </button>
